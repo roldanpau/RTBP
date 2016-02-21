@@ -1,0 +1,6 @@
+0.95387536e-3 3 0 0.0
+8.400000e-01 -1.416250308339251e+00 -1.042055571153245e+00 3.741457640450085e-01 9.967988201575978e-01 -7.995068562821075e-02 2.459491939840568e+00
+
+# Find approximate homoclinic intersection for e=0.84 (unstable manifold of point p):
+# mu, k, stable, G-axis
+# e, H, p[2], v[2], lambda

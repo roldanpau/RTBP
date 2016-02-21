@@ -1,0 +1,79 @@
+/* ODE specification: rtbp, including variationals */
+extern mu;
+umu=1-mu;
+r2=x1*x1+x2*x2+x3*x3;
+
+rpe2=r2-2*mu*x1+mu*mu;
+a=umu*rpe2^(-3./2);
+aa=-3*a/rpe2;
+a1=(x1-mu)*aa;
+a2=x2*aa;
+a3=x3*aa;
+
+rpm2=r2+2*(1-mu)*x1+(1-mu)*(1-mu);
+b=mu*rpm2^(-3./2);
+bb=-3*b/rpm2;
+b1=(x1+umu)*bb;
+b2=x2*bb;
+b3=x3*bb;
+
+d41=-a-(x1-mu)*a1-b-(x1+umu)*b1;
+d42=-(x1-mu)*a2-(x1+umu)*b2;
+d43=-(x1-mu)*a3-(x1+umu)*b3;
+
+d51=-x2*(a1+b1);
+d52=-(a+b)-x2*(a2+b2);
+d53=-x2*(a3+b3);
+
+d61=-x3*(a1+b1);
+d62=-x3*(a2+b2);
+d63=-(a+b)-x3*(a3+b3);
+
+diff( x1,t)= x4+x2;
+diff( x2,t)= x5-x1;
+diff( x3,t)= x6;
+diff( x4,t)= x5-(x1-mu)*a-(x1+umu)*b;
+diff( x5,t)=-x4-x2*(a+b);
+diff( x6,t)=-x3*(a+b);
+
+diff( x7,t)= x13+x25;
+diff( x8,t)= x14+x26;
+diff( x9,t)= x15+x27;
+diff(x10,t)= x16+x28;
+diff(x11,t)= x17+x29;
+diff(x12,t)= x18+x30;
+
+diff(x13,t)= -x7+x31;
+diff(x14,t)= -x8+x32;
+diff(x15,t)= -x9+x33;
+diff(x16,t)=-x10+x34;
+diff(x17,t)=-x11+x35;
+diff(x18,t)=-x12+x36;
+
+diff(x19,t)= x37;
+diff(x20,t)= x38;
+diff(x21,t)= x39;
+diff(x22,t)= x40;
+diff(x23,t)= x41;
+diff(x24,t)= x42;
+
+diff(x25,t)= d41* x7+d42*x13+d43*x19+x31;
+diff(x26,t)= d41* x8+d42*x14+d43*x20+x32;
+diff(x27,t)= d41* x9+d42*x15+d43*x21+x33;
+diff(x28,t)= d41*x10+d42*x16+d43*x22+x34;
+diff(x29,t)= d41*x11+d42*x17+d43*x23+x35;
+diff(x30,t)= d41*x12+d42*x18+d43*x24+x36;
+
+diff(x31,t)= d51* x7+d52*x13+d53*x19-x25;
+diff(x32,t)= d51* x8+d52*x14+d53*x20-x26;
+diff(x33,t)= d51* x9+d52*x15+d53*x21-x27;
+diff(x34,t)= d51*x10+d52*x16+d53*x22-x28;
+diff(x35,t)= d51*x11+d52*x17+d53*x23-x29;
+diff(x36,t)= d51*x12+d52*x18+d53*x24-x30;
+
+diff(x37,t)= d61* x7+d62*x13+d63*x19;
+diff(x38,t)= d61* x8+d62*x14+d63*x20;
+diff(x39,t)= d61* x9+d62*x15+d63*x21;
+diff(x40,t)= d61*x10+d62*x16+d63*x22;
+diff(x41,t)= d61*x11+d62*x17+d63*x23;
+diff(x42,t)= d61*x12+d62*x18+d63*x24;

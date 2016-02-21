@@ -1,0 +1,24 @@
+SHELL = /bin/sh
+prefix = /usr/local
+exec_prefix = $(prefix)
+bindir = $(exec_prefix)/bin
+includedir = $(prefix)/include
+libdir = $(exec_prefix)/lib
+CFLAGS = -O3 #-g -O
+LDLIBS = -lm -lgsl -lgslcblas -lds
+
+all : trtbp
+
+install : trtbp
+	cp trtbp $(bindir)
+
+trtbp : $(libdir)/libds.a
+#	cc -o trtbp -g -lm -lgsl -lgslcblas trtbp.o rtbp.o
+
+#frtbp : frtbp_main.o frtbp.o libds.a(rtbp.o)
+#	$(CC) -o frtbp $(LDLIBS) $(CFLAGS) frtbp_main.o frtbp.o rtbp.o
+
+trtbp.o : $(includedir)/frtbp.h
+
+clean : 
+	rm trtbp trtbp.o

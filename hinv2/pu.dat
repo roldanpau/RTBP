@@ -1,0 +1,7 @@
+0.95387536e-3
+-1.6
+-5.919887716436227e+00 0 5.874284049063611e-02 0
+
+# point p_u=(x,y,p_x,p_y) in the unstable fundamental segment.
+# y=0 because we are on the poincare section
+# p_y=whatever

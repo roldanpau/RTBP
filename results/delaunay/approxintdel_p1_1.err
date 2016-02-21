@@ -1,0 +1,84 @@
+
+e: 8.400000e-01
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.903753e-09
+Approximate interval: 4
+
+e: 8.450000e-01
+Optimal displacement: 1.000000e-06
+Estimated error of manifold: 8.141182e-11
+Approximate interval: 12
+
+e: 8.500000e-01
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.103124e-09
+Approximate interval: 3
+
+e: 8.550000e-01
+Optimal displacement: 1.000000e-08
+Estimated error of manifold: 1.530957e-13
+Approximate interval: 21
+
+e: 8.600000e-01
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.548685e-08
+Approximate interval: 3
+
+e: 8.650000e-01
+Optimal displacement: 1.000000e-06
+Estimated error of manifold: 8.845136e-11
+Approximate interval: 12
+
+e: 8.700000e-01
+Optimal displacement: 1.000000e-07
+Estimated error of manifold: 1.278622e-11
+Approximate interval: 68
+
+e: 8.750000e-01
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.910406e-09
+Approximate interval: 4
+
+e: 8.800000e-01
+Optimal displacement: 1.000000e-09
+Estimated error of manifold: 5.863619e-14
+Approximate interval: 96
+
+e: 8.850000e-01
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.467707e-08
+Approximate interval: 5
+
+e: 8.900000e-01
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 2.096706e-09
+Approximate interval: 6
+
+e: 8.950000e-01
+Optimal displacement: 1.000000e-03
+Estimated error of manifold: 1.085914e-07
+Approximate interval: 40
+
+e: 9.000000e-01
+Optimal displacement: 1.000000e-06
+Estimated error of manifold: 8.100235e-11
+Approximate interval: 25
+
+e: 9.050000e-01
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 8.682354e-09
+Approximate interval: 10
+
+e: 9.100000e-01
+Optimal displacement: 1.000000e-03
+Estimated error of manifold: 5.135689e-07
+Approximate interval: 44
+
+e: 9.150000e-01
+Optimal displacement: 1.000000e-06
+Estimated error of manifold: 1.622542e-12
+Approximate interval: 37
+
+e: 9.200000e-01
+Optimal displacement: 1.000000e-03
+Estimated error of manifold: 2.963110e-06

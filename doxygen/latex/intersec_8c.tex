@@ -1,0 +1,156 @@
+\hypertarget{intersec_8c}{
+\section{/home/pau/research/splitting\_\-prog/intersec/intersec.c File Reference}
+\label{intersec_8c}\index{/home/pau/research/splitting\_\-prog/intersec/intersec.c@{/home/pau/research/splitting\_\-prog/intersec/intersec.c}}
+}
+
+
+Intersection of Invariant Manifolds.  
+
+
+{\ttfamily \#include $<$stdio.h$>$}\par
+{\ttfamily \#include $<$gsl/gsl\_\-vector.h$>$}\par
+{\ttfamily \#include $<$gsl/gsl\_\-roots.h$>$}\par
+{\ttfamily \#include $<$rtbp.h$>$}\par
+{\ttfamily \#include $<$prtbp\_\-2d.h$>$}\par
+Include dependency graph for intersec.c:
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structdparams}{dparams}
+\begin{DoxyCompactList}\small\item\em parameters to function \char`\"{}dist\char`\"{} \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{intersec_8c_a5619b0f6f7d95df48cfc707c7914e794}{
+double {\bfseries distance\_\-f\_\-unst} (double h, void $\ast$params)}
+\label{intersec_8c_a5619b0f6f7d95df48cfc707c7914e794}
+
+\item 
+\hypertarget{intersec_8c_a7027afc597eb3004eb16e88a389127c7}{
+double {\bfseries distance\_\-f\_\-st} (double h, void $\ast$params)}
+\label{intersec_8c_a7027afc597eb3004eb16e88a389127c7}
+
+\item 
+\hypertarget{intersec_8c_a3d58b7cd173ced1ae2a9ced63fa71f81}{
+int {\bfseries print\_\-state} (size\_\-t iter, gsl\_\-root\_\-fsolver $\ast$s)}
+\label{intersec_8c_a3d58b7cd173ced1ae2a9ced63fa71f81}
+
+\item 
+int \hyperlink{intersec_8c_a7805e9a8bf88ded1a9ce4af8655d6831}{intersec\_\-unst} (double \hyperlink{frtbp_8c_a74577585cf12d1712ab9c57616d49205}{mu}, double H, double p\mbox{[}2\mbox{]}, double v\mbox{[}2\mbox{]}, double lambda, int n, double h1, double h2, double l, double $\ast$h, double p\_\-u\mbox{[}2\mbox{]}, double $\ast$t, double z\mbox{[}2\mbox{]})
+\item 
+int \hyperlink{intersec_8c_a98427b3a0d000b33860e9c2e5dff2651}{intersec\_\-st} (double \hyperlink{frtbp_8c_a74577585cf12d1712ab9c57616d49205}{mu}, double H, double p\mbox{[}2\mbox{]}, double v\mbox{[}2\mbox{]}, double lambda, int n, double h1, double h2, double l, double $\ast$h, double p\_\-s\mbox{[}2\mbox{]}, double $\ast$t, double z\mbox{[}2\mbox{]})
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{intersec_8c_a5f84ee6c412bd94c0671fe37d331d7a2}{
+const double \hyperlink{intersec_8c_a5f84ee6c412bd94c0671fe37d331d7a2}{BISECT\_\-TOL} = 1.e-\/15}
+\label{intersec_8c_a5f84ee6c412bd94c0671fe37d331d7a2}
+
+\begin{DoxyCompactList}\small\item\em Tolerance (precision) for bisection method. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Intersection of Invariant Manifolds. \begin{DoxyParagraph}{Author:}
+roldan 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Date:}
+2013-\/03-\/11 11:27:15 
+\end{DoxyParagraph}
+
+
+\subsection{Function Documentation}
+\hypertarget{intersec_8c_a98427b3a0d000b33860e9c2e5dff2651}{
+\index{intersec.c@{intersec.c}!intersec\_\-st@{intersec\_\-st}}
+\index{intersec\_\-st@{intersec\_\-st}!intersec.c@{intersec.c}}
+\subsubsection[{intersec\_\-st}]{\setlength{\rightskip}{0pt plus 5cm}int intersec\_\-st (
+\begin{DoxyParamCaption}
+\item[{double}]{mu, }
+\item[{double}]{H, }
+\item[{double}]{p\mbox{[}2\mbox{]}, }
+\item[{double}]{v\mbox{[}2\mbox{]}, }
+\item[{double}]{lambda, }
+\item[{int}]{n, }
+\item[{double}]{h1, }
+\item[{double}]{h2, }
+\item[{double}]{l, }
+\item[{double $\ast$}]{h, }
+\item[{double}]{p\_\-s\mbox{[}2\mbox{]}, }
+\item[{double $\ast$}]{t, }
+\item[{double}]{z\mbox{[}2\mbox{]}}
+\end{DoxyParamCaption}
+)}}
+\label{intersec_8c_a98427b3a0d000b33860e9c2e5dff2651}
+Intersection of stable invariant manifold with symmetry line.
+
+Exactly as \hyperlink{intersec_8c_a7805e9a8bf88ded1a9ce4af8655d6831}{intersec\_\-unst}. \hypertarget{intersec_8c_a7805e9a8bf88ded1a9ce4af8655d6831}{
+\index{intersec.c@{intersec.c}!intersec\_\-unst@{intersec\_\-unst}}
+\index{intersec\_\-unst@{intersec\_\-unst}!intersec.c@{intersec.c}}
+\subsubsection[{intersec\_\-unst}]{\setlength{\rightskip}{0pt plus 5cm}int intersec\_\-unst (
+\begin{DoxyParamCaption}
+\item[{double}]{mu, }
+\item[{double}]{H, }
+\item[{double}]{p\mbox{[}2\mbox{]}, }
+\item[{double}]{v\mbox{[}2\mbox{]}, }
+\item[{double}]{lambda, }
+\item[{int}]{n, }
+\item[{double}]{h1, }
+\item[{double}]{h2, }
+\item[{double}]{l, }
+\item[{double $\ast$}]{h, }
+\item[{double}]{p\_\-u\mbox{[}2\mbox{]}, }
+\item[{double $\ast$}]{t, }
+\item[{double}]{z\mbox{[}2\mbox{]}}
+\end{DoxyParamCaption}
+)}}
+\label{intersec_8c_a7805e9a8bf88ded1a9ce4af8655d6831}
+Intersection of unstable invariant manifold with symmetry line.
+
+Consider the 2D map $\mathcal{P}: \Sigma_- \to \Sigma_-$, which is assumed to be reversible with respect to the symmetry line \$p\_\-x=0\$. Let \$p\$ be a hyperbolic fixed point for $\mathcal{P}$. For definiteness, we assume that \$p\$ is located above the \$p\_\-x=0\$ axis.
+
+Assume that $\lambda$ is the unstable eigenvalue, with $\lambda>1$. Let \$v\$ be the unstable eigenvector for the eigenvalue $\lambda$. For definiteness, we assume that \$v=(x,p\_\-x)\$ points \char`\"{}to the right\char`\"{}, i.e. we assume that the first component of \$v\$ is \$x$>$0\$, but we could use the other branch of the manifold. Let \$W$^\wedge$u(p)\$ be the unstable manifold of \$p\$. Let \$p\_\-x=l\$ be a line parallel to the \$x\$ axis.
+
+This function computes the \char`\"{}first\char`\"{} intersection point \$z=(x,l)\$ of the unstable manifold with the line \$p\_\-x=l\$ as we grow the manifold from the fixed point. It does so by refining the approximate homoclinic point obtained in \hyperlink{approxint_8h_af4aadb9c4979e9a58d7cb4a35cee9b2c}{approxint\_\-unst}.
+
+We consider the \$n\$-\/th iteration under the iterated Poincare map of the fundamental segment between the two points \$p+h v\$ and \$P(p+h v)\$. Let \$p\_\-u = p+h\_\-u v\$ be a point in the unstable segment. We are provided (by the program approxint) with an interval \$(h\_\-1,h\_\-2)\$ that is guaranteed to contain the root \$h$^\wedge$$\ast$\$ such that \[ p_x(P^n(p+h^* v))=l. \] Then we use a standard numerical method (bisection-\/like 1-\/dimensional root finding) to find \$h$^\wedge$$\ast$\$. The function that we solve (find a zero of) is distance(h\_\-u) = l -\/ p\_\-x(P$^\wedge$n(p+h\_\-u v\_\-u)).
+
+\begin{DoxyRemark}{Remarks}
+We ask for precision of BISECT\_\-TOL in the homoclinc point.
+\end{DoxyRemark}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em mu} & mass parameter for the RTBP \\
+\hline
+\mbox{\tt in}  & {\em H} & energy value \\
+\hline
+\mbox{\tt in}  & {\em p} & fixed point \$p=(x,p\_\-x)\$ \\
+\hline
+\mbox{\tt in}  & {\em v} & eigenvector associated to unstable direction \\
+\hline
+\mbox{\tt in}  & {\em lambda} & eigenvalue associated to unstable direction\\
+\hline
+\mbox{\tt in}  & {\em n} & number of desired iterations by the Poincare map in the unstable direction.\\
+\hline
+\mbox{\tt in}  & {\em h1,h2} & Endpoints of the unstable segment u\_\-i bracketing the approximate root \$p\_\-u=p + h\_\-u v\_\-u\$ with \$h\_\-u  (h\_\-1,h\_\-2)\$ (initial interval for bisection method). This is furnished by function \hyperlink{approxint_8h_af4aadb9c4979e9a58d7cb4a35cee9b2c}{approxint\_\-unst}.\\
+\hline
+\mbox{\tt in}  & {\em l} & line \$p\_\-x=l\$ parallel to the \$x\$ axis.\\
+\hline
+\mbox{\tt out}  & {\em h} & On exit, it contains the true root found by numerical method.\\
+\hline
+\mbox{\tt out}  & {\em p\_\-u\mbox{[}2\mbox{]}} & On exit, it contains point in the unstable segment such that p\_\-x(P(p\_\-u)) = l.\\
+\hline
+\mbox{\tt out}  & {\em tu} & On exit, it contains integration time to reach z from p\_\-u.\\
+\hline
+\mbox{\tt out}  & {\em z\mbox{[}2\mbox{]}} & On exit, it contains homoclinic point z = P$^\wedge$n(p\_\-u).\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a non-\/zero error code to indicate an error and 0 to indicate success.
+\end{DoxyReturn}
+
+\begin{DoxyRetVals}{Return values}
+{\em 1} & Problems computing the Poincare iterates. \\
+\hline
+{\em 2} & Bisection procedure did not converge \\
+\hline
+\end{DoxyRetVals}

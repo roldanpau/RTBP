@@ -1,0 +1,62 @@
+\hypertarget{frtbpred__main_8c}{
+\section{/home/pau/research/splitting\_\-prog/frtbp\_\-red/frtbpred\_\-main.c File Reference}
+\label{frtbpred__main_8c}\index{/home/pau/research/splitting\_\-prog/frtbp\_\-red/frtbpred\_\-main.c@{/home/pau/research/splitting\_\-prog/frtbp\_\-red/frtbpred\_\-main.c}}
+}
+
+
+Flow of the Reduced Restricted Three Body Problem: main prog.  
+
+
+{\ttfamily \#include $<$stdio.h$>$}\par
+{\ttfamily \#include $<$stdlib.h$>$}\par
+{\ttfamily \#include \char`\"{}frtbpred.h\char`\"{}}\par
+Include dependency graph for frtbpred\_\-main.c:
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{frtbpred__main_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}{main} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Flow of the Reduced Restricted Three Body Problem: main prog. \begin{DoxyParagraph}{Author:}
+roldan 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Date:}
+2013-\/03-\/26 22:18:24 
+\end{DoxyParagraph}
+
+
+\subsection{Function Documentation}
+\hypertarget{frtbpred__main_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}{
+\index{frtbpred\_\-main.c@{frtbpred\_\-main.c}!main@{main}}
+\index{main@{main}!frtbpred_main.c@{frtbpred\_\-main.c}}
+\subsubsection[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}
+\label{frtbpred__main_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}
+Flow of the Reduced Restricted Three Body Problem
+
+Compute the flow \$(s,x)\$ of the reduced RTBP for a given time and initial condition. Reduced means that we identify \$l\$ with time and then we do not need to integrate this variable. The time \$s\$ may be positive or negative, allowing for forward or backward integration. The trajectory is integrated numerically.
+
+It reads the following input from stdin:
+
+
+\begin{DoxyItemize}
+\item mu: RTBP mass parameter
+\item s1: integration time
+\item x\mbox{[}DIMRED\mbox{]}: Initial condition, 6 coordinates: (l, L, g, G, t, I).
+\end{DoxyItemize}
+
+The final point is written to stdout, in the form
+
+
+\begin{DoxyItemize}
+\item x=(l,L,g,G,t,I) 
+\end{DoxyItemize}
+
+Here is the call graph for this function:
+
+

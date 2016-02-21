@@ -1,0 +1,200 @@
+\hypertarget{outer__circ_8c}{
+\section{/home/pau/research/splitting\_\-prog/outer\_\-circ/outer\_\-circ.c File Reference}
+\label{outer__circ_8c}\index{/home/pau/research/splitting\_\-prog/outer\_\-circ/outer\_\-circ.c@{/home/pau/research/splitting\_\-prog/outer\_\-circ/outer\_\-circ.c}}
+}
+
+
+Outer Map of the Circular Problem: main prog.  
+
+
+{\ttfamily \#include $<$stdio.h$>$}\par
+{\ttfamily \#include $<$stdlib.h$>$}\par
+{\ttfamily \#include $<$assert.h$>$}\par
+{\ttfamily \#include $<$gsl/gsl\_\-integration.h$>$}\par
+{\ttfamily \#include $<$prtbpdel.h$>$}\par
+{\ttfamily \#include $<$inner\_\-circ.h$>$}\par
+Include dependency graph for outer\_\-circ.c:
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{outer__circ_8c_a33548d48966d3f65421a97df34125f54}{
+int {\bfseries omega\_\-pm\_\-old} (double \hyperlink{frtbp_8c_a74577585cf12d1712ab9c57616d49205}{mu}, double x\mbox{[}DIM\mbox{]}, int N, double T0, double $\ast$omega)}
+\label{outer__circ_8c_a33548d48966d3f65421a97df34125f54}
+
+\item 
+int \hyperlink{outer__circ_8c_a54d4f93abc24030310d8ea73a687caf4}{omega\_\-pos} (double \hyperlink{frtbp_8c_a74577585cf12d1712ab9c57616d49205}{mu}, double x\mbox{[}DIM\mbox{]}, int N, double T0, double $\ast$omega)
+\item 
+int \hyperlink{outer__circ_8c_a20472a49cb67a336c54f9637cb34d8b4}{omega\_\-neg} (double \hyperlink{frtbp_8c_a74577585cf12d1712ab9c57616d49205}{mu}, double x\mbox{[}DIM\mbox{]}, int N, double T0, double $\ast$omega)
+\item 
+int \hyperlink{outer__circ_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}{main} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Outer Map of the Circular Problem: main prog. Compute the integrals \$+$^\wedge$$\ast$\$ and \$-\/$^\wedge$$\ast$\$ related to the outer map of the circular problem.
+
+\begin{DoxyParagraph}{Author:}
+roldan 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Date:}
+2013-\/03-\/26 22:32:02 
+\end{DoxyParagraph}
+
+
+\subsection{Function Documentation}
+\hypertarget{outer__circ_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}{
+\index{outer\_\-circ.c@{outer\_\-circ.c}!main@{main}}
+\index{main@{main}!outer_circ.c@{outer\_\-circ.c}}
+\subsubsection[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}
+\label{outer__circ_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}
+Outer Map of the Circular Problem: main prog.
+
+This program computes the integrals $ \omega_{+,-}^* $ related to the outer map of the circular problem. (See notes \char`\"{}Kirkwood Gaps\char`\"{} by Marcel).
+
+It reads the following input from stdin:
+\begin{DoxyItemize}
+\item mu mass parameter for the RTBP
+\end{DoxyItemize}
+
+And a sequence of lines:
+\begin{DoxyItemize}
+\item T period of periodic orbit.
+\item zu preimage of homoclinic point z (in the original flow): P$^\wedge$\{M\}(z\_\-u) = z.
+\item M number of poincare iterates to reach z from z\_\-u.
+\end{DoxyItemize}
+
+For each input line, it outputs result to stdout:
+\begin{DoxyItemize}
+\item omega\_\-neg 
+\end{DoxyItemize}
+
+Here is the call graph for this function:
+
+
+\hypertarget{outer__circ_8c_a20472a49cb67a336c54f9637cb34d8b4}{
+\index{outer\_\-circ.c@{outer\_\-circ.c}!omega\_\-neg@{omega\_\-neg}}
+\index{omega\_\-neg@{omega\_\-neg}!outer_circ.c@{outer\_\-circ.c}}
+\subsubsection[{omega\_\-neg}]{\setlength{\rightskip}{0pt plus 5cm}int omega\_\-neg (
+\begin{DoxyParamCaption}
+\item[{double}]{mu, }
+\item[{double}]{x\mbox{[}DIM\mbox{]}, }
+\item[{int}]{N, }
+\item[{double}]{T0, }
+\item[{double $\ast$}]{omega}
+\end{DoxyParamCaption}
+)}}
+\label{outer__circ_8c_a20472a49cb67a336c54f9637cb34d8b4}
+Given an energy level $H$, compute $\omega_-^*(H)$.
+
+Given an energy level $H$, compute $\omega_-^*(H)$, defined as
+
+\[ \omega_-^*(I) = lim_{N\to -\infty} \left( \int_0^{6N\pi} f0(\gamma^*(s)) ds + NT_0(I) \right), \]
+
+where $\gamma^*(s)$ is the homoclinic trajectory of the reduced flow that starts at the primary homoclinic point z.
+
+Equivalently, we compute it as
+
+\[\omega_-^*(I) = lim_{N\to \infty} \left( \int_{6N\pi}^0 f0(\gamma^*(s)) ds - NT_0(I) \right), \]
+
+where $\gamma^*(s)$ is the homoclinic trajectory that starts at the point $ z^u = \mathcal{P}^{-N}(z) $. Notice that z$^\wedge$u is in the UNSTABLE manifold of the reduced flow.
+
+Equivalently, we split the integral from 6N to 0 into N parts of size 6:
+
+\[\omega_-^*(I) = lim_{N\to \infty} \left( \sum_{i=N,1} (\int_{6\pi}^{0} f0(\gamma_i(s)) ds - T_0(I)) \right), \]
+
+where $\gamma_i(s)$ is the homoclinic trajectory that starts at the point P$^\wedge$\{N-\/i\}(z$^\wedge$u) = P$^\wedge$\{-\/i\}(z).
+
+This is computed using numerical integration.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em mu} & mass parameter for the RTBP \\
+\hline
+\mbox{\tt in}  & {\em x\mbox{[}DIM\mbox{]}} & x=(l=0,L,g,G), point z$^\wedge$u, on the section l=0.\\
+\hline
+\mbox{\tt in}  & {\em N} & number of iterates of the poincare map (length of integration). N must be a POSITIVE integer.\\
+\hline
+\mbox{\tt in}  & {\em T0} & shift of inner map\\
+\hline
+\mbox{\tt out}  & {\em omega} & On return of this function, omega contains the value of the function $\omega_-$.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a non-\/zero error code to indicate an error and 0 to indicate success.
+\end{DoxyReturn}
+\begin{DoxyRemark}{Remarks}
+We assume that point \$z\_\-u\$ is on the SEC1 $ \{\ell=0\} $ section. 
+\end{DoxyRemark}
+
+
+Here is the call graph for this function:
+
+
+
+
+Here is the caller graph for this function:
+
+
+\hypertarget{outer__circ_8c_a54d4f93abc24030310d8ea73a687caf4}{
+\index{outer\_\-circ.c@{outer\_\-circ.c}!omega\_\-pos@{omega\_\-pos}}
+\index{omega\_\-pos@{omega\_\-pos}!outer_circ.c@{outer\_\-circ.c}}
+\subsubsection[{omega\_\-pos}]{\setlength{\rightskip}{0pt plus 5cm}int omega\_\-pos (
+\begin{DoxyParamCaption}
+\item[{double}]{mu, }
+\item[{double}]{x\mbox{[}DIM\mbox{]}, }
+\item[{int}]{N, }
+\item[{double}]{T0, }
+\item[{double $\ast$}]{omega}
+\end{DoxyParamCaption}
+)}}
+\label{outer__circ_8c_a54d4f93abc24030310d8ea73a687caf4}
+Given an energy level $H$, compute $\omega_+^*(H)$.
+
+Given an energy level $H$, compute $\omega_+^*(H)$, defined as
+
+\[ \omega_+^*(I) = lim_{N\to \infty} \int_0^{6N\pi} f0(\gamma^*(s)) ds + NT_0(I), \]
+
+where $\gamma^*(s)$ is the homoclinic trajectory of the reduced flow that starts at the primary homoclinic point z.
+
+Equivalently, we compute it as
+
+\[\omega_+^*(I) = lim_{N\to +\infty} \int_{-6N\pi}^0 f0(\gamma^*(s)) ds + NT_0(I), \]
+
+where $\gamma^*(s)$ is the homoclinic trajectory that starts at the point $ z^s = \mathcal{P}^{N}(z) $. Notice that z$^\wedge$s is in the STABLE manifold of the reduced flow.
+
+Equivalently, we split the integral from -\/6N to 0 into N parts of size 6:
+
+\[\omega_+^*(I) = lim_{N\to +\infty} \sum_{i=N,1} (\int_{-6\pi}^{0} f0(\gamma_i(s)) ds + T_0(I)), \]
+
+where $\gamma_i(s)$ is the homoclinic trajectory that starts at the point P$^\wedge$\{-\/(N-\/i)\}(z$^\wedge$s) = P$^\wedge$\{i\}(z).
+
+This is computed using numerical integration.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em mu} & mass parameter for the RTBP \\
+\hline
+\mbox{\tt in}  & {\em x\mbox{[}DIM\mbox{]}} & x=(l=0,L,g,G), point z$^\wedge$s, on the section l=0.\\
+\hline
+\mbox{\tt in}  & {\em N} & number of iterates of the poincare map (length of integration). N must be positive since we are computing $\omega_+^*$.\\
+\hline
+\mbox{\tt in}  & {\em T0} & shift of inner map\\
+\hline
+\mbox{\tt out}  & {\em omega} & On return of this function, omega contains the value of the function $\omega_+$.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a non-\/zero error code to indicate an error and 0 to indicate success.
+\end{DoxyReturn}
+\begin{DoxyRemark}{Remarks}
+We assume that point \$z\_\-s\$ is on the SEC1 $ \{\ell=0\} $ section. 
+\end{DoxyRemark}
+
+
+Here is the call graph for this function:
+
+

@@ -1,0 +1,387 @@
+0. ABSTRACT
+
+  - Word 'primaries' has not been introduced.
+
+  - "Asteroid belt" -> "Asteroid belt located between the orbits of Mars and
+    Jupiter.
+
+  - We don't mention that this is the ELLIPTIC rtbp. I think that the word
+    'elliptic' should appear in the abstract.
+
+1. INTRODUCTION
+
+AFTER CONJECTURE 1.2:
+
+  - After mentioning the work of Moeckel, Bolotin and McKay, maybe we could
+    add the sentence: "Also, Delshams, Gidea and Rold\'an have shown an
+instability mechanism in the spatial restricted three-body problem, but only
+locally around the equilibrium point $L_1$; see [DGR11]." 
+The reference [DGR11] should be added: 
+[DGR11]: A. Delshams, M. Gidea, and P. Rold\'an. Arnold's mechanism of
+diffusion in the spatial circular Restricted Three-Body Problem: A
+semi-numerical argument. Preprint, 2010.
+http://www.ma1.upc.edu/~roldan/normalhyper2.pdf
+
+  - "but our strategy allows us TO keep these computations to the simplest"
+
+1.1.1. THE ASTEROID BELT
+
+  - "We also omit interactions WITH the second biggest planet"
+
+  - "This implies that the strength of interaction with Saturn IS around 10%"
+
+1.1.2. KIRKWOOD GAPS
+
+  - "The mean motion resonanceS"
+
+  - "Then, the Kirkwood gaps correspond" -> "The Kirkwood gaps correspond"
+
+1.2. THE ELLIPTIC PLANAR RTBP
+
+  - As it is now, the main result is buried inside section 1.2 The elliptic
+    planar rtbp. I would introduce an independent subsection called "Main
+result" between subsections 1.2 and 1.3, to make it more visible. 
+
+1.3.3. SPEED OF DIFFUSION
+
+  - "In Appendix D we discuss THE relation"
+
+  - Footnote 1: "This does not seem crucial as for real values e_0 should not
+    be smaller than \mu" -> "This does not seem crucial, since the real value
+of e_0 is not smaller than \mu".
+
+1.3.4. ON NEKHOROSHEV'S STABILITY
+
+  - Several 'the' are missing: "THE estimate", "THE semi-major axis", "THE
+    constant".
+
+  - "involved into the proof" -> "involved in the proof"
+
+1.4 MECHANISMS OF INSTABILITY
+
+  - "One of the most natural resonances in the elliptic problem (even a
+    three-body problem) ARE the mean motion orbital resonances."
+
+  - Through the paper, sometimes we use the words "osculating ellipse", and
+    sometimes "instant ellipse". This may be confusing, we should just use
+one expression.
+
+  - "In Figure 3 we consider the plane (a,e), which describeS the ellipse of
+    the Asteroid".
+
+1.6 NATURE OF NUMERICS
+
+  - The second point is somewhat confusing. I would change it to:
+
+  "We show that for all J\in[J_-,J_+] we have two intersections of W^s(p_J)
+and W^u(p_J). Each intersection is transversal for almost all values of J,
+but it becomes tangent at an exceptional (discrete) set of J's.
+Nevertheless, we check that at least one of the two intersections is
+transversal for each J\in[J_-,J_+]. See figure~\ref{fig:splittings}."
+
+  - The last paragraph is too involved. I would write:
+
+  "As seen in the Appendixes A,C, the numerical values that we deal with are
+several orders of magnitude larger than the estimated error of our
+computations, and therefore these computations are reliable. Moreover, all
+the computations that we handle are standard and low-dimensional."
+
+3. THE CIRCULAR PROBLEM
+3.1 INVARIANT CYLINDER
+
+- On Theorem 3, it says "for certain constant C>0". This words should be
+  removed.
+
+A. NUMERICAL STUDY OF THE HYPERBOLIC CYLINDER OF THE CIRCULAR PROBLEM
+
+- Second paragraph:
+  "which would require Computer-Assisted techniques like interval
+arithmetics" -> "which would require Computer-Assisted techniques as in
+[WZ03]", 
+
+and include the following reference in the bibliography:
+
+@article {WZ03,
+    AUTHOR = {Wilczak, Daniel and Zgliczynski, Piotr},
+     TITLE = {Heteroclinic connections between periodic orbits in planar
+              restricted circular three-body problem---a computer assisted
+              proof},
+   JOURNAL = {Comm. Math. Phys.},
+  FJOURNAL = {Communications in Mathematical Physics},
+    VOLUME = {234},
+      YEAR = {2003},
+    NUMBER = {1},
+     PAGES = {37--75},
+      ISSN = {0010-3616},
+     CODEN = {CMPHAY},
+   MRCLASS = {70F07 (34C37 37B10 37C29 37N10 70K44)},
+  MRNUMBER = {1961956 (2004b:70022)},
+MRREVIEWER = {Kazuhiro Sakai},
+       DOI = {10.1007/s00220-002-0709-0},
+       URL = {http://dx.doi.org/10.1007/s00220-002-0709-0},
+}
+
+- Also on the second paragraph: 
+
+  "There is a whole range of possible numerical computations which one could
+think of to prove our result." -> 
+  "One could think of several possible numerical computations to prove our
+result."
+
+  "In addition to the fact that this computation would not bring much light
+on the mechanism of instability, it would cast formidable issues of numerical
+analysis" ->
+  "This computation would not bring much light to the mechanism of
+instability, and moreover it would involve formidable numerical analysis
+problems"
+
+  "At the opposite" -> "On the contrary"
+
+A.1 COMPUTATION OF THE PERIODIC ORBITS
+
+  - "We look for a resonant periodic orbit $\lambda_J$" -> "We look for a
+    resonant periodic orbit $\lambda_{J_0}$"
+
+  - After Remark A.1:
+  "Since in the region of the phase space we are dealing with $\partial_{p_y}
+J \neq 0$" -> 
+  "Since $\partial_{p_y} J \neq 0$ in the region of the phase space we deal
+with"
+
+  - "(see the GSL manual for details)" -> 
+    "(see the GSL manual~\cite{GSL} for details"
+
+and then include the reference in the bibliography:
+
+@book {GSL,
+    AUTHOR = {Galassi, M. et al},
+     TITLE = {GNU Scientific Library Reference Manual},
+      ISBN = {0954612078},
+}
+
+  - Figure 5 (caption): 
+  "Resonant periodic orbit $\gamma_{-1.6}$" ->
+  "Resonant periodic orbit $\lambda_{-1.6}$"
+
+  - I am including an improved version of Figure 6 in the attached file
+"porbits.eps". Please replace the old file "porbits.eps" with this new one, and then include the figure in the latex file with the following code:
+
+\begin{figure}
+\psfrag{H}{$H$}
+\psfrag{T}{$T_H - 14\pi$}
+\psfrag{T2XXXXXXX}{$T_H - 14\pi$}
+\psfrag{L2XXXXXXX}{$L_{\max}$}
+\includegraphics{figs/porbits}
+\caption{Resonant family of periodic orbits.
+We show normalized period $T_H - 14\pi$, and maximum deviation of $L$
+component with respect to the resonant value $7^{1/3}$ (see
+equation~\eqref{eq:Ldeviation}).}
+\label{fig:porbits}
+\end{figure}
+
+  - Remove the sentence "(Since $DP^6(p)$ is a $2 \times 2$ matrix, the
+eigenvalues are trivial to compute.)", because this comment is trivial.
+
+- I am including an improved version of Figure 7 in the attached file
+  "hypers.eps". Please replace the old file with this new one, and then
+include the figure in the latex file with the following code:
+
+\begin{figure}
+\psfrag{H}{$J$}
+\psfrag{lu}{$\ln(\lambda)$}
+\includegraphics{figs/hypers}
+\caption{Characteristic exponent $\ln(\lambda)$ as a function of
+energy level $J$ (the other exponent is $-\ln(\lambda)$).}
+\label{fig:hypers}
+\end{figure}
+
+  - I am including an improved version of Figure 8 in the attached file
+    "trtbp_porbits.eps". Please replace the old file with this new one.
+
+  - "which is stated in Theorem 3" -> "which is the second bound given in
+    Theorem 3"
+
+A.2 COMPUTATION OF INVARIANT MANIFOLDS 
+--------------------------------------
+
+- First sentence: "In this appendix, we compute" -> "In this Appendix we
+  compute"
+
+- Figure 8 (caption):
+  "on the section $\Sigma$" -> "on the section $\Sigma^+$"
+
+
+A.3 Computation of transversal homoclinic points and splitting angle
+--------------------------------------------------------------------
+
+- First sentence: "In this appendix, we compute" -> "In this Appendix we
+  compute"
+
+- I am including an improved version of Figure 15 in the attached file
+  "splittings.eps". Please replace the old file with this new one.
+
+A.4 Accuracy of computations
+----------------------------
+
+- "In Table 2 we tabulate the $x$ coordinate of $W^{u,1}(p_3)$ and $W^{s,1}(p_2)$ on these axis". The last word should be "axes", not "axis".
+
+B The resonance in Delaunay coordinates
+---------------------------------------
+
+- "IT is much more convenient to use them to study the mean motion resonance"
+
+- "intersect the section $y=0$ six times whereas THEY intersect $g=0$ seven
+  times"
+
+- Sometimes we use the words "the section g=0", and sometimes "the section
+  {g=0}". We should just use one expression.
+
+- "intersect the section $y=0$ six times whereas they intersect $g=0$ seven
+  times." ->
+  "intersect the section $y=0$ six times whereas they intersect $g=0$ seven
+times. However, we remark that the homoclinic points $z_1$ and $z_2$ lie on
+the symmetry axis both in Cartesian and in Delaunay variables. See
+Figures~\ref{fig:invmfld2_H174} and~\ref{fig:orbitpdel_H174}."
+
+The figures are attached (see files invmfld2_H174.eps and orbitpdel_H174.eps).
+
+Then include the figures in the latex document using the following code:
+
+\begin{figure}
+\psfrag{x}{$x$}
+\psfrag{px}{$p_x$}
+\psfrag{p0}{$p_0$}
+\psfrag{p1}{$p_1$}
+\psfrag{p2}{$p_2$}
+\psfrag{p3}{$p_3$}
+\psfrag{p4}{$p_4$}
+\psfrag{p5}{$p_5$}
+\includegraphics{figs/invmfld2_H174}
+\caption{Energy $J=-1.74$. Resonance structure in Cartesian coordinates. The
+axis of symmetry is marked with a horizontal line.}
+\label{fig:invmfld2_H174}
+\end{figure}
+
+\begin{figure}
+\psfrag{l}{$l$}
+\psfrag{L}{$L$}
+\psfrag{p0}{$p_0$}
+\psfrag{p1}{$p_1$}
+\psfrag{p2}{$p_2$}
+\psfrag{p3}{$p_3$}
+\psfrag{p4}{$p_4$}
+\psfrag{p5}{$p_5$}
+\psfrag{p6}{$p_6$}
+\psfrag{z1}{$z_1$}
+\psfrag{z2}{$z_2$}
+\includegraphics{figs/orbitpdel_H174}
+\caption{Energy $J=-1.74$. Resonance structure in Delaunay coordinates. The
+symmetry corresponds to $l=0$ and $l=\pi$ and is marked with a vertical
+line.}
+\label{fig:orbitpdel_H174}
+\end{figure}
+
+- "and iterate them by the flow of the circular problem expressed in Delaunay
+  coordinates (forward or backwards) until they hit" ->
+  "and iterate them by the flow of the circular problem expressed in Delaunay
+  coordinates until they hit"
+
+
+B.1 From Cartesian to Delaunay and computation of 
+-------------------------------------------------
+
+- "The potential\mu\Delta H_{circ}" -> "The potential \mu\Delta H_{circ}"
+
+
+C Numerical study of the inner and outer dynamics
+C.1 Inner and outer dynamics of the circular problem
+----------------------------------------------------
+
+- First paragraph: "In this appendix, we numerically" -> "In this Appendix we
+  numerically"
+
+- First paragraph: 
+"Then, we consider $I\in[I_-,I_+]=[-J_+,-J_-]$ (see (92))." -> 
+"Thus we consider $I\in[I_-,I_+]=[-J_+,-J_-]$, where the range $[J_-,J_+]$
+is given in (92)."
+
+- Second paragraph: 
+"on the corresponding energy level of energy" -> 
+"on the corresponding level of energy"
+
+- "using a standard algorithm from the GSL library" ->
+  "using a standard algorithm from the GSL library~\cite{GSL}"
+
+
+C.2 Inner and outer dynamics of the elliptic problem
+----------------------------------------------------
+
+- I am including an improved version of Figure 19 in the attached file
+  "inner_ell.eps". Please replace the old file with this new one, and then
+include the figure in the latex file with the following code:
+
+\begin{figure}
+\psfrag{H}{$\hat H$}
+\psfrag{A}{$A_1^+(I)$}
+\psfrag{reXXXXXX}{$\Re(A_1^+)$}
+\psfrag{imXXXXXX}{$\Im(A_1^+)$}
+\includegraphics{figs/inner_ell}
+\caption{Function $A_1^+(I)$ (real and imaginary parts) involved in
+the definition of the inner map~\eqref{def:InnerMap:ell} of the
+elliptic problem as a function of the energy of the system in rotating
+coordinates $\hat H$. Recall that $\hat H = -I$.}
+\label{fig:inner_ell}
+\end{figure}
+
+- "We plot them as a function of the energy of the elliptic problem" ->
+  "We plot IT as a function of the energy of the elliptic problem"
+
+- I am including an improved version of Figure 20 in the attached file
+  "B_bf.eps". Please replace the old file with this new one, and then
+include the figure in the latex file with the following code:
+
+\begin{figure}
+\psfrag{H}{$\hat H$}
+\psfrag{reBfXXXXXX}{$\Re(B^{\ff,+})$}
+\psfrag{imBfXXXXXX}{$\Im(B^{\ff,+})$}
+\psfrag{reBbXXXXXX}{$\Re(B^{\bb,+})$}
+\psfrag{imBbXXXXXX}{$\Im(B^{\bb,+})$}
+\includegraphics{figs/B_fb}
+\caption{Functions $B^{\ff,+}$ and $B^{\bb,+}$ (real and imaginary parts)
+involved in the definition of the outer map~\eqref{def:OuterMap:Elliptic} of
+the elliptic problem.}
+\label{fig:B_fb}
+\end{figure}
+
+
+C.3 Comparison of the inner and outer dynamics of the elliptic problem
+----------------------------------------------------------------------
+
+- I am including an improved version of Figure 21 in the attached file
+  "tildeB.eps". Please replace the old file with this new one, and then
+include the figure in the latex file with the following code:
+
+\begin{figure}
+\psfrag{H}{$\hat H$}
+\psfrag{reBfXXXXXX}{$\Re(\wt B^{\ff,+})$}
+\psfrag{imBfXXXXXX}{$\Im(\wt B^{\ff,+})$}
+\psfrag{reBbXXXXXX}{$\Re(\wt B^{\bb,+})$}
+\psfrag{imBbXXXXXX}{$\Im(\wt B^{\bb,+})$}
+\includegraphics{figs/tildeB}
+\caption{Functions $\wt B^{\ff,+}$ and $\wt B^{\bb,+}$ (real and
+imaginary parts).}
+\label{fig:tildeB}
+\end{figure}
+
+
+Acknowledgements
+----------------
+
+- "The authors acknowledge useful discussion with Abed Bounemoura, Alain
+  Chenciner, \`ANGEL JORBA, Mark Levi, Gennadi Piftankin and Ke Zhang."
+
+- I would also add: 
+  "P. R. acknowledges the assistance of \`A.~Jorba with the ``taylor''
+package (see http://www.maia.ub.es/~angel/taylor)".
+
+- "J. F., M. G. and P. R. did several stays..."

@@ -1,0 +1,14 @@
+0.95387536e-3 SEC2 -1.416250308339251e+00
+3
+-1.042055571153243e+00 3.741457640450072e-01
+9.967988588955081e-01 -7.995020265523277e-02
+2.459496707950735e+00
+10 
+0
+1.e-3
+-1
+
+# e = 0.84
+# Unstable manifold of all fixed points $p_0,...,p_2$.
+# We choose the small increment $h$ such that the estimated error commited
+# in the linear approximation of the manifold is smaller than 

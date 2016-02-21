@@ -1,0 +1,169 @@
+\hypertarget{inner__circ_8h}{
+\section{/home/pau/research/splitting\_\-prog/inner\_\-circ/inner\_\-circ.h File Reference}
+\label{inner__circ_8h}\index{/home/pau/research/splitting\_\-prog/inner\_\-circ/inner\_\-circ.h@{/home/pau/research/splitting\_\-prog/inner\_\-circ/inner\_\-circ.h}}
+}
+
+
+Inner Map of the Circular Problem.  
+
+
+{\ttfamily \#include $<$rtbp.h$>$}\par
+Include dependency graph for inner\_\-circ.h:
+This graph shows which files directly or indirectly include this file:
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structiparams__omega__in}{iparams\_\-omega\_\-in}
+\begin{DoxyCompactList}\small\item\em Parameters to the \hyperlink{inner__circ_8h_add386ab1cbaa441219d25f4b52e2f53d}{integrand\_\-omega\_\-in} function. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+double \hyperlink{inner__circ_8h_add386ab1cbaa441219d25f4b52e2f53d}{integrand\_\-omega\_\-in} (double s, void $\ast$params)
+\item 
+int \hyperlink{inner__circ_8h_a38ed35e40093167924304bddd0374b19}{omega\_\-in\_\-f} (double \hyperlink{frtbp_8c_a74577585cf12d1712ab9c57616d49205}{mu}, double x\mbox{[}DIM\mbox{]}, double $\ast$omega)
+\item 
+\hypertarget{inner__circ_8h_a44134122fec6bbbfbf0baf6596fec641}{
+int {\bfseries omega\_\-in\_\-b} (double \hyperlink{frtbp_8c_a74577585cf12d1712ab9c57616d49205}{mu}, double x\mbox{[}DIM\mbox{]}, double $\ast$omega)}
+\label{inner__circ_8h_a44134122fec6bbbfbf0baf6596fec641}
+
+\item 
+int \hyperlink{inner__circ_8h_a72f5962db0d26783910e84f5d1fc9c77}{inner\_\-circ} (double \hyperlink{frtbp_8c_a74577585cf12d1712ab9c57616d49205}{mu}, double x\mbox{[}DIM\mbox{]}, double $\ast$T)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Inner Map of the Circular Problem. \begin{DoxyParagraph}{Author:}
+roldan 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Date:}
+2013-\/03-\/26 22:20:08 
+\end{DoxyParagraph}
+
+
+\subsection{Function Documentation}
+\hypertarget{inner__circ_8h_a72f5962db0d26783910e84f5d1fc9c77}{
+\index{inner\_\-circ.h@{inner\_\-circ.h}!inner\_\-circ@{inner\_\-circ}}
+\index{inner\_\-circ@{inner\_\-circ}!inner_circ.h@{inner\_\-circ.h}}
+\subsubsection[{inner\_\-circ}]{\setlength{\rightskip}{0pt plus 5cm}int inner\_\-circ (
+\begin{DoxyParamCaption}
+\item[{double}]{mu, }
+\item[{double}]{x\mbox{[}DIM\mbox{]}, }
+\item[{double $\ast$}]{T}
+\end{DoxyParamCaption}
+)}}
+\label{inner__circ_8h_a72f5962db0d26783910e84f5d1fc9c77}
+Inner Map of the Circular Problem.
+
+For the circular problem, the invariant cylinder is foliated by periodic orbits. It is assumed that we work with a 3:1 resonant periodic orbit that is symmetric. According to Marcel's notes, the inner map for the circular problem is given by
+
+\[ F_0^{in}\colon\ (I,t)\to (I, t+ T_0(I)). \]
+
+Here, \$T\_\-0(I)\$ is given by the integral
+
+\[ 2\pi + T_0 = \int_0^{6\pi} \frac{1}{L^{-3}+\mu\partial_L \Delta H_{circ}(\gamma(s))} ds, \]
+
+where $\gamma(s)$ is the periodic trajectory in the level of energy H.
+
+Given an energy level \$H\$, this function computes \$T\_\-0(H)\$.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em mu} & mass parameter for the RTBP\\
+\hline
+\mbox{\tt in}  & {\em x} & x=(l=0,L,g,G), periodic point of period 3, on the section l=0.\\
+\hline
+\mbox{\tt out}  & {\em T} & On return of this function, T contains the shift T\_\-0(H).\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a non-\/zero error code to indicate an error and 0 to indicate success.
+\end{DoxyReturn}
+\begin{DoxyRemark}{Remarks}
+We recall that $2\pi+T_0$ in the original time is just the period of the periodic orbit, which we have already computed using program \char`\"{}porbits\char`\"{}. As a test, here we compute T\_\-0 using the integral above. 
+\end{DoxyRemark}
+
+
+Here is the call graph for this function:
+
+
+\hypertarget{inner__circ_8h_add386ab1cbaa441219d25f4b52e2f53d}{
+\index{inner\_\-circ.h@{inner\_\-circ.h}!integrand\_\-omega\_\-in@{integrand\_\-omega\_\-in}}
+\index{integrand\_\-omega\_\-in@{integrand\_\-omega\_\-in}!inner_circ.h@{inner\_\-circ.h}}
+\subsubsection[{integrand\_\-omega\_\-in}]{\setlength{\rightskip}{0pt plus 5cm}double integrand\_\-omega\_\-in (
+\begin{DoxyParamCaption}
+\item[{double}]{s, }
+\item[{void $\ast$}]{params}
+\end{DoxyParamCaption}
+)}}
+\label{inner__circ_8h_add386ab1cbaa441219d25f4b52e2f53d}
+Integrand of $ \omega_{in} $ integral.
+
+Given a trajectory $ \lambda(s) $ of the reduced circular RTBP, and an integration time 's' in the trajectory, this function computes the integrand \[ f0(\lambda(s)) = \frac{3-L^{-3}-\mu(\partial_L \Delta H_{circ}) \circ \lambda(s)} {3(L^{-3}+\mu(\partial_L \Delta H_{circ}) \circ \lambda(s))} \] evaluated at $\lambda(s)$.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em s} & integration time in the periodic trajectory. \\
+\hline
+\mbox{\tt in}  & {\em mu} & mass parameter for the RTBP \\
+\hline
+\mbox{\tt in}  & {\em x\mbox{[}DIM\mbox{]}} & periodic point, 4 coordinates: (l,L,g,G).\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the integrand evaluated at the point $\lambda(s)$.
+\end{DoxyReturn}
+\begin{DoxyRemark}{Remarks}
+The parameter s may be positive or negative.
+
+We will also use this as the integrand in \hyperlink{outer__circ_8c_a54d4f93abc24030310d8ea73a687caf4}{omega\_\-pos} and \hyperlink{outer__circ_8c_a20472a49cb67a336c54f9637cb34d8b4}{omega\_\-neg}.
+\end{DoxyRemark}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{rtbpdel_8h_ae8c62a9a7573e8672ead34056c6c1214}{f0} 
+\end{DoxySeeAlso}
+
+
+Here is the call graph for this function:
+
+
+
+
+Here is the caller graph for this function:
+
+
+\hypertarget{inner__circ_8h_a38ed35e40093167924304bddd0374b19}{
+\index{inner\_\-circ.h@{inner\_\-circ.h}!omega\_\-in\_\-f@{omega\_\-in\_\-f}}
+\index{omega\_\-in\_\-f@{omega\_\-in\_\-f}!inner_circ.h@{inner\_\-circ.h}}
+\subsubsection[{omega\_\-in\_\-f}]{\setlength{\rightskip}{0pt plus 5cm}int omega\_\-in\_\-f (
+\begin{DoxyParamCaption}
+\item[{double}]{mu, }
+\item[{double}]{x\mbox{[}DIM\mbox{]}, }
+\item[{double $\ast$}]{omega}
+\end{DoxyParamCaption}
+)}}
+\label{inner__circ_8h_a38ed35e40093167924304bddd0374b19}
+Compute $\omega_{in}^f(I)$
+
+Given an energy level \$H=-\/I\$, compute $\omega_{in}^f(I)$, defined as \[ \omega_{in}^f(I) = \int_0^{4\pi} f0(\lambda_I^2(s)) ds. \] This is computed using numerical integration.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em mu} & mass parameter for the RTBP \\
+\hline
+\mbox{\tt in}  & {\em x\mbox{[}DIM\mbox{]}} & x=(l=0,L,g,G), periodic point of period 3. This point corresponds to the unique periodic orbit for the circular problem with initial condition at $ \tilde\Lambda_0^2 $ and energy \$H=-\/I\$. Note that x is on the section l=0.\\
+\hline
+\mbox{\tt out}  & {\em omega} & On return of this function, omega contains the value of the integral.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a non-\/zero error code to indicate an error and 0 to indicate success. 
+\end{DoxyReturn}
+
+
+Here is the call graph for this function:
+
+
+
+
+Here is the caller graph for this function:
+
+

@@ -1,0 +1,7 @@
+0.95387536e-3 1
+0.000000000000000e+00 6.903739666022396e-01 0.000000000000000e+00 6.776525586612943e-01
+
+# Compute $T_0$.
+# (bInner flag is not relevant).
+# In particular, compute integral along the periodic orbit with initial
+# condition p0=(l,L,g,G).

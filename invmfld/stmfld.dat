@@ -1,0 +1,13 @@
+0.95387536e-3 -1.64051038911395342059
+2
+2.391747350406375e-01 0
+-5.509288883237911e-02  9.984812334741716e-01
+6.508591470963098e-01
+29
+1
+1.e-5
+-1
+
+# Stable manifolds of points $p_0, p_1$.
+# We choose the small increment $h$ such that the estimated error commited
+# in the linear approximation of the manifold is smaller than ???

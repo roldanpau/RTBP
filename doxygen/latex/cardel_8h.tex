@@ -1,0 +1,60 @@
+\hypertarget{cardel_8h}{
+\section{/home/pau/research/splitting\_\-prog/cardel/cardel.h File Reference}
+\label{cardel_8h}\index{/home/pau/research/splitting\_\-prog/cardel/cardel.h@{/home/pau/research/splitting\_\-prog/cardel/cardel.h}}
+}
+
+
+Cartesian to Delaunay Change of Coordinates.  
+
+
+{\ttfamily \#include $<$rtbp.h$>$}\par
+Include dependency graph for cardel.h:
+This graph shows which files directly or indirectly include this file:
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{cardel_8h_ad73aab349ce75d8f6974c09024d9634f}{cardel} (double X\mbox{[}DIM\mbox{]}, double Y\mbox{[}DIM\mbox{]})
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Cartesian to Delaunay Change of Coordinates. Obtain rotating Delaunay coordinates (l,L,g,G) from rotating cartesian (x,y,px,py).
+
+\begin{DoxyParagraph}{Author:}
+roldan 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Date:}
+2013-\/03-\/26 22:15:14 
+\end{DoxyParagraph}
+
+
+\subsection{Function Documentation}
+\hypertarget{cardel_8h_ad73aab349ce75d8f6974c09024d9634f}{
+\index{cardel.h@{cardel.h}!cardel@{cardel}}
+\index{cardel@{cardel}!cardel.h@{cardel.h}}
+\subsubsection[{cardel}]{\setlength{\rightskip}{0pt plus 5cm}void cardel (
+\begin{DoxyParamCaption}
+\item[{double}]{X\mbox{[}DIM\mbox{]}, }
+\item[{double}]{Y\mbox{[}DIM\mbox{]}}
+\end{DoxyParamCaption}
+)}}
+\label{cardel_8h_ad73aab349ce75d8f6974c09024d9634f}
+Obtain rotating Delaunay coordinates (l,L,g,G) from rotating cartesian (x,y,px,py).
+
+We have to choose the sign of \$u\$ (eccentric anomaly) correctly. For this, let us consider the (forward) trajectory through the point \$(x,y,p\_\-x,p\_\-y)\$. We consider $\dot r$ (which is known). Since $\dot \ell>0$, Asteroid moves in a counter-\/clockwise fashion. Then, if $\dot r>0$ means that Asteroid is leaving the perihelion, so \$u$>$0\$. Conversely, if $\dot r<0$ means that Asteroid is approaching the perihelion, so \$u$<$0\$.
+
+On output, we normalize the angles \$l,g\$ between $[0,2\pi)$.
+
+Delaunay variables are 2BP variables, so they assume $\mu=0$. Thus this function does not change if we are using the \char`\"{}big primary to the
+  left\char`\"{} or the \char`\"{}big primary to the right\char`\"{} convention.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em X} & point in rotating cartesian coordinates, X=(x,y,p\_\-x,p\_\-y). \\
+\hline
+\mbox{\tt out}  & {\em Y} & point in rotating Delaunay coordinates, Y=(l,L,g,G). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}

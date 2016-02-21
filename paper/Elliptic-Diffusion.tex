@@ -1,0 +1,160 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{url}
+\usepackage[usenames,dvips]{color}
+% \usepackage{showkeys}
+\usepackage{stmaryrd}
+\usepackage[dvips]{graphicx}
+\usepackage{psfrag, float}  %per al text dels gr{\"\i}{?`}�fics
+
+% Pau's packages
+\usepackage{verbatim}	% for multiline comments
+
+\vfuzz2pt % Don't report over-full v-boxes if over-edge is small
+\hfuzz2pt % Don't report over-full h-boxes if over-edge is small
+\oddsidemargin=3mm \evensidemargin=3mm \topmargin=-5mm
+\textheight=225mm \textwidth=160mm
+\def\singlespace{ \renewcommand{\baselinestretch}{1.0}\normalsize }
+\def\middlespace{ \renewcommand{\baselinestretch}{1.3}\normalsize }
+\def\doublespace{ \renewcommand{\baselinestretch}{2.0}\normalsize }
+\def\figlabel#1{\label{#1}}
+% \doublespace
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem{definition}{Definition}[section]
+\newtheorem{remark}{Remark}[section]
+\newtheorem{example}{Example}[section]
+\newtheorem{notation}{Notation}[section]
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{conjecture}{Conjecture}[section]
+
+\newcommand{\be}{\begin{equation}}
+  \newcommand{\ee}{\end{equation}}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\ga}{\gamma}
+\newcommand{\dps}{\displaystyle}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\TT}{\mathbb{T}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\MM}{\mathcal{M}}
+\newcommand{\WW}{\mathcal{W}}
+\newcommand{\PP}{\mathcal{P}}
+\newcommand{\GG}{\mathcal{G}}
+\newcommand{\II}{\mathcal{I}}
+\newcommand{\BB}{\mathcal{B}}
+\newcommand{\LL}{\mathcal{L}}
+\newcommand{\QQ}{\mathcal{Q}}
+\newcommand{\YY}{\mathcal{Y}}
+\newcommand{\KK}{\mathcal{K}}
+\newcommand{\SSS}{\mathcal{S}}
+\newcommand{\DD}{\mathcal{D}}
+\newcommand{\XX}{\mathcal{X}}
+\newcommand{\OO}{\mathcal{O}}
+\newcommand{\FF}{\mathcal{F}}
+\newcommand{\HH}{\mathcal{H}}
+\newcommand{\VV}{\mathcal{V}}
+\newcommand{\RRR}{\mathcal{R}}
+\newcommand{\TTT}{\mathcal{T}}
+\newcommand{\UU}{\mathcal{U}}
+\newcommand{\NNN}{\mathcal{N}}
+\newcommand{\EE}{\mathcal{E}}
+\newcommand{\JJ}{\mathcal{J}}
+\newcommand{\AAA}{\mathcal{A}}
+\newcommand{\ZZZ}{\mathcal{Z}}
+\newcommand{\CCC}{\mathcal{C}}
+\newcommand{\Id}{\mathrm{Id}}
+\newcommand{\pol}{\frac{\pi}{2}i+\de z}
+\newcommand{\xp}{x_p}
+\newcommand{\yp}{y_p}
+\newcommand{\lne}{\ln\frac{1}{\eps}}
+\newcommand{\bg}{\hat{g}}
+\newcommand{\tg}{\tilde{g}}
+\newcommand{\bgi}{\hat{g}_\inn}
+\newcommand{\bh}{\hat{h}}
+\newcommand{\bff}{\hat{f}}
+\newcommand{\bT}{\bar{\Theta}}
+\newcommand{\dpsi}{\hat\xi}
+\newcommand{\lln}{\llfloor}
+\newcommand{\rrn}{\rrfloor}
+\newcommand{\oX}{\hat{\XX}}
+\newcommand{\Oo}{\OO(1)}
+\newcommand{\Ooo}{\OO(\eps)}
+\newcommand{\ii}{^{-1}}
+\newcommand{\de}{\delta}
+\newcommand{\pa}{\partial}
+\newcommand{\la}{\lambda}
+\newcommand{\LLL}{\tilde{\LL}}
+\newcommand{\inn}{\mathrm{in}}
+\newcommand{\out}{\mathrm{out}}
+\newcommand{\q}{\beta}
+\newcommand{\p}{\alpha}
+\newcommand{\M}{\Phi_{a}}
+\newcommand{\overM}{\overline M_1}
+\newcommand{\vinfty}{v_\infty}
+\newcommand{\kk}{\kappa}
+\newcommand{\rr}{\rho}
+\newcommand{\tro}{I}
+\newcommand{\tri}{\mathcal{I}}
+\newcommand{\ups}{\Upsilon}
+\newcommand{\upsi}{\Upsilon_0}
+\newcommand{\oupsi}{\overline{\Upsilon}_0}
+\newcommand{\s}{s}
+\newcommand{\C}{c}
+\newcommand{\F}{F}
+\newcommand{\vu}{\chi_1}
+\newcommand{\vd}{\chi_2}
+\newcommand{\fund}{\Phi}
+\newcommand{\cota}{M}
+\newcommand{\tet}{\theta}
+\newcommand{\ol}{\overline}
+\newcommand{\La}{\Lambda}
+\newcommand{\bet}{\beta}
+\newcommand{\mat}{A_0}
+\newcommand{\om}{\omega}
+\newcommand{\Xxi}{\Xi}
+\newcommand{\ppi}{\phi}
+\newcommand{\Ppi}{\Phi}
+\newcommand{\wH}{H_1}
+\renewcommand{\Re}{\mathrm{Re\, }}
+\renewcommand{\Im}{\mathrm{Im\,}}
+\newcommand{\wt}{\widetilde}
+\newcommand{\wh}{\widehat}
+\newcommand{\Lip}{\mathrm{Lip}}
+\newcommand{\hmu}{\hat\mu}
+\newcommand{\g}{\hat g}
+\newcommand{\Lb}{\Lambda}
+\newcommand{\lb}{\lambda}
+\newcommand{\ccirc}{\mathrm{circ}}
+\newcommand{\eell}{\mathrm{ell}}
+\newcommand{\ti}{\;\;\makebox[0pt]{$\top$}\makebox[0pt]{$\cap$}\;\;}
+
+
+\newcommand{\ff}{\mathrm{f}}
+\newcommand{\bb}{\mathrm{b}}
+% Pau's commands
+
+% sixth iterate of poincare map, P^{6}
+\newcommand{\sixmap}{\mathcal{P}}
+
+% opening
+
+\begin{document}
+
+\title{Diffusion along mean motion resonance\\
+  for the restricted planar three body problem}
+\author{Jacques F{\'e}joz, Marcel Gu{\`a}rdia, Vadim Kaloshin \& Pablo
+Rold\'{a}n}
+% , {\`A}ngel Jorba
+\maketitle
+\include{main}
+\include{appendix}
+
+\bibliography{references}
+\bibliographystyle{alpha}
+\end{document}

@@ -1,0 +1,47 @@
+# A program in bc to derive the initial condition corresponding to r=p/q
+# ressonant periodic orbit in the 2BP.
+# We impose that the inicial condition is at the perihelion.
+
+# Execute with:
+#	bc -l initcond.bc
+
+#h=-1.6	# Hamiltonian energy value
+#print "Using energy level H="; h
+
+# Hamiltonian energy value
+print "Eccentricity e_0? "; estar=read()
+
+# r=p/q resonance, where p=period of asteroid, q=period of Jupiter
+print "Resonance (p/q, p=period of Asteroid, q=period of Jupiter)? "; r=read()
+
+# A function to return the integer part of a number
+define int(number) {
+   auto oldscale
+   oldscale = scale
+   scale = 0
+   number /= 1 /* round number down */
+   scale = oldscale
+   return number
+}
+
+# Use the fact that number^exponent == e^(exponent*log(number))
+define power(number,exponent) {
+   if (exponent == int(exponent)) {
+      return number ^ exponent 
+   } else {
+      return e( exponent * l(number) )
+   }
+}
+
+lstar=power(r,-1/3)
+gstar=lstar*sqrt(1-estar*estar)
+h=-1/(2*lstar*lstar)-gstar
+
+mu=0.00095387536
+c=-2*h+mu*(1-mu)
+
+"L = "; lstar
+"G = "; gstar
+"h = "; h
+"C = "; c
+quit

@@ -1,0 +1,114 @@
+\hypertarget{frtbp_8c}{
+\section{/home/pau/research/splitting\_\-prog/frtbp/frtbp.c File Reference}
+\label{frtbp_8c}\index{/home/pau/research/splitting\_\-prog/frtbp/frtbp.c@{/home/pau/research/splitting\_\-prog/frtbp/frtbp.c}}
+}
+
+
+Flow of the Restricted Three Body Problem.  
+
+
+{\ttfamily \#include $<$taylor2dv.h$>$}\par
+{\ttfamily \#include $<$rtbp.h$>$}\par
+{\ttfamily \#include \char`\"{}frtbp.h\char`\"{}}\par
+Include dependency graph for frtbp.c:
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{frtbp_8c_a11fa988891750d9d7599ef0a9b592904}{dfrtbp} (double mu\_\-loc, double t1, double x\mbox{[}DIM\mbox{]}, double dphi\mbox{[}DIMV\mbox{]})
+\item 
+int \hyperlink{frtbp_8c_afb57f9c4c76634005cd9c8462d038f0f}{frtbp} (double mu\_\-loc, double t1, double x\mbox{[}DIM\mbox{]})
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{frtbp_8c_a74577585cf12d1712ab9c57616d49205}{
+double \hyperlink{frtbp_8c_a74577585cf12d1712ab9c57616d49205}{mu}}
+\label{frtbp_8c_a74577585cf12d1712ab9c57616d49205}
+
+\begin{DoxyCompactList}\small\item\em global variable, needed in taylor\_\-step\_\-rtbp2dv \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Flow of the Restricted Three Body Problem. \begin{DoxyParagraph}{Author:}
+roldan 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Date:}
+2013-\/03-\/26 22:17:52 
+\end{DoxyParagraph}
+
+
+\subsection{Function Documentation}
+\hypertarget{frtbp_8c_a11fa988891750d9d7599ef0a9b592904}{
+\index{frtbp.c@{frtbp.c}!dfrtbp@{dfrtbp}}
+\index{dfrtbp@{dfrtbp}!frtbp.c@{frtbp.c}}
+\subsubsection[{dfrtbp}]{\setlength{\rightskip}{0pt plus 5cm}int dfrtbp (
+\begin{DoxyParamCaption}
+\item[{double}]{mu\_\-loc, }
+\item[{double}]{t1, }
+\item[{double}]{x\mbox{[}DIM\mbox{]}, }
+\item[{double}]{dphi\mbox{[}DIMV\mbox{]}}
+\end{DoxyParamCaption}
+)}}
+\label{frtbp_8c_a11fa988891750d9d7599ef0a9b592904}
+Derivative of the flow of the RTBP.
+
+Compute the derivative of the flow \$D(t,x)\$ with respect to \$x\$ of the RTBP for a given time and initial condition. The time \$t\$ may be positive or negative, allowing for forward or backward integration. This is done by numerically integrating the variational equations.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em mu} & mass parameter for the RTBP\\
+\hline
+\mbox{\tt in}  & {\em t1} & integration time\\
+\hline
+\mbox{\tt in}  & {\em x\mbox{[}DIM\mbox{]}} & Argument of the derivative, 4 coordinates: $ (X, Y, P_X, P_Y). $\\
+\hline
+\mbox{\tt out}  & {\em dphi\mbox{[}DIMV\mbox{]}} & On return of this function, it holds the derivative \$D(t,x)\$ with respect to \$x\$.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a non-\/zero error code to indicate an error and 0 to indicate success.
+\end{DoxyReturn}
+\begin{DoxyRemark}{Remarks}
+Backwards integration of the variational equations is used to obtain the derivative of the inverse Poincare map (see dprtbp).
+
+A Taylor method (provided by Angel Jorba) is used to solve the variational equations.
+
+We follow the convention to place the large mass (Sun) to the LEFT of the origin, and the small mass (Jupiter) to the RIGHT. 
+\end{DoxyRemark}
+\hypertarget{frtbp_8c_afb57f9c4c76634005cd9c8462d038f0f}{
+\index{frtbp.c@{frtbp.c}!frtbp@{frtbp}}
+\index{frtbp@{frtbp}!frtbp.c@{frtbp.c}}
+\subsubsection[{frtbp}]{\setlength{\rightskip}{0pt plus 5cm}int frtbp (
+\begin{DoxyParamCaption}
+\item[{double}]{mu, }
+\item[{double}]{t1, }
+\item[{double}]{x\mbox{[}DIM\mbox{]}}
+\end{DoxyParamCaption}
+)}}
+\label{frtbp_8c_afb57f9c4c76634005cd9c8462d038f0f}
+Flow of the Restricted Three Body Problem
+
+Compute the flow \$(t,x)\$ of the RTBP for a given time and initial condition. The time \$t\$ may be positive or negative, allowing for forward or backward integration. The trajectory is integrated numerically.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em mu} & mass parameter for the RTBP\\
+\hline
+\mbox{\tt in}  & {\em t1} & integration time\\
+\hline
+\mbox{\tt in,out}  & {\em x\mbox{[}DIM\mbox{]}} & Initial condition, 4 coordinates: $ (X, Y, P_X, P_Y). $ On return of this function, it holds the final point \$(t,x)\$.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a non-\/zero error code to indicate an error and 0 to indicate success. If an integration error is encountered, the function returns a non-\/zero value.
+\end{DoxyReturn}
+\begin{DoxyRemark}{Remarks}
+A Taylor method (provided by Angel Jorba) is used to solve the ODE.
+
+We follow the convention to place the large mass (Sun) to the LEFT of the origin, and the small mass (Jupiter) to the RIGHT. 
+\end{DoxyRemark}
+
+
+Here is the caller graph for this function:
+
+

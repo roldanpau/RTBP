@@ -1,0 +1,65 @@
+\hypertarget{initcond_8c}{
+\section{/home/pau/research/splitting\_\-prog/initcond/initcond.c File Reference}
+\label{initcond_8c}\index{/home/pau/research/splitting\_\-prog/initcond/initcond.c@{/home/pau/research/splitting\_\-prog/initcond/initcond.c}}
+}
+
+
+initial condition of p/q resonant p.o. in 2BP  
+
+
+{\ttfamily \#include $<$math.h$>$}\par
+Include dependency graph for initcond.c:
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{initcond_8c_a93b4e5f51b050fe7c934c0e3c87df5ca}{initcond} (double H, double r, double $\ast$x, double $\ast$vy)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+initial condition of p/q resonant p.o. in 2BP \begin{DoxyParagraph}{Author:}
+roldan 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Date:}
+2013-\/03-\/13 09:03:57 
+\end{DoxyParagraph}
+
+
+\subsection{Function Documentation}
+\hypertarget{initcond_8c_a93b4e5f51b050fe7c934c0e3c87df5ca}{
+\index{initcond.c@{initcond.c}!initcond@{initcond}}
+\index{initcond@{initcond}!initcond.c@{initcond.c}}
+\subsubsection[{initcond}]{\setlength{\rightskip}{0pt plus 5cm}int initcond (
+\begin{DoxyParamCaption}
+\item[{double}]{H, }
+\item[{double}]{r, }
+\item[{double $\ast$}]{x, }
+\item[{double $\ast$}]{vy}
+\end{DoxyParamCaption}
+)}}
+\label{initcond_8c_a93b4e5f51b050fe7c934c0e3c87df5ca}
+initial condition of p/q resonant p.o. in 2BP
+
+Consider the Asteroid -\/ Sun/Jupiter two body problem (2BP), i.e. mass of Jupiter is zero. Given an energy value \char`\"{}H\char`\"{}, this function computes an initial condition of Asteroid (x,y,v\_\-x,v\_\-y) corresponding to r=p/q ressonant periodic orbit in the 2BP, where p=period of asteroid, q=period of Jupiter.
+
+We impose that initial condition is at the perihelion. This implies that position of Asteroid is A=(x,0) and velocity is v=(0,v\_\-y), where x$>$0 and p\_\-y$>$0. Therefore, we output as initial condition only the components (x,v\_\-y).
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em H} & energy value where we will look for periodic orbit \\
+\hline
+\mbox{\tt in}  & {\em r} & r=p/q resonance, where p=period of asteroid, q=period of Jupiter \\
+\hline
+\mbox{\tt out}  & {\em x} & On exit, it contains the x component of the initial condition \\
+\hline
+\mbox{\tt out}  & {\em vy} & On exit, it contains the v\_\-y component of the initial condition\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a non-\/zero error code to indicate an error and 0 to indicate success. 
+\end{DoxyReturn}
+
+
+Here is the caller graph for this function:
+
+

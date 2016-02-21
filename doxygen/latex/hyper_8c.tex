@@ -1,0 +1,96 @@
+\hypertarget{hyper_8c}{
+\section{/home/pau/research/splitting\_\-prog/hyper/hyper.c File Reference}
+\label{hyper_8c}\index{/home/pau/research/splitting\_\-prog/hyper/hyper.c@{/home/pau/research/splitting\_\-prog/hyper/hyper.c}}
+}
+
+
+Hyperbolic Splitting (Eigenvalues/vects) Associated to a Fixed Point.  
+
+
+{\ttfamily \#include $<$stdio.h$>$}\par
+{\ttfamily \#include $<$math.h$>$}\par
+{\ttfamily \#include $<$assert.h$>$}\par
+{\ttfamily \#include $<$prtbp.h$>$}\par
+{\ttfamily \#include $<$dprtbp\_\-2d.h$>$}\par
+Include dependency graph for hyper.c:
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{hyper_8c_a55489db95ee7c60a966ba7f4ac61be88}{hyper} (double \hyperlink{frtbp_8c_a74577585cf12d1712ab9c57616d49205}{mu}, section\_\-t sec, double H, int n, double p\mbox{[}2\mbox{]}, double eval\mbox{[}2\mbox{]}, double evec\mbox{[}4\mbox{]})
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{hyper_8c_a263ba8d98b5ad9025dadc52e5530a2d3}{
+const int {\bfseries ERR\_\-DPRTBP\_\-2D} = 1}
+\label{hyper_8c_a263ba8d98b5ad9025dadc52e5530a2d3}
+
+\item 
+\hypertarget{hyper_8c_aa8efe8cac07b207ffe3133a20fc2a65c}{
+const int {\bfseries ERR\_\-NOTREAL} = 2}
+\label{hyper_8c_aa8efe8cac07b207ffe3133a20fc2a65c}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Hyperbolic Splitting (Eigenvalues/vects) Associated to a Fixed Point. \begin{DoxyParagraph}{Author:}
+roldan 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Date:}
+2013-\/03-\/11 11:22:18 
+\end{DoxyParagraph}
+
+
+\subsection{Function Documentation}
+\hypertarget{hyper_8c_a55489db95ee7c60a966ba7f4ac61be88}{
+\index{hyper.c@{hyper.c}!hyper@{hyper}}
+\index{hyper@{hyper}!hyper.c@{hyper.c}}
+\subsubsection[{hyper}]{\setlength{\rightskip}{0pt plus 5cm}int hyper (
+\begin{DoxyParamCaption}
+\item[{double}]{mu, }
+\item[{section\_\-t}]{sec, }
+\item[{double}]{H, }
+\item[{int}]{n, }
+\item[{double}]{p\mbox{[}2\mbox{]}, }
+\item[{double}]{eval\mbox{[}2\mbox{]}, }
+\item[{double}]{evec\mbox{[}4\mbox{]}}
+\end{DoxyParamCaption}
+)}}
+\label{hyper_8c_a55489db95ee7c60a966ba7f4ac61be88}
+Hyperbolic Splitting (Eigenvalues/vects) Associated to a Fixed Point.
+
+Consider a 2D map \$F\$ and its derivative \$DF\$. Given a hyperbolic fixed point \$p\$ of \$F\$, compute its hyperbolic splitting, i.e. its unstable/stable eigenvalues and eigenvectors. Since \$DF\$ is a 2x2 matrix, we compute this simply by hand, see for instance \href{http://www.math.harvard.edu/archive/21b_fall_04/exhibits/2dmatrices/index.html}{\tt http://www.math.harvard.edu/archive/21b\_\-fall\_\-04/exhibits/2dmatrices/index.html}
+
+\begin{DoxyRemark}{Remarks}
+Eigenvectors are normalised to unit magnitude.
+
+Eigenvectors are chosen to point \char`\"{}to the right\char`\"{} of the fixed point, i.e. \$v=(x,p\_\-x)\$ with first component \$x$>$0\$.
+\end{DoxyRemark}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em mu} & mass parameter of RTBP. \\
+\hline
+\mbox{\tt in}  & {\em sec} & Poincare section \\
+\hline
+\mbox{\tt in}  & {\em H} & energy value of periodic orbit associated to \$p\$ \\
+\hline
+\mbox{\tt in}  & {\em n} & number of cuts with section\\
+\hline
+\mbox{\tt in}  & {\em p} & Argument of the 2d derivative, 2 coordinates: p=(x,p\_\-x).\\
+\hline
+\mbox{\tt out}  & {\em eval} & On exit, eval\mbox{[}0\mbox{]} holds the unstable eigenvalue, and eval\mbox{[}1\mbox{]} holds the stable eigenvalue.\\
+\hline
+\mbox{\tt out}  & {\em evect} & On exit, the first row evec\mbox{[}0,1\mbox{]} holds the unstable eigenvector, and the second row evect\mbox{[}2,3\mbox{]} holds the stable eigenvector.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a non-\/zero error code to indicate an error and 0 to indicate success.
+\end{DoxyReturn}
+
+\begin{DoxyRetVals}{Return values}
+{\em ERR\_\-DPRTBP\_\-2D} & Error computing derivative of 2D Poincare map of RTBP.\\
+\hline
+{\em ERR\_\-NOTREAL} & Eigenvalues are not real, so fixed point is not hyperbolic! \\
+\hline
+\end{DoxyRetVals}

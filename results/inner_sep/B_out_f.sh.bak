@@ -1,0 +1,33 @@
+# Compute function $B_{out}^{f,+}$ associated to outer map of elliptic
+# problem.
+#
+# Actually, we only compute the integral called $B^+$ in my notes. This is
+# enough, because 
+#    B_{out}^{f,+} = -\mu B^+ + \mu C^+$,
+# where
+#    re(C^+)=re(B^+), and im(C^+)=-im(B^+).
+
+lines=`wc -l omega_pos_f.res | cut -d ' ' -f 1`
+
+echo $lines
+
+# Select only the first $lines lines, corresponding to energy levels H=-1.56
+# -> -1.827
+cut -d ' ' -f 1 ../../portbp/porbits.res | tac | head -n $lines >temp1 	# H=-1.56 -> -2.04
+
+# Select only the first $lines lines, corresponding to energy levels H=-1.56
+# -> -1.827
+cut -d ' ' -f 1-4 ../prtbpdel_p3.res | tac | head -n $lines >temp2 	# p3
+cut -d ' ' -f 1-4 ../prtbpdel_p4.res | tac | head -n $lines >temp3 	# p4
+
+cut -d ' ' -f 1-4 z2_u.res >temp4 	# z2_u
+cut -d ' ' -f 1-4 z2_s.res >temp5 	# z2_s
+cut -d ' ' -f 2 approxint_p2.res >temp6 # N
+
+echo "0.95387536e-3" > B_out_f.dat
+
+# H, p3, p4, z2_u, z2_s, \omega_pos, N
+paste -d ' ' temp1 temp2 temp3 temp4 temp5 omega_pos_f.res temp6 >> B_out_f.dat
+rm temp*
+
+nohup outer_ell <B_out_f.dat >B_out_f.res 2>B_out_f.err &

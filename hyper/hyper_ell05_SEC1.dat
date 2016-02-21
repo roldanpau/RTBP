@@ -1,0 +1,8 @@
+0.95387536e-3 SEC1
+-1.640403e+00
+2
+2.390447719349280e-01 0.000000000000000e+00
+
+# Hyper splitting associated to fixed point p_1 in SEC1 corresponding to
+# periodic orbit with e=0.5 (approx).
+# Notice that p_0 is not in the symmetry line, and thus has p_x \neq 0.

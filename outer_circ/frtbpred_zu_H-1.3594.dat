@@ -1,0 +1,5 @@
+0.95387536e-3 188.49555921538759430640
+0.000000000000000e+00 7.457094873940048e-01 4.213789856507790e+00 3.193768142637389e-01 0 0
+
+# Flow point z_u=(l,L,g,G,t=0,I=0) for time s=6*N*\pi and check that it hits
+# the homoclinic point z.

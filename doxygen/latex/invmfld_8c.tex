@@ -1,0 +1,83 @@
+\hypertarget{invmfld_8c}{
+\section{/home/pau/research/splitting\_\-prog/invmfld/invmfld.c File Reference}
+\label{invmfld_8c}\index{/home/pau/research/splitting\_\-prog/invmfld/invmfld.c@{/home/pau/research/splitting\_\-prog/invmfld/invmfld.c}}
+}
+
+
+Invariant Manifolds of fixed point of Poincare map in RTBP.  
+
+
+{\ttfamily \#include $<$stdio.h$>$}\par
+{\ttfamily \#include $<$stdlib.h$>$}\par
+{\ttfamily \#include $<$math.h$>$}\par
+{\ttfamily \#include $<$prtbp\_\-2d.h$>$}\par
+{\ttfamily \#include $<$errmfld.h$>$}\par
+{\ttfamily \#include \char`\"{}disc.h\char`\"{}}\par
+Include dependency graph for invmfld.c:
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{invmfld_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}{main} ()
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{invmfld_8c_a94087ddaa6251837c08fcfd59a4ded74}{
+const int \hyperlink{invmfld_8c_a94087ddaa6251837c08fcfd59a4ded74}{NPOINTS} = 100}
+\label{invmfld_8c_a94087ddaa6251837c08fcfd59a4ded74}
+
+\begin{DoxyCompactList}\small\item\em Number of points in discretization of linear segment. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Invariant Manifolds of fixed point of Poincare map in RTBP. Consider the Restricted Three Body Problem. Assume that energy is fixed: $H(x,y,p_x,p_y)=\bar H$. Let \char`\"{}sec\char`\"{} be a Poincare section, and \$P(x,p\_\-x)\$ be the associated 2D Poincare map (consisting of \$k\$ cuts with the Poincare section). Let \$p(x,p\_\-x)\$ be a fixed point of the Poincare map associated to a periodic orbit of the flow. This function computes the unstable/stable manifolds \$W$^\wedge$u(p), W$^\wedge$s(p)\$ of the point \$p\$. A manifold is represented numerically as a sets of points.
+
+\begin{DoxyParagraph}{Author:}
+roldan 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Date:}
+2013-\/03-\/11 11:34:06 
+\end{DoxyParagraph}
+
+
+\subsection{Function Documentation}
+\hypertarget{invmfld_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}{
+\index{invmfld.c@{invmfld.c}!main@{main}}
+\index{main@{main}!invmfld.c@{invmfld.c}}
+\subsubsection[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}
+\label{invmfld_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}
+Main program.
+
+Input params (stdin):
+
+
+\begin{DoxyItemize}
+\item mass parameter
+\item Poincare section \char`\"{}sec\char`\"{}
+\item energy value \char`\"{}H\char`\"{}
+\item number of cuts \char`\"{}k\char`\"{} with Poincare section
+\item fixed point \char`\"{}p\char`\"{}
+\item linear unstable (or stable) direction \char`\"{}v\char`\"{}
+\item unstable (or stable) eigenvalue \char`\"{}lambda\char`\"{}
+\item number of desired iterations by the Poincare map \char`\"{}n\char`\"{}
+\item \char`\"{}stable\char`\"{}: flag specifying whether to compute the unstable manifold (unstable==0) or the stable manifold (stable==1).
+\item h: small increment in the direction of v
+\item ifp: Index specifying which iterate of fixed point we are interested in, e.g. p\_\-2 -\/$>$ ifp==2
+\end{DoxyItemize}
+
+Output params (stdout): sequence of points approximating the manifold.
+
+\begin{DoxyRemark}{Remarks}
+If the flag \char`\"{}stable\char`\"{} specifies the unstable manifold (0), we iterate the forward Poincare map \$P\$.
+
+If the flag \char`\"{}stable\char`\"{} specifies the stable manifold (1), we iterate the backward Poincare map \$P$^\wedge$\{-\/1\}\$. 
+\end{DoxyRemark}
+
+
+Here is the call graph for this function:
+
+

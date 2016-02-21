@@ -1,0 +1,13 @@
+0.95387536e-3 -1.6
+6
+-5.919861224972698e+00 5.874500915770887e-02
+-9.945079515089178e-01  1.046610452151894e-01
+4.234772244240149e-02
+5
+1
+1.e-5
+-1
+
+# Stable manifolds of all points $p_0, ..., p_5$.
+# We choose the small increment $h$ such that the estimated error commited
+# in the linear approximation of the manifold is smaller than 10^{-8}.

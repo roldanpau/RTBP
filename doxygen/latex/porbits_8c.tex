@@ -1,0 +1,55 @@
+\hypertarget{porbits_8c}{
+\section{/home/pau/research/splitting\_\-prog/portbp/porbits.c File Reference}
+\label{porbits_8c}\index{/home/pau/research/splitting\_\-prog/portbp/porbits.c@{/home/pau/research/splitting\_\-prog/portbp/porbits.c}}
+}
+
+
+Continuation of the periodic orbit wrt energy H.  
+
+
+{\ttfamily \#include $<$stdio.h$>$}\par
+{\ttfamily \#include $<$stdlib.h$>$}\par
+{\ttfamily \#include $<$gsl/gsl\_\-errno.h$>$}\par
+{\ttfamily \#include $<$rtbp.h$>$}\par
+{\ttfamily \#include $<$initcond.h$>$}\par
+{\ttfamily \#include $<$prtbp\_\-2d.h$>$}\par
+{\ttfamily \#include $<$hinv.h$>$}\par
+{\ttfamily \#include \char`\"{}portbpsym.h\char`\"{}}\par
+Include dependency graph for porbits.c:
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{porbits_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}{main} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Continuation of the periodic orbit wrt energy H. Consider the family of p:q almost-\/resonant periodic orbits in the RTBP. Compute the periodic orbit for a given (wide) range of energies when we change the energy H.
+
+\begin{DoxyParagraph}{Author:}
+roldan 
+\end{DoxyParagraph}
+\begin{DoxyParagraph}{Date:}
+2013-\/02-\/25 09:53:04 
+\end{DoxyParagraph}
+
+
+\subsection{Function Documentation}
+\hypertarget{porbits_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}{
+\index{porbits.c@{porbits.c}!main@{main}}
+\index{main@{main}!porbits.c@{porbits.c}}
+\subsubsection[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}
+\label{porbits_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}
+Main program.
+
+Input params (stdin): mass parameter, Poincare section, p/q resonance, number of cuts, energy range \mbox{[}H\_\-lo, H\_\-hi\mbox{]}, energy increment H\_\-delta.
+
+Output params (stdout): H, T(H), x(H) 
+
+Here is the call graph for this function:
+
+
