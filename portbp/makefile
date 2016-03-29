@@ -17,7 +17,7 @@ install : porbits portbp portbpsym portbpsym.o portbpsym.h
 
 porbits : porbits.o portbpsym.o $(libdir)/libds.a
 
-porbits.o : $(includedir)/initcond.h $(includedir)/cardel_2d.h portbpsym.h 
+porbits.o : $(includedir)/initcond.h $(includedir)/prtbp_2d.h portbpsym.h 
 
 portbp : portbp_main.o portbp.o $(libdir)/libds.a
 

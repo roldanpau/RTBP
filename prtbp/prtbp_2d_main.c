@@ -36,6 +36,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>	// EXIT_SUCCESS, EXIT_FAILURE
+#include <string.h>	// strcmp
 #include <gsl/gsl_errno.h>	// gsl_set_error_handler_off
 #include "prtbp.h"	// section_t
 #include "prtbp_2d.h"	// prtbp_2d
@@ -50,7 +51,8 @@ int main( )
    // auxiliary variables
    char section_str[10];        // holds input string "SEC1", "SEC2" etc
 
-   // Input mass parameter, energy value, number of iterates from stdin.
+   // Input mass parameter, Poincare section, energy value, 
+   // number of iterates from stdin.
    if(scanf("%le %s %le %d", &mu, section_str, &H, &n) < 4)
    {
       perror("main: error reading input");

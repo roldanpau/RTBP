@@ -30,11 +30,9 @@ prtbp_main.o : $(includedir)/rtbp.h prtbp.h
 
 prtbp.o : $(includedir)/frtbp.h $(includedir)/rtbp.h
 
-prtbp_inv : prtbp_inv_main.o prtbp.o $(libdir)/libds.a
-	$(CC) -o prtbp_inv $(LDLIBS) $(CFLAGS) prtbp_inv_main.o prtbp.o \
-	   $(libdir)/libds.a
+prtbp_inv : prtbp_inv.o prtbp.o $(libdir)/libds.a
 
-prtbp_inv_main.o : $(includedir)/rtbp.h prtbp.h
+prtbp_inv.o : $(includedir)/rtbp.h prtbp.h
 
 prtbp_2d : prtbp_2d_main.o prtbp_2d.o prtbp.o $(libdir)/libds.a
 #	$(CC) -o prtbp_2d $(LDLIBS) $(CFLAGS) prtbp_2d_main.o prtbp_2d.o \
@@ -44,17 +42,13 @@ prtbp_2d_main.o : prtbp_2d.h
 
 prtbp_2d.o : $(includedir)/rtbp.h $(includedir)/hinv.h prtbp.h 
 
-prtbp_2d_inv : prtbp_2d_inv_main.o prtbp_2d.o prtbp.o $(libdir)/libds.a
-	$(CC) -o prtbp_2d_inv $(LDLIBS) $(CFLAGS) prtbp_2d_inv_main.o \
-	   prtbp_2d.o prtbp.o $(libdir)/libds.a
+prtbp_2d_inv : prtbp_2d_inv.o prtbp_2d.o prtbp.o $(libdir)/libds.a
 
-prtbp_2d_inv_main.o : prtbp_2d.h
+prtbp_2d_inv.o : prtbp_2d.h
 
-prtbps_2d : prtbps_2d_main.o prtbp_2d.o prtbp.o $(libdir)/libds.a
-	$(CC) -o prtbps_2d $(LDLIBS) $(CFLAGS) prtbps_2d_main.o prtbp_2d.o \
-	prtbp.o $(libdir)/libds.a
+prtbps_2d : prtbps_2d.o prtbp_2d.o prtbp.o $(libdir)/libds.a
 
-prtbps_2d_main.o : prtbp_2d.h
+prtbps_2d.o : prtbp_2d.h
 
 unstmfld_it0.res: unstmfld_it0.dat prtbp_2d
 	./prtbp_2d < $< > $@
@@ -65,7 +59,7 @@ stmfld_it0_neg.res: stmfld_it0_neg.dat prtbp_2d_inv
 clean : 
 	rm prtbp prtbp_main.o prtbp.o \
 	   prtbp_2d prtbp_2d_main.o prtbp_2d.o \
-	   prtbps_2d prtbps_2d_main.o \
-	   prtbp_inv prtbp_inv_main.o \
-	   prtbp_2d_inv prtbp_2d_inv_main.o \
+	   prtbps_2d prtbps_2d.o \
+	   prtbp_inv prtbp_inv.o \
+	   prtbp_2d_inv prtbp_2d_inv.o \
 	   $(RESULTS)
