@@ -6,7 +6,7 @@ includedir = $(prefix)/include
 libdir = $(exec_prefix)/lib
 CFLAGS = -O3 #-g
 LDFLAGS = -O3 #-g
-LDLIBS = -lm -lgsl -lgslcblas -lds
+LDLIBS = -lds -lgsl -lgslcblas -lm
 
 all : hinvdel
 
