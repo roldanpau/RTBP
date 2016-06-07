@@ -39,7 +39,8 @@
   fundamental domains contain the preimage of an intersection point.
 
   This function returns the unstable segment u_i with endpoints $(h_1, h_2)$
-  containing the approximate root $p_u=p + h_u v_u$ with $h_u \in (h_1,h_2)$.
+  containing the approximate root $p_u=p + h_u v_u$ with \f$h_u \in
+  (h_1,h_2)\f$.
 
   \remark If the first intersection point that we find is not part of the
   (continuous) family of primary intersections, then we keep looking for the
@@ -65,7 +66,7 @@
 
   \param[out] h_1,h_2
   On exit, it contains the endpoints of the unstable segment u_i bracketing
-  the approximate root $p_u=p + h_u v_u$ with $h_u \in (h_1,h_2)$.
+  the approximate root $p_u=p + h_u v_u$ with \f$h_u \in (h_1,h_2)\f$.
 
   \param[in,out] z
   On entry, it contains the previous intersection point (for the previous

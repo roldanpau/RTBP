@@ -43,7 +43,7 @@
 #include <stdio.h>
 #include <stdlib.h>	// EXIT_SUCCESS, EXIT_FAILURE
 #include <rtbp.h>	// DIM
-#include <prtbp.h>	// section_t
+#include <section.h>	// section_t
 #include "hinv.h"	// hinv
 
 int main( )

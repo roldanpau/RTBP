@@ -23,7 +23,7 @@
 #include <stdio.h>	// fprintf
 #include <math.h>	// sqrt, fabs
 #include <rtbp.h>	// DIM
-#include <prtbp.h>	// section_t
+#include <section.h>	// section_t
 
 const int ERR_CPLX_ROOTS=1;
 
