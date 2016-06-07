@@ -54,3 +54,6 @@
 \form#53:$\ell$
 \form#54:\[ f0(x) = \frac{3-L^{-3}-\mu\partial_L \Delta H_{circ}(x)} {3(L^{-3}+\mu\partial_L \Delta H_{circ}(x))} = \frac{3-l'(x)}{3 l'(x)}. \]
 \form#55:$ z = \mathcal{P}^{n}(p) $
+\form#56:$h_u \in (h_1,h_2)$
+\form#57:$ \Sigma_- = {y=0, \dot y<0} $
+\form#58:$D\phi(t,x)$
