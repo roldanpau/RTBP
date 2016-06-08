@@ -16,7 +16,7 @@
 #include <rtbp.h>	// DIM
 #include "prtbp.h"	// section_t
 
-const double POINCARE_TOL=1.e-16;	///< error bound (tolerance) for Poincare map
+const double POINCARE_TOL=1.e-16;
 const double SHORT_TIME=0.01;		///< integration "step" for prtbp
 
 int inter(double mu, section_t sec, double epsabs, double x[DIM], double t0,

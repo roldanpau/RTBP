@@ -5,6 +5,9 @@
     Compute the periodic orbit for a given (wide) range of energies when we
     change the energy H.
 
+    \remark The initial condition for the periodic orbit is taken at 
+    the perihelion.
+
     $Author: roldan $
     $Date: 2013-02-25 09:53:04 $
 */
