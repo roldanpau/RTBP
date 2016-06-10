@@ -61,15 +61,17 @@
 <a name="l00004"></a>00004 <span class="preprocessor">#include &lt;<a class="code" href="section_8h.html" title="Definition of Poincare sections.">section.h</a>&gt;</span>    <span class="comment">// section_t</span>
 <a name="l00005"></a>00005 <span class="preprocessor">#include &quot;rtbp.h&quot;</span>       <span class="comment">// DIM</span>
 <a name="l00006"></a>00006 
-<a name="l00007"></a>00007 <span class="keywordtype">int</span> <a class="code" href="prtbp_8c.html#ae2068a782d6e50d63718fec38d77e31f">prtbp</a>(<span class="keywordtype">double</span> <a class="code" href="frtbp_8c.html#a74577585cf12d1712ab9c57616d49205" title="global variable, needed in taylor_step_rtbp2dv">mu</a>, section_t sec, <span class="keywordtype">int</span> cuts, <span class="keywordtype">double</span> x[<a class="code" href="rtbpdel_8h.html#ac25189db92959bff3c6c2adf4c34b50a" title="dimension of the (planar) RTBP">DIM</a>], <span class="keywordtype">double</span> *ti);
-<a name="l00008"></a>00008 <span class="keywordtype">int</span> <a class="code" href="prtbp_8c.html#a518d5cd6341e8ea73f37ed1a9338fb8c">prtbp_inv</a>(<span class="keywordtype">double</span> <a class="code" href="frtbp_8c.html#a74577585cf12d1712ab9c57616d49205" title="global variable, needed in taylor_step_rtbp2dv">mu</a>, section_t sec, <span class="keywordtype">int</span> cuts, <span class="keywordtype">double</span> x[<a class="code" href="rtbpdel_8h.html#ac25189db92959bff3c6c2adf4c34b50a" title="dimension of the (planar) RTBP">DIM</a>], <span class="keywordtype">double</span> *ti);
-<a name="l00009"></a>00009 
-<a name="l00010"></a>00010 <span class="preprocessor">#endif // PRTBP_H_INCLUDED</span>
+<a name="l00007"></a>00007 <span class="keyword">extern</span> <span class="keyword">const</span> <span class="keywordtype">double</span> <a class="code" href="prtbp_8c.html#ac450b8001e59c6e9d91c135a2154944a" title="error bound (tolerance) for Poincare map">POINCARE_TOL</a>;       
+<a name="l00008"></a>00008 
+<a name="l00009"></a>00009 <span class="keywordtype">int</span> <a class="code" href="prtbp_8c.html#ae2068a782d6e50d63718fec38d77e31f">prtbp</a>(<span class="keywordtype">double</span> <a class="code" href="frtbp_8c.html#a74577585cf12d1712ab9c57616d49205" title="global variable, needed in taylor_step_rtbp2dv">mu</a>, section_t sec, <span class="keywordtype">int</span> cuts, <span class="keywordtype">double</span> x[<a class="code" href="rtbpdel_8h.html#ac25189db92959bff3c6c2adf4c34b50a" title="dimension of the (planar) RTBP">DIM</a>], <span class="keywordtype">double</span> *ti);
+<a name="l00010"></a>00010 <span class="keywordtype">int</span> <a class="code" href="prtbp_8c.html#a518d5cd6341e8ea73f37ed1a9338fb8c">prtbp_inv</a>(<span class="keywordtype">double</span> <a class="code" href="frtbp_8c.html#a74577585cf12d1712ab9c57616d49205" title="global variable, needed in taylor_step_rtbp2dv">mu</a>, section_t sec, <span class="keywordtype">int</span> cuts, <span class="keywordtype">double</span> x[<a class="code" href="rtbpdel_8h.html#ac25189db92959bff3c6c2adf4c34b50a" title="dimension of the (planar) RTBP">DIM</a>], <span class="keywordtype">double</span> *ti);
+<a name="l00011"></a>00011 
+<a name="l00012"></a>00012 <span class="preprocessor">#endif // PRTBP_H_INCLUDED</span>
 </pre></div></div><!-- contents -->
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jun 7 2016 12:46:09 for splitting_prog by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Jun 10 2016 11:59:03 for splitting_prog by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.6.1
 </small></address>
