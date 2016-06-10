@@ -1,8 +1,0 @@
-0.95387536e-3
--1.6
--6.212102524512088e+00 0 0 0
-
-# Homoclinic point z=(x,y,p_x,p_y).
-# y=0 because we are on the poincare section
-# p_x=0 because z is on symmetry axis
-# p_y=whatever
