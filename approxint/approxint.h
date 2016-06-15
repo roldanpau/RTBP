@@ -80,6 +80,7 @@
   \retval 1 Problems computing the Poincare iterates.
   \retval 2 No intersection found with the $x$ axis.
 */
+
 int 
 approxint_unst (double mu, double H, int k, double p[2], double v[2],
       double lambda, double h, double a, 

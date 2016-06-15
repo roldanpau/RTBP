@@ -1,35 +1,6 @@
-// name OF FUNCTION: disc
-// CREDIT: 
-//
-// DESCRIPTION
-// ===========
-// Discretize the linear segment between $p_0$ and $p_1$ into NPOINTS.
-//
-// PARAMETERS
-// ==========
-// p0,p1
-//    endpoints of linear segment
-// n
-//    number of points in the discretization
-// l
-//    On return of the this function, it holds the discretization of the
-//    linear segment, i.e. an array of n 2D points.
-// 
-// RETURN VALUE
-// ============
-// Returns a non-zero error code to indicate an error and 0 to indicate
-// success.
-//
-// NOTES
-// =====
-// n must be >1.
-//
-// Caller must make sure that enough space has been allocated for l (2*n
-// doubles)
-//
-// The points are equally spaced. 
-// The first point coincides with the left endpoint of the linear segment.
-// The last point coincides with the right endpoint of the linear segment.
+/*! \file
+  \brief Discretize a linear segment into a given number of points
+  */
 
 int disc(double p0[2], double p1[2], int n, double *l)
 {
