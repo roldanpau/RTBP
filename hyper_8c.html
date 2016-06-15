@@ -79,10 +79,8 @@ Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hyper_8c.html#a55489db95ee7c60a966ba7f4ac61be88">hyper</a> (double <a class="el" href="frtbp_8c.html#a74577585cf12d1712ab9c57616d49205">mu</a>, <a class="el" href="section_8h.html#ae0680445b6052d4c06d2f86e90421084">section_t</a> sec, double H, int n, double p[2], double eval[2], double evec[4])</td></tr>
 <tr><td colspan="2"><h2><a name="var-members"></a>
 Variables</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a263ba8d98b5ad9025dadc52e5530a2d3"></a><!-- doxytag: member="hyper.c::ERR_DPRTBP_2D" ref="a263ba8d98b5ad9025dadc52e5530a2d3" args="" -->
-const int&#160;</td><td class="memItemRight" valign="bottom"><b>ERR_DPRTBP_2D</b> = 1</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa8efe8cac07b207ffe3133a20fc2a65c"></a><!-- doxytag: member="hyper.c::ERR_NOTREAL" ref="aa8efe8cac07b207ffe3133a20fc2a65c" args="" -->
-const int&#160;</td><td class="memItemRight" valign="bottom"><b>ERR_NOTREAL</b> = 2</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hyper_8c.html#a263ba8d98b5ad9025dadc52e5530a2d3">ERR_DPRTBP_2D</a> = 1</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hyper_8c.html#aa8efe8cac07b207ffe3133a20fc2a65c">ERR_NOTREAL</a> = 2</td></tr>
 </table>
 <hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>Hyperbolic Splitting (Eigenvalues/vects) Associated to a Fixed Point. </p>
@@ -94,7 +92,7 @@ const int&#160;</td><td class="memItemRight" valign="bottom"><b>ERR_NOTREAL</b> 
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int <a class="el" href="hyper_8c.html#a55489db95ee7c60a966ba7f4ac61be88">hyper</a> </td>
+          <td class="memname">int <a class="el" href="hyper_8h.html#a55489db95ee7c60a966ba7f4ac61be88">hyper</a> </td>
           <td>(</td>
           <td class="paramtype">double&#160;</td>
           <td class="paramname"><em>mu</em>, </td>
@@ -156,7 +154,7 @@ Eigenvectors are chosen to point "to the right" of the fixed point, i.e. $v=(x,p
     <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>number of cuts with section</td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">p</td><td>Argument of the 2d derivative, 2 coordinates: p=(x,p_x).</td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">eval</td><td>On exit, eval[0] holds the unstable eigenvalue, and eval[1] holds the stable eigenvalue.</td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">evect</td><td>On exit, the first row evec[0,1] holds the unstable eigenvector, and the second row evect[2,3] holds the stable eigenvector.</td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">evec</td><td>On exit, the first row evec[0,1] holds the unstable eigenvector, and the second row evect[2,3] holds the stable eigenvector.</td></tr>
   </table>
   </dd>
 </dl>
@@ -169,13 +167,51 @@ Eigenvectors are chosen to point "to the right" of the fixed point, i.e. $v=(x,p
   </dd>
 </dl>
 
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="hyper_8c_a55489db95ee7c60a966ba7f4ac61be88_cgraph.png" border="0" usemap="#hyper_8c_a55489db95ee7c60a966ba7f4ac61be88_cgraph" alt=""/></div>
+<map name="hyper_8c_a55489db95ee7c60a966ba7f4ac61be88_cgraph" id="hyper_8c_a55489db95ee7c60a966ba7f4ac61be88_cgraph">
+<area shape="rect" id="node3" href="disc_8c.html#aa8e2cd6ddb0bf9d12e9a837fa786aaaa" title="disc" alt="" coords="111,5,156,35"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<hr/><h2>Variable Documentation</h2>
+<a class="anchor" id="a263ba8d98b5ad9025dadc52e5530a2d3"></a><!-- doxytag: member="hyper.c::ERR_DPRTBP_2D" ref="a263ba8d98b5ad9025dadc52e5530a2d3" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int <a class="el" href="hyper_8h.html#a263ba8d98b5ad9025dadc52e5530a2d3">ERR_DPRTBP_2D</a> = 1</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Error computing derivative of 2D Poincare map of RTBP. </p>
+
+</div>
+</div>
+<a class="anchor" id="aa8efe8cac07b207ffe3133a20fc2a65c"></a><!-- doxytag: member="hyper.c::ERR_NOTREAL" ref="aa8efe8cac07b207ffe3133a20fc2a65c" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int <a class="el" href="hyper_8h.html#aa8efe8cac07b207ffe3133a20fc2a65c">ERR_NOTREAL</a> = 2</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Eigenvalues are not real, so fixed point is not hyperbolic! </p>
+
 </div>
 </div>
 </div><!-- contents -->
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jun 10 2016 11:59:04 for splitting_prog by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Jun 14 2016 12:26:43 for splitting_prog by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.6.1
 </small></address>
