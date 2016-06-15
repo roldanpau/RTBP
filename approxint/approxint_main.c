@@ -25,7 +25,7 @@
 // 
 //    - mass parameter 
 //    - number of cuts "k" with Poincare section
-//    - stable flag
+//    - "stable" flag (unstable=0, stable=1)
 //    - axis line "a"
 //
 // 2. For each input line, do
@@ -73,14 +73,16 @@ int main( )
    int stable;
 
    // approximate homoclinic point
+   double z[2];
+
    // H=-1.3594 (stable manifold)
-   double z[2] = {-0.0438623, 0};
+   //double z[2] = {-0.0438623, 0};
    // H=-1.3594 (unstable manifold)
-   //   double z[2] = {-0.0669547, 0};
+   //double z[2] = {-0.0669547, 0};
    // H=-1.343403e+00
-   // double z[2] = {-0.0607277, 0};
+   //double z[2] = {-0.0607277, 0};
    // H=-1.400403e+00
-   // double z[2] = {-8.464640048727097e-02, 0};
+   //double z[2] = {-8.464640048727097e-02, 0};
 
    double a;	// horizontal axis line $p_x=a$
 
@@ -92,6 +94,18 @@ int main( )
    {
       perror("main: error reading input");
       exit(EXIT_FAILURE);
+   }
+
+   // Initialize approximation to homoclinic point by hand
+   if(!stable)
+   {
+      z[0] = -0.0669547;
+      z[1] = 0;
+   }
+   else
+   {
+      z[0] = -0.0438623;
+      z[1] = 0;
    }
 
    // For each energy level H in the range, do

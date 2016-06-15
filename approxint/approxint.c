@@ -53,9 +53,9 @@ approxint_unst (double mu, double H, int k, double p[2], double v[2],
    double ti;
    double l_bak[2*NPOINTS];    // Aux copy of l
 
-   // we assume that $v=(x,p_x)$ points "to the right", i.e. we assume that
-   // the first component of $v$ is $x>0$
-   assert(v[0]>0);
+   // we DO NOT assume that $v=(x,p_x)$ points "to the right", i.e.
+   // we DO NOT assume that the first component of $v$ is $x>0$
+   //assert(v[0]>0);
 
    // 2. Discretize the linear segment between $p0=p+hv$ and $p1=P(p0)$ into
    // a set of NPOINTS points.
@@ -132,9 +132,9 @@ approxint_st (double mu, double H, int k, double p[2], double v[2],
    double ti;
    double l_bak[2*NPOINTS];    // Aux copy of l
 
-   // we assume that $v=(x,p_x)$ points "to the right", i.e. we assume that
-   // the first component of $v$ is $x>0$
-   assert(v[0]>0);
+   // we DO NOT assume that $v=(x,p_x)$ points "to the right", i.e.
+   // we DO NOT assume that the first component of $v$ is $x>0$
+   //assert(v[0]>0);
 
    // 2. Discretize the linear segment between $p0=p+hv$ and $p1=P(p0)$ into
    // a set of NPOINTS points.
@@ -259,7 +259,7 @@ u_i (double mu, double H, int k, double z[2], double a, double *l, int *idx)
    double dx,dy;
 
    // Approximate splitting half-angle
-   double alpha2;
+   //double alpha2;
 
    // 3. Iterate the (discretized) linear segment one more time by the
    // Poincare map

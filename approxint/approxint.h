@@ -10,13 +10,9 @@
 
   Let $p$ be a hyperbolic fixed point for the 2D map \f$\mathcal{P}: \Sigma_-
   \to \Sigma_-\f$.
-  For definiteness, we assume that $p$ is located above the $p_x=0$ axis.
 
   Assume that \f$\lambda\f$ is the unstable eigenvalue, with \f$\lambda>1\f$.
   Let $v$ be the unstable eigenvector for the eigenvalue \f$\lambda\f$. 
-  For definiteness, we assume that $v=(x,p_x)$ points "to the right", i.e. we
-  assume that the first component of $v$ is $x>0$, but we could use the other
-  branch of the manifold.
   Let $W^u(p)$ be the unstable manifold of $p$.
   Let $p_x=a$ be a line parallel to the $x$ axis.
 
@@ -45,6 +41,13 @@
   \remark If the first intersection point that we find is not part of the
   (continuous) family of primary intersections, then we keep looking for the
   primary one.
+
+  \remark
+  We DO NOT assume that $p$ is located above the $p_x=0$ axis.
+
+  \remark
+  We DO NOT assume that $v=(x,p_x)$ points "to the right", i.e. 
+  we DO NOT assume that the first component of $v$ is $x>0$.
 
   \param[in] mu         mass parameter for the RTBP
   \param[in] H          energy value
