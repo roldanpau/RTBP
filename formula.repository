@@ -57,3 +57,7 @@
 \form#56:$h_u \in (h_1,h_2)$
 \form#57:$ \Sigma_- = {y=0, \dot y<0} $
 \form#58:$D\phi(t,x)$
+\form#59:\[ (x',px') = P^n(x,px) \]
+\form#60:\[ (x',px') = P^n(x,px). \]
+\form#61:\[ (x',px') = P^{-n}(x,px) \]
+\form#62:\[ (x',px') = P^{-n}(x,px). \]

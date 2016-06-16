@@ -1,22 +1,23 @@
 <map id="G" name="G">
-<area shape="rect" id="node3" href="$hinv_8h_source.html" title="/home/pau/research/RTBP/hinv/hinv.h" alt="" coords="2860,86,3111,117"/>
-<area shape="rect" id="node9" href="$prtbp_8h_source.html" title="/home/pau/research/RTBP/prtbp/prtbp.h" alt="" coords="1311,86,1569,117"/>
-<area shape="rect" id="node5" href="$porbits_8c.html" title="Continuation of the periodic orbit wrt energy H." alt="" coords="2499,246,2776,277"/>
-<area shape="rect" id="node7" href="$sec1sec2__module_8c.html" title="Take a point $p$ on section S1 to section S2." alt="" coords="2800,166,3171,197"/>
-<area shape="rect" id="node11" href="$dprtbp_8h_source.html" title="/home/pau/research/RTBP/dprtbp/dprtbp.h" alt="" coords="256,166,531,197"/>
-<area shape="rect" id="node13" href="$dprtbp__2d_8h_source.html" title="/home/pau/research/RTBP/dprtbp/dprtbp_2d.h" alt="" coords="605,166,901,197"/>
-<area shape="rect" id="node15" href="$hyper_8c.html" title="Hyperbolic Splitting (Eigenvalues/vects) Associated to a Fixed Point." alt="" coords="5,246,272,277"/>
-<area shape="rect" id="node17" href="$portbp_8c.html" title="Find a periodic orbit of the RTBP." alt="" coords="296,246,571,277"/>
-<area shape="rect" id="node23" href="$errmfld_8c.html" title="Estimate error commited in the linear approximation of the manifold." alt="" coords="1232,246,1515,277"/>
-<area shape="rect" id="node25" href="$errmfld_8h_source.html" title="/home/pau/research/RTBP/errmfld/errmfld.h" alt="" coords="1299,166,1581,197"/>
-<area shape="rect" id="node30" href="$hyper_8h.html" title="Hyperbolic Splitting (Eigenvalues/vects) Associated to a Fixed Point." alt="" coords="1605,166,1872,197"/>
-<area shape="rect" id="node32" href="$portbpsym_8h_source.html" title="/home/pau/research/RTBP/portbp/portbpsym.h" alt="" coords="2477,166,2776,197"/>
-<area shape="rect" id="node36" href="$portbp_8h_source.html" title="/home/pau/research/RTBP/portbp/portbp.h" alt="" coords="1896,166,2171,197"/>
-<area shape="rect" id="node38" href="$prtbp_8c.html" title="Poincare map of the Restricted Three Body Problem." alt="" coords="2195,166,2453,197"/>
-<area shape="rect" id="node40" href="$prtbp__2d_8h_source.html" title="/home/pau/research/RTBP/prtbp/prtbp_2d.h" alt="" coords="995,166,1275,197"/>
-<area shape="rect" id="node19" href="$portbpsym_8c.html" title="Find a symmetric periodic orbit of the RTBP." alt="" coords="595,246,893,277"/>
-<area shape="rect" id="node21" href="$splitting_8c.html" title="Splitting Angle of Invariant Manifolds." alt="" coords="917,246,1208,277"/>
-<area shape="rect" id="node27" href="$invmfld_8c.html" title="Invariant Manifolds of fixed point of Poincare map in RTBP." alt="" coords="2192,246,2475,277"/>
-<area shape="rect" id="node42" href="$approxint_8c.html" title="Approximate Intersection of Invariant Manifolds." alt="" coords="1859,246,2168,277"/>
-<area shape="rect" id="node45" href="$intersec_8c.html" title="Intersection of Invariant Manifolds." alt="" coords="1539,246,1835,277"/>
+<area shape="rect" id="node3" href="$hinv_8h_source.html" title="/home/pau/research/RTBP/hinv/hinv.h" alt="" coords="214,86,464,117"/>
+<area shape="rect" id="node11" href="$prtbp_8h.html" title="Poincare map of the Restricted Three Body Problem." alt="" coords="1551,86,1810,117"/>
+<area shape="rect" id="node5" href="$porbits_8c.html" title="Continuation of the periodic orbit wrt energy H." alt="" coords="616,246,894,277"/>
+<area shape="rect" id="node7" href="$prtbp__2d_8c.html" title="Poincare map of the Restricted Three Body Problem (2D)" alt="" coords="24,166,304,197"/>
+<area shape="rect" id="node9" href="$sec1sec2__module_8c.html" title="Take a point $p$ on section S1 to section S2." alt="" coords="328,166,699,197"/>
+<area shape="rect" id="node13" href="$dprtbp_8h_source.html" title="/home/pau/research/RTBP/dprtbp/dprtbp.h" alt="" coords="2579,166,2854,197"/>
+<area shape="rect" id="node15" href="$dprtbp__2d_8h_source.html" title="/home/pau/research/RTBP/dprtbp/dprtbp_2d.h" alt="" coords="2878,166,3174,197"/>
+<area shape="rect" id="node17" href="$hyper_8c.html" title="Hyperbolic Splitting (Eigenvalues/vects) Associated to a Fixed Point." alt="" coords="3128,246,3395,277"/>
+<area shape="rect" id="node19" href="$portbp_8c.html" title="Find a periodic orbit of the RTBP." alt="" coords="2830,246,3104,277"/>
+<area shape="rect" id="node25" href="$errmfld_8c.html" title="Estimate error commited in the linear approximation of the manifold." alt="" coords="918,246,1200,277"/>
+<area shape="rect" id="node27" href="$errmfld_8h_source.html" title="/home/pau/research/RTBP/errmfld/errmfld.h" alt="" coords="2272,166,2555,197"/>
+<area shape="rect" id="node32" href="$hyper_8h.html" title="Hyperbolic Splitting (Eigenvalues/vects) Associated to a Fixed Point." alt="" coords="1400,166,1667,197"/>
+<area shape="rect" id="node34" href="$portbpsym_8h_source.html" title="/home/pau/research/RTBP/portbp/portbpsym.h" alt="" coords="723,166,1022,197"/>
+<area shape="rect" id="node38" href="$portbp_8h_source.html" title="/home/pau/research/RTBP/portbp/portbp.h" alt="" coords="1691,166,1966,197"/>
+<area shape="rect" id="node40" href="$prtbp_8c.html" title="Poincare map of the Restricted Three Body Problem." alt="" coords="1990,166,2248,197"/>
+<area shape="rect" id="node43" href="$prtbp__2d_8h.html" title="Poincare map of the Restricted Three Body Problem (2D)" alt="" coords="1096,166,1376,197"/>
+<area shape="rect" id="node21" href="$portbpsym_8c.html" title="Find a symmetric periodic orbit of the RTBP." alt="" coords="2187,246,2486,277"/>
+<area shape="rect" id="node23" href="$splitting_8c.html" title="Splitting Angle of Invariant Manifolds." alt="" coords="2514,246,2804,277"/>
+<area shape="rect" id="node29" href="$invmfld_8c.html" title="Invariant Manifolds of fixed point of Poincare map in RTBP." alt="" coords="1879,246,2162,277"/>
+<area shape="rect" id="node45" href="$approxint_8c.html" title="Approximate Intersection of Invariant Manifolds." alt="" coords="1544,246,1854,277"/>
+<area shape="rect" id="node48" href="$intersec_8c.html" title="Intersection of Invariant Manifolds." alt="" coords="1224,246,1520,277"/>
 </map>

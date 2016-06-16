@@ -1,0 +1,21 @@
+<map id="G" name="G">
+<area shape="rect" id="node3" href="$dprtbp_8h_source.html" title="/home/pau/research/RTBP/dprtbp/dprtbp.h" alt="" coords="327,86,601,117"/>
+<area shape="rect" id="node5" href="$dprtbp__2d_8h_source.html" title="/home/pau/research/RTBP/dprtbp/dprtbp_2d.h" alt="" coords="727,86,1023,117"/>
+<area shape="rect" id="node7" href="$hyper_8c.html" title="Hyperbolic Splitting (Eigenvalues/vects) Associated to a Fixed Point." alt="" coords="5,166,272,197"/>
+<area shape="rect" id="node9" href="$portbp_8c.html" title="Find a periodic orbit of the RTBP." alt="" coords="296,166,571,197"/>
+<area shape="rect" id="node15" href="$errmfld_8c.html" title="Estimate error commited in the linear approximation of the manifold." alt="" coords="1232,166,1515,197"/>
+<area shape="rect" id="node17" href="$errmfld_8h_source.html" title="/home/pau/research/RTBP/errmfld/errmfld.h" alt="" coords="1537,86,1820,117"/>
+<area shape="rect" id="node22" href="$hyper_8h.html" title="Hyperbolic Splitting (Eigenvalues/vects) Associated to a Fixed Point." alt="" coords="2167,86,2433,117"/>
+<area shape="rect" id="node24" href="$portbpsym_8h_source.html" title="/home/pau/research/RTBP/portbp/portbpsym.h" alt="" coords="1844,86,2143,117"/>
+<area shape="rect" id="node29" href="$portbp_8h_source.html" title="/home/pau/research/RTBP/portbp/portbp.h" alt="" coords="2457,86,2732,117"/>
+<area shape="rect" id="node31" href="$prtbp_8c.html" title="Poincare map of the Restricted Three Body Problem." alt="" coords="2756,86,3015,117"/>
+<area shape="rect" id="node33" href="$prtbp__2d_8c.html" title="Poincare map of the Restricted Three Body Problem (2D)" alt="" coords="3039,86,3319,117"/>
+<area shape="rect" id="node35" href="$prtbp__2d_8h.html" title="Poincare map of the Restricted Three Body Problem (2D)" alt="" coords="1233,86,1513,117"/>
+<area shape="rect" id="node47" href="$sec1sec2__module_8c.html" title="Take a point $p$ on section S1 to section S2." alt="" coords="3343,86,3713,117"/>
+<area shape="rect" id="node11" href="$portbpsym_8c.html" title="Find a symmetric periodic orbit of the RTBP." alt="" coords="909,166,1208,197"/>
+<area shape="rect" id="node13" href="$splitting_8c.html" title="Splitting Angle of Invariant Manifolds." alt="" coords="595,166,885,197"/>
+<area shape="rect" id="node19" href="$invmfld_8c.html" title="Invariant Manifolds of fixed point of Poincare map in RTBP." alt="" coords="2192,166,2475,197"/>
+<area shape="rect" id="node26" href="$porbits_8c.html" title="Continuation of the periodic orbit wrt energy H." alt="" coords="2499,166,2776,197"/>
+<area shape="rect" id="node37" href="$approxint_8c.html" title="Approximate Intersection of Invariant Manifolds." alt="" coords="1859,166,2168,197"/>
+<area shape="rect" id="node40" href="$intersec_8c.html" title="Intersection of Invariant Manifolds." alt="" coords="1539,166,1835,197"/>
+</map>
