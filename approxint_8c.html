@@ -282,13 +282,17 @@ Here is the call graph for this function:</div>
 </div>
 <div class="memdoc">
 <p>Approximate intersection of unstable invariant manifold with symmetry line.</p>
-<p>Let $p$ be a hyperbolic fixed point for the 2D map <img class="formulaInl" alt="$\mathcal{P}: \Sigma_- \to \Sigma_-$" src="form_0.png"/>. For definiteness, we assume that $p$ is located above the $p_x=0$ axis.</p>
-<p>Assume that <img class="formulaInl" alt="$\lambda$" src="form_1.png"/> is the unstable eigenvalue, with <img class="formulaInl" alt="$\lambda>1$" src="form_2.png"/>. Let $v$ be the unstable eigenvector for the eigenvalue <img class="formulaInl" alt="$\lambda$" src="form_1.png"/>. For definiteness, we assume that $v=(x,p_x)$ points "to the right", i.e. we assume that the first component of $v$ is $x&gt;0$, but we could use the other branch of the manifold. Let $W^u(p)$ be the unstable manifold of $p$. Let $p_x=a$ be a line parallel to the $x$ axis.</p>
+<p>Let $p$ be a hyperbolic fixed point for the 2D map <img class="formulaInl" alt="$\mathcal{P}: \Sigma_- \to \Sigma_-$" src="form_0.png"/>.</p>
+<p>Assume that <img class="formulaInl" alt="$\lambda$" src="form_1.png"/> is the unstable eigenvalue, with <img class="formulaInl" alt="$\lambda>1$" src="form_2.png"/>. Let $v$ be the unstable eigenvector for the eigenvalue <img class="formulaInl" alt="$\lambda$" src="form_1.png"/>. Let $W^u(p)$ be the unstable manifold of $p$. Let $p_x=a$ be a line parallel to the $x$ axis.</p>
 <p>This function computes an approximation to the "first" intersection of the unstable manifold with the line $p_x=a$ as we grow the manifold from the fixed point.</p>
 <p>We consider the unstable fundamental segment between the two points $p+h_u v_u$ and $P(p+h_u v_u)$. We iterate the unstable fundamental domain until it intersects the $x$ axis.</p>
 <p>We discretize the unst domain into a set of NPOINTS segments u_1, u_2, ..., u_NPOINTS. The image under iteration of this discretized version of the unst manifold is a set of segments U_1, U_2, ..., U_NPOINTS that approximates the nonlinear unst manifold. We look for the first unst segment U_i that intersects the $x$ axis. Therefore, U_i contains an intersection point, and the segment u_i in the fundamental domains contain the preimage of an intersection point.</p>
 <p>This function returns the unstable segment u_i with endpoints $(h_1, h_2)$ containing the approximate root $p_u=p + h_u v_u$ with <img class="formulaInl" alt="$h_u \in (h_1,h_2)$" src="form_56.png"/>.</p>
-<dl class="remark"><dt><b>Remarks:</b></dt><dd>If the first intersection point that we find is not part of the (continuous) family of primary intersections, then we keep looking for the primary one.</dd></dl>
+<dl class="remark"><dt><b>Remarks:</b></dt><dd>If the first intersection point that we find is not part of the (continuous) family of primary intersections, then we keep looking for the primary one.</dd>
+<dd>
+We DO NOT assume that $p$ is located above the $p_x=0$ axis.</dd>
+<dd>
+We DO NOT assume that $v=(x,p_x)$ points "to the right", i.e. we DO NOT assume that the first component of $v$ is $x&gt;0$.</dd></dl>
 <dl class="params"><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">mu</td><td>mass parameter for the RTBP </td></tr>
@@ -329,7 +333,7 @@ Here is the call graph for this function:</div>
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jun 14 2016 12:26:43 for splitting_prog by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Jun 16 2016 11:13:16 for splitting_prog by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.6.1
 </small></address>
