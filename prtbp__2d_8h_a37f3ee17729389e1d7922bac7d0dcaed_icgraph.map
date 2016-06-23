@@ -1,7 +1,9 @@
 <map id="G" name="G">
-<area shape="rect" id="node3" href="$approxint_8h.html#af4aadb9c4979e9a58d7cb4a35cee9b2c" title="approxint_unst" alt="" coords="125,5,232,35"/>
-<area shape="rect" id="node5" href="$errmfld_8c.html#a6d46908b6f0d48d665c9bb6fabdaac6c" title="err_mfld" alt="" coords="144,58,213,89"/>
-<area shape="rect" id="node9" href="$invmfld_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="main" alt="" coords="283,110,333,141"/>
-<area shape="rect" id="node11" href="$intersec_8c.html#a7805e9a8bf88ded1a9ce4af8655d6831" title="intersec_unst" alt="" coords="129,162,228,193"/>
-<area shape="rect" id="node7" href="$errmfld_8c.html#ab913a873449a95304903ca2b824fd1d7" title="h_opt" alt="" coords="281,57,335,87"/>
+<area shape="rect" id="node3" href="$approxint_8h.html#af4aadb9c4979e9a58d7cb4a35cee9b2c" title="approxint_unst" alt="" coords="275,6,381,36"/>
+<area shape="rect" id="node5" href="$approxint_8c.html#a22646e4615c12fda94631d65ae61a5cc" title="u_i" alt="" coords="157,32,195,63"/>
+<area shape="rect" id="node8" href="$errmfld_8c.html#a6d46908b6f0d48d665c9bb6fabdaac6c" title="err_mfld" alt="" coords="141,86,211,116"/>
+<area shape="rect" id="node14" href="$invmfld_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="main" alt="" coords="303,138,353,168"/>
+<area shape="rect" id="node16" href="$intersec_8c.html#a7805e9a8bf88ded1a9ce4af8655d6831" title="intersec_unst" alt="" coords="127,190,225,220"/>
+<area shape="rect" id="node10" href="$errmfld_8c.html#ab913a873449a95304903ca2b824fd1d7" title="h_opt" alt="" coords="301,84,355,115"/>
+<area shape="rect" id="node12" href="$approxint__main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="main" alt="" coords="429,84,480,115"/>
 </map>

@@ -61,3 +61,6 @@
 \form#60:\[ (x',px') = P^n(x,px). \]
 \form#61:\[ (x',px') = P^{-n}(x,px) \]
 \form#62:\[ (x',px') = P^{-n}(x,px). \]
+\form#63:$ H(x,y,p_x,p_y)=\bar H $
+\form#64:$h_u\in (h_1,h_2)$
+\form#65:$ p_x=a. $

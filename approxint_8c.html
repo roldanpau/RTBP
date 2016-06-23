@@ -79,16 +79,14 @@ Include dependency graph for approxint.c:</div>
 </div><table class="memberdecls">
 <tr><td colspan="2"><h2><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a22646e4615c12fda94631d65ae61a5cc"></a><!-- doxytag: member="approxint.c::u_i" ref="a22646e4615c12fda94631d65ae61a5cc" args="(double mu, double H, int k, double z[2], double a, double *l, int *idx)" -->
-int&#160;</td><td class="memItemRight" valign="bottom"><b>u_i</b> (double <a class="el" href="frtbp_8c.html#a74577585cf12d1712ab9c57616d49205">mu</a>, double H, int k, double z[2], double a, double *l, int *idx)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa89f50db0ba8e30cb2eb4f85e7862dbf"></a><!-- doxytag: member="approxint.c::s_i" ref="aa89f50db0ba8e30cb2eb4f85e7862dbf" args="(double mu, double H, int k, double z[2], double a, double *l, int *idx)" -->
-int&#160;</td><td class="memItemRight" valign="bottom"><b>s_i</b> (double <a class="el" href="frtbp_8c.html#a74577585cf12d1712ab9c57616d49205">mu</a>, double H, int k, double z[2], double a, double *l, int *idx)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="approxint_8c.html#a22646e4615c12fda94631d65ae61a5cc">u_i</a> (double <a class="el" href="frtbp_8c.html#a74577585cf12d1712ab9c57616d49205">mu</a>, double H, int k, double z[2], double a, double *l, int *idx)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="approxint_8c.html#aa89f50db0ba8e30cb2eb4f85e7862dbf">s_i</a> (double <a class="el" href="frtbp_8c.html#a74577585cf12d1712ab9c57616d49205">mu</a>, double H, int k, double z[2], double a, double *l, int *idx)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="approxint_8c.html#af4aadb9c4979e9a58d7cb4a35cee9b2c">approxint_unst</a> (double <a class="el" href="frtbp_8c.html#a74577585cf12d1712ab9c57616d49205">mu</a>, double H, int k, double p[2], double v[2], double lambda, double h, double a, int *piter, double *h_1, double *h_2, double z[2])</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="approxint_8c.html#ab13d7daeb3a10d4b204d83bf38e707d0">approxint_st</a> (double <a class="el" href="frtbp_8c.html#a74577585cf12d1712ab9c57616d49205">mu</a>, double H, int k, double p[2], double v[2], double lambda, double h, double a, int *piter, double *h_1, double *h_2, double z[2])</td></tr>
 <tr><td colspan="2"><h2><a name="var-members"></a>
 Variables</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6c23fbf2bdbc02406e33ac7cdf7ada2b"></a><!-- doxytag: member="approxint.c::MAXITER" ref="a6c23fbf2bdbc02406e33ac7cdf7ada2b" args="" -->
-const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="approxint_8c.html#a6c23fbf2bdbc02406e33ac7cdf7ada2b">MAXITER</a> = 40</td></tr>
+const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="approxint_8c.html#a6c23fbf2bdbc02406e33ac7cdf7ada2b">MAXITER</a> = 100</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Max number of iterations of unst segment before we give up looking for intersection. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a94087ddaa6251837c08fcfd59a4ded74"></a><!-- doxytag: member="approxint.c::NPOINTS" ref="a94087ddaa6251837c08fcfd59a4ded74" args="" -->
 const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="approxint_8c.html#a94087ddaa6251837c08fcfd59a4ded74">NPOINTS</a> = 100</td></tr>
@@ -191,7 +189,16 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="approxint_8c_ab13d7daeb3a10d4b204d83bf38e707d0_cgraph.png" border="0" usemap="#approxint_8c_ab13d7daeb3a10d4b204d83bf38e707d0_cgraph" alt=""/></div>
 <map name="approxint_8c_ab13d7daeb3a10d4b204d83bf38e707d0_cgraph" id="approxint_8c_ab13d7daeb3a10d4b204d83bf38e707d0_cgraph">
-<area shape="rect" id="node3" href="prtbp__2d_8c.html#abed0a0f1879bc31d57407cbab63e2d8b" title="prtbp_2d_inv" alt="" coords="147,58,243,89"/><area shape="rect" id="node13" href="disc_8c.html#aa8e2cd6ddb0bf9d12e9a837fa786aaaa" title="disc" alt="" coords="172,111,217,142"/><area shape="rect" id="node5" href="prtbp_8c.html#a518d5cd6341e8ea73f37ed1a9338fb8c" title="prtbp_inv" alt="" coords="291,58,365,89"/><area shape="rect" id="node7" href="frtbp_8c.html#afb57f9c4c76634005cd9c8462d038f0f" title="frtbp" alt="" coords="431,5,476,35"/><area shape="rect" id="node9" href="prtbp_8c.html#a6cced3544f6ddfed54297f12824ef0cf" title="onsection" alt="" coords="413,58,493,89"/><area shape="rect" id="node11" href="prtbp_8c.html#ab754a9e94e62d1400859c5aa952e8d65" title="crossing" alt="" coords="417,111,489,142"/></map>
+<area shape="rect" id="node3" href="prtbp__2d_8c.html#abed0a0f1879bc31d57407cbab63e2d8b" title="prtbp_2d_inv" alt="" coords="243,58,339,89"/><area shape="rect" id="node13" href="disc_8c.html#aa8e2cd6ddb0bf9d12e9a837fa786aaaa" title="disc" alt="" coords="148,57,193,87"/><area shape="rect" id="node15" href="approxint_8c.html#aa89f50db0ba8e30cb2eb4f85e7862dbf" title="s_i" alt="" coords="152,110,189,141"/><area shape="rect" id="node5" href="prtbp_8c.html#a518d5cd6341e8ea73f37ed1a9338fb8c" title="prtbp_inv" alt="" coords="387,58,461,89"/><area shape="rect" id="node7" href="frtbp_8c.html#afb57f9c4c76634005cd9c8462d038f0f" title="frtbp" alt="" coords="527,5,572,35"/><area shape="rect" id="node9" href="prtbp_8c.html#a6cced3544f6ddfed54297f12824ef0cf" title="onsection" alt="" coords="509,58,589,89"/><area shape="rect" id="node11" href="prtbp_8c.html#ab754a9e94e62d1400859c5aa952e8d65" title="crossing" alt="" coords="513,111,585,142"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="approxint_8c_ab13d7daeb3a10d4b204d83bf38e707d0_icgraph.png" border="0" usemap="#approxint_8c_ab13d7daeb3a10d4b204d83bf38e707d0_icgraph" alt=""/></div>
+<map name="approxint_8c_ab13d7daeb3a10d4b204d83bf38e707d0_icgraph" id="approxint_8c_ab13d7daeb3a10d4b204d83bf38e707d0_icgraph">
+<area shape="rect" id="node3" href="approxint__main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="main" alt="" coords="147,5,197,35"/></map>
 </div>
 </p>
 
@@ -323,7 +330,168 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="approxint_8c_af4aadb9c4979e9a58d7cb4a35cee9b2c_cgraph.png" border="0" usemap="#approxint_8c_af4aadb9c4979e9a58d7cb4a35cee9b2c_cgraph" alt=""/></div>
 <map name="approxint_8c_af4aadb9c4979e9a58d7cb4a35cee9b2c_cgraph" id="approxint_8c_af4aadb9c4979e9a58d7cb4a35cee9b2c_cgraph">
-<area shape="rect" id="node3" href="prtbp__2d_8c.html#a37f3ee17729389e1d7922bac7d0dcaed" title="prtbp_2d" alt="" coords="160,58,232,89"/><area shape="rect" id="node13" href="disc_8c.html#aa8e2cd6ddb0bf9d12e9a837fa786aaaa" title="disc" alt="" coords="173,111,219,142"/><area shape="rect" id="node5" href="prtbp_8c.html#ae2068a782d6e50d63718fec38d77e31f" title="prtbp" alt="" coords="280,58,331,89"/><area shape="rect" id="node7" href="frtbp_8c.html#afb57f9c4c76634005cd9c8462d038f0f" title="frtbp" alt="" coords="396,5,441,35"/><area shape="rect" id="node9" href="prtbp_8c.html#a6cced3544f6ddfed54297f12824ef0cf" title="onsection" alt="" coords="379,58,459,89"/><area shape="rect" id="node11" href="prtbp_8c.html#ab754a9e94e62d1400859c5aa952e8d65" title="crossing" alt="" coords="383,111,455,142"/></map>
+<area shape="rect" id="node3" href="prtbp__2d_8c.html#a37f3ee17729389e1d7922bac7d0dcaed" title="prtbp_2d" alt="" coords="256,58,328,89"/><area shape="rect" id="node13" href="disc_8c.html#aa8e2cd6ddb0bf9d12e9a837fa786aaaa" title="disc" alt="" coords="161,57,207,87"/><area shape="rect" id="node15" href="approxint_8c.html#a22646e4615c12fda94631d65ae61a5cc" title="u_i" alt="" coords="165,110,203,141"/><area shape="rect" id="node5" href="prtbp_8c.html#ae2068a782d6e50d63718fec38d77e31f" title="prtbp" alt="" coords="376,58,427,89"/><area shape="rect" id="node7" href="frtbp_8c.html#afb57f9c4c76634005cd9c8462d038f0f" title="frtbp" alt="" coords="492,5,537,35"/><area shape="rect" id="node9" href="prtbp_8c.html#a6cced3544f6ddfed54297f12824ef0cf" title="onsection" alt="" coords="475,58,555,89"/><area shape="rect" id="node11" href="prtbp_8c.html#ab754a9e94e62d1400859c5aa952e8d65" title="crossing" alt="" coords="479,111,551,142"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="approxint_8c_af4aadb9c4979e9a58d7cb4a35cee9b2c_icgraph.png" border="0" usemap="#approxint_8c_af4aadb9c4979e9a58d7cb4a35cee9b2c_icgraph" alt=""/></div>
+<map name="approxint_8c_af4aadb9c4979e9a58d7cb4a35cee9b2c_icgraph" id="approxint_8c_af4aadb9c4979e9a58d7cb4a35cee9b2c_icgraph">
+<area shape="rect" id="node3" href="approxint__main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="main" alt="" coords="160,5,211,35"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="aa89f50db0ba8e30cb2eb4f85e7862dbf"></a><!-- doxytag: member="approxint.c::s_i" ref="aa89f50db0ba8e30cb2eb4f85e7862dbf" args="(double mu, double H, int k, double z[2], double a, double *l, int *idx)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int <a class="el" href="approxint_8c.html#aa89f50db0ba8e30cb2eb4f85e7862dbf">s_i</a> </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>mu</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>H</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>k</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>z</em>[2], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double *&#160;</td>
+          <td class="paramname"><em>l</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>idx</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<dl class="note"><dt><b>Note:</b></dt><dd>We have problems computing some invariant manifolds, because suddenly they look "broken". To prevent this, we check that the manifolds are indeed continuous, i.e. we check that each two consecutive points in the manifold are close together (closer than say 0.1). </dd></dl>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="approxint_8c_aa89f50db0ba8e30cb2eb4f85e7862dbf_cgraph.png" border="0" usemap="#approxint_8c_aa89f50db0ba8e30cb2eb4f85e7862dbf_cgraph" alt=""/></div>
+<map name="approxint_8c_aa89f50db0ba8e30cb2eb4f85e7862dbf_cgraph" id="approxint_8c_aa89f50db0ba8e30cb2eb4f85e7862dbf_cgraph">
+<area shape="rect" id="node3" href="prtbp__2d_8c.html#abed0a0f1879bc31d57407cbab63e2d8b" title="prtbp_2d_inv" alt="" coords="93,58,189,89"/><area shape="rect" id="node5" href="prtbp_8c.html#a518d5cd6341e8ea73f37ed1a9338fb8c" title="prtbp_inv" alt="" coords="237,58,312,89"/><area shape="rect" id="node7" href="frtbp_8c.html#afb57f9c4c76634005cd9c8462d038f0f" title="frtbp" alt="" coords="377,5,423,35"/><area shape="rect" id="node9" href="prtbp_8c.html#a6cced3544f6ddfed54297f12824ef0cf" title="onsection" alt="" coords="360,58,440,89"/><area shape="rect" id="node11" href="prtbp_8c.html#ab754a9e94e62d1400859c5aa952e8d65" title="crossing" alt="" coords="364,111,436,142"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="approxint_8c_aa89f50db0ba8e30cb2eb4f85e7862dbf_icgraph.png" border="0" usemap="#approxint_8c_aa89f50db0ba8e30cb2eb4f85e7862dbf_icgraph" alt=""/></div>
+<map name="approxint_8c_aa89f50db0ba8e30cb2eb4f85e7862dbf_icgraph" id="approxint_8c_aa89f50db0ba8e30cb2eb4f85e7862dbf_icgraph">
+<area shape="rect" id="node3" href="approxint_8h.html#ab13d7daeb3a10d4b204d83bf38e707d0" title="approxint_st" alt="" coords="93,5,187,35"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a22646e4615c12fda94631d65ae61a5cc"></a><!-- doxytag: member="approxint.c::u_i" ref="a22646e4615c12fda94631d65ae61a5cc" args="(double mu, double H, int k, double z[2], double a, double *l, int *idx)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int <a class="el" href="approxint_8c.html#a22646e4615c12fda94631d65ae61a5cc">u_i</a> </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>mu</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>H</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>k</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>z</em>[2], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double *&#160;</td>
+          <td class="paramname"><em>l</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>idx</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<dl class="note"><dt><b>Note:</b></dt><dd>We have problems computing some invariant manifolds, because suddenly they look "broken". To prevent this, we check that the manifolds are indeed continuous, i.e. we check that each two consecutive points in the manifold are close together (closer than say 0.1). </dd></dl>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="approxint_8c_a22646e4615c12fda94631d65ae61a5cc_cgraph.png" border="0" usemap="#approxint_8c_a22646e4615c12fda94631d65ae61a5cc_cgraph" alt=""/></div>
+<map name="approxint_8c_a22646e4615c12fda94631d65ae61a5cc_cgraph" id="approxint_8c_a22646e4615c12fda94631d65ae61a5cc_cgraph">
+<area shape="rect" id="node3" href="prtbp__2d_8c.html#a37f3ee17729389e1d7922bac7d0dcaed" title="prtbp_2d" alt="" coords="93,58,165,89"/><area shape="rect" id="node5" href="prtbp_8c.html#ae2068a782d6e50d63718fec38d77e31f" title="prtbp" alt="" coords="213,58,264,89"/><area shape="rect" id="node7" href="frtbp_8c.html#afb57f9c4c76634005cd9c8462d038f0f" title="frtbp" alt="" coords="329,5,375,35"/><area shape="rect" id="node9" href="prtbp_8c.html#a6cced3544f6ddfed54297f12824ef0cf" title="onsection" alt="" coords="312,58,392,89"/><area shape="rect" id="node11" href="prtbp_8c.html#ab754a9e94e62d1400859c5aa952e8d65" title="crossing" alt="" coords="316,111,388,142"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="approxint_8c_a22646e4615c12fda94631d65ae61a5cc_icgraph.png" border="0" usemap="#approxint_8c_a22646e4615c12fda94631d65ae61a5cc_icgraph" alt=""/></div>
+<map name="approxint_8c_a22646e4615c12fda94631d65ae61a5cc_icgraph" id="approxint_8c_a22646e4615c12fda94631d65ae61a5cc_icgraph">
+<area shape="rect" id="node3" href="approxint_8h.html#af4aadb9c4979e9a58d7cb4a35cee9b2c" title="approxint_unst" alt="" coords="93,5,200,35"/></map>
 </div>
 </p>
 
@@ -333,7 +501,7 @@ Here is the call graph for this function:</div>
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jun 16 2016 13:30:09 for splitting_prog by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Jun 23 2016 12:27:24 for splitting_prog by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.6.1
 </small></address>
