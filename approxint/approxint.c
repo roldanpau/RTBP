@@ -18,7 +18,7 @@
   Max number of iterations of unst segment before we give up looking for
   intersection.
  */
-const int MAXITER = 40; 
+const int MAXITER = 100; 
 
 /// Number of points in the discretization of unst segment.
 const int NPOINTS = 100;
@@ -250,6 +250,13 @@ approxint_st (double mu, double H, int k, double p[2], double v[2],
 // If the first intersection point that we find is not part of the (continuous)
 // family of primary intersections, then we keep looking for the primary one.
 
+/** 
+  \note We have problems computing some invariant manifolds, because suddenly
+  they look "broken". To prevent this, we check that the manifolds are indeed
+  continuous, i.e. we check that each two consecutive points in the manifold
+  are close together (closer than say 0.1).
+  */ 
+
 int 
 u_i (double mu, double H, int k, double z[2], double a, double *l, int *idx)
 {
@@ -278,6 +285,17 @@ u_i (double mu, double H, int k, double z[2], double a, double *l, int *idx)
       // Endpoints of segment U_i: 
       // P[2] = (x, p_x) = (l[2i], l[2i+1]),
       // Q[2] = (x, p_x) = (l[2i+2], l[2i+3]).
+
+  
+      // Check that the manifolds are indeed continuous, i.e. we check that
+      // each two consecutive points in the manifold  are close together.
+      if( fabs(l[2*i+2]-l[2*i]) + fabs(l[2*i+3]-l[2*i+1]) > 0.1 )
+      {
+	 // Segment U_i is too large
+	 fprintf(stderr, "u_i: segment is too large!\n");
+	 return(1);
+      }
+
       if(((l[2*i+1]-a)*(l[2*i+3]-a)<=0) && 
 	    fabs(l[2*i]-z[0]) < 0.02)	// point belongs to primary family
 	 break;
@@ -301,6 +319,13 @@ u_i (double mu, double H, int k, double z[2], double a, double *l, int *idx)
    *idx=i;
    return(0);
 }
+
+/** 
+  \note We have problems computing some invariant manifolds, because suddenly
+  they look "broken". To prevent this, we check that the manifolds are indeed
+  continuous, i.e. we check that each two consecutive points in the manifold
+  are close together (closer than say 0.1).
+  */ 
 
 int 
 s_i (double mu, double H, int k, double z[2], double a, double *l, int *idx)
@@ -330,6 +355,16 @@ s_i (double mu, double H, int k, double z[2], double a, double *l, int *idx)
       // Endpoints of segment S_i: 
       // P[2] = (x, p_x) = (l[2i], l[2i+1]),
       // Q[2] = (x, p_x) = (l[2i+2], l[2i+3]).
+
+      // Check that the manifolds are indeed continuous, i.e. we check that
+      // each two consecutive points in the manifold  are close together.
+      if( fabs(l[2*i+2]-l[2*i]) + fabs(l[2*i+3]-l[2*i+1]) > 0.1 )
+      {
+	 // Segment S_i is too large
+	 fprintf(stderr, "s_i: segment is too large!\n");
+	 return(1);
+      }
+
       if(((l[2*i+1]-a)*(l[2*i+3]-a)<=0) && 
 	    fabs(l[2*i]-z[0]) < 0.02)	// point belongs to primary family
 	 break;
