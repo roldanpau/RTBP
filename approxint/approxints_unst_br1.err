@@ -1,855 +1,905 @@
 
-H: -1.359400e+00
-Optimal displacement: 1.000000e-03
-Estimated error of manifold: 9.480484e-07
-Approximate interval: 4
-
-H: -1.361400e+00
-Optimal displacement: 1.000000e-03
-Estimated error of manifold: 9.599875e-07
-Approximate interval: 3
-
-H: -1.363400e+00
-Optimal displacement: 1.000000e-03
-Estimated error of manifold: 9.719908e-07
-Approximate interval: 3
-
-H: -1.365400e+00
-Optimal displacement: 1.000000e-03
-Estimated error of manifold: 9.840627e-07
-Approximate interval: 2
-
-H: -1.367400e+00
+H: -1.719400e+00
 Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.002518e-08
-Approximate interval: 49
-
-H: -1.369400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.014896e-08
-Approximate interval: 47
-
-H: -1.371400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.027285e-08
-Approximate interval: 46
-
-H: -1.373400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.039758e-08
-Approximate interval: 45
-
-H: -1.375400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.052260e-08
-Approximate interval: 43
-
-H: -1.377400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.064836e-08
-Approximate interval: 42
-
-H: -1.379400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.077491e-08
-Approximate interval: 41
-
-H: -1.381400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.090111e-08
-Approximate interval: 40
-
-H: -1.383400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.102881e-08
-Approximate interval: 39
-
-H: -1.385400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.115643e-08
-Approximate interval: 37
-
-H: -1.387400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.128412e-08
-Approximate interval: 36
-
-H: -1.389400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.141243e-08
-Approximate interval: 35
-
-H: -1.391400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.154076e-08
-Approximate interval: 34
-
-H: -1.393400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.166972e-08
-Approximate interval: 33
-
-H: -1.395400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.179811e-08
-Approximate interval: 33
-
-H: -1.397400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.192736e-08
-Approximate interval: 32
-
-H: -1.399400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.205647e-08
-Approximate interval: 31
-
-H: -1.401400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.218536e-08
-Approximate interval: 30
-
-H: -1.403400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.231449e-08
-Approximate interval: 30
-
-H: -1.405400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.244339e-08
-Approximate interval: 29
-
-H: -1.407400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.257206e-08
-Approximate interval: 28
-
-H: -1.409400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.270028e-08
-Approximate interval: 28
-
-H: -1.411400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.282848e-08
-Approximate interval: 27
-
-H: -1.413400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.295588e-08
-Approximate interval: 27
-
-H: -1.415400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.308311e-08
-Approximate interval: 26
-
-H: -1.417400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.320953e-08
-Approximate interval: 26
-
-H: -1.419400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.333553e-08
-Approximate interval: 26
-
-H: -1.421400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.346057e-08
-Approximate interval: 25
-
-H: -1.423400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.358514e-08
-Approximate interval: 25
-
-H: -1.425400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.370846e-08
-Approximate interval: 25
-
-H: -1.427400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.383081e-08
-Approximate interval: 25
-
-H: -1.429400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.395203e-08
-Approximate interval: 25
-
-H: -1.431400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.407207e-08
-Approximate interval: 24
-
-H: -1.433400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.419059e-08
-Approximate interval: 24
-
-H: -1.435400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.430792e-08
-Approximate interval: 25
-
-H: -1.437400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.442367e-08
-Approximate interval: 25
-
-H: -1.439400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.453785e-08
-Approximate interval: 25
-
-H: -1.441400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.464996e-08
-Approximate interval: 25
-
-H: -1.443400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.476046e-08
-Approximate interval: 25
-
-H: -1.445400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.486878e-08
-Approximate interval: 26
-
-H: -1.447400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.497528e-08
-Approximate interval: 26
-
-H: -1.449400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.507946e-08
-Approximate interval: 27
-
-H: -1.451400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.518111e-08
-Approximate interval: 27
-
-H: -1.453400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.528062e-08
-Approximate interval: 28
-
-H: -1.455400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.537726e-08
-Approximate interval: 28
-
-H: -1.457400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.547120e-08
-Approximate interval: 29
-
-H: -1.459400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.556235e-08
-Approximate interval: 30
-
-H: -1.461400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.565076e-08
-Approximate interval: 31
-
-H: -1.463400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.573584e-08
-Approximate interval: 32
-
-H: -1.465400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.581778e-08
-Approximate interval: 33
-
-H: -1.467400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.589637e-08
-Approximate interval: 34
-
-H: -1.469400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.597167e-08
-Approximate interval: 36
-
-H: -1.471400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.604322e-08
-Approximate interval: 37
-
-H: -1.473400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.611131e-08
-Approximate interval: 39
-
-H: -1.475400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.617540e-08
-Approximate interval: 41
-
-H: -1.477400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.623576e-08
-Approximate interval: 42
-
-H: -1.479400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.629200e-08
-Approximate interval: 44
-
-H: -1.481400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.634406e-08
-Approximate interval: 46
-
-H: -1.483400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.639212e-08
-Approximate interval: 49
-
-H: -1.485400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.643566e-08
-Approximate interval: 51
-
-H: -1.487400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.647498e-08
-Approximate interval: 54
-
-H: -1.489400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.650968e-08
-Approximate interval: 57
-
-H: -1.491400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.653981e-08
-Approximate interval: 60
-
-H: -1.493400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.656534e-08
-Approximate interval: 63
-
-H: -1.495400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.658609e-08
-Approximate interval: 66
-
-H: -1.497400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.660208e-08
-Approximate interval: 70
-
-H: -1.499400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.661326e-08
-Approximate interval: 74
-
-H: -1.501400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.661948e-08
-Approximate interval: 78
-
-H: -1.503400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.662070e-08
-Approximate interval: 83
-
-H: -1.505400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.661701e-08
-Approximate interval: 88
-
-H: -1.507400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.660822e-08
-Approximate interval: 93
-
-H: -1.509400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.659454e-08
+Estimated error of manifold: 1.743925e-08
 Approximate interval: 98
 
-H: -1.511400e+00
+H: -1.717400e+00
 Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.657566e-08
-Approximate interval: 2
+Estimated error of manifold: 1.758017e-08
+Approximate interval: 26
 
-H: -1.513400e+00
+H: -1.715400e+00
 Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.655179e-08
-Approximate interval: 5
+Estimated error of manifold: 1.760299e-08
+Approximate interval: 33
 
-H: -1.515400e+00
+H: -1.713400e+00
 Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.652293e-08
-Approximate interval: 8
+Estimated error of manifold: 1.753962e-08
+Approximate interval: 1
 
-H: -1.517400e+00
+H: -1.711400e+00
 Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.648894e-08
+Estimated error of manifold: 1.741254e-08
 Approximate interval: 11
 
-H: -1.519400e+00
+H: -1.709400e+00
 Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.644987e-08
-Approximate interval: 15
-
-H: -1.521400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.640589e-08
-Approximate interval: 19
-
-H: -1.523400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.635707e-08
-Approximate interval: 23
-
-H: -1.525400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.630322e-08
-Approximate interval: 27
-
-H: -1.527400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.624465e-08
-Approximate interval: 32
-
-H: -1.529400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.618127e-08
-Approximate interval: 38
-
-H: -1.531400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.611320e-08
-Approximate interval: 43
-
-H: -1.533400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.604057e-08
-Approximate interval: 50
-
-H: -1.535400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.596342e-08
+Estimated error of manifold: 1.723812e-08
 Approximate interval: 56
 
-H: -1.537400e+00
+H: -1.707400e+00
 Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.588197e-08
-Approximate interval: 64
-
-H: -1.539400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.579622e-08
-Approximate interval: 72
-
-H: -1.541400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.570629e-08
-Approximate interval: 80
-
-H: -1.543400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.561241e-08
-Approximate interval: 90
-
-H: -1.545400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.551472e-08
-Approximate interval: 0
-
-H: -1.547400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.541319e-08
-Approximate interval: 5
-
-H: -1.549400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.530831e-08
-Approximate interval: 11
-
-H: -1.551400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.520001e-08
-Approximate interval: 18
-
-H: -1.553400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.508849e-08
-Approximate interval: 25
-
-H: -1.555400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.497406e-08
-Approximate interval: 32
-
-H: -1.557400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.485676e-08
-Approximate interval: 41
-
-H: -1.559400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.473691e-08
-Approximate interval: 50
-
-H: -1.561400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.461465e-08
-Approximate interval: 60
-
-H: -1.563400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.449018e-08
-Approximate interval: 72
-
-H: -1.565400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.436385e-08
-Approximate interval: 84
-
-H: -1.567400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.423570e-08
-Approximate interval: 98
-
-H: -1.569400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.410618e-08
-Approximate interval: 7
-
-H: -1.571400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.397542e-08
-Approximate interval: 16
-
-H: -1.573400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.384359e-08
-Approximate interval: 25
-
-H: -1.575400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.371107e-08
-Approximate interval: 36
-
-H: -1.577400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.357806e-08
-Approximate interval: 48
-
-H: -1.579400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.344485e-08
-Approximate interval: 61
-
-H: -1.581400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.331171e-08
-Approximate interval: 76
-
-H: -1.583400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.317892e-08
-Approximate interval: 93
-
-H: -1.585400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.304672e-08
-Approximate interval: 6
-
-H: -1.587400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.291542e-08
-Approximate interval: 18
-
-H: -1.589400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.278530e-08
-Approximate interval: 30
-
-H: -1.591400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.265672e-08
-Approximate interval: 44
-
-H: -1.593400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.252991e-08
-Approximate interval: 61
-
-H: -1.595400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.240521e-08
-Approximate interval: 79
-
-H: -1.597400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.228295e-08
-Approximate interval: 0
-
-H: -1.599400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.216340e-08
-Approximate interval: 13
-
-H: -1.601400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.204693e-08
-Approximate interval: 28
-
-H: -1.603400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.193382e-08
-Approximate interval: 45
-
-H: -1.605400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.182444e-08
-Approximate interval: 65
-
-H: -1.607400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.171917e-08
-Approximate interval: 87
-
-H: -1.609400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.161824e-08
-Approximate interval: 8
-
-H: -1.611400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.152213e-08
-Approximate interval: 25
-
-H: -1.613400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.143113e-08
-Approximate interval: 44
-
-H: -1.615400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.134558e-08
-Approximate interval: 67
-
-H: -1.617400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.126589e-08
-Approximate interval: 93
-
-H: -1.619400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.119236e-08
-Approximate interval: 14
-
-H: -1.621400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.112541e-08
-Approximate interval: 36
-
-H: -1.623400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.106538e-08
-Approximate interval: 60
-
-H: -1.625400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.101261e-08
-Approximate interval: 89
-
-H: -1.627400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.096750e-08
-Approximate interval: 15
-
-H: -1.629400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.093039e-08
-Approximate interval: 39
-
-H: -1.631400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.090161e-08
-Approximate interval: 68
-
-H: -1.633400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.088154e-08
-Approximate interval: 2
-
-H: -1.635400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.087043e-08
-Approximate interval: 27
-
-H: -1.637400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.086870e-08
-Approximate interval: 57
-
-H: -1.639400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.087660e-08
-Approximate interval: 93
-
-H: -1.641400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.089445e-08
-Approximate interval: 24
-
-H: -1.643400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.092249e-08
-Approximate interval: 57
-
-H: -1.645400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.096100e-08
-Approximate interval: 97
-
-H: -1.647400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.101018e-08
-Approximate interval: 30
-
-H: -1.649400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.107027e-08
-Approximate interval: 69
-
-H: -1.651400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.114142e-08
-Approximate interval: 11
-
-H: -1.653400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.122382e-08
-Approximate interval: 49
-
-H: -1.655400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.131758e-08
-Approximate interval: 96
-
-H: -1.657400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.142281e-08
-Approximate interval: 38
-
-H: -1.659400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.153957e-08
-Approximate interval: 86
-
-H: -1.661400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.166789e-08
-Approximate interval: 33
-
-H: -1.663400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.180780e-08
-Approximate interval: 85
-
-H: -1.665400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.195924e-08
-Approximate interval: 36
-
-H: -1.667400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.212214e-08
-Approximate interval: 94
-
-H: -1.669400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.229642e-08
-Approximate interval: 49
-
-H: -1.671400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.248188e-08
-Approximate interval: 12
-
-H: -1.673400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.267836e-08
-Approximate interval: 74
-
-H: -1.675400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.288559e-08
-Approximate interval: 40
-
-H: -1.677400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.310324e-08
-Approximate interval: 12
-
-H: -1.679400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.333095e-08
-Approximate interval: 85
-
-H: -1.681400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.356826e-08
-Approximate interval: 61
-
-H: -1.683400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.381460e-08
-Approximate interval: 43
-
-H: -1.685400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.406933e-08
+Estimated error of manifold: 1.702855e-08
 Approximate interval: 31
 
-H: -1.687400e+00
+H: -1.705400e+00
 Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.433166e-08
-Approximate interval: 24
+Estimated error of manifold: 1.679318e-08
+Approximate interval: 29
 
-H: -1.689400e+00
+H: -1.703400e+00
 Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.460066e-08
-Approximate interval: 22
+Estimated error of manifold: 1.653921e-08
+Approximate interval: 45
 
-H: -1.691400e+00
+H: -1.701400e+00
 Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.487518e-08
-Approximate interval: 26
+Estimated error of manifold: 1.627233e-08
+Approximate interval: 80
 
-H: -1.693400e+00
+H: -1.699400e+00
 Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.515389e-08
-Approximate interval: 38
-
-H: -1.695400e+00
-Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.543516e-08
-Approximate interval: 58
+Estimated error of manifold: 1.599705e-08
+Approximate interval: 28
 
 H: -1.697400e+00
 Optimal displacement: 1.000000e-04
 Estimated error of manifold: 1.571701e-08
 Approximate interval: 88
 
-H: -1.699400e+00
+H: -1.695400e+00
 Optimal displacement: 1.000000e-04
-Estimated error of manifold: 1.599705e-08
-H=-1.699400e+00: couldn't find approx. intersection point
+Estimated error of manifold: 1.543516e-08
+Approximate interval: 58
+
+H: -1.693400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.515389e-08
+Approximate interval: 38
+
+H: -1.691400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.487518e-08
+Approximate interval: 26
+
+H: -1.689400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.460066e-08
+Approximate interval: 22
+
+H: -1.687400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.433166e-08
+Approximate interval: 24
+
+H: -1.685400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.406933e-08
+Approximate interval: 31
+
+H: -1.683400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.381460e-08
+Approximate interval: 43
+
+H: -1.681400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.356825e-08
+Approximate interval: 61
+
+H: -1.679400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.333095e-08
+Approximate interval: 85
+
+H: -1.677400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.310324e-08
+Approximate interval: 12
+
+H: -1.675400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.288559e-08
+Approximate interval: 40
+
+H: -1.673400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.267836e-08
+Approximate interval: 74
+
+H: -1.671400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.248189e-08
+Approximate interval: 12
+
+H: -1.669400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.229642e-08
+Approximate interval: 49
+
+H: -1.667400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.212215e-08
+Approximate interval: 94
+
+H: -1.665400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.195923e-08
+Approximate interval: 36
+
+H: -1.663400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.180780e-08
+Approximate interval: 85
+
+H: -1.661400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.166790e-08
+Approximate interval: 33
+
+H: -1.659400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.153957e-08
+Approximate interval: 86
+
+H: -1.657400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.142281e-08
+Approximate interval: 38
+
+H: -1.655400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.131758e-08
+Approximate interval: 96
+
+H: -1.653400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.122382e-08
+Approximate interval: 49
+
+H: -1.651400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.114143e-08
+Approximate interval: 11
+
+H: -1.649400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.107027e-08
+Approximate interval: 69
+
+H: -1.647400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.101017e-08
+Approximate interval: 30
+
+H: -1.645400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.096100e-08
+Approximate interval: 97
+
+H: -1.643400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.092249e-08
+Approximate interval: 57
+
+H: -1.641400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.089446e-08
+Approximate interval: 24
+
+H: -1.639400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.087661e-08
+Approximate interval: 93
+
+H: -1.637400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.086871e-08
+Approximate interval: 57
+
+H: -1.635400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.087046e-08
+Approximate interval: 27
+
+H: -1.633400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.088153e-08
+Approximate interval: 2
+
+H: -1.631400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.090161e-08
+Approximate interval: 68
+
+H: -1.629400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.093039e-08
+Approximate interval: 39
+
+H: -1.627400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.096750e-08
+Approximate interval: 15
+
+H: -1.625400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.101260e-08
+Approximate interval: 89
+
+H: -1.623400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.106538e-08
+Approximate interval: 60
+
+H: -1.621400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.112541e-08
+Approximate interval: 36
+
+H: -1.619400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.119239e-08
+Approximate interval: 14
+
+H: -1.617400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.126587e-08
+Approximate interval: 93
+
+H: -1.615400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.134560e-08
+Approximate interval: 67
+
+H: -1.613400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.143114e-08
+Approximate interval: 44
+
+H: -1.611400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.152214e-08
+Approximate interval: 25
+
+H: -1.609400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.161827e-08
+Approximate interval: 8
+
+H: -1.607400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.171915e-08
+Approximate interval: 87
+
+H: -1.605400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.182444e-08
+Approximate interval: 65
+
+H: -1.603400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.193382e-08
+Approximate interval: 45
+
+H: -1.601400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.204691e-08
+Approximate interval: 28
+
+H: -1.599400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.216341e-08
+Approximate interval: 13
+
+H: -1.597400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.228293e-08
+Approximate interval: 0
+
+H: -1.595400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.240523e-08
+Approximate interval: 79
+
+H: -1.593400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.252993e-08
+Approximate interval: 61
+
+H: -1.591400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.265673e-08
+Approximate interval: 44
+
+H: -1.589400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.278530e-08
+Approximate interval: 30
+
+H: -1.587400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.291539e-08
+Approximate interval: 18
+
+H: -1.585400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.304671e-08
+Approximate interval: 6
+
+H: -1.583400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.317890e-08
+Approximate interval: 93
+
+H: -1.581400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.331173e-08
+Approximate interval: 76
+
+H: -1.579400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.344487e-08
+Approximate interval: 61
+
+H: -1.577400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.357807e-08
+Approximate interval: 48
+
+H: -1.575400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.371104e-08
+Approximate interval: 36
+
+H: -1.573400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.384357e-08
+Approximate interval: 25
+
+H: -1.571400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.397539e-08
+Approximate interval: 16
+
+H: -1.569400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.410620e-08
+Approximate interval: 7
+
+H: -1.567400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.423572e-08
+Approximate interval: 98
+
+H: -1.565400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.436383e-08
+Approximate interval: 84
+
+H: -1.563400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.449018e-08
+Approximate interval: 72
+
+H: -1.561400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.461467e-08
+Approximate interval: 60
+
+H: -1.559400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.473688e-08
+Approximate interval: 50
+
+H: -1.557400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.485675e-08
+Approximate interval: 41
+
+H: -1.555400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.497405e-08
+Approximate interval: 32
+
+H: -1.553400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.508851e-08
+Approximate interval: 25
+
+H: -1.551400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.520001e-08
+Approximate interval: 18
+
+H: -1.549400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.530831e-08
+Approximate interval: 11
+
+H: -1.547400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.541331e-08
+Approximate interval: 5
+
+H: -1.545400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.551474e-08
+Approximate interval: 0
+
+H: -1.543400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.561246e-08
+Approximate interval: 90
+
+H: -1.541400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.570634e-08
+Approximate interval: 80
+
+H: -1.539400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.579613e-08
+Approximate interval: 72
+
+H: -1.537400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.588194e-08
+Approximate interval: 64
+
+H: -1.535400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.596345e-08
+Approximate interval: 56
+
+H: -1.533400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.604056e-08
+Approximate interval: 50
+
+H: -1.531400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.611324e-08
+Approximate interval: 43
+
+H: -1.529400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.618129e-08
+Approximate interval: 38
+
+H: -1.527400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.624466e-08
+Approximate interval: 32
+
+H: -1.525400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.630323e-08
+Approximate interval: 27
+
+H: -1.523400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.635706e-08
+Approximate interval: 23
+
+H: -1.521400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.640595e-08
+Approximate interval: 19
+
+H: -1.519400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.644993e-08
+Approximate interval: 15
+
+H: -1.517400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.648888e-08
+Approximate interval: 11
+
+H: -1.515400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.652286e-08
+Approximate interval: 8
+
+H: -1.513400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.655176e-08
+Approximate interval: 5
+
+H: -1.511400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.657570e-08
+Approximate interval: 2
+
+H: -1.509400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.659447e-08
+Approximate interval: 98
+
+H: -1.507400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.660828e-08
+Approximate interval: 93
+
+H: -1.505400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.661696e-08
+Approximate interval: 88
+
+H: -1.503400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.662072e-08
+Approximate interval: 83
+
+H: -1.501400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.661943e-08
+Approximate interval: 78
+
+H: -1.499400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.661326e-08
+Approximate interval: 74
+
+H: -1.497400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.660210e-08
+Approximate interval: 70
+
+H: -1.495400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.658613e-08
+Approximate interval: 66
+
+H: -1.493400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.656534e-08
+Approximate interval: 63
+
+H: -1.491400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.653986e-08
+Approximate interval: 60
+
+H: -1.489400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.650968e-08
+Approximate interval: 57
+
+H: -1.487400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.647488e-08
+Approximate interval: 54
+
+H: -1.485400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.643568e-08
+Approximate interval: 51
+
+H: -1.483400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.639209e-08
+Approximate interval: 49
+
+H: -1.481400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.634417e-08
+Approximate interval: 46
+
+H: -1.479400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.629197e-08
+Approximate interval: 44
+
+H: -1.477400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.623578e-08
+Approximate interval: 42
+
+H: -1.475400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.617548e-08
+Approximate interval: 41
+
+H: -1.473400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.611116e-08
+Approximate interval: 39
+
+H: -1.471400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.604327e-08
+Approximate interval: 37
+
+H: -1.469400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.597171e-08
+Approximate interval: 36
+
+H: -1.467400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.589638e-08
+Approximate interval: 34
+
+H: -1.465400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.581776e-08
+Approximate interval: 33
+
+H: -1.463400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.573585e-08
+Approximate interval: 32
+
+H: -1.461400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.565064e-08
+Approximate interval: 31
+
+H: -1.459400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.556246e-08
+Approximate interval: 30
+
+H: -1.457400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.547123e-08
+Approximate interval: 29
+
+H: -1.455400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.537723e-08
+Approximate interval: 28
+
+H: -1.453400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.528058e-08
+Approximate interval: 28
+
+H: -1.451400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.518124e-08
+Approximate interval: 27
+
+H: -1.449400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.507941e-08
+Approximate interval: 27
+
+H: -1.447400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.497532e-08
+Approximate interval: 26
+
+H: -1.445400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.486890e-08
+Approximate interval: 26
+
+H: -1.443400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.476050e-08
+Approximate interval: 25
+
+H: -1.441400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.465006e-08
+Approximate interval: 25
+
+H: -1.439400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.453764e-08
+Approximate interval: 25
+
+H: -1.437400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.442387e-08
+Approximate interval: 25
+
+H: -1.435400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.430799e-08
+Approximate interval: 25
+
+H: -1.433400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.419057e-08
+Approximate interval: 24
+
+H: -1.431400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.407184e-08
+Approximate interval: 24
+
+H: -1.429400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.395196e-08
+Approximate interval: 25
+
+H: -1.427400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.383075e-08
+Approximate interval: 25
+
+H: -1.425400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.370829e-08
+Approximate interval: 25
+
+H: -1.423400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.358491e-08
+Approximate interval: 25
+
+H: -1.421400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.346085e-08
+Approximate interval: 25
+
+H: -1.419400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.333530e-08
+Approximate interval: 26
+
+H: -1.417400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.320964e-08
+Approximate interval: 26
+
+H: -1.415400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.308315e-08
+Approximate interval: 26
+
+H: -1.413400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.295599e-08
+Approximate interval: 27
+
+H: -1.411400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.282837e-08
+Approximate interval: 27
+
+H: -1.409400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.270036e-08
+Approximate interval: 28
+
+H: -1.407400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.257198e-08
+Approximate interval: 28
+
+H: -1.405400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.244350e-08
+Approximate interval: 29
+
+H: -1.403400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.231452e-08
+Approximate interval: 30
+
+H: -1.401400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.218535e-08
+Approximate interval: 30
+
+H: -1.399400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.205645e-08
+Approximate interval: 31
+
+H: -1.397400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.192738e-08
+Approximate interval: 32
+
+H: -1.395400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.179862e-08
+Approximate interval: 33
+
+H: -1.393400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.166984e-08
+Approximate interval: 33
+
+H: -1.391400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.154086e-08
+Approximate interval: 34
+
+H: -1.389400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.141233e-08
+Approximate interval: 35
+
+H: -1.387400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.128404e-08
+Approximate interval: 36
+
+H: -1.385400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.115617e-08
+Approximate interval: 37
+
+H: -1.383400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.102868e-08
+Approximate interval: 39
+
+H: -1.381400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.090127e-08
+Approximate interval: 40
+
+H: -1.379400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.077481e-08
+Approximate interval: 41
+
+H: -1.377400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.064876e-08
+Approximate interval: 42
+
+H: -1.375400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.052243e-08
+Approximate interval: 43
+
+H: -1.373400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.039735e-08
+Approximate interval: 45
+
+H: -1.371400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.027265e-08
+Approximate interval: 46
+
+H: -1.369400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.014841e-08
+Approximate interval: 47
+
+H: -1.367400e+00
+Optimal displacement: 1.000000e-04
+Estimated error of manifold: 1.002521e-08
+Approximate interval: 49
+
+H: -1.365400e+00
+Optimal displacement: 1.000000e-03
+Estimated error of manifold: 9.840601e-07
+Approximate interval: 2
+
+H: -1.363400e+00
+Optimal displacement: 1.000000e-03
+Estimated error of manifold: 9.719898e-07
+Approximate interval: 3
+
+H: -1.361400e+00
+Optimal displacement: 1.000000e-03
+Estimated error of manifold: 9.599852e-07
+Approximate interval: 3
+
+H: -1.359400e+00
+Optimal displacement: 1.000000e-03
+Estimated error of manifold: 9.480483e-07
+Approximate interval: 4
