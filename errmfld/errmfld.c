@@ -14,7 +14,7 @@
 /** 
   Estimate error commited in the linear approximation of the manifold.
 
-  Let $p$ be a hyperbolic fixed point for the 2D map $\mathcal{P}$.
+  Let $p$ be a hyperbolic fixed point for the 2D map \f$\mathcal{P}\f$.
   Assume that \f$\lambda\f$ is the unstable eigenvalue, with \f$\lambda>1\f$
   (case stable flag=0), or \f$\lambda\f$ is the stable eigenvalue, with
   \f$\lambda<1\f$ (case stable flag=1).
@@ -85,7 +85,7 @@ double err_mfld(double mu, section_t sec, double H, int k, double p[2],
   Compute optimal displacement $h$ from the fixed point along the linear
   eigenspace.
 
-  Let $p$ be a hyperbolic fixed point for the 2D map $\mathcal{P}$.
+  Let $p$ be a hyperbolic fixed point for the 2D map \f$\mathcal{P}\f$.
   Assume that \f$\lambda\f$ is the unstable eigenvalue, with \f$\lambda>1\f$
   (case stable flag=0), or \f$\lambda\f$ is the stable eigenvalue, with
   \f$\lambda<1\f$ (case stable flag=1).
@@ -94,7 +94,7 @@ double err_mfld(double mu, section_t sec, double H, int k, double p[2],
   Let $h$ be a displacemnt from the fixed point along the linear eigenspace.
   If $h$ is chosen too large, then the local error approximating the manifold
   is too large. On the other hand, if $h$ is chosen too small, then we need
-  to iterate the map $\mathcal{P}$ in order to globalize the manifold, and
+  to iterate the map \f$\mathcal{P}\f$ in order to globalize the manifold, and
   this leads to accumulation of numerical errors. 
 
   This function computes an ``optimal'' value of $h$, according to the

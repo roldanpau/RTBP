@@ -9,7 +9,7 @@ paste -d ' ' temp1.txt temp2.txt temp3.txt | tac >> approxints_branch2.dat
 
 rm temp1.txt temp2.txt temp3.txt
 
-approxint <approxints_branch2.dat >approxints_branch2.res 2>approxints_branch2.err
+./approxint <approxints_branch2.dat >approxints_branch2.res 2>approxints_branch2.err
 tac approxints_branch2.res >approxints_branch2.res.tmp
 mv approxints_branch2.res.tmp approxints_branch2.res
 

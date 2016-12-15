@@ -5,6 +5,7 @@ bindir = $(exec_prefix)/bin
 includedir = $(prefix)/include
 libdir = $(exec_prefix)/lib
 CFLAGS = -O3 #-g -O
+LDFLAGS = -O3
 LDLIBS = -lm -lgsl -lgslcblas -lds
 
 all : dprtbp dprtbp_test dprtbp_2d dprtbp_2d_test

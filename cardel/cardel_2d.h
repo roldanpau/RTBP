@@ -16,7 +16,7 @@
 
   \remark
   WE ASSUME that input point is on the Poincare section 
-  $\Sigma_- = {y=0, \dot y<0}$. We can recover the 4 euclidean coordinates
+  \f$ \Sigma_- = {y=0, \dot y<0} \f$. We can recover the 4 euclidean coordinates
   (x,y,px,py) using the energy relation.
 
   \param[in] mu	mass parameter for the RTBP

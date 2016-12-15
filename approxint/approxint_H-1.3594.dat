@@ -1,0 +1,12 @@
+0.95387536e-3 2 0 1 0.0
+-1.3594
+-7.115565698852543e-02 2.457642042989651e+00
+2.811836140657343e-03 -9.999960467809451e-01
+2.432076215662009e+00
+
+# Approx intersection of unst manifold (right branch) of fixed point
+# correspondign to H=-1.3594 (close to e=1) and horizontal axis line px=0.
+
+# WARNING! if you want to use this file, make sure to 
+# properly initialize the approximation to the homoclinic point 
+# by hand in file approxint_main.c

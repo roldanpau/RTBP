@@ -8,11 +8,10 @@
 #h=-1.6	# Hamiltonian energy value
 #print "Using energy level H="; h
 
-# Hamiltonian energy value
 print "Eccentricity e_0? "; estar=read()
 
-# r=p/q resonance, where p=period of asteroid, q=period of Jupiter
-print "Resonance (p/q, p=period of Asteroid, q=period of Jupiter)? "; r=read()
+# r=p/q resonance, where p=freq. of asteroid, q=freq. of Jupiter
+print "Resonance (p/q, p=frequency of Asteroid, q=frequency of Jupiter)? "; r=read()
 
 # A function to return the integer part of a number
 define int(number) {

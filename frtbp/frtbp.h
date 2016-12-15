@@ -53,23 +53,23 @@
 /**
   Derivative of the flow of the RTBP.
 
-  Compute the derivative of the flow $D\phi(t,x)$ with respect to $x$ of the
+  Compute the derivative of the flow \f$D\phi(t,x)\f$ with respect to $x$ of the
   RTBP for a given time and initial condition. 
   The time $t$ may be positive or negative, allowing for forward or backward
   integration.
   This is done by numerically integrating the variational equations.
  
-  \param[in] mu
+  \param[in] mu_loc
      mass parameter for the RTBP
 
   \param[in] t1
      integration time 
 
-  \param[in] x[DIM]
+  \param[in] x
      Argument of the derivative, 4 coordinates: \f$ (X, Y, P_X, P_Y). \f$
 
-  \param[out] dphi[DIMV]
-     On return of this function, it holds the derivative $D\phi(t,x)$ with
+  \param[out] dphi
+     On return of this function, it holds the derivative \f$D\phi(t,x)\f$ with
      respect to $x$.
   
   \return
