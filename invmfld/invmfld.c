@@ -16,10 +16,11 @@
 
 #include <stdio.h>
 #include <stdlib.h>	// EXIT_SUCCESS, EXIT_FAILURE
+#include <string.h>	// strcmp
 #include <math.h>	// sqrt
 #include <prtbp_2d.h>	// prtbp_2d, prtbp_2d_inv
 #include <errmfld.h>
-#include "disc.h"	// disc, iterate_segment_unst, iterate_segment_st
+#include "disc.h"	// disc
 
 /// Number of points in discretization of linear segment
 const int NPOINTS = 100; 

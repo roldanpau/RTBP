@@ -1,0 +1,10 @@
+0.95387536e-3
+0 -1.7314 3.141592670163404e+00 6.710236289450213e-01
+
+# We run Marcel's check number 2:
+# Take the homoclinic point on section SEC1 {l=0}
+# and take it to SEC2 {l=\pi}.
+
+# We choose an arbitrary homoclinic point with H=-1.7314
+#
+# Note: We set eccentricity to e=0, since this parameter is not used.

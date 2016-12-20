@@ -284,6 +284,8 @@ bool onsection_del (section_t sec, double x[DIM])
    {
       case SEC1 :	// section {l=0}
 	 {
+         // May be better to say that we are "numerically" on section 
+         // if we are within tolerance POINCARE_TOL.
 	    bonsection = (fmod(x[0],TWOPI) == 0); 
 	    break;
 	 }
