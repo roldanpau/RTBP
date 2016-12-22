@@ -18,7 +18,7 @@
 const double TWOPI = 2*M_PI;
 
 const double POINCARE_DEL_CAR_TOL=1.e-16;
-const double SHORT_TIME=1;		///< integration "step" for prtbp
+const double SHORT_TIME_DEL_CAR=0.01;		///< integration "step" for prtbp
 
 bool onsection_del_car (section_t sec, double a[DIM]);
 bool crossing_fwd_del_car (section_t sec, double a[DIM], double b[DIM]);
@@ -76,8 +76,8 @@ int prtbp_del_car(double mu, section_t sec, int cuts, double x_del[DIM],
 
          // WARNING! Before we used t1=1 as a "short" time, but sometime this
          // was too long...
-         status = frtbp(mu,SHORT_TIME,x_car);
-         t += SHORT_TIME;
+         status = frtbp(mu,SHORT_TIME_DEL_CAR,x_car);
+         t += SHORT_TIME_DEL_CAR;
          if (status != GSL_SUCCESS)
          {
             fprintf(stderr, "prtbp_del_car: error integrating trajectory\n");
@@ -151,8 +151,8 @@ int prtbp_del_car_inv(double mu, section_t sec, int cuts,
 
          // WARNING! Before we used t1=1 as a "short" time, but sometime this
          // was too long...
-         status = frtbp(mu,-SHORT_TIME,x_car);
-         t -= SHORT_TIME;
+         status = frtbp(mu,-SHORT_TIME_DEL_CAR,x_car);
+         t -= SHORT_TIME_DEL_CAR;
          if (status != GSL_SUCCESS)
          {
             fprintf(stderr, "prtbp_del_car_inv: error integrating trajectory\n");

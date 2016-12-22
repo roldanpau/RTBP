@@ -14,12 +14,12 @@ UNSTRESULTS = unstmfld_it0.res
 
 STRESULTS = stmfld_it0_neg.res
 
-all : prtbp_del_car prtbp_del_car_inv 
+all : prtbp_del_car
 
-install : prtbp_del_car prtbp_del_car_inv prtbp_del_car.o prtbp_del_car.h
+install : prtbp_del_car prtbp_del_car.o prtbp_del_car.h
 	ar rv $(libdir)/libds.a prtbp_del_car.o
 	cp prtbp_del_car.h $(includedir)
-	cp prtbp_del_car prtbp_del_car_inv $(bindir)
+	cp prtbp_del_car $(bindir)
 
 results : prtbp_2d prtbp_2d_inv $(RESULTS)
 
@@ -28,10 +28,6 @@ prtbp_del_car : prtbp_del_car_main.o prtbp_del_car.o $(libdir)/libds.a
 prtbp_del_car_main.o : $(includedir)/rtbp.h prtbp_del_car.h
 
 prtbp_del_car.o : $(includedir)/frtbp.h $(includedir)/rtbp.h
-
-prtbp_del_car_inv : prtbp_del_car_inv.o prtbp_del_car.o $(libdir)/libds.a
-
-prtbp_del_car_inv.o : $(includedir)/rtbp.h prtbp_del_car.h
 
 prtbp_2d : prtbp_2d_main.o prtbp_2d.o prtbp.o $(libdir)/libds.a
 #	$(CC) -o prtbp_2d $(LDLIBS) $(CFLAGS) prtbp_2d_main.o prtbp_2d.o \
@@ -59,6 +55,5 @@ clean :
 	rm prtbp_del_car prtbp_del_car_main.o prtbp_del_car.o \
 	   prtbp_2d prtbp_2d_main.o prtbp_2d.o \
 	   prtbps_2d prtbps_2d.o \
-	   prtbp_del_car_inv prtbp_del_car_inv.o \
 	   prtbp_2d_inv prtbp_2d_inv.o \
 	   $(RESULTS)

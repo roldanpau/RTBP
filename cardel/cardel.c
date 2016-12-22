@@ -45,12 +45,12 @@ void cardel(double X[DIM], double Y[DIM])
    // It can sometimes be outside the range due to roundoff.
    if(cu<-1)
    {
-      fprintf(stderr, "warning: cos(u)=%e outside range [-1,1]\n", cu);
+      //fprintf(stderr, "warning: cos(u)=%e outside range [-1,1]\n", cu);
       cu = -1;
    }
    else if(cu>1)
    {
-      fprintf(stderr, "warning: cos(u)=%e outside range [-1,1]\n", cu);
+      //fprintf(stderr, "warning: cos(u)=%e outside range [-1,1]\n", cu);
       cu = 1;
    }
 

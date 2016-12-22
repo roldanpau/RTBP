@@ -8,7 +8,7 @@
 #ifndef PRTBP_2D_H_INCLUDED
 #define PRTBP_2D_H_INCLUDED
 
-#include "prtbp.h"	// section_t
+#include <section.h>	// section_t
 
 /**
   Compute the n-th iterate $P^n$ of the 2D Poincare map:
