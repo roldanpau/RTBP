@@ -20,16 +20,15 @@
 #include <math.h>	// sqrt
 #include <rtbp.h>	// DIM
 #include <hinv.h>	
+#include <cardel.h>
 #include <prtbp_2d.h>
 #include <prtbp_del_car.h>
 #include <errmfld.h>
-#include <disc.h>	// disc
+#include <disc.h>
+#include "lift.h"
 
 /// Number of points in discretization of linear segment
 const int NPOINTS = 100; 
-
-int lift(double mu, section_t sec, double H, int n, const double *l, 
-        double *l4);
 
 /**
   Main program.
@@ -211,30 +210,4 @@ int main( )
    fprintf(stderr,"Estimated error of manifold: %le\n", err);
 
    exit(EXIT_SUCCESS);
-}
-
-int lift(double mu, section_t sec, double H, int n, const double *l, 
-        double *l4)
-{
-    // Auxiliary variables
-    int i, status;
-    const double *p; 
-    double *p4;
-
-    for(i=0; i<n; i++)
-    {
-        p=l+2*i;
-        p4=l4+DIM*i;
-
-        p4[0]=p[0]; // x
-        p4[1]=0;    // y
-        p4[2]=p[1]; // p_x
-        status=hinv(mu,sec,H,p4);
-       if(status)
-       {
-          fprintf(stderr, "lift: error lifting point\n");
-          return(1);
-       }
-    }
-    return(0);
 }

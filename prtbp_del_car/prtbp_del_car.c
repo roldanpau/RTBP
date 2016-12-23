@@ -18,7 +18,7 @@
 const double TWOPI = 2*M_PI;
 
 const double POINCARE_DEL_CAR_TOL=1.e-16;
-const double SHORT_TIME_DEL_CAR=0.01;		///< integration "step" for prtbp
+const double SHORT_TIME_DEL_CAR=1.0;		///< integration "step" for prtbp
 
 bool onsection_del_car (section_t sec, double a[DIM]);
 bool crossing_fwd_del_car (section_t sec, double a[DIM], double b[DIM]);
@@ -111,7 +111,11 @@ int prtbp_del_car(double mu, section_t sec, int cuts, double x_del[DIM],
    if(inter_del_car(mu, sec, POINCARE_DEL_CAR_TOL, x_del, x_car, 0.0, 
                t-t_pre, &t1))
    {
-      fprintf(stderr, "prtbp_del_car: error intersectig trajectory with section\n");
+      fprintf(stderr, "prtbp_del_car: error intersecting trajectory with section\n");
+      fprintf(stderr, "x_del: %.15e %.15e %.15e %.15e\n", 
+              x_del[0], x_del[1], x_del[2], x_del[3]);
+      fprintf(stderr, "x_car: %.15e %.15e %.15e %.15e\n", 
+              x_car[0], x_car[1], x_car[2], x_car[3]);
       return(1);
    }
    // Here, point x is on section with tolerance POINCARE_DEL_CAR_TOL. 
