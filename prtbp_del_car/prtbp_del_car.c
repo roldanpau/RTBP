@@ -18,7 +18,18 @@
 const double TWOPI = 2*M_PI;
 
 const double POINCARE_DEL_CAR_TOL=1.e-16;
-const double SHORT_TIME_DEL_CAR=1.0;		///< integration "step" for prtbp
+
+/// Integration "step" for prtbp. 
+//
+// WARNING! This parameter is very delicate. 
+// It needs to be appropriately small to get maximum precision for 
+// Poincare map. However, setting it too small will increase computation 
+// time a lot.
+//
+// I have used the following values:
+// SHORT_TIME_DEL_CAR = 0.001 when computing approximate intersections, 
+// and 0.0001 when computing true homoclinic intersections.
+const double SHORT_TIME_DEL_CAR=0.0001;		
 
 bool onsection_del_car (section_t sec, double a[DIM]);
 bool crossing_fwd_del_car (section_t sec, double a[DIM], double b[DIM]);
@@ -109,14 +120,18 @@ int prtbp_del_car(double mu, section_t sec, int cuts, double x_del[DIM],
    // Intersect trajectory starting at point x with section.
    // WARNING! passing 0 instead of 0.0 gives me trouble?!?!
    if(inter_del_car(mu, sec, POINCARE_DEL_CAR_TOL, x_del, x_car, 0.0, 
-               t-t_pre, &t1))
+               SHORT_TIME_DEL_CAR, &t1))
    {
-      fprintf(stderr, "prtbp_del_car: error intersecting trajectory with section\n");
-      fprintf(stderr, "x_del: %.15e %.15e %.15e %.15e\n", 
-              x_del[0], x_del[1], x_del[2], x_del[3]);
-      fprintf(stderr, "x_car: %.15e %.15e %.15e %.15e\n", 
-              x_car[0], x_car[1], x_car[2], x_car[3]);
-      return(1);
+          fprintf(stderr, "prtbp_del_car: error intersecting trajectory with section\n");
+          fprintf(stderr, "prtbp_del_car: giving up...\n");
+          /*fprintf(stderr, "x_del_pre: %.15e %.15e %.15e %.15e\n", 
+                  x_del_pre[0], x_del_pre[1], x_del_pre[2], x_del_pre[3]);
+          fprintf(stderr, "x_car_pre: %.15e %.15e %.15e %.15e\n", 
+                  x_car_pre[0], x_car_pre[1], x_car_pre[2], x_car_pre[3]);
+          fprintf(stderr, "t: %.15e\n", 
+                  SHORT_TIME_DEL_CAR);
+          return(1);
+                  */
    }
    // Here, point x is on section with tolerance POINCARE_DEL_CAR_TOL. 
 
@@ -443,12 +458,16 @@ int inter_del_car(double mu, section_t sec, double epsabs,
     while (status == GSL_CONTINUE && iter < max_iter);
     gsl_root_fsolver_free (s);
 
+    /*
     if(iter>=max_iter)
     {
        fprintf(stderr, \
                "inter_del_car: maximum number of iterations reached\n");
+       fprintf(stderr, \
+               "inter_del_car: latest residual: %.15e\n",f);
        return(ERR_MAXITER_DEL_CAR);
     }
+    */
     // "*t" is the intersection time.
     if(frtbp(mu,*t,x_car))	// compute the intersection point "x"
     {
@@ -456,5 +475,14 @@ int inter_del_car(double mu, section_t sec, double epsabs,
        exit(EXIT_FAILURE);
     }
     cardel(x_car,x_del);
+
+    if(iter>=max_iter)
+    {
+       fprintf(stderr, \
+               "inter_del_car: maximum number of iterations reached\n");
+       fprintf(stderr, \
+               "inter_del_car: latest residual: %.15e\n",f);
+       return(ERR_MAXITER_DEL_CAR);
+    }
     return 0;
 }
