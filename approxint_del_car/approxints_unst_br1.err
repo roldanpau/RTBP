@@ -302,6 +302,10 @@ Approximate interval: 3
 H: -1.599400e+00
 Optimal displacement: 1.000000e-04
 Estimated error of manifold: 1.216341e-08
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: -2.360641682130904e-08
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
 Approximate interval: 2
 
 H: -1.597400e+00
@@ -477,6 +481,10 @@ Approximate interval: 0
 H: -1.529400e+00
 Optimal displacement: 1.000000e-04
 Estimated error of manifold: 1.618133e-08
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 6.239395755613941e-08
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
 Approximate interval: 3
 
 H: -1.527400e+00
@@ -567,6 +575,10 @@ Approximate interval: 0
 H: -1.493400e+00
 Optimal displacement: 1.000000e-04
 Estimated error of manifold: 1.656535e-08
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 3.639083834272583e-08
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
 Approximate interval: 0
 
 H: -1.491400e+00
@@ -697,6 +709,10 @@ Approximate interval: 3
 H: -1.441400e+00
 Optimal displacement: 1.000000e-04
 Estimated error of manifold: 1.465011e-08
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: -4.616108650878914e-08
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
 Approximate interval: 3
 
 H: -1.439400e+00

@@ -282,6 +282,10 @@ Approximate interval: 1
 H: -1.607400e+00
 Optimal displacement: 1.000000e-04
 Estimated error of manifold: 1.171917e-08
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 5.262468683042698e-08
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
 Approximate interval: 0
 
 H: -1.605400e+00
