@@ -9,7 +9,7 @@
 #include <stdio.h>  	// fprintf
 #include <math.h>  	// pow,sqrt
 #include <assert.h> 
-#include <prtbp.h>  	// section_t
+#include <section.h>  	// section_t
 #include <dprtbp_2d.h>  // dprtbp2d
 
 const int ERR_DPRTBP_2D=1;
@@ -34,7 +34,7 @@ int hyper(double mu, section_t sec, double H, int n, double p[2],
    if(status)
    {
       fprintf(stderr, \
-	    "hyper: error computing derivative of 2D Poincare map\n",n);
+	    "hyper: error computing derivative of 2D Poincare map\n");
       return(ERR_DPRTBP_2D);
    }
 
@@ -49,7 +49,7 @@ int hyper(double mu, section_t sec, double H, int n, double p[2],
    //fprintf(stderr, "a=%.8e b=%.8e c=%.8e d=%.8e disc=%.8e\n", a,b,c,d,disc);
    if(disc<0)
    {
-      fprintf(stderr, "hyper: eigenvalues are not real!\n",n);
+      fprintf(stderr, "hyper: eigenvalues are not real!\n");
       return(ERR_NOTREAL);
    }
    L1 = T/2 + sqrt(disc);

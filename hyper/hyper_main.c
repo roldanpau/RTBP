@@ -71,7 +71,7 @@ int main( )
    if(status)
    {
       fprintf(stderr, \
-	    "main: error computing hyperbolic splitting\n",n);
+	    "main: error computing hyperbolic splitting\n");
       exit(EXIT_FAILURE);
    }
 
