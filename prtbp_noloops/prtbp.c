@@ -17,7 +17,6 @@
 #include "prtbp.h"	// section_t
 
 const double POINCARE_TOL=1.e-16;
-const double TANGENT_TOL=1.e-6;     ///< tolerance for tangent condition
 const double SHORT_TIME=0.01;		///< integration "step" for prtbp
 
 int inter(double mu, section_t sec, double epsabs, double x[DIM], double t0,
@@ -34,39 +33,18 @@ struct inter_f_params
 };
 
 /** 
-  This function determines if the flow is tangent to the Poincare 
-  section at the point A.
-
-  \param[in] sec 	type of Poincare section (sect = SEC1 or SEC2).
-  \param[in] a 		point, 4 coordinates: (x, y, p_x, p_y).
-
-  \returns true the flow is tangent, false if it is not.
-  */
-bool tangent(section_t sec, double a[DIM])
-{
-   double x = a[0];
-   double y = a[1];
-   double py = a[3];
-   double vy = py-x;
-
-   // This works for both sections:
-   if(fabs(y)<TANGENT_TOL && fabs(vy)<TANGENT_TOL)
-   {
-       fprintf(stderr, "tranverse: Flow is tangent to section!!\n");
-       return(true);
-   }
-   return(false);
-}
-
-/** 
   This function determines if the point A is exactly on the section.
 
   \param[in] sec 	type of Poincare section (sect = SEC1 or SEC2).
   \param[in] a 		point, 4 coordinates: (x, y, p_x, p_y).
 
+  \param[in,out] sign
+    (pointer to) sign of previous intersection with x axis (sign = +1 if x>0
+    or sign = -1 if x<0).
+
   \returns true if point $a$ is exactly on section, false if it is not.
   */
-bool onsection (section_t sec, double a[DIM])
+bool onsection (section_t sec, double a[DIM], int *sign)
 {
    bool bonsection = false;
 
@@ -88,6 +66,15 @@ bool onsection (section_t sec, double a[DIM])
             break;
          }
    }
+   // TWO CONSECUTIVE ITERATES must NOT lie both to the right or to the left
+   // of the origin, so they must have different sign.
+   bonsection = (bonsection && (*sign)*x<0);
+
+   // If we intersected the x axis, determine if we crossed to the left
+   // or to the right of the origin.
+   if(y == 0)
+      *sign = (x>0 ? +1 : -1);
+
    return(bonsection);
 }
 
@@ -100,6 +87,10 @@ bool onsection (section_t sec, double a[DIM])
   \param[in] a		First point, 4 coordinates: (x, y, p_x, p_y).
   \param[in] b		Second point, 4 coordinates: (x, y, p_x, p_y).
 
+  \param[in,out] sign
+    (pointer to) sign of previous intersection with x axis (sign = +1 if x>0
+    or sign = -1 if x<0).
+
   \return 		true if trajectory cuts section, false if it does not.
   */
 // NOTES
@@ -108,11 +99,14 @@ bool onsection (section_t sec, double a[DIM])
 // precisely on the section, not at the point $b$.
 // However, we don't expect $v_y$ to change much between these two points.
 
-bool crossing (section_t sec, double a[DIM], double b[DIM])
+bool crossing (section_t sec, double a[DIM], double b[DIM], int *sign)
 {
    double x = a[0];
    double py = a[3];
    double vy = py-x;
+
+   // auxiliary variables
+   double n1,n2;
 
    bool bcrossing = false;
 
@@ -129,33 +123,39 @@ bool crossing (section_t sec, double a[DIM], double b[DIM])
             break;
          }
    }
+   // TWO CONSECUTIVE ITERATES must NOT lie both to the right or to the left
+   // of the origin, so they must have different sign.
+   bcrossing = (bcrossing && (*sign)*x<0);
+
+   // If we have intersected the x axis, determine if we crossed to the left
+   // or to the right of the origin.
+   if(a[1]*b[1]<0)
+      *sign = (x>0 ? +1 : -1);
+
    return(bcrossing);
 }
 
 // NOTES
 // =====
 // We do not impose that $x$ is on the section.
+// We do not check that flow at $x$ is transversal to section!!!
 //
 // A point is assumed to be on the Poincare section if it is within distance
 // POINCARE_TOL to the section.
 //
-// IDEA: In frtbp, check if the flow becomes tangential to section at some point.
-// If it does, return a flag to prtbp, which sould act accordingly.
 
 int prtbp(double mu, section_t sec, int cuts, double x[DIM], double *ti)
 {
    double t = 0.0;
    double t_pre;	/* previous value of time t */
    double x_pre[DIM];	/* previous value of point x */
+   int sign;		/* sign of previous intersection with x axis */
    int status;
    int i,n;
    double t1;
 
-   if(tangent(sec,x))
-   {
-       perror("Flow is tangent to section. Cannot compute Poincare map!\n");
-       exit(EXIT_FAILURE);
-   }
+   // Save sign of previous intersection with x axis
+   sign = (x[0]>0 ? +1 : -1);
 
    n=0;
    while(n!=cuts)
@@ -182,12 +182,12 @@ int prtbp(double mu, section_t sec, int cuts, double x[DIM], double *ti)
 	 }
       } 
       // while(no crossing of Poincare section)
-      while(!(onsection(sec,x) || crossing(sec,x_pre,x))); 
+      while(!(onsection(sec,x,&sign) || crossing(sec,x_pre,x,&sign))); 
       n++;
    }
    // point "x" is exactly on the section
    // This would be very unlikely...
-   if(onsection(sec,x))
+   if(onsection(sec,x,&sign))
    {
       (*ti)=t;
       return(0);
@@ -230,9 +230,13 @@ int prtbp_inv(double mu, section_t sec, int cuts, double x[DIM], double *ti)
    double t = 0.0;
    double t_pre;	/* previous value of time t */
    double x_pre[DIM];	/* previous value of point x */
+   int sign;		/* sign of previous intersection with x axis */
    int status;
    int i,n;
    double t1;
+
+   // Save sign of previous intersection with x axis
+   sign = (x[0]>0 ? +1 : -1);
 
    n=0;
    while(n!=cuts)
@@ -259,12 +263,12 @@ int prtbp_inv(double mu, section_t sec, int cuts, double x[DIM], double *ti)
 	 }
       } 
       // while(no crossing of Poincare section)
-      while(!(onsection(sec,x) || crossing(sec,x_pre,x))); 
+      while(!(onsection(sec,x,&sign) || crossing(sec,x_pre,x,&sign))); 
       n++;
    }
    // point "x" is exactly on the section
    // This would be very unlikely...
-   if(onsection(sec,x))
+   if(onsection(sec,x,&sign))
    {
       (*ti)=t;
       return(0);

@@ -47,6 +47,12 @@ extern const double POINCARE_TOL;	///< error bound (tolerance) for Poincare map
   value.
 
   \remark
+  We are only interested in orbits that go around the origin. For some values
+  of the energy, the orbit has "contractible" loops, which we want to avoid.
+  For this, we impose that TWO CONSECUTIVE ITERATES do NOT lie both to the
+  right or to the left of the origin.
+
+  \remark
   On successful return of this function, the point $x$ is exactly on the
   section, i.e. we set coordinate $y$ exactly equal to zero.
 */    
@@ -86,6 +92,12 @@ int prtbp(double mu, section_t sec, int cuts, double x[DIM], double *ti);
   success.
   If an integration error is encountered, the function returns a non-zero
   value.
+
+  \remark
+  We are only interested in orbits that go around the origin. For some values
+  of the energy, the orbit has "contractible" loops, which we want to avoid.
+  For this, we impose that TWO CONSECUTIVE ITERATES do NOT lie both to the
+  right or to the left of the origin.
 
   \remark
   On successful return of this function, the point $x$ is exactly on the
