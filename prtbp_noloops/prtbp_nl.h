@@ -5,8 +5,8 @@
     $Date: 2013-03-26 22:22:14 $
 */
 
-#ifndef PRTBP_H_INCLUDED
-#define PRTBP_H_INCLUDED
+#ifndef PRTBP_NL_H_INCLUDED
+#define PRTBP_NL_H_INCLUDED
 
 #include <section.h>	// section_t
 #include "rtbp.h"	// DIM
@@ -57,7 +57,7 @@ extern const double POINCARE_TOL;	///< error bound (tolerance) for Poincare map
   section, i.e. we set coordinate $y$ exactly equal to zero.
 */    
 
-int prtbp(double mu, section_t sec, int cuts, double x[DIM], double *ti);
+int prtbp_nl(double mu, section_t sec, int cuts, double x[DIM], double *ti);
 
 /**
   Inverse Poincare map of the Restricted Three Body Problem.
@@ -103,6 +103,6 @@ int prtbp(double mu, section_t sec, int cuts, double x[DIM], double *ti);
   On successful return of this function, the point $x$ is exactly on the
   section, i.e. we set coordinate $y$ exactly equal to zero.
 */    
-int prtbp_inv(double mu, section_t sec, int cuts, double x[DIM], double *ti);
+int prtbp_nl_inv(double mu, section_t sec, int cuts, double x[DIM], double *ti);
 
-#endif // PRTBP_H_INCLUDED
+#endif // PRTBP_NL_H_INCLUDED

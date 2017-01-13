@@ -25,6 +25,7 @@
 // 1. Input parameters from stdin:
 // 
 //    - mass parameter 
+//    - section type "sec": sec={SEC1,SEC2}
 //    - stable flag
 //    - axis line "l$
 //
@@ -51,7 +52,10 @@
 
 #include <stdio.h>
 #include <stdlib.h>	// EXIT_SUCCESS, EXIT_FAILURE
+#include <string.h>	// strcmp
 #include <rtbp.h>	// DIM
+
+#include <section.h>
 #include "intersec_del_car.h"
 
 void print_pt(double z[2])
@@ -75,6 +79,7 @@ void print_pt4(double z[DIM])
 int main( )
 {
    double mu, H;
+   section_t sec;   // Poincare section
 
    double p[2];		// fixed point
    double v[2];		// eigenvector
@@ -104,12 +109,23 @@ int main( )
    double t;		// integration time to reach z from p_u/p_s
 
    // auxiliary vars
+   char section_str[10];    // holds input string "SEC1", "SEC2" etc
    int status;
 
    // 1. Input parameters from stdin.
-   if(scanf("%le %d %le", &mu, &stable, &l) < 3)
+   if(scanf("%le %s %d %le", &mu, section_str, &stable, &l) < 4)
    {
       perror("main: error reading input");
+      exit(EXIT_FAILURE);
+   }
+
+   if (strcmp(section_str,"SEC1") == 0)
+      sec = SEC1;
+   else if (strcmp(section_str,"SEC2") == 0)
+      sec = SEC2;
+   else
+   {
+      perror("main: error reading section string");
       exit(EXIT_FAILURE);
    }
 
@@ -120,12 +136,13 @@ int main( )
       // the manifolds
       if(!stable)
       {
-	 status = intersec_del_car_unst(mu, H, p, v, lambda, n, h1, h2, l, &h, p_u, &t, z_del, z_car);
-	 if(status)
-	 {
-	    fprintf(stderr, "main: error computing intersection point\n");
-	    exit(EXIT_FAILURE);
-	 }
+          status = intersec_del_car_unst(mu, sec, H, p, v, lambda, n, 
+                  h1, h2, l, &h, p_u, &t, z_del, z_car);
+          if(status)
+          {
+              fprintf(stderr, "main: error computing intersection point\n");
+              exit(EXIT_FAILURE);
+          }
       }
       else
       {

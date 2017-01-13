@@ -8,8 +8,9 @@
 #include <stdio.h>
 #include <stdlib.h>	// EXIT_SUCCESS
 #include <math.h>	// sqrt
-#include <prtbp.h>      // section_t
-#include <prtbp_2d.h>	// prtbp_2d, prtbp_2d_inv
+#include <section.h>
+
+#include <prtbp_nl_2d.h>
 
 /** 
   Estimate error commited in the linear approximation of the manifold.
@@ -58,7 +59,7 @@ double err_mfld(double mu, section_t sec, double H, int k, double p[2],
    p1[0] = p[0] + h*v[0];
    p1[1] = p[1] + h*v[1];
    if(!stable) 	// unstable manifold
-      status=prtbp_2d(mu,sec,H,k,p1,&ti); 	// $p_1 = P(p_0)$
+      status=prtbp_nl_2d(mu,sec,H,k,p1,&ti); 	// $p_1 = P(p_0)$
    else 	// stable manifold
       status=prtbp_2d_inv(mu,sec,H,k,p1,&ti);	// $p_1 = P^{-1}(p_0)$
    if(status)

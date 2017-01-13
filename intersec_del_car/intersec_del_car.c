@@ -14,7 +14,7 @@
 #include <rtbp.h>	// DIM
 #include <hinv.h>
 #include <cardel.h>
-#include <prtbp_2d.h>	// prtbp_2d, prtbp_2d_inv
+#include <prtbp_2d.h>	// prtbp_2d_inv
 #include <prtbp_del_car.h>
 #include <lift.h>
 
@@ -23,12 +23,13 @@
 // Note that this is the requested precision for the interval 
 // (h_1, h_2) on the local unstable manifold, NOT for the 
 // homoclinic point itself!
-const double BISECT_TOL=1.e-8;
+const double BISECT_TOL=1.e-10;
 
 // Parameters to distance_f_unst and distance_f_st functions.
 struct dparams
 {
    double mu;		// mass parameter
+   section_t sec;   // Poincare section 
    double H;		// energy value
    double p[2];		// fixed point
    double v[2];		// unstable/stable vector
@@ -57,10 +58,112 @@ print_state (size_t iter, gsl_root_fsolver * s)
 }
 
 /**
+  Take a point in the local unstable manifold and iterate it n times by 
+  the Poincare map.
+
+  Consider the 2D map 
+  \f$\mathcal{P}: S \to S\f$, where S is the Poincare section SEC1 or SEC2, 
+  corresponding to \f$\{l=0\}\f$ or \f$\{l=\pi\}\f$.
+
+  Let $p$ be a hyperbolic fixed point for \f$\mathcal{P}\f$.
+  For definiteness, we assume that $p$ is located above the $p_x=0$ axis.
+
+  Assume that \f$\lambda\f$ is the unstable eigenvalue, with \f$\lambda>1\f$.
+  Let $v$ be the unstable eigenvector for the eigenvalue \f$\lambda\f$. 
+  For definiteness, we assume that $v=(x,p_x)$ points "to the right", i.e. we
+  assume that the first component of $v$ is $x>0$, but we could use the other
+  branch of the manifold.
+  Let $W^u(p)$ be the unstable manifold of $p$.
+
+  This function computes $z$, the $n$-th iteration under the iterated 
+  Poincare map of the point $p_u = p+h_u v$ located in the unstable segment.
+
+  \param[in] mu         mass parameter for the RTBP
+  \param[in] sec        Poincare section: sec={SEC1,SEC2}
+  \param[in] H          energy value
+
+  \param[in] n
+  number of desired iterations by the Poincare map in the unstable direction.
+
+  \param[in] p_u[2]
+  Point in the unstable segment
+
+  \param[out] t
+  On exit, it contains integration time to reach z from p_u.
+  
+  \param[out] z[2]	
+  On exit, it contains homoclinic point z = P^n(p_u).
+
+  \returns 
+  a non-zero error code to indicate an error and 0 to indicate
+  success.
+
+  \retval 1 	Problems computing the Poincare iterates.
+*/
+
+// NOTES
+// =====
+// For the moment, we work with the 3:1 resonant family of periodic orbits.
+
+int iterate_del_car_unst(double mu, section_t sec, double H, int n, 
+        double p_u[2], double *t, double z_del[DIM], double z_car[DIM])
+{
+    // auxiliary variables
+    int status, iskip;
+
+   // Lift point from \R^2 to \R^4
+   status=lift(mu,SEC2,H,1,p_u,z_car);
+   if(status)
+   {
+      perror("intersec_del_car: error lifting point");
+      return(1);
+   }
+
+   // Transform point to Delaunay coordinates
+   cardel(z_car,z_del);
+
+   if(sec==SEC1)
+   {
+       // For upper branch (branch 1):
+       //iskip=1;
+
+       // For lower branch (branch 2):
+       iskip=2;
+   }
+   else // if(sec==SEC2)
+   {
+       // For upper branch (branch 1):
+       //iskip=2;
+
+       // For lower branch (branch 2):
+       iskip=3;
+   }
+   // Iterate the (discretized) linear segment iskip times until we are 
+   // at the right "eye" of the resonance.
+   if(prtbp_del_car(mu,sec,iskip,z_del,z_car,t))
+   {
+      fprintf(stderr, "intersec_del_car: error computing Poincare map\n");
+      //return(1);
+   }
+
+   // unstable manifold
+   status=prtbp_del_car(mu,sec,3*n,z_del,z_car,t);  // $q_u = P^{n}(p_u)$
+   if(status)
+   {
+      fprintf(stderr, "intersec_del_car: error computing Poincare map\n");
+      //return(1);
+   }
+   return(0);
+}
+
+/**
   Intersection of unstable invariant manifold with symmetry line.
 
-  Consider the 2D map \f$\mathcal{P}: \Sigma_- \to \Sigma_-\f$, which is
-  assumed to be reversible with respect to the symmetry line $p_x=0$.
+  Consider the 2D map 
+  \f$\mathcal{P}: S \to S\f$, where S is the Poincare section SEC1 or SEC2, 
+  corresponding to \f$\{l=0\}\f$ or \f$\{l=\pi\}\f$, which is
+  assumed to be reversible with respect to the symmetry line $g=0$ and $g=\pi$.
+
   Let $p$ be a hyperbolic fixed point for \f$\mathcal{P}\f$.
   For definiteness, we assume that $p$ is located above the $p_x=0$ axis.
 
@@ -93,6 +196,7 @@ print_state (size_t iter, gsl_root_fsolver * s)
   We ask for precision of BISECT_TOL in the homoclinc point.
   
   \param[in] mu         mass parameter for the RTBP
+  \param[in] sec        Poincare section: sec={SEC1,SEC2}
   \param[in] H          energy value
   \param[in] p          fixed point $p=(x,p_x)$
   \param[in] v          eigenvector associated to unstable direction
@@ -133,15 +237,17 @@ print_state (size_t iter, gsl_root_fsolver * s)
 // =====
 // For the moment, we work with the 3:1 resonant family of periodic orbits.
 
-int intersec_del_car_unst(double mu, double H, double p[2], double v[2], 
-      double lambda, int n, double h1, double h2, double l,
-      double *h, double p_u[2], double *t, double z_del[DIM], double z_car[DIM])
+int intersec_del_car_unst(double mu, section_t sec, double H, double p[2], 
+        double v[2], double lambda, int n, double h1, double h2, double l,
+        double *h, double p_u[2], double *t, double z_del[DIM], 
+        double z_car[DIM])
 {
    const gsl_root_fsolver_type *T;
    gsl_root_fsolver *s;
 
    struct dparams params;
    params.mu = mu;
+   params.sec = sec;
    params.H = H;
    params.p[0] = p[0];
    params.p[1] = p[1];
@@ -211,31 +317,11 @@ int intersec_del_car_unst(double mu, double H, double p[2], double v[2],
 
    // - intersection point z = P(p_u),
    // - t: integration time to reach homoclinic point $z$.
-
-   // Lift point from \R^2 to \R^4
-   status=lift(mu,SEC2,H,1,p_u,z_car);
+   status=iterate_del_car_unst(mu,sec,H,n,p_u,t,z_del,z_car);
    if(status)
    {
-      perror("intersec_del_car: error lifting point");
+      perror("intersec_del_car: error iterating point");
       return(1);
-   }
-
-   // Transform point to Delaunay coordinates
-   cardel(z_car,z_del);
-
-   // Iterate point twice until we are at the right "eye" of the resonance.
-   if(prtbp_del_car(mu,SEC2,3,z_del,z_car,t))
-   {
-      fprintf(stderr, "intersec_del_car: error computing Poincare map\n");
-      //return(1);
-   }
-
-   // unstable manifold
-   status=prtbp_del_car(mu,SEC2,3*n,z_del,z_car,t);       // $q_u = P^{n}(p_u)$
-   if(status)
-   {
-      fprintf(stderr, "intersec_del_car: error computing Poincare map\n");
-      //return(1);
    }
    return(0);
 }
@@ -374,6 +460,7 @@ double
 distance_f_unst (double h, void *params)
 {
    double mu, H;
+   section_t sec;   // Poincare section
    double p[2]; 		// fixed point
    double v[2];		// unstable vector
 
@@ -386,10 +473,11 @@ distance_f_unst (double h, void *params)
 
    // auxiliary vars
    int status;
-   double p_u4[DIM]; 		// point in the unstable segment
-   double p_u4_del[DIM]; 		// point in the unstable segment
+   double z_car[DIM]; 		// point in the unstable segment
+   double z_del[DIM]; 		// point in the unstable segment
 
    mu = ((struct dparams *)params)->mu;
+   sec = ((struct dparams *)params)->sec;
    H = ((struct dparams *)params)->H;
 
    p[0] = (((struct dparams *)params)->p)[0];
@@ -405,35 +493,16 @@ distance_f_unst (double h, void *params)
    p_u[0] = p[0] + h*v[0];
    p_u[1] = p[1] + h*v[1];
 
-   // Lift point from \R^2 to \R^4
-   status=lift(mu,SEC2,H,1,p_u,p_u4);
+   status=iterate_del_car_unst(mu,sec,H,n,p_u,&t,z_del,z_car);
    if(status)
    {
-      perror("distance_f: error lifting point");
-      exit(EXIT_FAILURE);
-   }
-
-   // Transform point to Delaunay coordinates
-   cardel(p_u4,p_u4_del);
-
-   // Iterate point twice until we are at the right "eye" of the resonance.
-   if(prtbp_del_car(mu,SEC2,3,p_u4_del,p_u4,&t))
-   {
-      fprintf(stderr, "distance_f: error iterating point twice\n");
-      //exit(EXIT_FAILURE);
-   }
-
-   // unstable manifold
-   status=prtbp_del_car(mu,SEC2,3*n,p_u4_del,p_u4,&t);       // $q_u = P^{n}(p_u)$
-   if(status)
-   {
-      fprintf(stderr, "distance_f: error computing Poincare map\n");
-      //exit(EXIT_FAILURE);
+      perror("intersec_del_car: error iterating point");
+      return(1);
    }
 
    // Return 
    //    distance(h) = l - g(q_u), 
-   return remainder(p_u4_del[2]-l,2*M_PI);
+   return remainder(z_del[2]-l,2*M_PI);
 }
 
 double

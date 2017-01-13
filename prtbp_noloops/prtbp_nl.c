@@ -14,19 +14,20 @@
 
 #include <frtbp.h>	// frtbp
 #include <rtbp.h>	// DIM
-#include "prtbp.h"	// section_t
 
-const double POINCARE_TOL=1.e-16;
-const double SHORT_TIME=0.01;		///< integration "step" for prtbp
+#include <section.h>	// section_t
 
-int inter(double mu, section_t sec, double epsabs, double x[DIM], double t0,
+const double POINCARE_TOL_NL=1.e-16;
+const double SHORT_TIME_NL=0.01;		///< integration "step" for prtbp_nl
+
+int inter_nl(double mu, section_t sec, double epsabs, double x[DIM], double t0,
       double t1, double *t);
-double inter_f(double t, void *p);
+double inter_nl_f(double t, void *p);
 
-// Parameters to the intersection funtion "inter_f"
-struct inter_f_params;	// Forward declaration
+// Parameters to the intersection funtion "inter_nl_f"
+struct inter_nl_f_params;	// Forward declaration
 
-struct inter_f_params
+struct inter_nl_f_params
 {
    double mu; section_t sec;
    double x; double y; double px; double py;
@@ -44,7 +45,7 @@ struct inter_f_params
 
   \returns true if point $a$ is exactly on section, false if it is not.
   */
-bool onsection (section_t sec, double a[DIM], int *sign)
+bool onsection_nl (section_t sec, double a[DIM], int *sign)
 {
    bool bonsection = false;
 
@@ -99,7 +100,7 @@ bool onsection (section_t sec, double a[DIM], int *sign)
 // precisely on the section, not at the point $b$.
 // However, we don't expect $v_y$ to change much between these two points.
 
-bool crossing (section_t sec, double a[DIM], double b[DIM], int *sign)
+bool crossing_nl (section_t sec, double a[DIM], double b[DIM], int *sign)
 {
    double x = a[0];
    double py = a[3];
@@ -141,10 +142,10 @@ bool crossing (section_t sec, double a[DIM], double b[DIM], int *sign)
 // We do not check that flow at $x$ is transversal to section!!!
 //
 // A point is assumed to be on the Poincare section if it is within distance
-// POINCARE_TOL to the section.
+// POINCARE_TOL_NL to the section.
 //
 
-int prtbp(double mu, section_t sec, int cuts, double x[DIM], double *ti)
+int prtbp_nl(double mu, section_t sec, int cuts, double x[DIM], double *ti)
 {
    double t = 0.0;
    double t_pre;	/* previous value of time t */
@@ -168,26 +169,26 @@ int prtbp(double mu, section_t sec, int cuts, double x[DIM], double *ti)
 	    x_pre[i]=x[i];
 	 t_pre=t;
 
-	 // Integrate for a "short" time t1=SHORT_TIME, short enough so that
+	 // Integrate for a "short" time t1=SHORT_TIME_NL, short enough so that
 	 // we can detect crossing of Poincare section.
 
 	 // WARNING! Before we used t1=1 as a "short" time, but sometime this
 	 // was too long...
-	 status = frtbp(mu,SHORT_TIME,x);
-	 t += SHORT_TIME;
+	 status = frtbp(mu,SHORT_TIME_NL,x);
+	 t += SHORT_TIME_NL;
 	 if (status != GSL_SUCCESS)
 	 {
-	    fprintf(stderr, "prtbp: error integrating trajectory\n");
+	    fprintf(stderr, "prtbp_nl: error integrating trajectory\n");
 	    return(1);
 	 }
       } 
       // while(no crossing of Poincare section)
-      while(!(onsection(sec,x,&sign) || crossing(sec,x_pre,x,&sign))); 
+      while(!(onsection_nl(sec,x,&sign) || crossing_nl(sec,x_pre,x,&sign))); 
       n++;
    }
    // point "x" is exactly on the section
    // This would be very unlikely...
-   if(onsection(sec,x,&sign))
+   if(onsection_nl(sec,x,&sign))
    {
       (*ti)=t;
       return(0);
@@ -200,12 +201,12 @@ int prtbp(double mu, section_t sec, int cuts, double x[DIM], double *ti)
 
    // Intersect trajectory starting at point x with section.
    // WARNING! passing 0 instead of 0.0 gives me trouble?!?!
-   if(inter(mu, sec, POINCARE_TOL, x, 0.0, t-t_pre, &t1))
+   if(inter_nl(mu, sec, POINCARE_TOL_NL, x, 0.0, t-t_pre, &t1))
    {
-      fprintf(stderr, "prtbp: error intersectig trajectory with section\n");
+      fprintf(stderr, "prtbp_nl: error intersectig trajectory with section\n");
       return(1);
    }
-   // Here, point x is on section with tolerance POINCARE_TOL_DEL. 
+   // Here, point x is on section with tolerance POINCARE_TOL_NL_DEL. 
    // We force x to be exactly on section.
    x[1] = 0;    // y
 
@@ -220,12 +221,12 @@ int prtbp(double mu, section_t sec, int cuts, double x[DIM], double *ti)
 // We do not check that flow at $x$ is transversal to section!!!
 //
 // A point is assumed to be on the Poincare section if it is within distance
-// POINCARE_TOL to the section.
+// POINCARE_TOL_NL to the section.
 //
 // On successful return of this function, the point $x$ is exactly on the
 // section, i.e. we set coordinate $y$ exactly equal to zero.
 
-int prtbp_inv(double mu, section_t sec, int cuts, double x[DIM], double *ti)
+int prtbp_nl_inv(double mu, section_t sec, int cuts, double x[DIM], double *ti)
 {
    double t = 0.0;
    double t_pre;	/* previous value of time t */
@@ -249,13 +250,13 @@ int prtbp_inv(double mu, section_t sec, int cuts, double x[DIM], double *ti)
 	    x_pre[i]=x[i];
 	 t_pre=t;
 
-	 // Integrate for a "short" time t1=-SHORT_TIME, short enough so that
+	 // Integrate for a "short" time t1=-SHORT_TIME_NL, short enough so that
 	 // we can detect crossing of Poincare section.
 
 	 // WARNING! Before we used t1=1 as a "short" time, but sometime this
 	 // was too long...
-	 status = frtbp(mu,-SHORT_TIME,x);
-	 t -= SHORT_TIME;
+	 status = frtbp(mu,-SHORT_TIME_NL,x);
+	 t -= SHORT_TIME_NL;
 	 if (status != GSL_SUCCESS)
 	 {
 	    fprintf(stderr, "prtbp_inv: error integrating trajectory\n");
@@ -263,12 +264,12 @@ int prtbp_inv(double mu, section_t sec, int cuts, double x[DIM], double *ti)
 	 }
       } 
       // while(no crossing of Poincare section)
-      while(!(onsection(sec,x,&sign) || crossing(sec,x_pre,x,&sign))); 
+      while(!(onsection_nl(sec,x,&sign) || crossing_nl(sec,x_pre,x,&sign))); 
       n++;
    }
    // point "x" is exactly on the section
    // This would be very unlikely...
-   if(onsection(sec,x,&sign))
+   if(onsection_nl(sec,x,&sign))
    {
       (*ti)=t;
       return(0);
@@ -282,12 +283,12 @@ int prtbp_inv(double mu, section_t sec, int cuts, double x[DIM], double *ti)
    // Intersect trajectory starting at point x with section.
    // Note that (t-t_pre) < 0.
    // WARNING! passing 0 instead of 0.0 gives me trouble?!?!
-   if(inter(mu, sec, POINCARE_TOL, x, t-t_pre, 0.0, &t1))
+   if(inter_nl(mu, sec, POINCARE_TOL_NL, x, t-t_pre, 0.0, &t1))
    {
       fprintf(stderr, "prtbp_inv: error intersectig trajectory with section\n");
       return(1);
    }
-   // Here, point x is on section with tolerance POINCARE_TOL_DEL. 
+   // Here, point x is on section with tolerance POINCARE_TOL_NL_DEL. 
    // We force x to be exactly on section.
    x[1] = 0;    // y
 
@@ -296,7 +297,7 @@ int prtbp_inv(double mu, section_t sec, int cuts, double x[DIM], double *ti)
    return(0);
 }
 
-// name OF FUNCTION: inter
+// name OF FUNCTION: inter_nl
 // CREDIT: 
 //
 // PURPOSE
@@ -308,7 +309,7 @@ int prtbp_inv(double mu, section_t sec, int cuts, double x[DIM], double *ti)
 // The intersection point $y = flow(t,x)$ is also returned.
 //
 // We use a (1-dimensional) root finding algorithm to solve the function
-// "inter_f" for the intersection time "t".
+// "inter_nl_f" for the intersection time "t".
 //
 // PARAMETERS
 // ==========
@@ -336,18 +337,18 @@ int prtbp_inv(double mu, section_t sec, int cuts, double x[DIM], double *ti)
 // success.
 // If an error is encountered, the function returns a non-zero value:
 //
-// ERR_MAXITER
+// ERR_MAXITER_NL
 //    A specified maximum number of iterations of the root finding algorithm
 //    has been reached.
 //
 // NOTES
 // =====
 //
-// CALLS TO: inter_f, frtbp
+// CALLS TO: inter_nl_f, frtbp
 
-const int ERR_MAXITER=1;
+const int ERR_MAXITER_NL=1;
 
-int inter(double mu, section_t sec, double epsabs, double x[DIM], double t0,
+int inter_nl(double mu, section_t sec, double epsabs, double x[DIM], double t0,
       double t1, double *t)
 {
     int status;
@@ -356,10 +357,10 @@ int inter(double mu, section_t sec, double epsabs, double x[DIM], double t0,
     gsl_root_fsolver *s;
     double f;
     gsl_function F;
-    struct inter_f_params params = {mu, sec, x[0], x[1], x[2], x[3]};
+    struct inter_nl_f_params params = {mu, sec, x[0], x[1], x[2], x[3]};
     *t=0.0;
   
-    F.function = &inter_f;
+    F.function = &inter_nl_f;
     F.params = &params;
   
     T = gsl_root_fsolver_brent;
@@ -373,11 +374,11 @@ int inter(double mu, section_t sec, double epsabs, double x[DIM], double t0,
 	if (status)
 	{
 	   fprintf(stderr, \
-		 "inter: solver iteration failed, gsl_errno=%d\n", status);
+		 "inter_nl: solver iteration failed, gsl_errno=%d\n", status);
 	   return(1);
 	}
 	*t = gsl_root_fsolver_root (s);
-	f=inter_f(*t,&params);
+	f=inter_nl_f(*t,&params);
 	status = gsl_root_test_residual(f, epsabs);
       }
     while (status == GSL_CONTINUE && iter < max_iter);
@@ -385,22 +386,22 @@ int inter(double mu, section_t sec, double epsabs, double x[DIM], double t0,
 
     if(iter>=max_iter)
     {
-       fprintf(stderr, "inter: maximum number of iterations reached\n");
-       return(ERR_MAXITER);
+       fprintf(stderr, "inter_nl: maximum number of iterations reached\n");
+       return(ERR_MAXITER_NL);
     }
     // "*t" is the intersection time.
     if(frtbp(mu,*t,x))	// compute the intersection point "x"
     {
-       fprintf(stderr, "inter: error computing intersection point\n");
+       fprintf(stderr, "inter_nl: error computing intersection point\n");
        exit(EXIT_FAILURE);
     }
     return 0;
 }
 
-double inter_f(double t, void *p)
+double inter_nl_f(double t, void *p)
 {
    int i, status;
-   struct inter_f_params *params = (struct inter_f_params *)p;
+   struct inter_nl_f_params *params = (struct inter_nl_f_params *)p;
    double mu = (params->mu);
    //section_t sec = (params->sec);	// not used
    double x = (params->x); 
@@ -417,7 +418,7 @@ double inter_f(double t, void *p)
    status=frtbp(mu,t,pt);	// flow(t,pt)
    if(status!=0)
    {
-      fprintf(stderr, "inter_f: error computing flow");
+      fprintf(stderr, "inter_nl_f: error computing flow");
       exit(EXIT_FAILURE);
    }
    return(pt[1]);

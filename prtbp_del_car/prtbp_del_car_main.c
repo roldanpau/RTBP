@@ -53,7 +53,8 @@ int main( )
    // auxiliary variables
    char section_str[10];        // holds input string "SEC1", "SEC2" etc
 
-   // Input mass parameter, section, number of iterates and initial condition from stdin.
+   // Input mass parameter, section, number of iterates and 
+   // initial condition from stdin.
    if(scanf("%le %s %d %le %le %le %le", &mu, section_str, &n, 
                x_del, x_del+1, x_del+2, x_del+3) < 7)
    {

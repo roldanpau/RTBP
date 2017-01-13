@@ -28,7 +28,7 @@
 #include "lift.h"
 
 /// Number of points in discretization of linear segment
-const int NPOINTS = 100; 
+const int NPOINTS = 10; 
 
 /**
   Main program.
@@ -171,7 +171,7 @@ int main( )
 	 {
 	    if(!stable)	// unstable manifold
 	    {
-	       if(prtbp_del_car(mu,SEC2,1,l4_del+DIM*i,l4+DIM*i,&ti))
+	       if(prtbp_del_car(mu,SEC1,1,l4_del+DIM*i,l4+DIM*i,&ti))
 	       {
               fprintf(stderr, "main: error computing Poincare map\n");
               exit(EXIT_FAILURE);
@@ -179,7 +179,7 @@ int main( )
 	    }
 	    else		// stable manifold
 	    {
-	       if(prtbp_del_car_inv(mu,SEC2,1,l4_del+DIM*i,l4+DIM*i,&ti))
+	       if(prtbp_del_car_inv(mu,SEC1,1,l4_del+DIM*i,l4+DIM*i,&ti))
 	       {
               fprintf(stderr, "main: error computing inverse Poincare map\n");
               exit(EXIT_FAILURE);

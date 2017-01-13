@@ -5,6 +5,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>	// EXIT_SUCCESS, EXIT_FAILURE
+#include <string.h>	// strcmp
 #include <prtbp.h>	// SEC2
 #include <errmfld.h>	// h_opt
 #include "approxint_del_car.h"	// approxint_del_car_unst, approxint_del_car_st
@@ -36,6 +37,7 @@ typedef enum {LEFT, RIGHT} branch_t;
    1. Input parameters from stdin:
    
       - mass parameter 
+      - section type "sec": sec={SEC1,SEC2}
       - number of cuts "k" with Poincare section
       - "stable" flag (unstable=0, stable=1)
       - "branch" flag (left=0, right=1)
@@ -62,6 +64,7 @@ typedef enum {LEFT, RIGHT} branch_t;
 int main( )
 {
    double mu, H;
+   section_t sec;
    int k;
 
    double p[2];		// fixed point
@@ -91,15 +94,28 @@ int main( )
    double a;	// horizontal axis line $p_x=a$
 
    // auxiliary vars
+   char section_str[10];    // holds input string "SEC1", "SEC2" etc
    int status;
    branch_t br;
 
    // 1. Input parameters from stdin.
-   if(scanf("%le %d %d %d %le", &mu, &k, &stable, &branch, &a) < 5)
+   if(scanf("%le %s %d %d %d %le", &mu, section_str, &k, &stable, &branch, 
+               &a) < 6)
    {
       perror("main: error reading input");
       exit(EXIT_FAILURE);
    }
+
+   if (strcmp(section_str,"SEC1") == 0)
+      sec = SEC1;
+   else if (strcmp(section_str,"SEC2") == 0)
+      sec = SEC2;
+   else
+   {
+      perror("main: error reading section string");
+      exit(EXIT_FAILURE);
+   }
+
 
    br = (branch==0 ? LEFT : RIGHT);
 
@@ -124,8 +140,8 @@ int main( )
       // cross the $x$ axis).
       if(!stable)
       {
-	 status = approxint_del_car_unst(mu, H, k, p, v, lambda, h, a, &iter, &h_1, 
-	       &h_2, z);
+	 status = approxint_del_car_unst(mu, sec, H, k, p, v, lambda, h, a, 
+             &iter, &h_1, &h_2, z);
 	 if(status)
 	 {
 	    fprintf(stderr, 

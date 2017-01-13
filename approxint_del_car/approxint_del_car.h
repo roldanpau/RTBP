@@ -8,8 +8,9 @@
 /** 
   Approximate intersection of unstable invariant manifold with symmetry line.
 
-  Let $p$ be a hyperbolic fixed point for the 2D map \f$\mathcal{P}: \{l=\pi\} 
-  \to \{l=\pi\}\f$.
+  Let $p$ be a hyperbolic fixed point for the 2D map 
+  \f$\mathcal{P}: S \to S\f$, where S is the Poincare section SEC1 or SEC2, 
+  corresponding to \f$\{l=0\}\f$ or \f$\{l=\pi\}\f$.
 
   Assume that \f$\lambda\f$ is the unstable eigenvalue, with \f$\lambda>1\f$.
   Let $v$ be the unstable eigenvector for the eigenvalue \f$\lambda\f$. 
@@ -22,15 +23,15 @@
 
   We consider the unstable fundamental segment between the two points 
   $p+h_u v_u$ and $P(p+h_u v_u)$.
-  We iterate the unstable fundamental domain until it intersects the $G$
-  axis.
+  We iterate the unstable fundamental domain until it intersects the line 
+  $g=a$.
   
   We discretize the unst domain into a set of NPOINTS segments u_1, u_2,
   ..., u_NPOINTS. 
   The image under iteration of this discretized version of the unst manifold
   is a set of segments U_1, U_2, ..., U_NPOINTS that approximates the
   nonlinear unst manifold.
-  We look for the first unst segment U_i that intersects the $G$ axis.
+  We look for the first unst segment U_i that intersects the line $g=a$.
   Therefore, U_i contains an intersection point, and the segment u_i in the
   fundamental domains contain the preimage of an intersection point.
 
@@ -46,6 +47,7 @@
   we DO NOT assume that the first component of $v$ is $x>0$.
 
   \param[in] mu         mass parameter for the RTBP
+  \param[in] sec        Poincare section: sec={SEC1,SEC2}
   \param[in] H          energy value
   \param[in] k          number of iterates of the Poincare map
   \param[in] p          fixed point $p=(x,p_x)$
@@ -61,7 +63,7 @@
   \param[out] piter
   On exit, it contains the number of iterations of the poincare map
   \f$\mathcal{P}\f$ needed to take the unstable segment u_i to U_i and
-  straddle the $G$ axis.
+  straddle the line $g=a$.
 
   \param[out] h_1,h_2
   On exit, it contains the endpoints of the unstable segment u_i bracketing
@@ -75,12 +77,12 @@
   success.
 
   \retval 1 Problems computing the Poincare iterates.
-  \retval 2 No intersection found with the $G$ axis.
+  \retval 2 No intersection found with the line $g=a$.
 */
 
 int 
-approxint_del_car_unst (double mu, double H, int k, double p[2], double v[2],
-      double lambda, double h, double a, 
+approxint_del_car_unst (double mu, section_t sec, double H, int k, 
+        double p[2], double v[2], double lambda, double h, double a, 
       int *piter, double *h_1, double *h_2, double z[2]);
 
 /**
@@ -90,6 +92,6 @@ approxint_del_car_unst (double mu, double H, int k, double p[2], double v[2],
   */
   
 int 
-approxint_del_car_st (double mu, double H, int k, double p[2], double v[2],
-      double lambda, double h, double a, 
+approxint_del_car_st (double mu, double H, int k, 
+        double p[2], double v[2], double lambda, double h, double a, 
       int *piter, double *h_1, double *h_2, double z[2]);
