@@ -16,12 +16,10 @@ all : invmfld_del_car
 
 install : invmfld_del_car
 	cp invmfld_del_car $(bindir)
-	ar rv $(libdir)/libds.a lift.o
-	cp lift.h $(includedir)
 
 results: invmfld_del_car $(RESULTS)
 
-invmfld_del_car : invmfld_del_car.o lift.o $(libdir)/libds.a
+invmfld_del_car : invmfld_del_car.o $(libdir)/libds.a
 
 invmfld_del_car.o : $(includedir)/prtbp_2d.h
 
@@ -29,4 +27,4 @@ invmfld_del_car.o : $(includedir)/prtbp_2d.h
 	./invmfld_del_car < $< > $@
 
 clean : 
-	rm invmfld_del_car $(RESULTS) invmfld_del_car.o lift.o
+	rm invmfld_del_car $(RESULTS) invmfld_del_car.o
