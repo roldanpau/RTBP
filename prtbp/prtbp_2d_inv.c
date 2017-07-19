@@ -32,6 +32,7 @@
 //    2.3. Output final point $P^{-n}(x)$ and integration time to stdout.
 
 #include <stdio.h>
+#include <string.h>	// strcmp
 #include <stdlib.h>	// EXIT_SUCCESS, EXIT_FAILURE
 #include <gsl/gsl_errno.h>	// gsl_set_error_handler_off
 #include "prtbp.h"	// section_t

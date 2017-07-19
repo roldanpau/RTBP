@@ -149,6 +149,8 @@ int main( )
    // Discretize linear segment
    disc(p0, p1, NPOINTS, l);
 
+   // IMPROVEMENT: instead of lift+cardel here, why not use cardel_2d???
+
    // Lift points in linear segment from \R^2 to \R^4
    status=lift(mu,sec,H,NPOINTS,l,l4);
    if(status)

@@ -41,6 +41,7 @@
 // 3. Output solution p_y such that H(x,y,p_x,p_y)=H.
 
 #include <stdio.h>
+#include <string.h>	// strcmp
 #include <stdlib.h>	// EXIT_SUCCESS, EXIT_FAILURE
 #include <rtbp.h>	// DIM
 #include <section.h>	// section_t
