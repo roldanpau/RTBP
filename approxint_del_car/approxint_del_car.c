@@ -86,6 +86,8 @@ approxint_del_car_unst (double mu, section_t sec, double H, int k,
    // Discretize linear segment
    disc(p0, p1, NPOINTS, l);
 
+   // IMPROVEMENT: Use cardel_2d instead of lift+cardel.
+
    // Lift points in linear segment from \R^2 to \R^4
    status=lift(mu,SEC2,H,NPOINTS,l,l4);
    if(status)

@@ -11,12 +11,13 @@
 
 #include <math.h>   // remainder
 
-#include <rtbp.h>	// DIM
+#include <rtbp.h>		// DIM
 #include <hinv.h>
 #include <cardel.h>
-#include <prtbp_2d.h>	// prtbp_2d_inv
+#include <prtbp_2d.h>		// prtbp_2d_inv
 #include <prtbp_del_car.h>
 #include <lift.h>
+#include <utils_module.h>	// dblcpy
 
 /// Tolerance (precision) for bisection method.
 //
@@ -86,14 +87,21 @@ print_state (size_t iter, gsl_root_fsolver * s)
   number of desired iterations by the Poincare map in the unstable direction.
 
   \param[in] p_u[2]
-  Point in the unstable segment
+  Point in the unstable segment (Cartesian coords)
 
   \param[out] t
   On exit, it contains integration time to reach z from p_u.
   
-  \param[out] z[2]	
-  On exit, it contains homoclinic point z = P^n(p_u).
+  \param[out] z_del[DIM]	
+  On exit, it contains homoclinic point z = P^n(p_u) in Delaunay.
 
+  \param[out] z_car[DIM]	
+  On exit, it contains homoclinic point z = P^n(p_u) in Cartesian.
+
+  \param[out] z_u[DIM]
+  Point in local unstable manifold of the appropriate pendulum (Delaunay
+  coords). This will be needed in outer_circ.
+  
   \returns 
   a non-zero error code to indicate an error and 0 to indicate
   success.
@@ -106,7 +114,8 @@ print_state (size_t iter, gsl_root_fsolver * s)
 // For the moment, we work with the 3:1 resonant family of periodic orbits.
 
 int iterate_del_car_unst(double mu, section_t sec, double H, int n, 
-        double p_u[2], double *t, double z_del[DIM], double z_car[DIM])
+        double p_u[2], double *t, double z_del[DIM], double z_car[DIM],
+	double z_u[DIM])
 {
     // auxiliary variables
     int status, iskip;
@@ -125,18 +134,18 @@ int iterate_del_car_unst(double mu, section_t sec, double H, int n,
    if(sec==SEC1)
    {
        // For upper branch (branch 1):
-       //iskip=1;
+       iskip=1;
 
        // For lower branch (branch 2):
-       iskip=2;
+       //iskip=2;
    }
    else // if(sec==SEC2)
    {
        // For upper branch (branch 1):
-       //iskip=2;
+       iskip=2;
 
        // For lower branch (branch 2):
-       iskip=3;
+       //iskip=3;
    }
    // Iterate the (discretized) linear segment iskip times until we are 
    // at the right "eye" of the resonance.
@@ -145,6 +154,8 @@ int iterate_del_car_unst(double mu, section_t sec, double H, int n,
       fprintf(stderr, "intersec_del_car: error computing Poincare map\n");
       //return(1);
    }
+
+   dblcpy(z_u,z_del, DIM);
 
    // unstable manifold
    status=prtbp_del_car(mu,sec,3*n,z_del,z_car,t);  // $q_u = P^{n}(p_u)$
@@ -222,9 +233,16 @@ int iterate_del_car_unst(double mu, section_t sec, double H, int n,
   \param[out] tu
   On exit, it contains integration time to reach z from p_u.
   
-  \param[out] z[2]	
-  On exit, it contains homoclinic point z = P^n(p_u).
+  \param[out] z_del[DIM]	
+  On exit, it contains homoclinic point z = P^n(p_u) in Delaunay.
 
+  \param[out] z_car[DIM]	
+  On exit, it contains homoclinic point z = P^n(p_u) in Cartesian.
+
+  \param[out] z_u[DIM]
+  Point in local unstable manifold of the appropriate pendulum (Delaunay
+  coords). This will be needed in outer_circ.
+  
   \returns 
   a non-zero error code to indicate an error and 0 to indicate
   success.
@@ -240,7 +258,7 @@ int iterate_del_car_unst(double mu, section_t sec, double H, int n,
 int intersec_del_car_unst(double mu, section_t sec, double H, double p[2], 
         double v[2], double lambda, int n, double h1, double h2, double l,
         double *h, double p_u[2], double *t, double z_del[DIM], 
-        double z_car[DIM])
+        double z_car[DIM], double z_u[DIM])
 {
    const gsl_root_fsolver_type *T;
    gsl_root_fsolver *s;
@@ -266,10 +284,10 @@ int intersec_del_car_unst(double mu, section_t sec, double H, double p[2],
    s = gsl_root_fsolver_alloc (T);
 
    // For first branch, h1<h2, so...
-   //gsl_root_fsolver_set (s, &f, h1, h2);
+   gsl_root_fsolver_set (s, &f, h1, h2);
 
    // For second branch, h2<h1, so...
-   gsl_root_fsolver_set (s, &f, h2, h1);
+   //gsl_root_fsolver_set (s, &f, h2, h1);
 
    // auxiliary vars
    int status;
@@ -315,9 +333,11 @@ int intersec_del_car_unst(double mu, section_t sec, double H, double p[2],
     p_u[0] = p[0] + (*h) * v[0];
     p_u[1] = p[1] + (*h) * v[1];
 
+  // - Point in local unstable manifold of the appropriate pendulum (Delaunay
+  // coords). This will be needed in outer_circ.
    // - intersection point z = P(p_u),
    // - t: integration time to reach homoclinic point $z$.
-   status=iterate_del_car_unst(mu,sec,H,n,p_u,t,z_del,z_car);
+   status=iterate_del_car_unst(mu,sec,H,n,p_u,t,z_del,z_car,z_u);
    if(status)
    {
       perror("intersec_del_car: error iterating point");
@@ -473,8 +493,9 @@ distance_f_unst (double h, void *params)
 
    // auxiliary vars
    int status;
-   double z_car[DIM]; 		// point in the unstable segment
-   double z_del[DIM]; 		// point in the unstable segment
+   double z_car[DIM]; 		// homoclinic point (cartesian)
+   double z_del[DIM]; 		// homoclinic point (Delaunay)
+   double z_u[DIM]; 		// point in the local unstable manifold
 
    mu = ((struct dparams *)params)->mu;
    sec = ((struct dparams *)params)->sec;
@@ -493,7 +514,7 @@ distance_f_unst (double h, void *params)
    p_u[0] = p[0] + h*v[0];
    p_u[1] = p[1] + h*v[1];
 
-   status=iterate_del_car_unst(mu,sec,H,n,p_u,&t,z_del,z_car);
+   status=iterate_del_car_unst(mu,sec,H,n,p_u,&t,z_del,z_car,z_u);
    if(status)
    {
       perror("intersec_del_car: error iterating point");

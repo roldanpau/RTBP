@@ -21,4 +21,4 @@ rm temp1.txt temp2.txt temp3.txt temp4.txt
 tac $resfile >$tmpfile
 mv $tmpfile $resfile
 
-#rm $datfile
+rm $datfile

@@ -5,7 +5,8 @@ bindir = $(exec_prefix)/bin
 includedir = $(prefix)/include
 libdir = $(exec_prefix)/lib
 CFLAGS = -O3
-LDLIBS = -lm -lgsl -lgslcblas -lds
+LDFLAGS = -O3
+LDLIBS = -lds -lm -lgsl -lgslcblas
 
 all : frtbpred 
 
