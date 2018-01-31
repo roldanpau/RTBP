@@ -67,6 +67,12 @@ void cardel(double X[DIM], double Y[DIM])
 
    l = u-e*sin(u);
 
+   // DEBUG: Make sure mean anomaly l is in the range [-pi,pi].
+   if(l<-M_PI || l>M_PI)
+   {
+      fprintf(stderr, "warning: l=%e outside range [-pi,pi]\n", cu);
+   }
+
    if(u==M_PI)
    {
       // tan(u/2) blows up! But in this case $v=pi$.
@@ -90,7 +96,7 @@ void cardel(double X[DIM], double Y[DIM])
    g = phi - v;
 
    // On output, we normalize the angles $l,g$ between [0,2\pi).
-   if(l<0) l+=2*M_PI;
+   // DEBUG if(l<0) l+=2*M_PI;
    if(g<0) g+=2*M_PI;
 
    Y[0]=l;

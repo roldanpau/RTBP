@@ -106,18 +106,18 @@ approxint_del_car_unst (double mu, section_t sec, double H, int k,
    if(sec==SEC1)
    {
        // For upper branch (branch 1):
-       //iskip=1;
+       iskip=1;
 
        // For lower branch (branch 2):
-       iskip=2;
+       //iskip=2;
    }
    else // if(sec==SEC2)
    {
        // For upper branch (branch 1):
-       //iskip=2;
+       iskip=2;
 
        // For lower branch (branch 2):
-       iskip=3;
+       //iskip=3;
    }
    // Iterate the (discretized) linear segment iskip times until we are 
    // at the right "eye" of the resonance.
@@ -133,7 +133,9 @@ approxint_del_car_unst (double mu, section_t sec, double H, int k,
    // Iterate the (discretized) linear segment "iter" times by the Poincare map
    for(iter=1;iter<=MAXITER;iter++)
    {
+      //fprintf(stderr, "DEBUG: befor %d iteration of linear segment: l=%.15le, g=%.15le\n", iter, l4_del[0], l4_del[2]);
       status=u_i(mu, sec, 3, a, l4_del, l4, &i);
+      //fprintf(stderr, "DEBUG: after %d iteration of linear segment: l=%.15le, g=%.15le\n", iter, l4_del[0], l4_del[2]);
       if(status)
       {
           fprintf(stderr, 
@@ -325,21 +327,24 @@ u_i (double mu, section_t sec, int k, double a, double *l4_del, double *l4,
        {
           // For the upper branch, since dg/dt<0, it is enough to check 
           // if the angle has passed from >a to <a
-          //if(l4_del[DIM*i+2] > a && l4_del[DIM*(i+1)+2] < a) break;
+          if(l4_del[DIM*i+2] > a && l4_del[DIM*(i+1)+2] < a) break;
           
           // For the lower branch, since dg/dt>0, it is enough to check 
           // if the angle has passed from <a to >a
-          if(l4_del[DIM*i+2] < a && l4_del[DIM*(i+1)+2] > a) break;
+          //if(l4_del[DIM*i+2] < a && l4_del[DIM*(i+1)+2] > a) break;
        }
        else // if(sec==SEC2)
        {
           // For the upper branch, since dg/dt<0, it is enough to check 
           // if the angle has been reset from 0 to 2\pi
-          //if(l4_del[DIM*(i+1)+2] > l4_del[DIM*i+2]) break;
+          if(l4_del[DIM*(i+1)+2] > l4_del[DIM*i+2]) {
+	     //fprintf(stderr, "DEBUG: g=%.15le, gprime=%.15le\n", l4_del[DIM*i+2], l4_del[DIM*(i+1)+2]);
+	     break;
+	  }
           
           // For the lower branch, since dg/dt>0, it is enough to check 
           // if the angle has been reset from 2\pi to 0
-          if(l4_del[DIM*(i+1)+2] < l4_del[DIM*i+2]) break;
+          //if(l4_del[DIM*(i+1)+2] < l4_del[DIM*i+2]) break;
        }
    }
 

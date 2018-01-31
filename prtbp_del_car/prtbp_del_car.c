@@ -29,7 +29,7 @@ const double POINCARE_DEL_CAR_TOL=1.e-16;
 // I have used the following values:
 // SHORT_TIME_DEL_CAR = 0.001 when computing approximate intersections, 
 // and 0.0001 when computing true homoclinic intersections.
-const double SHORT_TIME_DEL_CAR=0.0001;		
+const double SHORT_TIME_DEL_CAR=0.001;		
 
 bool onsection_del_car (section_t sec, double a[DIM]);
 bool crossing_fwd_del_car (section_t sec, double a[DIM], double b[DIM]);
@@ -100,6 +100,8 @@ int prtbp_del_car(double mu, section_t sec, int cuts, double x_del[DIM],
       while(!(onsection_del_car(sec,x_del) || 
                   crossing_fwd_del_car(sec,x_del_pre,x_del))); 
       n++;
+      //fprintf(stderr, "DEBUG: befor %d crossing with sect: l=%.15le, g=%.15le\n", n, x_del_pre[0], x_del_pre[2]);
+      //fprintf(stderr, "DEBUG: after %d crossing with sect: l=%.15le, g=%.15le\n", n, x_del[0], x_del[2]);
    }
    // point "x_del" is exactly on the section
    // This would be very unlikely...
@@ -134,6 +136,12 @@ int prtbp_del_car(double mu, section_t sec, int cuts, double x_del[DIM],
                   */
    }
    // Here, point x is on section with tolerance POINCARE_DEL_CAR_TOL. 
+   //
+   // CAREFUL! Make sure to return a point that is exactly ON the section.
+   // If it is slightly before the section, then one more spureous iterate
+   // will be counted.
+   if(sec==SEC1) x_del[0]=0;
+   else if(sec==SEC2) x_del[0]=-M_PI;
 
    // Set time to reach Poincare section
    (*ti)=t_pre+t1;
@@ -271,14 +279,16 @@ bool crossing_fwd_del_car (section_t sec, double a[DIM], double b[DIM])
          {
              // Since dl/dt>0, it is enough to check if the angle 
              // has been reset from 2\pi to 0.
-             bcrossing = (b[0] < a[0]);
+             // DEBUG bcrossing = (b[0] < a[0]);
+             bcrossing = (a[0] < 0 && b[0] > 0);
              break;
          }
       case SEC2 :       // section {l=\pi}
          {
              // Since dl/dt>0, it is enough to check if the angle 
              // has passed from <\pi to >\pi.
-             bcrossing = (a[0] < M_PI && b[0] > M_PI);
+             // DEBUG bcrossing = (a[0] < M_PI && b[0] > M_PI);
+             bcrossing = (b[0] < a[0]);
              break;
          }
    }
@@ -328,7 +338,7 @@ double inter_del_car_f(double t, void *p)
    int i, status;
    struct inter_del_car_f_params *params = (struct inter_del_car_f_params *)p;
    double mu = (params->mu);
-   section_t sec = (params->sec);	// not used
+   section_t sec = (params->sec);
    double x = (params->x); 
    double y = (params->y); 
    double px = (params->px);
@@ -360,11 +370,13 @@ double inter_del_car_f(double t, void *p)
       case SEC1 :       // section {l=0}
          {
             d = remainder(l,TWOPI);
+	    //fprintf(stderr,"DEBUG: l=%.15le, d=%.15le\n", l, d);
             break;
          }
       case SEC2 :       // section {l=\pi}
          {
             d = remainder(l-M_PI,TWOPI);
+	    //fprintf(stderr,"DEBUG: l=%.15le, d=%.15le\n", l, d);
             break;
          }
    }
