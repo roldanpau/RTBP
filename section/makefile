@@ -8,10 +8,11 @@ CFLAGS = -O3
 LDFLAGS = -O3
 LDLIBS = -lm -lgsl -lgslcblas -lds
 
-all : 
+all : section.o
 
-install : section.h
+install : section.o section.h
+	ar rv $(libdir)/libds.a section.o
 	cp section.h $(includedir)
 
 clean : 
-
+	rm section.o

@@ -13,10 +13,8 @@
 
 #include <frtbp.h>	    // frtbp
 #include <rtbp.h>	    // DIM
-#include <section.h>	// section_t
+#include <section.h>	// TWOPI, section_t
 #include <cardel.h>	    // cardel
-
-const double TWOPI = 2*M_PI;
 
 const double POINCARE_G_TOL=1.e-16;
 
