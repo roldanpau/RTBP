@@ -1,5 +1,6 @@
 /*! \file
-    \brief Poincare map of RTBP in Delaunay coordinates, but integrating the flow in Cartesian.
+    \brief Poincare map of RTBP in Delaunay coordinates, but integrating the
+    flow in Cartesian.
 */
 
 #include <stdio.h>	    // fprintf
@@ -17,7 +18,7 @@
 
 const double TWOPI = 2*M_PI;
 
-const double POINCARE_DEL_CAR_TOL=1.e-16;
+const double POINCARE_G_TOL=1.e-16;
 
 /// Integration "step" for prtbp. 
 //
@@ -27,9 +28,9 @@ const double POINCARE_DEL_CAR_TOL=1.e-16;
 // time a lot.
 //
 // I have used the following values:
-// SHORT_TIME_DEL_CAR = 0.001 when computing approximate intersections, 
+// SHORT_TIME_G = 0.001 when computing approximate intersections, 
 // and 0.0001 when computing true homoclinic intersections.
-const double SHORT_TIME_DEL_CAR=0.001;		
+const double SHORT_TIME_G=0.001;		
 
 bool onsection_g (section_t sec, double a[DIM]);
 bool crossing_fwd_g (section_t sec, double a[DIM], double b[DIM]);
@@ -54,7 +55,7 @@ struct inter_g_f_params
  * \remark We do not check that flow at $x$ is transversal to section!!!
  *
  * \remark A point is assumed to be on the Poincare section if it is 
- * within distance POINCARE_DEL_CAR_TOL to the section.
+ * within distance POINCARE_G_TOL to the section.
  */
 
 int prtbp_g(double mu, section_t sec, int cuts, double x_del[DIM], 
@@ -87,8 +88,8 @@ int prtbp_g(double mu, section_t sec, int cuts, double x_del[DIM],
 
          // WARNING! Before we used t1=1 as a "short" time, but sometime this
          // was too long...
-         status = frtbp(mu,SHORT_TIME_DEL_CAR,x_car);
-         t += SHORT_TIME_DEL_CAR;
+         status = frtbp(mu,SHORT_TIME_G,x_car);
+         t += SHORT_TIME_G;
          if (status != GSL_SUCCESS)
          {
             fprintf(stderr, "prtbp_g: error integrating trajectory\n");
@@ -121,8 +122,8 @@ int prtbp_g(double mu, section_t sec, int cuts, double x_del[DIM],
 
    // Intersect trajectory starting at point x with section.
    // WARNING! passing 0 instead of 0.0 gives me trouble?!?!
-   if(inter_g(mu, sec, POINCARE_DEL_CAR_TOL, x_del, x_car, 0.0, 
-               SHORT_TIME_DEL_CAR, &t1))
+   if(inter_g(mu, sec, POINCARE_G_TOL, x_del, x_car, 0.0, 
+               SHORT_TIME_G, &t1))
    {
           fprintf(stderr, "prtbp_g: error intersecting trajectory with section\n");
           fprintf(stderr, "prtbp_g: giving up...\n");
@@ -131,11 +132,11 @@ int prtbp_g(double mu, section_t sec, int cuts, double x_del[DIM],
           fprintf(stderr, "x_car_pre: %.15e %.15e %.15e %.15e\n", 
                   x_car_pre[0], x_car_pre[1], x_car_pre[2], x_car_pre[3]);
           fprintf(stderr, "t: %.15e\n", 
-                  SHORT_TIME_DEL_CAR);
+                  SHORT_TIME_G);
           return(1);
                   */
    }
-   // Here, point x is on section with tolerance POINCARE_DEL_CAR_TOL. 
+   // Here, point x is on section with tolerance POINCARE_G_TOL. 
    //
    // CAREFUL! Make sure to return a point that is exactly ON the section.
    // If it is slightly before the section, then one more spureous iterate
@@ -178,8 +179,8 @@ int prtbp_g_inv(double mu, section_t sec, int cuts,
 
          // WARNING! Before we used t1=1 as a "short" time, but sometime this
          // was too long...
-         status = frtbp(mu,-SHORT_TIME_DEL_CAR,x_car);
-         t -= SHORT_TIME_DEL_CAR;
+         status = frtbp(mu,-SHORT_TIME_G,x_car);
+         t -= SHORT_TIME_G;
          if (status != GSL_SUCCESS)
          {
             fprintf(stderr, "prtbp_g_inv: error integrating trajectory\n");
@@ -211,13 +212,13 @@ int prtbp_g_inv(double mu, section_t sec, int cuts,
    // Intersect trajectory starting at point x with section.
    // Note that (t-t_pre) < 0.
    // WARNING! passing 0 instead of 0.0 gives me trouble?!?!
-   if(inter_g(mu, sec, POINCARE_DEL_CAR_TOL, x_del, x_car, 0.0, 
+   if(inter_g(mu, sec, POINCARE_G_TOL, x_del, x_car, 0.0, 
                t-t_pre, &t1))
    {
       fprintf(stderr, "prtbp_g_inv: error intersectig trajectory with section\n");
       return(1);
    }
-   // Here, point x is on section with tolerance POINCARE_DEL_CAR_TOL. 
+   // Here, point x is on section with tolerance POINCARE_G_TOL. 
 
    // Set time to reach Poincare section
    (*ti)=t_pre+t1;
@@ -243,12 +244,12 @@ bool onsection_g (section_t sec, double a[DIM])
    {
       case SEC1 :       // section {l=0}
          {
-            bonsection = (fabs(remainder(l,TWOPI))<POINCARE_DEL_CAR_TOL);
+            bonsection = (fabs(remainder(l,TWOPI))<POINCARE_G_TOL);
             break;
          }
       case SEC2 :       // section {l=\pi}
          {
-            bonsection = (fabs(remainder(l-M_PI,TWOPI))<POINCARE_DEL_CAR_TOL);
+            bonsection = (fabs(remainder(l-M_PI,TWOPI))<POINCARE_G_TOL);
             break;
          }
    }
@@ -426,11 +427,11 @@ double inter_g_f(double t, void *p)
 // success.
 // If an error is encountered, the function returns a non-zero value:
 //
-// ERR_MAXITER_DEL_CAR
+// ERR_MAXITER_G
 //    A specified maximum number of iterations of the root finding algorithm
 //    has been reached.
 
-const int ERR_MAXITER_DEL_CAR=1;
+const int ERR_MAXITER_G=1;
 
 int inter_g(double mu, section_t sec, double epsabs, 
         double x_del[DIM], double x_car[DIM], 
@@ -477,7 +478,7 @@ int inter_g(double mu, section_t sec, double epsabs,
                "inter_g: maximum number of iterations reached\n");
        fprintf(stderr, \
                "inter_g: latest residual: %.15e\n",f);
-       return(ERR_MAXITER_DEL_CAR);
+       return(ERR_MAXITER_G);
     }
     */
     // "*t" is the intersection time.
@@ -494,7 +495,7 @@ int inter_g(double mu, section_t sec, double epsabs,
                "inter_g: maximum number of iterations reached\n");
        fprintf(stderr, \
                "inter_g: latest residual: %.15e\n",f);
-       return(ERR_MAXITER_DEL_CAR);
+       return(ERR_MAXITER_G);
     }
     return 0;
 }
