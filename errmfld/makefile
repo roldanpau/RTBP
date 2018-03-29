@@ -5,7 +5,7 @@ bindir = $(exec_prefix)/bin
 includedir = $(prefix)/include
 libdir = $(exec_prefix)/lib
 CFLAGS = -O3
-LDLIBS = -lm -lgsl -lgslcblas -lds
+LDLIBS = -lgsl -lgslcblas -lds -lm
 
 all : errmfld.o
 

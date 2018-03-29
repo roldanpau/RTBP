@@ -19,4 +19,4 @@ install : utils_module.o utils_module.h
 	cp utils_module.h $(includedir)
 
 clean : 
-	rm utils_module.o
+	rm $(PROGS) utils_module.o

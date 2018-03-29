@@ -6,7 +6,7 @@ includedir = $(prefix)/include
 libdir = $(exec_prefix)/lib
 CFLAGS = -O3 #-g
 LDFLAGS = -O3 #-g
-LDLIBS = -lm -lgsl -lgslcblas -lds
+LDLIBS = -lgsl -lgslcblas -lds -lm
 
 all : frtbpdel 
 
@@ -15,7 +15,7 @@ install : frtbpdel frtbpdel.o frtbpdel.h
 	cp frtbpdel.h $(includedir)
 	cp frtbpdel $(bindir)
 
-frtbpdel : frtbpdel_main.o frtbpdel.o $(libdir)/libds.a
+frtbpdel : frtbpdel_main.o frtbpdel.o
 #	$(CC) -o frtbpdel $(LDLIBS) $(CFLAGS) frtbpdel_main.o frtbpdel.o rtbpdel.o
 
 frtbpdel_main.o : $(includedir)/rtbpdel.h

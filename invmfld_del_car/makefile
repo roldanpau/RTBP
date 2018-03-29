@@ -27,4 +27,4 @@ invmfld_del_car.o : $(includedir)/prtbp_2d.h
 	./invmfld_del_car < $< > $@
 
 clean : 
-	rm invmfld_del_car $(RESULTS) invmfld_del_car.o
+	rm invmfld_del_car invmfld_del_car.o

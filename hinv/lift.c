@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <rtbp.h>       // DIM
 #include <section.h>
-#include <hinv.h>
+#include "hinv.h"
 
 int lift(double mu, section_t sec, double H, int n, const double *l, 
         double *l4)

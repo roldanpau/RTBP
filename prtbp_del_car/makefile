@@ -6,7 +6,7 @@ includedir = $(prefix)/include
 libdir = $(exec_prefix)/lib
 CFLAGS = -O3
 LDFLAGS = -O3
-LDLIBS = -lm -lgsl -lgslcblas -lds
+LDLIBS = -lgsl -lgslcblas -lds -lm
 
 RESULTS = $(UNSTRESULTS) $(STRESULTS)
 
@@ -23,13 +23,13 @@ install : prtbp_del_car prtbp_del_car.o prtbp_del_car.h
 
 results : prtbp_2d prtbp_2d_inv $(RESULTS)
 
-prtbp_del_car : prtbp_del_car_main.o prtbp_del_car.o $(libdir)/libds.a
+prtbp_del_car : prtbp_del_car_main.o prtbp_del_car.o
 
 prtbp_del_car_main.o : $(includedir)/rtbp.h prtbp_del_car.h
 
 prtbp_del_car.o : $(includedir)/frtbp.h $(includedir)/rtbp.h
 
-prtbp_2d : prtbp_2d_main.o prtbp_2d.o prtbp.o $(libdir)/libds.a
+prtbp_2d : prtbp_2d_main.o prtbp_2d.o prtbp.o
 #	$(CC) -o prtbp_2d $(LDLIBS) $(CFLAGS) prtbp_2d_main.o prtbp_2d.o \
 #	prtbp.o
 
@@ -37,11 +37,11 @@ prtbp_2d_main.o : prtbp_2d.h
 
 prtbp_2d.o : $(includedir)/rtbp.h $(includedir)/hinv.h prtbp.h 
 
-prtbp_2d_inv : prtbp_2d_inv.o prtbp_2d.o prtbp.o $(libdir)/libds.a
+prtbp_2d_inv : prtbp_2d_inv.o prtbp_2d.o prtbp.o
 
 prtbp_2d_inv.o : prtbp_2d.h
 
-prtbps_2d : prtbps_2d.o prtbp_2d.o prtbp.o $(libdir)/libds.a
+prtbps_2d : prtbps_2d.o prtbp_2d.o prtbp.o
 
 prtbps_2d.o : prtbp_2d.h
 
@@ -52,8 +52,4 @@ stmfld_it0_neg.res: stmfld_it0_neg.dat prtbp_2d_inv
 	./prtbp_2d_inv < $< > $@
 
 clean : 
-	rm prtbp_del_car prtbp_del_car_main.o prtbp_del_car.o \
-	   prtbp_2d prtbp_2d_main.o prtbp_2d.o \
-	   prtbps_2d prtbps_2d.o \
-	   prtbp_2d_inv prtbp_2d_inv.o \
-	   $(RESULTS)
+	rm prtbp_del_car prtbp_del_car_main.o prtbp_del_car.o 

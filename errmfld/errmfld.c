@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include <stdlib.h>	// EXIT_SUCCESS
 #include <math.h>	// sqrt
+#include <assert.h>
 #include <section.h>
 
 #include <prtbp_nl_2d.h>
@@ -61,10 +62,11 @@ double err_mfld(double mu, section_t sec, double H, int k, double p[2],
    if(!stable) 	// unstable manifold
       status=prtbp_nl_2d(mu,sec,H,k,p1,&ti); 	// $p_1 = P(p_0)$
    else 	// stable manifold
-      status=prtbp_2d_inv(mu,sec,H,k,p1,&ti);	// $p_1 = P^{-1}(p_0)$
+       assert("err_mfld: Function prtbp_nl_2d_inv is not implemented yet!");
+      //status=prtbp_2d_inv(mu,sec,H,k,p1,&ti);	// $p_1 = P^{-1}(p_0)$
    if(status)
    {
-      fprintf(stderr, "main: error computing Poincare map\n");
+      fprintf(stderr, "err_mfld: error computing Poincare map\n");
       exit(EXIT_FAILURE);
    }
 

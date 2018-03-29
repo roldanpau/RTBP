@@ -10,7 +10,7 @@ libdir = $(exec_prefix)/lib
 # NOTE: Now I'm not so sure it's due to optimization, so I let it be...
 CFLAGS = -O3
 LDFLAGS = -O3
-LDLIBS = -lm -lgsl -lgslcblas -lds
+LDLIBS = -lgsl -lgslcblas -lds -lm
 
 RESULTS = \
 	  unstmfld_it0.res unstmfld_it0_neg.res \
@@ -29,11 +29,11 @@ install : cardels_2d cardel_2d cardel cardel.o cardel_2d.o cardel.h cardel_2d.h
 
 results : cardel_2d $(RESULTS)
 
-cardels_2d : cardels_2d.o cardel_2d.o cardel.o $(libdir)/libds.a
+cardels_2d : cardels_2d.o cardel_2d.o cardel.o
 
-cardel_2d : cardel_2d_main.o cardel_2d.o cardel.o $(libdir)/libds.a
+cardel_2d : cardel_2d_main.o cardel_2d.o cardel.o
 
-cardel : cardel_main.o cardel.o $(libdir)/libds.a
+cardel : cardel_main.o cardel.o
 
 cardels_2d_main.o : $(includedir)/rtbp.h cardel_2d.h
 
@@ -51,5 +51,4 @@ cardel_2d.o : $(includedir)/rtbp.h $(includedir)/hinv.h cardel.h
 clean : 
 	rm cardels_2d cardel_2d cardel \
 	   cardels_2d.o cardel_2d_main.o cardel_main.o \
-	   cardel_2d.o cardel.o \
-	   $(RESULTS)
+	   cardel_2d.o cardel.o

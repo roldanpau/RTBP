@@ -42,7 +42,8 @@ prtbpdel_2d : prtbpdel_2d_main.o prtbpdel_2d.o prtbpdel.o
 
 sec1sec2del: sec1sec2del.o prtbpdel_2d.o prtbpdel.o
 
-sec1sec2del_inv: sec1sec2del_inv.o prtbpdel_2d.o prtbpdel.o $(libdir)/libds.a
+#sec1sec2del_inv: sec1sec2del_inv.o prtbpdel_2d.o prtbpdel.o $(libdir)/libds.a
+sec1sec2del_inv: sec1sec2del_inv.o prtbpdel_2d.o prtbpdel.o 
 
 prtbpdel_2d_main.o : prtbpdel_2d.h
 

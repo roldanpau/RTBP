@@ -6,7 +6,7 @@ includedir = $(prefix)/include
 libdir = $(exec_prefix)/lib
 CFLAGS = -O3
 LDFLAGS = -O3
-LDLIBS = -lm -lgsl -lgslcblas -lds
+LDLIBS = -lgsl -lgslcblas -lds -lm
 
 RESULTS = $(UNSTRESULTS) $(STRESULTS)
 
@@ -24,17 +24,17 @@ install : prtbp prtbp_inv prtbp_2d prtbp_2d_inv prtbp.o prtbp_2d.o prtbp.h \
 
 results : prtbp_2d prtbp_2d_inv $(RESULTS)
 
-prtbp : prtbp_main.o prtbp.o $(libdir)/libds.a
+prtbp : prtbp_main.o prtbp.o
 
 prtbp_main.o : $(includedir)/rtbp.h prtbp.h
 
 prtbp.o : $(includedir)/frtbp.h $(includedir)/rtbp.h
 
-prtbp_inv : prtbp_inv.o prtbp.o $(libdir)/libds.a
+prtbp_inv : prtbp_inv.o prtbp.o 
 
 prtbp_inv.o : $(includedir)/rtbp.h prtbp.h
 
-prtbp_2d : prtbp_2d_main.o prtbp_2d.o prtbp.o $(libdir)/libds.a
+prtbp_2d : prtbp_2d_main.o prtbp_2d.o prtbp.o
 #	$(CC) -o prtbp_2d $(LDLIBS) $(CFLAGS) prtbp_2d_main.o prtbp_2d.o \
 #	prtbp.o
 
@@ -42,11 +42,11 @@ prtbp_2d_main.o : prtbp_2d.h
 
 prtbp_2d.o : $(includedir)/rtbp.h $(includedir)/hinv.h prtbp.h 
 
-prtbp_2d_inv : prtbp_2d_inv.o prtbp_2d.o prtbp.o $(libdir)/libds.a
+prtbp_2d_inv : prtbp_2d_inv.o prtbp_2d.o prtbp.o
 
 prtbp_2d_inv.o : prtbp_2d.h
 
-prtbps_2d : prtbps_2d.o prtbp_2d.o prtbp.o $(libdir)/libds.a
+prtbps_2d : prtbps_2d.o prtbp_2d.o prtbp.o
 
 prtbps_2d.o : prtbp_2d.h
 
@@ -61,5 +61,4 @@ clean :
 	   prtbp_2d prtbp_2d_main.o prtbp_2d.o \
 	   prtbps_2d prtbps_2d.o \
 	   prtbp_inv prtbp_inv.o \
-	   prtbp_2d_inv prtbp_2d_inv.o \
-	   $(RESULTS)
+	   prtbp_2d_inv prtbp_2d_inv.o

@@ -6,7 +6,7 @@ includedir = $(prefix)/include
 libdir = $(exec_prefix)/lib
 CFLAGS = -O3
 LDFLAGS = -O3
-LDLIBS = -lm -lgsl -lgslcblas -lds
+LDLIBS = -lds -lm -lgsl -lgslcblas
 
 RESULTS = \
 	  unstmfld.res unstmfld_neg.res \
@@ -21,7 +21,7 @@ install : invmfld
 
 results: invmfld $(RESULTS)
 
-invmfld : invmfld.o disc.o $(libdir)/libds.a
+invmfld : invmfld.o disc.o
 
 invmfld.o : $(includedir)/prtbp_2d.h
 
@@ -29,4 +29,4 @@ invmfld.o : $(includedir)/prtbp_2d.h
 	./invmfld < $< > $@
 
 clean : 
-	rm invmfld $(RESULTS) invmfld.o disc.o
+	rm invmfld invmfld.o disc.o

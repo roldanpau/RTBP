@@ -10,7 +10,9 @@
 #include <math.h>	// sqrt, fabs
 #include <rtbp.h>	// DIM, rtbp
 #include <hinv.h>	// hinv
-#include "prtbp.h"	// section_t, prtbp, prtbp_inv
+
+#include <section.h>
+#include "prtbp.h"	// prtbp, prtbp_inv
 
 int prtbp_2d(double mu, section_t sec, double H, int cuts, double p[2], double *ti)
 {
