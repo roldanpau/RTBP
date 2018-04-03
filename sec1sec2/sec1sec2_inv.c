@@ -32,7 +32,7 @@
 #include <stdio.h>
 #include <stdlib.h>	// EXIT_SUCCESS, EXIT_FAILURE
 #include <gsl/gsl_errno.h>	// gsl_set_error_handler_off
-#include "prtbp2_2d.h"	// sec1sec2_inv
+#include "sec1sec2_module.h"	// sec1sec2_inv
 
 int main( )
 {
@@ -64,7 +64,7 @@ int main( )
       }
 
       // Output final point and integration time to stdout.
-      if(printf("%e %.15le %.15le %.15le\n", H, x[0], x[1], ti)<0)
+      if(printf("%.15e %.15le %.15le %.15le\n", H, x[0], x[1], ti)<0)
       {
 	 perror("main: error writting output");
 	 exit(EXIT_FAILURE);

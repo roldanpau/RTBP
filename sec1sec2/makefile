@@ -6,7 +6,7 @@ includedir = $(prefix)/include
 libdir = $(exec_prefix)/lib
 CFLAGS = -O3 #-g -O
 #LDFLAGS = -O3
-LDLIBS = -lm -lgsl -lgslcblas -lds
+LDLIBS = -lds -lm -lgsl -lgslcblas
 
 PROGS = sec1sec2 sec1sec2_inv
 
@@ -17,12 +17,12 @@ install : $(PROGS) sec1sec2_module.o sec1sec2_module.h
 	ar rv $(libdir)/libds.a sec1sec2_module.o
 	cp sec1sec2_module.h $(includedir)
 
-sec1sec2: sec1sec2_module.o $(libdir)/libds.a
+sec1sec2: sec1sec2_module.o
 
-sec1sec2_inv: sec1sec2_module.o $(libdir)/libds.a
+sec1sec2_inv: sec1sec2_module.o
 
-sec1sec2_module.o : $(includedir)/rtbp.h $(includedir)/hinv.h $(includedir)/prtbp2.h 
+sec1sec2_module.o : $(includedir)/rtbp.h $(includedir)/hinv.h $(includedir)/prtbp.h 
 
 clean : 
 	rm $(PROGS) \
-	   sec1sec2_module.o \
+	   sec1sec2_module.o 
