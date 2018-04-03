@@ -15,7 +15,7 @@ install : initcond
 	ar rv $(libdir)/libds.a initcond.o
 	cp initcond.h $(includedir)
 
-initcond : initcond_main.o initcond.o $(libdir)/libds.a
+initcond : initcond_main.o initcond.o
 #	$(CC) -o prtbp $(LDLIBS) $(CFLAGS) prtbp_main.o prtbp.o
 
 initcond_main.o : initcond.h
