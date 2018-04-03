@@ -64,7 +64,9 @@ void trig_fdf(double u, void *params, double *y, double *dy)
 */
 
 // Compute the eccentric anomaly u.
-// We need to solve u-e sin(u) = l for u in (0,2*pi).
+// We need to solve u-e sin(u) = l.
+// We don't impose that u is in [0,2pi) on output.  (If l<0 then u may be
+// negative as well.)
 double eccentric(double e, double l)
 {
    // Desired precision for root. 
@@ -126,7 +128,7 @@ double eccentric(double e, double l)
     }
     gsl_root_fsolver_free (s);
 
-    assert((0<=r) && (r<2*M_PI));
+    //assert((0<=r) && (r<2*M_PI));
     return(r);
 }
 

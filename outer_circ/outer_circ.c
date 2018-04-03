@@ -14,7 +14,10 @@
 #include <assert.h>
 
 #include <gsl/gsl_integration.h>	// gsl_integration_qags
+
+// WARNING!!!! WE PROBABLY WANT TO USE PRTBP_DEL_CAR HERE!!!!
 #include <prtbpdel.h>			// section_t
+
 //#include <frtbpred.h>
 
 #include <inner_circ.h>	// integrand_omega_in, iparams_omega_in
@@ -188,6 +191,8 @@ int omega_pos(double mu, double x[DIM], int N, double T0, double *omega)
       // $\gamma_i(s)$ is the homoclinic trajectory that starts at the
       // point \xi = P^{-(N-i)}(z^s) = P^{i}(z). 
       for(j=0;j<DIM;j++) xi[j]=x[j];
+
+      // WARNING!!!! WE PROBABLY WANT TO USE PRTBP_DEL_CAR HERE!!!!
       if(prtbp_del_inv(mu,SEC1,(N-i)*3,xi,&t))
       {
 	 fprintf(stderr, "omega_pos: error computing point P^{i}(z)\n");
@@ -306,6 +311,8 @@ int omega_neg(double mu, double x[DIM], int N, double T0, double *omega)
       // $\gamma_i(s)$ is the homoclinic trajectory that starts at the
       // point \xi = P^{N-i}(z^u) = P^{-i}(z). 
       for(j=0;j<DIM;j++) xi[j]=x[j];
+
+      // WARNING!!!! WE PROBABLY WANT TO USE PRTBP_DEL_CAR HERE!!!!
       if(prtbp_del(mu,SEC1,(N-i)*3,xi,&t))
       {
 	 fprintf(stderr, "omega_neg: error computing point P^{%d}(z^u)\n",

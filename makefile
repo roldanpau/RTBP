@@ -5,7 +5,10 @@ SHELL = /bin/sh
 DIRS = rtbp taylor frtbp section hinv cardel prtbp_del_car prtbp utils \
        intersec_del_car prtbp_noloops errmfld invmfld invmfld_del_car \
        rtbp_del frtbp_red hinv_del frtbp_del prtbp_del \
-       inner_circ outer_circ
+       inner_circ outer_circ \
+       initcond dprtbp portbp \
+       sec1sec2 \
+       hyper
 
 # the sets of directories to do various things in
 BUILDDIRS = $(DIRS:%=build-%)
@@ -37,6 +40,8 @@ build-frtbp_red: install-rtbp_del
 build-prtbp_del: install-frtbp_del install-hinv_del
 build-inner_circ: install-frtbp_red
 build-outer_circ: install-frtbp_del install-prtbp_del install-inner_circ
+build-portbp: install-initcond install-dprtbp
+build-sec1sec2: install-prtbp
 
 install: $(INSTALLDIRS)
 
@@ -65,6 +70,11 @@ install-frtbp_del : build-frtbp_del
 install-prtbp_del : build-prtbp_del
 install-inner_circ: build-inner_circ
 install-outer_circ: build-outer_circ
+install-initcond: build-initcond
+install-dprtbp: build-dprtbp
+install-portbp: build-portbp
+install-sec1sec2: build-portbp
+install-hyper: build-hyper
 
 test: $(TESTDIRS) all
 $(TESTDIRS): 
