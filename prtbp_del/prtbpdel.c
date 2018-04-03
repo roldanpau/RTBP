@@ -24,7 +24,7 @@
 //
 // inter_del
 // ---------
-// Let S be the Poincare section {l=0}.
+// Let S be the Poincare section.
 // Given a point "x" whose trajectory intersects the section "S" during the
 // time interval (t0,t1), this function computes the intersection time "t"
 // such that $flow(t,x)$ is precisely on the section. 
@@ -44,9 +44,7 @@
 #include <gsl/gsl_roots.h>
 #include <frtbpdel.h>
 #include <rtbp.h>	// DIM
-#include "prtbpdel.h"	// section_t
-
-const double TWOPI = 2*M_PI;
+#include <section.h>	// section_t, TWOPI
 
 // For $p_0$, I found that asking for 1.e-15 tolerance was too much...
 // For iterating $z2_u$ to obtain $z2$, I found that asking for 1.e-14
@@ -70,8 +68,7 @@ struct inter_del_f_params {double mu; section_t sec; double l; double L; double 
 // A point is assumed to be on the Poincare section if it is within distance
 // POINCARE_TOL_DEL to the section.
 //
-// Since $g$ is an angle, we normalize it to \f$[0,2\pi)\f$. 
-// Previously, we used [-\pi,\pi), but I don't know why.
+// Since $l,g$ are angles, we normalize them to \f$[0,2\pi)\f$. 
 
 int prtbp_del(double mu, section_t sec, int cuts, double x[DIM], double *ti)
 {
@@ -82,8 +79,7 @@ int prtbp_del(double mu, section_t sec, int cuts, double x[DIM], double *ti)
    int i,n;
    double t1;
 
-   //double g1,g2;
-   double g;
+   double l,g;
    int q;
 
    assert(cuts>=0);
@@ -149,11 +145,21 @@ int prtbp_del(double mu, section_t sec, int cuts, double x[DIM], double *ti)
 	    x[0] = M_PI;	// l
 	    break;
 	 }
+      case SECg : 	// Poincare section {g=0}
+	 {
+	    x[2] = 0;	// g
+	    break;
+	 }
    }
+
+   // Since $l$ is an angle, we normalize it to $[0,2\pi)$.
+   l = x[0];
+   q = floor(l/TWOPI);
+   l -= q*TWOPI;
+   x[0]=l;
 
    // Since $g$ is an angle, we normalize it to $[0,2\pi)$.
    g = x[2];
-   //q = floor((g+M_PI)/TWOPI);
    q = floor(g/TWOPI);
    g -= q*TWOPI;
    x[2]=g;
@@ -172,8 +178,7 @@ int prtbp_del_inv(double mu, section_t sec, int cuts, double x[DIM], double *ti)
    int i,n;
    double t1;
 
-   //double g1,g2;
-   double g;
+   double l,g;
    int q;
 
    assert(cuts>=0);
@@ -240,7 +245,18 @@ int prtbp_del_inv(double mu, section_t sec, int cuts, double x[DIM], double *ti)
 	    x[0] = M_PI;	// l
 	    break;
 	 }
+      case SECg : 	// Poincare section {g=0}
+	 {
+	    x[2] = 0;	// g
+	    break;
+	 }
    }
+
+   // Since $l$ is an angle, we normalize it to $[0,2\pi)$.
+   l = x[0];
+   q = floor(l/TWOPI);
+   l -= q*TWOPI;
+   x[0]=l;
 
    // Since $g$ is an angle, we normalize it to $[0,2\pi)$.
    g = x[2];
@@ -258,14 +274,14 @@ int prtbp_del_inv(double mu, section_t sec, int cuts, double x[DIM], double *ti)
 // PURPOSE
 // =======
 // Consider the RTBP in rotating coordinates.
-// Let sec be the Poincare section SEC1 or SEC2, corresponding to {l=0} or
-// {l=\pi} respectively.
+// Let sec be the Poincare section SEC1, SEC2, or SECg corresponding to {l=0},
+// {l=\pi}, or {g=0} respectively.
 // This function determines if the point x is exactly on the section.
 // 
 // PARAMETERS
 // ==========
 // sec
-//    type of Poincare section (sect = SEC1 or SEC2).
+//    type of Poincare section (sect = SEC1, SEC2 or SECg).
 // x
 //    point, 4 coordinates: (l, L, g, G). 
 // 
@@ -294,6 +310,13 @@ bool onsection_del (section_t sec, double x[DIM])
 	    bonsection = (fmod((x[0]-M_PI),TWOPI) == 0); 
 	    break;
 	 }
+      case SECg :	// section {g=0}
+	 {
+         // May be better to say that we are "numerically" on section 
+         // if we are within tolerance POINCARE_TOL.
+	    bonsection = (fmod(x[2],TWOPI) == 0); 
+	    break;
+	 }
    }
    return(bonsection);
 }
@@ -303,8 +326,8 @@ bool onsection_del (section_t sec, double x[DIM])
 // PURPOSE
 // =======
 // Consider the RTBP in rotating coordinates.
-// Let sec be the Poincare section SEC1 or SEC2, corresponding to {l=0} or
-// {l=\pi} respectively.
+// Let sec be the Poincare section SEC1, SEC2 or SECg, corresponding to {l=0}
+// {l=\pi} or {g=0} respectively.
 // Let x and y be two consecutive points in an orbit (forwards orbit). 
 // This function determines if the trajectory from x to y does cross the
 // poincare section sec or not.
@@ -312,7 +335,7 @@ bool onsection_del (section_t sec, double x[DIM])
 // PARAMETERS
 // ==========
 // sec
-//    type of Poincare section (sect = SEC1 or SEC2).
+//    type of Poincare section (sect = SEC1, SEC2 or SECg).
 // x
 //    First point, 4 coordinates: (l, L, g, G). 
 // y
@@ -352,6 +375,15 @@ bool crossing_fwd_del (section_t sec, double x[DIM], double y[DIM])
 	    bcrossing = (n1!=n2); 
 	    break;
 	 }
+      case SECg :	// section {g=0}
+	 {
+	    // Since dg/dt<0, we want to identify (-2\pi,0], so we use "ceil"
+	    // function.
+	    n1 = ceil(x[2]/TWOPI);
+	    n2 = ceil(y[2]/TWOPI);
+	    bcrossing = (n1!=n2); 
+	    break;
+	 }
    }
    return(bcrossing);
 }
@@ -361,8 +393,8 @@ bool crossing_fwd_del (section_t sec, double x[DIM], double y[DIM])
 // PURPOSE
 // =======
 // Consider the RTBP in rotating coordinates.
-// Let sec be the Poincare section SEC1 or SEC2, corresponding to {l=0} or
-// {l=\pi} respectively.
+// Let sec be the Poincare section SEC1, SEC2 or SECg, corresponding to {l=0}
+// {l=\pi} or {g=0} respectively.
 // Let x and y be two consecutive points in an orbit (backwards orbit). 
 // This function determines if the trajectory from x to y does cross the
 // poincare section sec or not.
@@ -370,7 +402,7 @@ bool crossing_fwd_del (section_t sec, double x[DIM], double y[DIM])
 // PARAMETERS
 // ==========
 // sec
-//    type of Poincare section (sect = SEC1 or SEC2).
+//    type of Poincare section (sect = SEC1, SEC2 or SECg).
 // x
 //    First point, 4 coordinates: (l, L, g, G). 
 // y
@@ -410,6 +442,15 @@ bool crossing_bwd_del (section_t sec, double x[DIM], double y[DIM])
 	    bcrossing = (n1!=n2); 
 	    break;
 	 }
+      case SECg :	// section {g=0}
+	 {
+	    // Since dg/dt>0, we want to identify [0,2\pi), so we use "floor"
+	    // function.
+	    n1 = floor(x[2]/TWOPI);
+	    n2 = floor(y[2]/TWOPI);
+	    bcrossing = (n1!=n2); 
+	    break;
+	 }
    }
    return(bcrossing);
 }
@@ -433,7 +474,7 @@ bool crossing_bwd_del (section_t sec, double x[DIM], double y[DIM])
 // mu
 //    mass parameter of the RTBP
 // sec
-//    type of Poincare section = {SEC1,SEC2}
+//    type of Poincare section = {SEC1,SEC2,SECg}
 // epsabs
 //    maximum desired error bound (tolerance) for intersection.
 //    A point $p=(l,L,g,G)$ is considered to intersect the section if
@@ -551,6 +592,11 @@ double inter_del_f(double t, void *p)
       case SEC2 : 
 	 {
 	    d = remainder((pt[0]-M_PI),TWOPI);
+	    break;
+	 }
+      case SECg :
+	 {
+	    d = remainder(pt[2],TWOPI);
 	    break;
 	 }
    }

@@ -9,10 +9,8 @@
 #define PRTBPDEL_H_INCLUDED
 
 #include <stdbool.h>	// bool
-#include "rtbp.h"	// DIM
-
-// Different Poincare sections
-typedef enum {SEC1, SEC2} section_t;	///< SEC1 is {l=0}, SEC2 is {l=\pi}
+#include <rtbp.h>	    // DIM
+#include <section.h>	// section_t
 
 bool onsection_del (section_t sec, double x[DIM]);
 bool crossing_fwd_del (section_t sec, double x[DIM], double y[DIM]);

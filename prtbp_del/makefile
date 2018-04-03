@@ -4,7 +4,7 @@ exec_prefix = $(prefix)
 bindir = $(exec_prefix)/bin
 includedir = $(prefix)/include
 libdir = $(exec_prefix)/lib
-CFLAGS = -O3
+CFLAGS = -g
 LDLIBS = -lds -lgsl -lgslcblas -lm
 
 RESULTS = $(UNSTRESULTS) $(STRESULTS)

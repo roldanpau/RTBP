@@ -10,7 +10,8 @@
 #include <string.h>	// strcmp
 #include <gsl/gsl_errno.h>	// gsl_set_error_handler_off
 #include <rtbp.h>	// DIM
-#include "prtbpdel.h"	// section_t, prtbp_del
+#include <section.h>
+#include "prtbpdel.h"
 
 /**
   Poincare map of RTBP in Delaunay coordinates: main prog.
@@ -18,6 +19,7 @@
   Let "sec" be a Poincare section in the RTBP, where
   	- sec = SEC1 means section {l=0}
   	- sec = SEC2 means section {l=pi}.
+  	- sec = SECg means section {g=0}.
   This program computes the n-th iterate of the Poincare map, $P^n(x)$.
  
   1. Input params (stdin):
@@ -58,6 +60,8 @@ int main( )
       sec = SEC1;
    else if (strcmp(section_str,"SEC2") == 0)
       sec = SEC2;
+   else if (strcmp(section_str,"SECg") == 0)
+      sec = SECg;
    else 
    {
       perror("main: error reading section string");
