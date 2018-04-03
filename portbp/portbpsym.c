@@ -38,7 +38,7 @@ void perp_fdf (double x, void *params, double *y, double *dy);
 void
 print_state_fdf (size_t iter, gsl_root_fdfsolver * s, double px)
 {
- fprintf (stderr, "iter = %3u x = % .10f, PX = % .4e\n", 
+ fprintf (stderr, "iter = %3lu x = % .10f, PX = % .4e\n", 
        iter, 
        gsl_root_fdfsolver_root(s),
        px);

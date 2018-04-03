@@ -38,7 +38,7 @@ int dist_fdf (const gsl_vector * ic, void *params, gsl_vector * f,
 void
 print_state (size_t iter, gsl_multiroot_fdfsolver * s)
 {
- printf ("iter = %3u p = % .10f % .10f "
+ printf ("iter = %3lu p = % .10f % .10f "
 	 "dist(p) = % .3e % .3e\n",
 	 iter,
 	 gsl_vector_get (s->x, 0),
