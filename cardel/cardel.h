@@ -24,6 +24,7 @@
   perihelion, so $u<0$.
  
   On output, we normalize the angles $l,g$ between \f$[0,2\pi)\f$.
+  Let's try NOT to normalize the angles $l,g$.
  
   Delaunay variables are 2BP variables, so they assume \f$\mu=0\f$.
   Thus this function does not change if we are using the "big primary to the

@@ -96,9 +96,9 @@ void cardel(double X[DIM], double Y[DIM])
    g = phi - v;
 
    // On output, we normalize the angles $l,g$ between [0,2\pi).
-   // Why do we need to normalize here? Let me try to avoid normalizing l:
+   // Let's try NOT to normalize the angles $l,g$.
    // if(l<0) l+=2*M_PI;
-   if(g<0) g+=2*M_PI;
+   // if(g<0) g+=2*M_PI;
 
    Y[0]=l;
    Y[1]=L;
