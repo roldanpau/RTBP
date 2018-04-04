@@ -352,40 +352,42 @@ bool crossing_fwd_del (section_t sec, double x[DIM], double y[DIM])
 {
    // auxiliary variables
    double n1,n2;
-
-   bool bcrossing = false;
+   bool bCrossing;
 
    switch(sec)
    {
       case SEC1 :	// section {l=0}
-	 {
-	    // Since dl/dt>0, we want to identify [0,2\pi), so we use "floor"
-	    // function.
-	    n1 = floor(x[0]/TWOPI);
-	    n2 = floor(y[0]/TWOPI);
-	    bcrossing = (n1!=n2); 
-	    break;
-	 }
+          {
+              // Since dl/dt>0, we want to identify [0,2\pi), so we use "floor"
+              // function.
+              n1 = floor(x[0]/TWOPI);
+              n2 = floor(y[0]/TWOPI);
+              bCrossing = (n1!=n2);
+              break;
+          }
       case SEC2 :	// section {l=pi}
-	 {
-	    // Since dl/dt>0, we want to identify [0,2\pi), so we use "floor"
-	    // function.
-	    n1 = floor((x[0]-M_PI)/TWOPI);
-	    n2 = floor((y[0]-M_PI)/TWOPI);
-	    bcrossing = (n1!=n2); 
-	    break;
-	 }
+          {
+              // Since dl/dt>0, we want to identify [0,2\pi), so we use "floor"
+              // function.
+              n1 = floor((x[0]-M_PI)/TWOPI);
+              n2 = floor((y[0]-M_PI)/TWOPI);
+              bCrossing = (n1!=n2);
+              break;
+          }
       case SECg :	// section {g=0}
-	 {
-	    // Since dg/dt<0, we want to identify (-2\pi,0], so we use "ceil"
-	    // function.
-	    n1 = ceil(x[2]/TWOPI);
-	    n2 = ceil(y[2]/TWOPI);
-	    bcrossing = (n1!=n2); 
-	    break;
-	 }
+          {
+              // Since dg/dt<0, we want to identify (-2\pi,0], so we use "ceil"
+              // function.
+              n1 = ceil(x[2]/TWOPI);
+              n2 = ceil(y[2]/TWOPI);
+              // Inevitably, g will jump by almost TWOPI when (x,y) changes
+              // from the 2nd quadrant to the 3rd (see cardel.c).
+              // We need to exclude this case as a "fake" crossing of section.
+              bCrossing = ((n1!=n2) && !(fabs(x[2]-y[2])>(TWOPI-0.2)));
+              break;
+          }
    }
-   return(bcrossing);
+   return(bCrossing);
 }
 
 // name OF FUNCTION: crossing_bwd_del
@@ -419,40 +421,42 @@ bool crossing_bwd_del (section_t sec, double x[DIM], double y[DIM])
 {
    // auxiliary variables
    double n1,n2;
-
-   bool bcrossing = false;
+   bool bCrossing;
 
    switch(sec)
    {
       case SEC1 :	// section {l=0}
-	 {
-	    // Since dl/dt<0, we want to identify (-2\pi,0], so we use "ceil"
-	    // function.
-	    n1 = ceil(x[0]/TWOPI);
-	    n2 = ceil(y[0]/TWOPI);
-	    bcrossing = (n1!=n2); 
-	    break;
-	 }
+          {
+              // Since dl/dt<0, we want to identify (-2\pi,0), so we use "ceil"
+              // function.
+              n1 = ceil(x[0]/TWOPI);
+              n2 = ceil(y[0]/TWOPI);
+              bCrossing = (n1!=n2);
+              break;
+          }
       case SEC2 :	// section {l=pi}
-	 {
-	    // Since dl/dt<0, we want to identify (-2\pi,0], so we use "ceil"
-	    // function.
-	    n1 = ceil((x[0]-M_PI)/TWOPI);
-	    n2 = ceil((y[0]-M_PI)/TWOPI);
-	    bcrossing = (n1!=n2); 
-	    break;
-	 }
+          {
+              // Since dl/dt<0, we want to identify (-2\pi,0), so we use "ceil"
+              // function.
+              n1 = ceil((x[0]-M_PI)/TWOPI);
+              n2 = ceil((y[0]-M_PI)/TWOPI);
+              bCrossing = (n1!=n2);
+              break;
+          }
       case SECg :	// section {g=0}
-	 {
-	    // Since dg/dt>0, we want to identify [0,2\pi), so we use "floor"
-	    // function.
-	    n1 = floor(x[2]/TWOPI);
-	    n2 = floor(y[2]/TWOPI);
-	    bcrossing = (n1!=n2); 
-	    break;
-	 }
+          {
+              // Since dg/dt>0, we want to identify [0,2\pi), so we use "floor"
+              // function.
+              n1 = floor(x[2]/TWOPI);
+              n2 = floor(y[2]/TWOPI);
+              // Inevitably, g will jump by almost TWOPI when (x,y) changes
+              // from the 2nd quadrant to the 3rd (see cardel.c).
+              // We need to exclude this case as a "fake" crossing of section.
+              bCrossing = ((n1!=n2) && !(fabs(x[2]-y[2])>(TWOPI-0.1)));
+              break;
+          }
    }
-   return(bcrossing);
+   return(bCrossing);
 }
 
 // name OF FUNCTION: inter_del
