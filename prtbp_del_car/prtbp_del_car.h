@@ -1,5 +1,6 @@
 /*! \file
-    \brief Poincare map of RTBP in Delaunay coordinates, but integrating the flow in Cartesian.
+    \brief Poincare map of RTBP in Delaunay coordinates, but integrating the
+    flow in Cartesian.
 */
 
 #ifndef PRTBP_DEL_CAR_H_INCLUDED
@@ -12,11 +13,12 @@
 extern const double POINCARE_DEL_CAR_TOL;	
 
 /**
-  Poincare map of RTBP in Delaunay coordinates, but integrating the flow in Cartesian.
+  Poincare map of RTBP in Delaunay coordinates, but integrating the flow in
+  Cartesian.
 
   Consider the RTBP in rotating Delaunay coordinates.
-  Let S be the Poincare section SEC1 or SEC2, corresponding to {l=0}
-  or \f$\{l=\pi\}\f$.
+  Let S be the Poincare section SEC1, SEC2, or SECg, corresponding to {l=0},
+  \f$\{l=\pi\}\f$, or \f$ \{g=0\} \f$.
   Let $x$ be a point in the section, and suppose that flow at $x$ is
   transversal to the section.
   Compute the n-th iterate of the Poincare map \f$P^n(x)\f$ of the RTBP.
@@ -24,7 +26,7 @@ extern const double POINCARE_DEL_CAR_TOL;
   intersect the Poincare section "n" times.
 
   \param[in] mu mass parameter for the RTBP
-  \param[in] sec type of Poincare section (sec = SEC1 or SEC2).
+  \param[in] sec type of Poincare section (sec = SEC1, SEC2, or SECg).
 
   \param[in] cuts 
   number of iterates of the Poincare map (cuts=n: n cuts with the Poincare

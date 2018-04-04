@@ -1,5 +1,6 @@
 /*! \file
-    \brief Poincare map of RTBP in Delaunay coordinates, but integrating the flow in Cartesian.
+    \brief Poincare map of RTBP in Delaunay coordinates, but integrating the
+    flow in Cartesian.
 */
 
 #include <stdio.h>	    // fprintf
@@ -14,8 +15,15 @@
 #include <rtbp.h>	    // DIM
 #include <section.h>	// TWOPI, section_t
 #include <cardel.h>	    // cardel
+#include <prtbpdel.h>	// crossing_fwd_del, crossing_bwd_del
 
-const double POINCARE_DEL_CAR_TOL=1.e-16;
+#include <utils_module.h>	    // dblcpy
+
+// Unfortunately, this code does not get as much precision as prtbp_del. 
+// Empirically, we get precisions close to 1.e-9. 
+// The reason is that we approach the limit of precision of our forward error
+// FE = |t-t^*|, whereas the backward error is still large BE = |g(phi(t))|.
+const double POINCARE_DEL_CAR_TOL=1.e-9;
 
 /// Integration "step" for prtbp. 
 //
@@ -27,11 +35,11 @@ const double POINCARE_DEL_CAR_TOL=1.e-16;
 // I have used the following values:
 // SHORT_TIME_DEL_CAR = 0.001 when computing approximate intersections, 
 // and 0.0001 when computing true homoclinic intersections.
-const double SHORT_TIME_DEL_CAR=0.001;		
+
+// PRG (04/04/2018): const double SHORT_TIME_DEL_CAR=0.001;		
+const double SHORT_TIME_DEL_CAR=0.01;
 
 bool onsection_del_car (section_t sec, double a[DIM]);
-bool crossing_fwd_del_car (section_t sec, double a[DIM], double b[DIM]);
-bool crossing_bwd_del_car (section_t sec, double a[DIM], double b[DIM]);
 int inter_del_car(double mu, section_t sec, double epsabs, 
         double x_del[DIM], double x_car[DIM],
         double t0, double t1, double *t);
@@ -73,11 +81,8 @@ int prtbp_del_car(double mu, section_t sec, int cuts, double x_del[DIM],
       do
       {
          // Save previous value of point "x_del", "x_car" and time "t"
-         for(i=0;i<DIM;i++)
-         {
-            x_del_pre[i]=x_del[i];
-            x_car_pre[i]=x_car[i];
-         }
+         dblcpy(x_del_pre, x_del, DIM);
+         dblcpy(x_car_pre, x_car, DIM);
          t_pre=t;
 
          // Integrate for a "short" time t1=SHORT_TIME, short enough so that
@@ -96,7 +101,7 @@ int prtbp_del_car(double mu, section_t sec, int cuts, double x_del[DIM],
       } 
       // while(no crossing of Poincare section)
       while(!(onsection_del_car(sec,x_del) || 
-                  crossing_fwd_del_car(sec,x_del_pre,x_del))); 
+                  crossing_fwd_del(sec,x_del_pre,x_del))); 
       n++;
       //fprintf(stderr, "DEBUG: befor %d crossing with sect: l=%.15le, g=%.15le\n", n, x_del_pre[0], x_del_pre[2]);
       //fprintf(stderr, "DEBUG: after %d crossing with sect: l=%.15le, g=%.15le\n", n, x_del[0], x_del[2]);
@@ -111,11 +116,8 @@ int prtbp_del_car(double mu, section_t sec, int cuts, double x_del[DIM],
    // Crossing happened between times t_pre and t. 
 
    // Restore previous value of point "x_del" and "x_car"
-   for(i=0;i<DIM;i++)
-   {
-      x_del[i]=x_del_pre[i];
-      x_car[i]=x_car_pre[i];
-   }
+   dblcpy(x_del, x_del_pre, DIM);
+   dblcpy(x_car, x_car_pre, DIM);
 
    // Intersect trajectory starting at point x with section.
    // WARNING! passing 0 instead of 0.0 gives me trouble?!?!
@@ -140,6 +142,7 @@ int prtbp_del_car(double mu, section_t sec, int cuts, double x_del[DIM],
    // will be counted.
    if(sec==SEC1) x_del[0]=0;
    else if(sec==SEC2) x_del[0]=-M_PI;
+   else if(sec==SECg) x_del[2]=0;
 
    // Set time to reach Poincare section
    (*ti)=t_pre+t1;
@@ -164,11 +167,8 @@ int prtbp_del_car_inv(double mu, section_t sec, int cuts,
       do
       {
          // Save previous value of point "x_del", "x_car" and time "t"
-         for(i=0;i<DIM;i++)
-         {
-            x_del_pre[i]=x_del[i];
-            x_car_pre[i]=x_car[i];
-         }
+         dblcpy(x_del_pre, x_del, DIM);
+         dblcpy(x_car_pre, x_car, DIM);
          t_pre=t;
 
          // Integrate for a "short" time t1=-SHORT_TIME, short enough so that
@@ -187,7 +187,7 @@ int prtbp_del_car_inv(double mu, section_t sec, int cuts,
       } 
       // while(no crossing of Poincare section)
       while(!(onsection_del_car(sec,x_del) || 
-                  crossing_fwd_del_car(sec,x_del_pre,x_del))); 
+                  crossing_bwd_del(sec,x_del_pre,x_del))); 
       n++;
    }
    // point "x_del" is exactly on the section
@@ -200,11 +200,8 @@ int prtbp_del_car_inv(double mu, section_t sec, int cuts,
    // Crossing happened between times t_pre and t. 
 
    // Restore previous value of point "x_del" and "x_car"
-   for(i=0;i<DIM;i++)
-   {
-      x_del[i]=x_del_pre[i];
-      x_car[i]=x_car_pre[i];
-   }
+   dblcpy(x_del, x_del_pre, DIM);
+   dblcpy(x_car, x_car_pre, DIM);
 
    // Intersect trajectory starting at point x with section.
    // Note that (t-t_pre) < 0.
@@ -212,10 +209,18 @@ int prtbp_del_car_inv(double mu, section_t sec, int cuts,
    if(inter_del_car(mu, sec, POINCARE_DEL_CAR_TOL, x_del, x_car, 0.0, 
                t-t_pre, &t1))
    {
-      fprintf(stderr, "prtbp_del_car_inv: error intersectig trajectory with section\n");
+      fprintf(stderr, "prtbp_del_car_inv: error intersecting trajectory with section\n");
       return(1);
    }
    // Here, point x is on section with tolerance POINCARE_DEL_CAR_TOL. 
+   //
+   // CAREFUL! Make sure to return a point that is exactly ON the section.
+   // If it is slightly before the section, then one more spureous iterate
+   // will be counted.
+   if(sec==SEC1) x_del[0]=0;
+   else if(sec==SEC2) x_del[0]=M_PI;
+   else if(sec==SECg) x_del[2]=0;
+
 
    // Set time to reach Poincare section
    (*ti)=t_pre+t1;
@@ -225,7 +230,7 @@ int prtbp_del_car_inv(double mu, section_t sec, int cuts,
 /** 
   This function determines if the point A is exactly on the section.
 
-  \param[in] sec 	type of Poincare section (sect = SEC1 or SEC2).
+  \param[in] sec 	type of Poincare section (sect = SEC1, SEC2, or SECg).
   \param[in] a 		point, 4 coordinates: (l, L, g, G).
 
   \returns true if point $a$ is exactly on section, false if it is not.
@@ -233,9 +238,10 @@ int prtbp_del_car_inv(double mu, section_t sec, int cuts,
 bool onsection_del_car (section_t sec, double a[DIM])
 {
    bool bonsection = false;
-   double l;
+   double l,g;
 
    l = a[0];
+   g = a[2];
 
    switch(sec)
    {
@@ -249,109 +255,32 @@ bool onsection_del_car (section_t sec, double a[DIM])
             bonsection = (fabs(remainder(l-M_PI,TWOPI))<POINCARE_DEL_CAR_TOL);
             break;
          }
+      case SECg :       // section {g=0}
+         {
+            bonsection = (fabs(remainder(g,TWOPI))<POINCARE_DEL_CAR_TOL);
+            break;
+         }
    }
    return(bonsection);
-}
-
-/**
-  Let $a$ and $b$ be two consecutive points in an orbit (forwards orbit).
-  This function determines if the trajectory from $a$ to $b$ does cross the
-  poincare section sec or not.
-
-  \param[in] sec 	type of Poincare section (sec = SEC1 or SEC2).
-  \param[in] a		First point, 4 coordinates: (l, L, g, G).
-  \param[in] b		Second point, 4 coordinates: (l, L, g, G).
-
-  \return 		true if trajectory cuts section, false if it does not.
-  */
-
-bool crossing_fwd_del_car (section_t sec, double a[DIM], double b[DIM])
-{
-   // auxiliary variables
-   double n1,n2;
-   bool bcrossing = false;
-
-   switch(sec)
-   {
-      case SEC1 :       // section {l=0}
-         {
-             // Since dl/dt>0, it is enough to check if the angle 
-             // has been reset from 2\pi to 0.
-             // DEBUG bcrossing = (b[0] < a[0]);
-             bcrossing = (a[0] < 0 && b[0] > 0);
-             break;
-         }
-      case SEC2 :       // section {l=\pi}
-         {
-             // Since dl/dt>0, it is enough to check if the angle 
-             // has passed from <\pi to >\pi.
-             // DEBUG bcrossing = (a[0] < M_PI && b[0] > M_PI);
-             bcrossing = (b[0] < a[0]);
-             break;
-         }
-   }
-   return(bcrossing);
-}
-
-/**
-  Let $a$ and $b$ be two consecutive points in an orbit (backwards orbit).
-  This function determines if the trajectory from $a$ to $b$ does cross the
-  poincare section sec or not.
-
-  \param[in] sec 	type of Poincare section (sec = SEC1 or SEC2).
-  \param[in] a		First point, 4 coordinates: (l, L, g, G).
-  \param[in] b		Second point, 4 coordinates: (l, L, g, G).
-
-  \return 		true if trajectory cuts section, false if it does not.
-  */
-
-bool crossing_bwd_del_car (section_t sec, double a[DIM], double b[DIM])
-{
-   // auxiliary variables
-   double n1,n2;
-   bool bcrossing = false;
-
-   switch(sec)
-   {
-      case SEC1 :       // section {l=0}
-         {
-             // Since dl/dt<0, it is enough to check if the angle 
-             // has been reset from 0 to 2\pi.
-             bcrossing = (b[0] > a[0]);
-             break;
-         }
-      case SEC2 :       // section {l=\pi}
-         {
-             // Since dl/dt<0, it is enough to check if the angle 
-             // has passed from >\pi to <\pi.
-             bcrossing = (a[0] > M_PI && b[0] < M_PI);
-             break;
-         }
-   }
-   return(bcrossing);
 }
 
 double inter_del_car_f(double t, void *p)
 {
    int i, status;
+   double pt[DIM];      // point in Cartesian coordinates
+
    struct inter_del_car_f_params *params = (struct inter_del_car_f_params *)p;
    double mu = (params->mu);
    section_t sec = (params->sec);
-   double x = (params->x); 
-   double y = (params->y); 
-   double px = (params->px);
-   double py = (params->py);
-   double pt[DIM];
+   pt[0] = (params->x); 
+   pt[1] = (params->y); 
+   pt[2] = (params->px);
+   pt[3] = (params->py);
 
    // auxiliary variables
    double pt_del[DIM];  // point in Delaunay coordinates
-   double l;
+   double l,g;
    double d;            // distance to section
-
-   pt[0]=x; 
-   pt[1]=y; 
-   pt[2]=px;
-   pt[3]=py;
 
    status=frtbp(mu,t,pt);	// flow(t,pt)
    if(status!=0)
@@ -362,6 +291,7 @@ double inter_del_car_f(double t, void *p)
 
    cardel(pt,pt_del);
    l = pt_del[0];
+   g = pt_del[2];
 
    switch(sec)
    {
@@ -375,6 +305,12 @@ double inter_del_car_f(double t, void *p)
          {
             d = remainder(l-M_PI,TWOPI);
 	    //fprintf(stderr,"DEBUG: l=%.15le, d=%.15le\n", l, d);
+            break;
+         }
+      case SECg :       // section {g=0}
+         {
+            d = remainder(g,TWOPI);
+	      //fprintf(stderr,"DEBUG: t=%.15le, g=%.15le, d=%.15le\n", t, g, d);
             break;
          }
    }

@@ -17,8 +17,8 @@
   Poincare map of RTBP in Delaunay coordinates, but integrating the flow in Cartesian.
 
   Consider the RTBP in rotating Delaunay coordinates.
-  Let S be the Poincare section SEC1 or SEC2, corresponding to {l=0}
-  or \f$\{l=\pi\}\f$.
+  Let S be the Poincare section SEC1, SEC2 or SECg, corresponding to {l=0},
+  \f$\{l=\pi\}\f$, or \f$ \{g=0\} \f$.
   Let $x$ be a point in the section, and suppose that flow at $x$ is
   transversal to the section.
   Compute the n-th iterate of the Poincare map \f$P^n(x)\f$ of the RTBP.
@@ -32,6 +32,9 @@
     - mass parameter
     - type of section "sec"
     - number of iterates "n"
+
+    A sequence of lines containing:
+
     - initial point in Delaunay "x_del"
     - initial point in Cartesian "x_car"
     
@@ -53,24 +56,18 @@ int main( )
    // auxiliary variables
    char section_str[10];        // holds input string "SEC1", "SEC2" etc
 
-   // Input mass parameter, section, number of iterates and 
-   // initial condition from stdin.
-   if(scanf("%le %s %d %le %le %le %le", &mu, section_str, &n, 
-               x_del, x_del+1, x_del+2, x_del+3) < 7)
+   // Input mass parameter, section, number of iterates from stdin.
+   if(scanf("%le %s %d", &mu, section_str, &n) < 3)
    {
       perror("main: error reading input");
       exit(EXIT_FAILURE);
    }
-   if(scanf("%le %le %le %le", x_car, x_car+1, x_car+2, x_car+3) < 4)
-   {
-      perror("main: error reading input");
-      exit(EXIT_FAILURE);
-   }
-
    if (strcmp(section_str,"SEC1") == 0)
       sec = SEC1;
    else if (strcmp(section_str,"SEC2") == 0)
       sec = SEC2;
+   else if (strcmp(section_str,"SECg") == 0)
+      sec = SECg;
    else
    {
       perror("main: error reading section string");
@@ -80,24 +77,29 @@ int main( )
    // Stop GSL default error handler from aborting the program
    //gsl_set_error_handler_off();
 
-   // Compute n-th iterate of Poincare map, $P^n(x)$.
-   status=prtbp_del_car(mu,sec,n,x_del,x_car,&ti);
-   if(status)
+   // Input initial conditions from stdin
+   while( scanf("%le %le %le %le", x_del, x_del+1, x_del+2, x_del+3)==4 &&
+           scanf("%le %le %le %le", x_car, x_car+1, x_car+2, x_car+3)==4 )
    {
-      fprintf(stderr, \
-	    "main: error computing %d-th iterate of Poincare map\n",n);
-      exit(EXIT_FAILURE);
-   }
+       // Compute n-th iterate of Poincare map, $P^n(x)$.
+       status=prtbp_del_car(mu,sec,n,x_del,x_car,&ti);
+       if(status)
+       {
+          fprintf(stderr, \
+            "main: error computing %d-th iterate of Poincare map\n",n);
+          exit(EXIT_FAILURE);
+       }
 
-   // Output final point and integration time to stdout.
-   status = printf("%.15le %.15le %.15le %.15le "
-           "%.15le %.15le %.15le %.15le %.15le\n", \
-	 x_del[0], x_del[1], x_del[2], x_del[3], 
-     x_car[0], x_car[1], x_car[2], x_car[3], ti);
-   if(status<0)
-   {
-      perror("main: error writting output");
-      exit(EXIT_FAILURE);
+       // Output final point and integration time to stdout.
+       status = printf("%.15le %.15le %.15le %.15le "
+               "%.15le %.15le %.15le %.15le %.15le\n", \
+         x_del[0], x_del[1], x_del[2], x_del[3], 
+         x_car[0], x_car[1], x_car[2], x_car[3], ti);
+       if(status<0)
+       {
+          perror("main: error writting output");
+          exit(EXIT_FAILURE);
+       }
    }
    exit(EXIT_SUCCESS);
 }
