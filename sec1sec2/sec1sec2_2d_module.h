@@ -37,7 +37,7 @@
   and 0 to indicate success.
   */
 
-int sec1sec2(double mu, double H, double p[2], double *ti);
+int sec1sec2_2d(double mu, double H, double p[2], double *ti);
 
 /**
   This function takes a point $p$ on section S1 to section S2 by backward
@@ -61,4 +61,4 @@ int sec1sec2(double mu, double H, double p[2], double *ti);
   and 0 to indicate success.
   */
 
-int sec1sec2_inv(double mu, double H, double p[2], double *ti);
+int sec1sec2_inv_2d(double mu, double H, double p[2], double *ti);

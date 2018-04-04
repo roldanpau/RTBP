@@ -32,7 +32,7 @@
 #include <stdio.h>
 #include <stdlib.h>	// EXIT_SUCCESS, EXIT_FAILURE
 #include <gsl/gsl_errno.h>	// gsl_set_error_handler_off
-#include "sec1sec2_module.h"	// sec1sec2_inv
+#include "sec1sec2_2d_module.h"	// sec1sec2_inv_2d
 
 int main( )
 {
@@ -54,7 +54,7 @@ int main( )
    while(scanf("%le %le %le", &H, x, x+1)==3)
    {
       // Take x from section S1 to section S2 by the backward flow.
-      status=sec1sec2_inv(mu,H,x,&ti);
+      status=sec1sec2_inv_2d(mu,H,x,&ti);
       if(status)
       {
 	 fprintf(stderr, \

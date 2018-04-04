@@ -22,7 +22,7 @@
 #include <hinv.h>
 #include <prtbp.h>
 
-int sec1sec2(double mu, double H, double p[2], double *ti)
+int sec1sec2_2d(double mu, double H, double p[2], double *ti)
 {
    double x[DIM];
    x[0]=p[0];	// x
@@ -33,7 +33,7 @@ int sec1sec2(double mu, double H, double p[2], double *ti)
    // Recall that p is on section SEC1.
    if(hinv(mu,SEC1,H,x))
    {
-      fprintf(stderr, "sec1sec2: error inverting the Hamiltonian\n");
+      fprintf(stderr, "sec1sec2_2d: error inverting the Hamiltonian\n");
       return(1);
    }
 
@@ -41,7 +41,7 @@ int sec1sec2(double mu, double H, double p[2], double *ti)
    // On exit, "prtbp" guarantees that x is exactly on Poincare section S2.
    if(prtbp(mu,SEC2,1,x,ti))
    {
-      fprintf(stderr, "sec1sec2: error computing poincare map\n");
+      fprintf(stderr, "sec1sec2_2d: error computing poincare map\n");
       return(1);
    }
    // Set the image point on section S2.
@@ -49,7 +49,7 @@ int sec1sec2(double mu, double H, double p[2], double *ti)
    return(0);
 }
 
-int sec1sec2_inv(double mu, double H, double p[2], double *ti)
+int sec1sec2_inv_2d(double mu, double H, double p[2], double *ti)
 {
    double x[DIM];
    x[0]=p[0];	// x
@@ -60,7 +60,7 @@ int sec1sec2_inv(double mu, double H, double p[2], double *ti)
    // Recall that p is on section SEC1.
    if(hinv(mu,SEC1,H,x))
    {
-      fprintf(stderr, "sec1sec2_inv: error inverting the Hamiltonian\n");
+      fprintf(stderr, "sec1sec2_inv_2d: error inverting the Hamiltonian\n");
       return(1);
    }
 
@@ -68,7 +68,7 @@ int sec1sec2_inv(double mu, double H, double p[2], double *ti)
    // On exit, "prtbp_inv" guarantees that x is exactly on Poincare section S2.
    if(prtbp_inv(mu,SEC2,1,x,ti))
    {
-      fprintf(stderr, "sec1sec2_inv: error computing inverse poincare map\n");
+      fprintf(stderr, "sec1sec2_inv_2d: error computing inverse poincare map\n");
       return(1);
    }
    // Set the image point on section S2.
