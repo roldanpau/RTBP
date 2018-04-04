@@ -31,12 +31,14 @@ $(BUILDDIRS):
 build-taylor: install-rtbp
 build-frtbp: install-taylor
 build-cardel:install-hinv
-build-prtbp_del_car: install-cardel install-section install-frtbp
+build-prtbp_del_car: install-cardel install-section install-frtbp \
+    install-prtbp_del install-utils
 build-intersec_del_car: install-utils install-prtbp install-prtbp_del_car
 build-errmfld: install-prtbp_noloops
 build-invmfld: install-errmfld
 build-invmfld_del_car: install-errmfld install-invmfld
 build-frtbp_red: install-rtbp_del
+build-frtbp_del: install-rtbp_del
 build-prtbp_del: install-frtbp_del install-hinv_del
 build-inner_circ: install-frtbp_red
 build-outer_circ: install-frtbp_del install-prtbp_del install-inner_circ

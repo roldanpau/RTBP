@@ -1,5 +1,5 @@
 echo "0.95387536e-3 SECg 1" >prtbpdels.dat
-cut -d ' ' -f 2-5 ../cardel/cardels.res >>prtbpdels.dat
+cut -d ' ' -f 2-5 ../cardel/cardels_2d_SEC2.res >>prtbpdels.dat
 prtbpdel <prtbpdels.dat >prtbpdels.res
 rm prtbpdels.dat
 

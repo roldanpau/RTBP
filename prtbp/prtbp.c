@@ -139,8 +139,9 @@ bool crossing (section_t sec, double a[DIM], double b[DIM])
 // A point is assumed to be on the Poincare section if it is within distance
 // POINCARE_TOL to the section.
 //
-// IDEA: In frtbp, check if the flow becomes tangential to section at some point.
-// If it does, return a flag to prtbp, which sould act accordingly.
+// Possible improvement: In frtbp, check if the flow becomes tangential to
+// section at some point.  If it does, return a flag to prtbp, which sould act
+// accordingly.
 
 int prtbp(double mu, section_t sec, int cuts, double x[DIM], double *ti)
 {
