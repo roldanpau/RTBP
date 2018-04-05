@@ -23,7 +23,7 @@
 // Empirically, we get precisions close to 1.e-9. 
 // The reason is that we approach the limit of precision of our forward error
 // FE = |t-t^*|, whereas the backward error is still large BE = |g(phi(t))|.
-const double POINCARE_DEL_CAR_TOL=1.e-9;
+const double POINCARE_DEL_CAR_TOL=1.e-16;
 
 /// Integration "step" for prtbp. 
 //
@@ -122,7 +122,7 @@ int prtbp_del_car(double mu, section_t sec, int cuts, double x_del[DIM],
    // Intersect trajectory starting at point x with section.
    // WARNING! passing 0 instead of 0.0 gives me trouble?!?!
    if(inter_del_car(mu, sec, POINCARE_DEL_CAR_TOL, x_del, x_car, 0.0, 
-               SHORT_TIME_DEL_CAR, &t1))
+               t-t_pre, &t1))
    {
           fprintf(stderr, "prtbp_del_car: error intersecting trajectory with section\n");
           fprintf(stderr, "prtbp_del_car: giving up...\n");
@@ -310,7 +310,8 @@ double inter_del_car_f(double t, void *p)
       case SECg :       // section {g=0}
          {
             d = remainder(g,TWOPI);
-	      //fprintf(stderr,"DEBUG: t=%.15le, g=%.15le, d=%.15le\n", t, g, d);
+	        fprintf(stderr,"DEBUG: t=%.15le, y=%.15le, px=%.15le, g=%.15le\n",
+					t, pt[1], pt[2], g);
             break;
          }
    }
@@ -376,6 +377,10 @@ int inter_del_car(double mu, section_t sec, double epsabs,
     gsl_root_fsolver *s;
     double f;
     gsl_function F;
+
+	double t_lo = t0;
+	double t_hi = t1;
+
     struct inter_del_car_f_params params = {mu, sec, x_car[0], x_car[1], x_car[2], x_car[3]};
     *t=0.0;
   
@@ -399,7 +404,10 @@ int inter_del_car(double mu, section_t sec, double epsabs,
         }
         *t = gsl_root_fsolver_root (s);
         f=inter_del_car_f(*t,&params);
+		t_lo = gsl_root_fsolver_x_lower(s);
+		t_hi = gsl_root_fsolver_x_upper(s);
         status = gsl_root_test_residual(f, epsabs);
+        //status = gsl_root_test_interval(t_lo, t_hi, epsabs, epsabs);
       }
     while (status == GSL_CONTINUE && iter < max_iter);
     gsl_root_fsolver_free (s);

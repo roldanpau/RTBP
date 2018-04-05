@@ -4,8 +4,8 @@ exec_prefix = $(prefix)
 bindir = $(exec_prefix)/bin
 includedir = $(prefix)/include
 libdir = $(exec_prefix)/lib
-CFLAGS = -g
-LDLIBS = -lds -lgsl -lgslcblas -lm
+CFLAGS = -O3
+LDLIBS = -lds -lm -lgsl -lgslcblas
 
 RESULTS = $(UNSTRESULTS) $(STRESULTS)
 
