@@ -5,11 +5,12 @@
     $Date: 2013-03-26 22:17:52 $
 */
 
+#include <taylor2d.h>	// taylor_step_rtbp2d
 #include <taylor2dv.h>	// taylor_step_rtbp2dv
 #include <rtbp.h>	// DIM
 #include "frtbp.h"	// DIMV
 
-double mu;	///< global variable, needed in taylor_step_rtbp2dv
+double mu;	///< global variable, needed in taylor_step_rtbp2d and taylor_step_rtbp2dv
 
 // NOTES
 // =====
@@ -81,21 +82,11 @@ int frtbp(double mu_loc, double t1, double x[DIM])
 
    double t = 0.0;
    double h;		/* step size */
-   double xvar[20];	/* initial condition + variationals */
-   int status, i, nt;
+   int status, nt;
 
    // Set global variable "mu". This needs to defined before calling
-   // taylor_step_rtbp2dv
+   // taylor_step_rtbp2d
    mu=1.0-mu_loc;
-
-   for(i=0; i<DIM; i++)
-      xvar[i] = x[i];
-
-   // Initialize variationals to something trivial (it is not needed for the
-   // purpose of this program). It is sloppy to integrate the variationals if
-   // they are not needed... we need to fix this in the future.
-   for(i=DIM; i<20; i++)
-      xvar[i]=0;
 
    // Integrate trajectory numerically.
    // The time $t1$ may be positive or negative, allowing for forward or
@@ -105,7 +96,7 @@ int frtbp(double mu_loc, double t1, double x[DIM])
       // Forward integration
       while (t<t1)
       {
-	    status = taylor_step_rtbp2dv(&t,xvar,1,1,log10_eps_abs,log10_eps_rel,&t1,&h,&nt);
+	    status = taylor_step_rtbp2d(&t,x,1,1,log10_eps_abs,log10_eps_rel,&t1,&h,&nt);
 	 // What if there is a singularity in the vectorfield?? This is not
 	 // contemplated in the errorcode status??
       }
@@ -114,11 +105,7 @@ int frtbp(double mu_loc, double t1, double x[DIM])
    {
       // Backwards integration
       while (t>t1)
-	    status = taylor_step_rtbp2dv(&t,xvar,-1,1,log10_eps_abs,log10_eps_rel,&t1,&h,&nt);
+	    status = taylor_step_rtbp2d(&t,x,-1,1,log10_eps_abs,log10_eps_rel,&t1,&h,&nt);
    }
-
-   // Save final condition to vector "x"
-   for(i=0; i<DIM; i++)
-      x[i] = xvar[i];
    return(0);
 }
