@@ -28,7 +28,7 @@ int main(void)
 
   while (taylor_step_rtbp3dv(&t,x,1,1,-16,-16,&tf,&h,&nt) != 1);
 
-  f=fopen("prova3d.res","w");
+  f=fopen("prova3dv.res","w");
   for (j=0; j<42; j++) fprintf(f,"%3d %20.15f\n",j,x[j]);
   fclose(f);
   return 0;
