@@ -1,5 +1,6 @@
 // Headers
 #include <stdio.h>	// fprintf
+#include <assert.h>
 #include <math.h>	// sqrt
 #include <rtbp.h>	// DIM
 
@@ -15,6 +16,15 @@ void cardel(double X[DIM], double Y[DIM])
    // auxiliary variables
    double r = sqrt(x*x+y*y);	// radius (polar coords)
 
+
+   // DEBUG
+   // Place large mass to the left of the origin, small mass to the right.
+   //double mu1 = 0.95387536e-3;
+   //double mu2 = 1.0-mu1;
+   //double r1=sqrt((x-mu2)*(x-mu2)+y*y);
+   //double r2=sqrt((x+mu1)*(x+mu1)+y*y);
+
+
    // Note: the polar angle phi will jump from time to time 
    // e.g. when (x,y) changes from the 2nd quadrant to the 3rd
    // then phi jumps from pi to -pi. 
@@ -28,9 +38,17 @@ void cardel(double X[DIM], double Y[DIM])
 
    // auxiliary variables
    double cu;	// cos(u)
+   double su;	// sin(u)
 
    G = -y*px + x*py;
+
+   // PRG (04/05/2018): This line seems to prevent prtbp_del_car from
+   // converging when trying to compute intersection with section.
    L = sqrt( -1.0/( px*px + py*py -2.0/r ));
+   // In the line below, I try using the Hamiltonian of the RTBP instead of the
+   // one of the 2BP. This seems to fix prtbp_del_car. However, I'm not
+   // convinced it's correct...
+   //L = sqrt( -1.0/( px*px + py*py -2.0*(mu1/r1+mu2/r2) ));
 
    // L could also be computed like this, where J=energy.
    // To avoid using an extra parameter (J), we prefer the previous
@@ -45,33 +63,33 @@ void cardel(double X[DIM], double Y[DIM])
    // It can sometimes be outside the range due to roundoff.
    if(cu<-1)
    {
-      fprintf(stderr, "warning: cos(u)=%.15e outside range [-1,1]\n", cu);
-      //cu = -1;
+      //fprintf(stderr, "warning: cos(u)=%.16e outside range [-1,1]\n", cu);
+      cu = -1;
    }
    else if(cu>1)
    {
-      fprintf(stderr, "warning: cos(u)=%.15e outside range [-1,1]\n", cu);
-      //cu = 1;
+      //fprintf(stderr, "warning: cos(u)=%.16e outside range [-1,1]\n", cu);
+      cu = 1;
    }
 
    if(dotr>=0)
    {
       // we are leaving the perihelion, so eccentric anomaly $u>0$
       u = acos(cu);
+      su = sqrt(1-cu*cu);
    }
    else
    {
       // we are approaching the perihelion, so eccentric anomaly $u<0$
       u = -acos(cu);
+      su = -sqrt(1-cu*cu);
    }
 
-   l = u-e*sin(u);
+   //l = u-e*sin(u);
+   l = u-e*su;
 
    // DEBUG: Make sure mean anomaly l is in the range [-pi,pi].
-   if(l<-M_PI || l>M_PI)
-   {
-      fprintf(stderr, "warning: l=%e outside range [-pi,pi]\n", cu);
-   }
+   assert(-M_PI<l && l<M_PI);
 
    if(u==M_PI)
    {
@@ -84,13 +102,17 @@ void cardel(double X[DIM], double Y[DIM])
    // We need to determine the sign of v in [-pi,pi]
    if(0<=u && u<=M_PI)
    {
+	   // DEBUG
+	   assert(v>=0);
       // The sign of v must be non-negative
-      if(v<0) v += M_PI;
+      //if(v<0) v += M_PI;
    }
    else if(-M_PI<=u && u<0)
    {
+	   // DEBUG
+	   assert(v<0);
       // The sign of v must be negative
-      if(v>0) v -= M_PI;
+      //if(v>0) v -= M_PI;
    }
 
    g = phi - v;
