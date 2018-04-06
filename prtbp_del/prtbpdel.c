@@ -383,7 +383,7 @@ bool crossing_fwd_del (section_t sec, double x[DIM], double y[DIM])
               // Inevitably, g will jump by almost TWOPI when (x,y) changes
               // from the 2nd quadrant to the 3rd (see cardel.c).
               // We need to exclude this case as a "fake" crossing of section.
-              bCrossing = ((n1!=n2) && !(fabs(x[2]-y[2])>(TWOPI-0.2)));
+              bCrossing = ((n1!=n2) && !(fabs(x[2]-y[2])>(TWOPI-1.0)));
               break;
           }
    }
