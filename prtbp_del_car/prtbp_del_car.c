@@ -20,7 +20,7 @@
 #include <utils_module.h>	    // dblcpy
 
 // Unfortunately, this code does not get as much precision as prtbp_del. 
-// Empirically, we get precisions close to 1.e-9. 
+// Empirically, we get precisions close to 1.e-8. 
 // The reason is that we approach the limit of precision of our forward error
 // FE = |t-t^*|, whereas the backward error is still large BE = |g(phi(t))|.
 const double POINCARE_DEL_CAR_TOL=1.e-16;
@@ -310,8 +310,8 @@ double inter_del_car_f(double t, void *p)
       case SECg :       // section {g=0}
          {
             d = remainder(g,TWOPI);
-	        fprintf(stderr,"DEBUG: t=%.15le, y=%.15le, px=%.15le, g=%.15le\n",
-					t, pt[1], pt[2], g);
+	        //fprintf(stderr,"DEBUG: t=%.15le, y=%.15le, px=%.15le, g=%.15le\n",
+			//		t, pt[1], pt[2], g);
             break;
          }
    }
@@ -403,11 +403,16 @@ int inter_del_car(double mu, section_t sec, double epsabs,
            return(1);
         }
         *t = gsl_root_fsolver_root (s);
-        f=inter_del_car_f(*t,&params);
+
+		// Unfortunately, cardel does not have good numerical accuracy, and
+		// thus the residual |cardel(frtbp(t))| will never get very small even
+		// though the root is computed with extreme precision |t-t^*|<10^{-15}.
+		// Thus we stop as soon as forward error is small enough.
+        //f=inter_del_car_f(*t,&params);
+        //status = gsl_root_test_residual(f, epsabs);
 		t_lo = gsl_root_fsolver_x_lower(s);
 		t_hi = gsl_root_fsolver_x_upper(s);
-        status = gsl_root_test_residual(f, epsabs);
-        //status = gsl_root_test_interval(t_lo, t_hi, epsabs, epsabs);
+        status = gsl_root_test_interval(t_lo, t_hi, epsabs, 0);
       }
     while (status == GSL_CONTINUE && iter < max_iter);
     gsl_root_fsolver_free (s);
