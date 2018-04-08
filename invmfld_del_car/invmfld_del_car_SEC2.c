@@ -46,6 +46,8 @@ const int NPOINTS = 10;
 //    - "stable": flag specifying whether to compute the unstable manifold
 //    (unstable==0) or the stable manifold (stable==1).
 //    - h: small increment in the direction of v
+//    - ifp: Index specifying which iterate of fixed point we are interested
+//    in, e.g. p_2 -> ifp==2
 
   Output params (stdout): sequence of points approximating the manifold.
 
@@ -78,6 +80,10 @@ int main( )
 
    double h;	// small increment in the direction of v
 
+   // Index specifying which iterate of fixed point we are interested in,
+   // e.g. p_2 -> ifp==2
+   int ifp;		
+   	
    double p0[2];	// p0 = p+hv
    double p1[2];	// p1 = P(p0)
 
@@ -99,7 +105,7 @@ int main( )
 
    // 1. Input parameters from stdin.
    if(scanf("%le %s %le %d %le %le %le %le %le %d %d %le %d", 
-	    &mu, section_str, &H, &k, p, p+1, v, v+1, &lambda, &n, &stable, &h) < 12)
+	    &mu, section_str, &H, &k, p, p+1, v, v+1, &lambda, &n, &stable, &h, &ifp) < 13)
    {
       perror("main: error reading input");
       exit(EXIT_FAILURE);
@@ -161,11 +167,13 @@ int main( )
    // by the Poincare map, i.e. compute its orbit (and print it to stdout). 
    for(iter=0;iter<n;iter++)
    {
+      for(j=1;j<=3;j++)
+      {
 	 for(i=0;i<NPOINTS;i++)
 	 {
 	    if(!stable)	// unstable manifold
 	    {
-	       if(prtbp_del_car(mu,SECg,1,l4_del+DIM*i,l4+DIM*i,&ti))
+	       if(prtbp_del_car(mu,SEC1,1,l4_del+DIM*i,l4+DIM*i,&ti))
 	       {
               fprintf(stderr, "main: error computing Poincare map\n");
               exit(EXIT_FAILURE);
@@ -173,7 +181,7 @@ int main( )
 	    }
 	    else		// stable manifold
 	    {
-	       if(prtbp_del_car_inv(mu,SECg,1,l4_del+DIM*i,l4+DIM*i,&ti))
+	       if(prtbp_del_car_inv(mu,SEC1,1,l4_del+DIM*i,l4+DIM*i,&ti))
 	       {
               fprintf(stderr, "main: error computing inverse Poincare map\n");
               exit(EXIT_FAILURE);
@@ -181,18 +189,22 @@ int main( )
 	    }
 	 }
 
-	// Print iteration of linear segment
-	for(i=0;i<NPOINTS;i++)
-	{
-	   if(printf("% .15le % .15le\n", 
-				   l4_del[DIM*i+0], 
-				   l4_del[DIM*i+1])<0)
-	   {
-		  perror("main: error writting output");
-		  exit(EXIT_FAILURE);
-	   }
-	}
-	//printf("\n");
+	 if(ifp==-1 || j==ifp)	// print only manifold of i-th fixed point p_i
+	 {
+	    // Print iteration of linear segment
+	    for(i=0;i<NPOINTS;i++)
+	    {
+	       if(printf("% .15le % .15le\n", 
+                       l4_del[DIM*i+2], 
+                       l4_del[DIM*i+3])<0)
+	       {
+              perror("main: error writting output");
+              exit(EXIT_FAILURE);
+	       }
+	    }
+	    printf("\n");
+	 }
+      }
    }
 
    // 4. Estimate error commited in the linear approximation of the manifold
