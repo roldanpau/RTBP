@@ -30,7 +30,7 @@ const int MAXITER = 100;
 /// linear segment is discretized into very few points (e.g. 5).
 /// Probably, the more points we use, the higher the probability that 
 /// prtbp_del_car fails.
-const int NPOINTS = 5;
+const int NPOINTS = 50;
 
 int 
 u_i (double mu, section_t sec, int k, double a, double *l4_del, double *l4, 
@@ -60,7 +60,6 @@ approxint_del_car_unst (double mu, section_t sec, double H, int k,
    // Auxiliary variables
    int status, iter, i, iskip;
    double ti;
-   double l_bak[2*NPOINTS];    // Aux copy of l
 
    // we DO NOT assume that $v=(x,p_x)$ points "to the right", i.e.
    // we DO NOT assume that the first component of $v$ is $x>0$
@@ -100,41 +99,15 @@ approxint_del_car_unst (double mu, section_t sec, double H, int k,
    for(i=0; i<NPOINTS; i++)
        cardel(l4+DIM*i,l4_del+DIM*i);
 
-   // Make a copy of l in order to not modify it.
-   memcpy(l_bak, l, 2*NPOINTS*sizeof(double));
-
-   if(sec==SEC1)
-   {
-       // For upper branch (branch 1):
-       iskip=1;
-
-       // For lower branch (branch 2):
-       //iskip=2;
-   }
-   else // if(sec==SEC2)
-   {
-       // For upper branch (branch 1):
-       iskip=2;
-
-       // For lower branch (branch 2):
-       //iskip=3;
-   }
-   // Iterate the (discretized) linear segment iskip times until we are 
-   // at the right "eye" of the resonance.
-   for(i=0;i<NPOINTS;i++)
-   {
-       if(prtbp_del_car(mu,sec,iskip,l4_del+DIM*i,l4+DIM*i,&ti))
-       {
-          fprintf(stderr, "approxint_del_car: error computing Poincare map\n");
-          return(1);
-       }
-   }
+   // Flow the (discretized) linear segment to Delaunay section before the
+   // iteration.
+   status=u_i(mu, sec, 1, a, l4_del, l4, &i);
 
    // Iterate the (discretized) linear segment "iter" times by the Poincare map
    for(iter=1;iter<=MAXITER;iter++)
    {
-      //fprintf(stderr, "DEBUG: befor %d iteration of linear segment: l=%.15le, g=%.15le\n", iter, l4_del[0], l4_del[2]);
-      status=u_i(mu, sec, 3, a, l4_del, l4, &i);
+      //fprintf(stderr, "DEBUG: before %d iteration of linear segment: l=%.15le, g=%.15le\n", iter, l4_del[0], l4_del[2]);
+      status=u_i(mu, sec, 1, a, l4_del, l4, &i);
       //fprintf(stderr, "DEBUG: after %d iteration of linear segment: l=%.15le, g=%.15le\n", iter, l4_del[0], l4_del[2]);
       if(status)
       {
@@ -156,10 +129,10 @@ approxint_del_car_unst (double mu, section_t sec, double H, int k,
    *piter = iter;
 
    // Endpoints of segment u_i: 
-   // P[2] = (x, p_x) = (l_bak[2i], l_bak[2i+1]),
-   // Q[2] = (x, p_x) = (l_bak[2i+2], l_bak[2i+3]).
-   *h_1 = (l_bak[2*i+1]-p[1])/v[1];
-   *h_2 = (l_bak[2*i+3]-p[1])/v[1];
+   // P[2] = (x, p_x) = (l[2i], l[2i+1]),
+   // Q[2] = (x, p_x) = (l[2i+2], l[2i+3]).
+   *h_1 = (l[2*i+1]-p[1])/v[1];
+   *h_2 = (l[2*i+3]-p[1])/v[1];
 
    // return approximate intersection point
    z[0] = l4_del[DIM*i+2];
@@ -183,6 +156,9 @@ approxint_del_car_st (double mu, double H, int k, double p[2], double v[2],
    double ti;
    double l_bak[2*NPOINTS];    // Aux copy of l
 
+   fprintf(stderr, "approxint_del_car_st: this function is not implemented!\n");
+   exit(1);
+
    // we DO NOT assume that $v=(x,p_x)$ points "to the right", i.e.
    // we DO NOT assume that the first component of $v$ is $x>0$
    //assert(v[0]>0);
@@ -197,7 +173,7 @@ approxint_del_car_st (double mu, double H, int k, double p[2], double v[2],
    // Compute $p_1$
    p1[0] = p0[0];
    p1[1] = p0[1];
-   status=prtbp_2d_inv(mu,SEC2,H,k,p1,&ti);        // $p_1 = \sixmap^{-1}(p_0)$
+   status=prtbp_nl_2d_inv(mu,SEC2,H,k,p1,&ti);        // $p_1 = \sixmap^{-1}(p_0)$
    if(status)
    {
       fprintf(stderr, "approxint_del_car: error computing Poincare map\n");
@@ -213,7 +189,7 @@ approxint_del_car_st (double mu, double H, int k, double p[2], double v[2],
    // Iterate the (discretized) linear segment "iter" times by the Poincare map
    for(iter=1;iter<=MAXITER;iter++)
    {
-      status=s_i(mu, H, k, z, a, l, &i);
+      //status=s_i(mu, H, k, z, a, l, &i);
       if(status)
       {
 	 fprintf(stderr, 
@@ -301,6 +277,8 @@ u_i (double mu, section_t sec, int k, double a, double *l4_del, double *l4,
    int status, iter, i;
    double ti;
    double dx,dy;
+   double g1, g2;
+   double l1, l2;
 
    // Approximate splitting half-angle
    //double alpha2;
@@ -319,32 +297,55 @@ u_i (double mu, section_t sec, int k, double a, double *l4_del, double *l4,
    // We look for the first unst segment U_i that crosses the line $g=a$.
    for(i=0; i<(NPOINTS-1); i++)
    {
-      // Endpoints of segment U_i: 
-      // P[2] = (g, G) = (l4_del[4i+2], l4_del[4i+3]),
-      // Q[2] = (g, G) = (l4_del[4(i+1)+2], l4_del[4(i+1)+3]).
+       l1=l4_del[DIM*i];
+       l2=l4_del[DIM*(i+1)];
   
+      // Endpoints of segment U_i: 
+      // P[2] = (g_1, G_1) = (l4_del[4i+2], l4_del[4i+3]),
+      // Q[2] = (g_2, G_2) = (l4_del[4(i+1)+2], l4_del[4(i+1)+3]).
+       g1=l4_del[DIM*i+2];
+       g2=l4_del[DIM*(i+1)+2];
+
        if(sec==SEC1)
        {
           // For the upper branch, since dg/dt<0, it is enough to check 
           // if the angle has passed from >a to <a
-          if(l4_del[DIM*i+2] > a && l4_del[DIM*(i+1)+2] < a) break;
+          if(g1 > a && g2 < a) break;
           
           // For the lower branch, since dg/dt>0, it is enough to check 
           // if the angle has passed from <a to >a
-          //if(l4_del[DIM*i+2] < a && l4_del[DIM*(i+1)+2] > a) break;
+          //if(g1 < a && g2 > a) break;
        }
-       else // if(sec==SEC2)
+       else if(sec==SEC2)
        {
           // For the upper branch, since dg/dt<0, it is enough to check 
           // if the angle has been reset from 0 to 2\pi
-          if(l4_del[DIM*(i+1)+2] > l4_del[DIM*i+2]) {
-	     //fprintf(stderr, "DEBUG: g=%.15le, gprime=%.15le\n", l4_del[DIM*i+2], l4_del[DIM*(i+1)+2]);
-	     break;
-	  }
+          if(g2 > g1) {
+              //fprintf(stderr, "DEBUG: g=%.15le, gprime=%.15le\n", l4_del[DIM*i+2], l4_del[DIM*(i+1)+2]);
+              break;
+          }
           
           // For the lower branch, since dg/dt>0, it is enough to check 
           // if the angle has been reset from 2\pi to 0
-          //if(l4_del[DIM*(i+1)+2] < l4_del[DIM*i+2]) break;
+          //if(g2 < g1) break;
+       }
+       else if(sec==SECg)
+       {
+          // For the upper branch, since dl/dt<0, it is enough to check 
+          // if the angle has been reset from -\pi to \pi
+          if(l2 > l1) {
+              //fprintf(stderr, "DEBUG: g=%.15le, gprime=%.15le\n", l4_del[DIM*i+2], l4_del[DIM*(i+1)+2]);
+              break;
+          }
+          
+          // For the lower branch, since dl/dt>0, it is enough to check 
+          // if the angle has been reset from \pi to -\pi
+          //if(l2 < l1) break;
+       }
+       else
+       {
+          fprintf(stderr, "u_i: unknown section type. Exiting\n");
+          exit(1);
        }
    }
 
@@ -359,75 +360,6 @@ u_i (double mu, section_t sec, int k, double a, double *l4_del, double *l4,
 
    //dx = l[2*i+1]-l[2*i+3];	// P2 - Q2
    //dy = l[2*i]-l[2*i+2];	// P1 - Q1
-   //alpha2 = atan2(dy,dx);	
-   //fprintf(stderr, "Approximate splitting half-angle: %f\n", alpha2);
-
-   fprintf(stderr, "Approximate interval: %d\n", i);
-   *idx=i;
-   return(0);
-}
-
-/** 
-  \note We have problems computing some invariant manifolds, because suddenly
-  they look "broken". To prevent this, we check that the manifolds are indeed
-  continuous, i.e. we check that each two consecutive points in the manifold
-  are close together (closer than say 0.1).
-  */ 
-
-int 
-s_i (double mu, double H, int k, double z[2], double a, double *l, int *idx)
-{
-   // Auxiliary variables
-   int status, iter, i;
-   double ti;
-   double dx,dy;
-
-   // Approximate splitting half-angle
-   double alpha2;
-
-   // 3. Iterate the (discretized) linear segment one more time by the
-   // Poincare map
-   for(i=0;i<NPOINTS;i++)
-   {
-	 if(prtbp_2d_inv(mu,SEC2,H,k,l+2*i,&ti))
-	 {
-	    fprintf(stderr, "s_i: error computing Poincare map\n");
-	    return(1);
-	 }
-   }
-
-   // We look for the first st segment S_i that crosses the $x$ axis.
-   for(i=0; i<(NPOINTS-1); i++)
-   {
-      // Endpoints of segment S_i: 
-      // P[2] = (x, p_x) = (l[2i], l[2i+1]),
-      // Q[2] = (x, p_x) = (l[2i+2], l[2i+3]).
-
-      // Check that the manifolds are indeed continuous, i.e. we check that
-      // each two consecutive points in the manifold  are close together.
-      if( fabs(l[2*i+2]-l[2*i]) + fabs(l[2*i+3]-l[2*i+1]) > 0.1 )
-      {
-	 // Segment S_i is too large
-	 fprintf(stderr, "s_i: segment is too large!\n");
-	 return(1);
-      }
-
-      if(((l[2*i+1]-a)*(l[2*i+3]-a)<=0) && 
-	    fabs(l[2*i]-z[0]) < 0.02)	// point belongs to primary family
-	 break;
-   }
-
-   if(i==(NPOINTS-1))
-   {
-      // Manifold does not intersect $x$ axis
-      *idx=-1;
-      return(0);
-   }
-
-   // Manifold intersects the $x$ axis.
-
-   //dx = l[2*i+3]-l[2*i+1];	// Q2 - P2
-   //dy = l[2*i+2]-l[2*i];	// Q1 - P1
    //alpha2 = atan2(dy,dx);	
    //fprintf(stderr, "Approximate splitting half-angle: %f\n", alpha2);
 

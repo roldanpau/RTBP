@@ -6,7 +6,8 @@
 #include <stdio.h>
 #include <stdlib.h>	// EXIT_SUCCESS, EXIT_FAILURE
 #include <string.h>	// strcmp
-#include <prtbp.h>	// SEC2
+
+#include <section.h>	// SEC2, SECg
 #include <errmfld.h>	// h_opt
 #include "approxint_del_car.h"	// approxint_del_car_unst, approxint_del_car_st
 
@@ -37,7 +38,7 @@ typedef enum {LEFT, RIGHT} branch_t;
    1. Input parameters from stdin:
    
       - mass parameter 
-      - section type "sec": sec={SEC1,SEC2}
+      - section type "sec": sec={SEC1,SEC2,SECg}
       - number of cuts "k" with Poincare section
       - "stable" flag (unstable=0, stable=1)
       - "branch" flag (left=0, right=1)
@@ -110,9 +111,11 @@ int main( )
       sec = SEC1;
    else if (strcmp(section_str,"SEC2") == 0)
       sec = SEC2;
+   else if (strcmp(section_str,"SECg") == 0)
+      sec = SECg;
    else
    {
-      perror("main: error reading section string");
+      fprintf(stderr, "main: error reading section string");
       exit(EXIT_FAILURE);
    }
 

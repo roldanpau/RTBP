@@ -89,7 +89,7 @@ void cardel(double X[DIM], double Y[DIM])
    l = u-e*su;
 
    // DEBUG: Make sure mean anomaly l is in the range [-pi,pi].
-   assert(-M_PI<l && l<M_PI);
+   assert(-M_PI<=l && l<=M_PI);
 
    if(u==M_PI)
    {
