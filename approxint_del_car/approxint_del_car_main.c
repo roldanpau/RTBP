@@ -166,7 +166,7 @@ int main( )
       
 
       // 3. Output the following data to stdout:
-      //    H, h_1, h_2, z
+      //    H, iter, h_1, h_2, z
       printf("%.15e %d %.15e %.15e %.15e %.15e\n", H, iter, h_1, h_2, z[0], z[1]);
       fflush(NULL);
    }

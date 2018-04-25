@@ -30,7 +30,7 @@ const int MAXITER = 100;
 /// linear segment is discretized into very few points (e.g. 5).
 /// Probably, the more points we use, the higher the probability that 
 /// prtbp_del_car fails.
-const int NPOINTS = 50;
+const int NPOINTS = 5;
 
 int 
 u_i (double mu, section_t sec, int k, double a, double *l4_del, double *l4, 
@@ -116,7 +116,7 @@ approxint_del_car_unst (double mu, section_t sec, double H, int k,
           return(1);
       }
       if(i>=0)	// intersection found
-	 break;
+          break;
    }
 
    if(iter==(MAXITER+1))
@@ -173,7 +173,7 @@ approxint_del_car_st (double mu, double H, int k, double p[2], double v[2],
    // Compute $p_1$
    p1[0] = p0[0];
    p1[1] = p0[1];
-   status=prtbp_nl_2d_inv(mu,SEC2,H,k,p1,&ti);        // $p_1 = \sixmap^{-1}(p_0)$
+   //status=prtbp_nl_2d_inv(mu,SEC2,H,k,p1,&ti);        // $p_1 = \sixmap^{-1}(p_0)$
    if(status)
    {
       fprintf(stderr, "approxint_del_car: error computing Poincare map\n");

@@ -130,6 +130,8 @@ int main( )
       sec = SEC1;
    else if (strcmp(section_str,"SEC2") == 0)
       sec = SEC2;
+   else if (strcmp(section_str,"SECg") == 0)
+      sec = SECg;
    else
    {
       perror("main: error reading section string");

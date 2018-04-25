@@ -24,7 +24,7 @@
 // Note that this is the requested precision for the interval 
 // (h_1, h_2) on the local unstable manifold, NOT for the 
 // homoclinic point itself!
-const double BISECT_TOL=1.e-10;
+const double BISECT_TOL=1.e-14;
 
 // Parameters to distance_f_unst and distance_f_st functions.
 struct dparams
@@ -99,8 +99,8 @@ print_state (size_t iter, gsl_root_fsolver * s)
   On exit, it contains homoclinic point z = P^n(p_u) in Cartesian.
 
   \param[out] z_u[DIM]
-  Point in local unstable manifold of the appropriate pendulum (Delaunay
-  coords). This will be needed in outer_circ.
+  Point in local unstable manifold of the pendulum (Delaunay coords). This will
+  be needed in outer_circ.
   
   \returns 
   a non-zero error code to indicate an error and 0 to indicate
@@ -118,7 +118,7 @@ int iterate_del_car_unst(double mu, section_t sec, double H, int n,
 	double z_u[DIM])
 {
     // auxiliary variables
-    int status, iskip;
+    int status;
 
    // Lift point from \R^2 to \R^4
    status=lift(mu,SEC2,H,1,p_u,z_car);
@@ -131,34 +131,18 @@ int iterate_del_car_unst(double mu, section_t sec, double H, int n,
    // Transform point to Delaunay coordinates
    cardel(z_car,z_del);
 
-   if(sec==SEC1)
+   // Flow the point to Delaunay section before the iteration.
+   status=prtbp_del_car(mu,sec,1,z_del,z_car,t);  // $q_u = P^{n}(p_u)$
+   if(status)
    {
-       // For upper branch (branch 1):
-       iskip=1;
-
-       // For lower branch (branch 2):
-       //iskip=2;
-   }
-   else // if(sec==SEC2)
-   {
-       // For upper branch (branch 1):
-       iskip=2;
-
-       // For lower branch (branch 2):
-       //iskip=3;
-   }
-   // Iterate the (discretized) linear segment iskip times until we are 
-   // at the right "eye" of the resonance.
-   if(prtbp_del_car(mu,sec,iskip,z_del,z_car,t))
-   {
-      fprintf(stderr, "intersec_del_car: error computing Poincare map\n");
-      //return(1);
+      fprintf(stderr, "intersec_del_car: error flowing point to Delaunay sec\n");
+      return(1);
    }
 
    dblcpy(z_u,z_del, DIM);
 
    // unstable manifold
-   status=prtbp_del_car(mu,sec,3*n,z_del,z_car,t);  // $q_u = P^{n}(p_u)$
+   status=prtbp_del_car(mu,sec,n,z_del,z_car,t);  // $q_u = P^{n}(p_u)$
    if(status)
    {
       fprintf(stderr, "intersec_del_car: error computing Poincare map\n");
@@ -275,10 +259,15 @@ int intersec_del_car_unst(double mu, section_t sec, double H, double p[2],
    params.l = l;
    gsl_function f = {&distance_f_unst, &params};
 
-   // For some reason, bisection method complains that interval [h1,h2] does
-   // not straddle 0, so we try to enlarge it a little bit.
-   h1 *= 0.999;
-   h2 /= 0.999;
+   // Bisection method sometimes complains that interval [h1,h2] does not
+   // straddle 0. The reason is that approxint_del_car sets h1 and h2 from
+   // points in the linear segment l, whereas intersec_del_car uses h1 and h2
+   // to recover those endpoints of the segment u_i, so there is a small
+   // discrepancy.
+   // Thus we enlarge [h1,h2] a little bit to account for this discrepancy.
+   // NOTE: The number 0.9 is crucial! We tried 0.999 and did not work...
+   h1 *= 0.9;
+   h2 /= 0.9;
 
    T = gsl_root_fsolver_brent;
    s = gsl_root_fsolver_alloc (T);
@@ -491,6 +480,8 @@ distance_f_unst (double h, void *params)
 
    double t;			// integration time to reach homo. pt.
 
+   double d;            // distance(h) = l - p_x(q_u).
+
    // auxiliary vars
    int status;
    double z_car[DIM]; 		// homoclinic point (cartesian)
@@ -521,9 +512,18 @@ distance_f_unst (double h, void *params)
       return(1);
    }
 
-   // Return 
-   //    distance(h) = l - g(q_u), 
-   return remainder(z_del[2]-l,2*M_PI);
+   if(sec==SEC1 || sec==SEC2)
+   {
+       // Return distance(h) = l - g(q_u), 
+       d=remainder(z_del[2]-l,2*M_PI);
+   }
+   else if(sec==SECg)
+   {
+       // Return distance(h) = l - l(q_u), 
+       d=remainder(z_del[0]-l,2*M_PI);
+       //fprintf(stderr, "distance=%.16e\n", d);
+   }
+   return d;
 }
 
 double
