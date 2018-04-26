@@ -114,5 +114,28 @@ int dot_l(const double *x, double *dl, void *params);
  */
 int f0(const double *x, double *res, void *params);
 
+/**
+  Compute the function f0 for the Stochastic paper.
+
+  The function computes the function f0, defined as
+    \f[ f0(x) = 
+    \frac{\mu\partial_G \Delta H_{circ}(x)}
+    {-1 + \mu\partial_G \Delta H_{circ}(x))} \f]
+  at a point named "x".
+
+  \param[in] x		point in phase space, 4 coordinates: (l,L,g,G).
+  \param[out] res	value of $f0$ (output)
+
+  \param[in] params	
+  pointer to the parameter of the system: the mass ratio "mu".
+
+  \returns status code of the function (success/error)
+
+  \retval GSL_SUCCESS	success.
+
+  \sa \ref integrand_omega_pm
+ */
+int f0_stoch(const double *x, double *res, void *params);
+
 double re_dDHell(const double *x, void *params);
 double im_dDHell(const double *x, void *params);

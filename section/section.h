@@ -19,6 +19,9 @@ extern const double TWOPI;
 ///
 /// The 3:1 periodic orbit should be a fixed point for the section {g=0}. 
 /// Thus we define a new section SECg that corresponds to {g=0}.
-typedef enum {SEC1, SEC2, SECg} section_t;    
+//
+/// The 3:1 periodic orbit should be a fixed point for the section {g=\pi}. 
+/// Thus we define a new section SECg2 that corresponds to {g=\pi}.
+typedef enum {SEC1, SEC2, SECg, SECg2} section_t;    
 
 #endif // SECTION_H_INCLUDED

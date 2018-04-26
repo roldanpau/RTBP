@@ -396,6 +396,70 @@ int dot_g(const double *x, double *dg, void *params)
 }
 */
 
+// Compute \mu\partial_G \Delta H_{\circ}.
+// This function is almost identical to dot_g, except that we avoid the
+// addition -1 + \mu\partial_G \Delta H_{\circ}, since we would be loosing
+// accuracy (1 and \mu\partial_G \Delta H_{\circ} differ by orders of
+// magnitude).
+int mu_dDHcirc_G(const double *x, double *res, void *params)
+{
+   double mu = *(double *)params;
+   double l = fmod(x[0],2*M_PI);
+   double L = x[1];
+   double g = x[2];
+   double G = x[3];
+
+   // eccentricity
+   double e = sqrt(1.0 - G*G/(L*L));
+
+   // eccentric anomaly (angle u)
+   double u = eccentric(e,l);
+
+   // NOTE: v in (-pi,pi)
+   double v = 2.0*atan( sqrt((1.0+e)/(1.0-e))*tan(u/2.0) );
+
+   // auxiliary variables
+   double cu = cos(u);
+   double sv = sin(v);
+   double cv = cos(v);
+
+   // modulus of asteroid r
+   double r = L*L*(1.0-e*cu);
+
+   // auxiliary variables
+   double umu = 1.0-mu;
+   double musq = mu*mu;
+   double c1 = umu/musq;
+   double c2 = -mu/(umu*umu);
+   double c3 = -umu/mu;
+   double c4 = -mu/umu;
+   double c5 = -1/(r*r);
+
+   // partial derivatives of N evaluated at -r/mu
+   double dN_r_mu = dN_r(-r/mu,v,g);
+   double dN_v_mu = dN_v(-r/mu,v,g);
+
+   // partial derivatives of N evaluated at r/(1-mu)
+   double dN_r_umu = dN_r(r/umu,v,g);
+   double dN_v_umu = dN_v(r/umu,v,g);
+
+   // partial derivatives of r
+   double dr_G = G*cv/e;
+
+   // partial derivatives of v
+   double dv_G = -sv/(e*G)*(2.0+e*cv);
+
+   // partial derivatives of R
+   double dR_G = (c1*dN_r_mu + c2*dN_r_umu)*dr_G +
+      (c3*dN_v_mu + c4*dN_v_umu)*dv_G +
+      c5*dr_G;
+
+   // Result
+   *res = dR_G;		// \mu \partial_G \Delta H_{\circ}
+
+   return GSL_SUCCESS;
+}
+
 // NOTES:
 //    We follow the convention to place the large mass (Sun) to the left of
 //    the origin, and the small mass (Jupiter) to the right.
@@ -418,6 +482,37 @@ int f0(const double *x, double *res, void *params)
 
    // recall that f0 = (3-l'(x))/(3 l'(x))
    *res = (3.0-dl)/(3.0*dl);		// f0
+
+   return GSL_SUCCESS;
+}
+
+// NOTES:
+//    We follow the convention to place the large mass (Sun) to the left of
+//    the origin, and the small mass (Jupiter) to the right.
+//    This is opposite to the usual astrodynamics convention.
+//
+//    This function is used by program inner_circ, but we put it here because
+//    it is very similar to function rtbp_del.
+//
+// Careful!!! 
+// Marcel's formulas factorize \mu in front of the integral.  We include \mu
+// in the integrand.
+//
+//    We normalize $\ell$ between 0 and 2\pi to compute the vectorfield.
+//    This is done so that function "eccentric" is more precise.
+//
+// CALLED FROM: outer_circ_stoch::integrand_omega_pm
+
+int f0_stoch(const double *x, double *res, void *params)
+{
+   // auxiliary variables
+   double mu_dDH_G;	// \mu \partial_G \Delta H_{\circ}
+
+   mu_dDHcirc_G(x,&mu_dDH_G,params);
+
+   // recall that f0 = \mu\partial_G \Delta H_{\circ}(x) / 
+   //   (-1+\mu\partial_G \Delta H_{\circ})(x).
+   *res = mu_dDH_G/(-1+mu_dDH_G);		// f0
 
    return GSL_SUCCESS;
 }
