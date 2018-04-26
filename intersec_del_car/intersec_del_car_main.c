@@ -39,6 +39,10 @@
   Point in local unstable manifold of the appropriate pendulum (Delaunay
   coords). This will be needed in outer_circ.
   
+  \param[out] z_u_car[DIM]
+  Point in local unstable manifold of the appropriate pendulum (Cartesian
+  coords). This will be needed in outer_circ.
+  
   \returns 
   a non-zero error code to indicate an error and 0 to indicate
   success.
@@ -80,6 +84,9 @@
  *    [13-16] z_u[DIM]
  *      Point in local unstable manifold of the appropriate pendulum
  *      (Delaunay coords). This will be needed in outer_circ.
+ *    [17-20] z_u_car[DIM]
+ *      Point in local unstable manifold of the appropriate pendulum
+ *      (Cartesian coords). This will be needed in outer_circ.
  */
 
 int main( )
@@ -111,7 +118,8 @@ int main( )
 
    double z_car[DIM];		// homoclinic point in Cartesian
    double z_del[DIM];		// homoclinic point in Delaunay
-   double z_u[DIM];		// point in local unstable manifold
+   double z_u[DIM];		    // point in local unstable manifold (Delaunay)
+   double z_u_car[DIM];		// point in local unstable manifold (Cartesian)
 
    double t;		// integration time to reach z from p_u/p_s
 
@@ -148,7 +156,7 @@ int main( )
       if(!stable)
       {
           status = intersec_del_car_unst(mu, sec, H, p, v, lambda, n, 
-                  h1, h2, l, &h, p_u, &t, z_del, z_car, z_u);
+                  h1, h2, l, &h, p_u, &t, z_del, z_car, z_u, z_u_car);
           if(status)
           {
               fprintf(stderr, "main: error computing intersection point\n");
@@ -171,12 +179,14 @@ int main( )
       //    - integration time t to reach the intersection point z, 
       //    - intersection point z = P(p_u).
       //    - point in local unstable manifold z_u
+      //    - point in local unstable manifold z_u_car
       printf("%.15le ", H);
       dblprint(p_u,2);
       printf("%.15le ", t);
       dblprint(z_del,DIM);
       dblprint(z_car,DIM);
       dblprint(z_u,DIM);
+      dblprint(z_u_car,DIM);
       printf("\n");
       fflush(NULL);
 

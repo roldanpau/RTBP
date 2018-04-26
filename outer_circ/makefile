@@ -14,18 +14,22 @@ LDLIBS = -lm -lds -lgsl -lgslcblas
 # I don't even remember what whas the purpose of these files.
 
 #all : outer_circ outer_circ_test outer_circ_test_neg
-all : outer_circ
+all : outer_circ outer_circ_stoch
 
-install : outer_circ
+install : outer_circ outer_circ_stoch
 	#ar rv $(libdir)/libds.a inner_ell.o
 	#cp inner_ell.h $(includedir)
-	cp outer_circ $(bindir)
+	cp outer_circ outer_circ_stoch $(bindir)
 
 outer_circ : outer_circ.o $(libdir)/libds.a
 #	$(CC) -o inner_circ $(LDLIBS) $(CFLAGS) inner_circ_main.o inner_circ.o rtbp.o
 
+outer_circ_stoch : outer_circ_stoch.o $(libdir)/libds.a
+
 outer_circ.o : $(includedir)/rtbpdel.h $(includedir)/frtbpred.h
 
+outer_circ_stoch.o : $(includedir)/rtbpdel.h $(includedir)/frtbpred.h
+
 clean : 
-	rm outer_circ \
-	   outer_circ.o 
+	rm outer_circ outer_circ_stoch \
+	   outer_circ.o outer_circ_stoch.o

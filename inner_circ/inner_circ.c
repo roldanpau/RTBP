@@ -24,6 +24,11 @@
 // this function computes the integrand,
 //    \frac{1}{-1+\mu\partial_G \Delta H_{circ}(\gamma(s))}.
 //
+// NOTE: This function is not used anymore, since $T_0$ (inner map of circular
+// problem) is actually computed from the period of the periodic orbit:
+//
+// \[ 2\pi + \mu T_0 = period of p.o. \]
+//
 
 // Parameters to \ref inner_circ function.
 struct iparams_inner_circ
@@ -153,6 +158,11 @@ int omega_in_b(double mu, double x[DIM], double *omega)
 //
 //    \frac{1}{L^{-3}+\mu\partial_L \Delta H_{circ}(\gamma(s))}.
 //
+// NOTE: This function is not used anymore, since $T_0$ (inner map of circular
+// problem) is actually computed from the period of the periodic orbit:
+//
+// \[ 2\pi + \mu T_0 = period of p.o. \]
+//
 // PARAMETERS
 // ==========
 // s
@@ -215,6 +225,11 @@ double integrand_inner_circ(double s, void *params)
    }
    return 1.0/dl;
 }
+
+// NOTE: This function is not used anymore, since $T_0$ (inner map of circular
+// problem) is actually computed from the period of the periodic orbit:
+//
+// \[ 2\pi + \mu T_0 = period of p.o. \]
 
 // NOTE: What we denote $T_0$ here is sometimes refered as $\mu T_0$ in
 // Marcel's notes.

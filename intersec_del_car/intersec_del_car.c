@@ -102,6 +102,10 @@ print_state (size_t iter, gsl_root_fsolver * s)
   Point in local unstable manifold of the pendulum (Delaunay coords). This will
   be needed in outer_circ.
   
+  \param[out] z_u_car[DIM]
+  Point in local unstable manifold of the pendulum (Cartesian coords). This will
+  be needed in outer_circ.
+  
   \returns 
   a non-zero error code to indicate an error and 0 to indicate
   success.
@@ -115,7 +119,7 @@ print_state (size_t iter, gsl_root_fsolver * s)
 
 int iterate_del_car_unst(double mu, section_t sec, double H, int n, 
         double p_u[2], double *t, double z_del[DIM], double z_car[DIM],
-	double z_u[DIM])
+	double z_u[DIM], double z_u_car[DIM])
 {
     // auxiliary variables
     int status;
@@ -139,7 +143,9 @@ int iterate_del_car_unst(double mu, section_t sec, double H, int n,
       return(1);
    }
 
+   // Return z_u
    dblcpy(z_u,z_del, DIM);
+   dblcpy(z_u_car,z_car, DIM);
 
    // unstable manifold
    status=prtbp_del_car(mu,sec,n,z_del,z_car,t);  // $q_u = P^{n}(p_u)$
@@ -227,6 +233,10 @@ int iterate_del_car_unst(double mu, section_t sec, double H, int n,
   Point in local unstable manifold of the appropriate pendulum (Delaunay
   coords). This will be needed in outer_circ.
   
+  \param[out] z_u_car[DIM]
+  Point in local unstable manifold of the appropriate pendulum (Cartesian
+  coords). This will be needed in outer_circ.
+  
   \returns 
   a non-zero error code to indicate an error and 0 to indicate
   success.
@@ -242,7 +252,7 @@ int iterate_del_car_unst(double mu, section_t sec, double H, int n,
 int intersec_del_car_unst(double mu, section_t sec, double H, double p[2], 
         double v[2], double lambda, int n, double h1, double h2, double l,
         double *h, double p_u[2], double *t, double z_del[DIM], 
-        double z_car[DIM], double z_u[DIM])
+        double z_car[DIM], double z_u[DIM], double z_u_car[DIM])
 {
    const gsl_root_fsolver_type *T;
    gsl_root_fsolver *s;
@@ -324,9 +334,11 @@ int intersec_del_car_unst(double mu, section_t sec, double H, double p[2],
 
   // - Point in local unstable manifold of the appropriate pendulum (Delaunay
   // coords). This will be needed in outer_circ.
+  // - Point in local unstable manifold of the appropriate pendulum (Cartesian
+  // coords). This will be needed in outer_circ.
    // - intersection point z = P(p_u),
    // - t: integration time to reach homoclinic point $z$.
-   status=iterate_del_car_unst(mu,sec,H,n,p_u,t,z_del,z_car,z_u);
+   status=iterate_del_car_unst(mu,sec,H,n,p_u,t,z_del,z_car,z_u,z_u_car);
    if(status)
    {
       perror("intersec_del_car: error iterating point");
@@ -486,7 +498,8 @@ distance_f_unst (double h, void *params)
    int status;
    double z_car[DIM]; 		// homoclinic point (cartesian)
    double z_del[DIM]; 		// homoclinic point (Delaunay)
-   double z_u[DIM]; 		// point in the local unstable manifold
+   double z_u[DIM]; 		// point in the local unstable manifold (Delaunay)
+   double z_u_car[DIM]; 	// point in the local unstable manifold (Cartesian)
 
    mu = ((struct dparams *)params)->mu;
    sec = ((struct dparams *)params)->sec;
@@ -505,7 +518,7 @@ distance_f_unst (double h, void *params)
    p_u[0] = p[0] + h*v[0];
    p_u[1] = p[1] + h*v[1];
 
-   status=iterate_del_car_unst(mu,sec,H,n,p_u,&t,z_del,z_car,z_u);
+   status=iterate_del_car_unst(mu,sec,H,n,p_u,&t,z_del,z_car,z_u,z_u_car);
    if(status)
    {
       perror("intersec_del_car: error iterating point");
