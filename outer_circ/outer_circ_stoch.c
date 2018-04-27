@@ -11,9 +11,11 @@
 
 #include <stdio.h>	// perror
 #include <stdlib.h>	// EXIT_SUCCESS, EXIT_FAILURE
+#include <string.h> // strcmp
 #include <assert.h>
 
 #include <gsl/gsl_integration.h>	// gsl_integration_qags
+#include <section.h>
 #include <rtbpdel.h>            	// f0_stoch
 #include <frtbpred.h>
 #include <prtbp_del_car.h>
@@ -46,7 +48,7 @@ double integrand_omega_pm(double s, void *params)
    x[5] = 0;    // I (not used).
 
    // Compute x = \lambda(s)
-   status = frtbp_red(mu,s,x);
+   status = frtbp_red_g(mu,s,x);
    if(status)
    {
       fprintf(stderr, "integrand_omega_pm: error integrating trajectory");
@@ -104,6 +106,7 @@ double integrand_omega_pm(double s, void *params)
   This is computed using numerical integration.
  
   \param[in] mu 	mass parameter for the RTBP
+  \param[in] sec    Poincare section: sec={SECg,SECg2}
 
   \param[in] x    [DIM]	x=(l,L,g,G),     point z^s, on the section g=0.
   \param[in] x_car[DIM]	x=(x,y,p_x,p_y), point z^s, on the section g=0.
@@ -120,17 +123,13 @@ double integrand_omega_pm(double s, void *params)
   
   \returns
   a non-zero error code to indicate an error and 0 to indicate success.
- 
-  \remark We assume that point $z_s$ is on the SECg \f$ \{g=0\} \f$
-  section.
-
  */
 
 // NOTE: Instead of P^{-(N-i)}(z^s), we could have used
 // frtbp_red(-2(N-i)\pi, z^s). They should give the same point.
 
-int omega_pos_stoch(double mu, double x[DIM], double x_car[DIM], int N, 
-        double T0, double *omega) 
+int omega_pos_stoch(double mu, section_t sec, double x[DIM], double x_car[DIM],
+		int N, double T0, double *omega) 
 {
    double result, error;
 
@@ -161,7 +160,7 @@ int omega_pos_stoch(double mu, double x[DIM], double x_car[DIM], int N,
       for(j=0;j<DIM;j++) xi[j]=x[j];
       for(j=0;j<DIM;j++) xi_car[j]=x_car[j];
 
-      if(prtbp_del_car_inv(mu,SECg2,(N-i),xi,xi_car,&t))
+      if(prtbp_del_car_inv(mu,sec,(N-i),xi,xi_car,&t))
       {
          fprintf(stderr, "omega_pos_stoch: error computing point P^{i}(z)\n");
          return(1);
@@ -228,6 +227,7 @@ int omega_pos_stoch(double mu, double x[DIM], double x_car[DIM], int N,
   This is computed using numerical integration.
  
   \param[in] mu 	mass parameter for the RTBP
+  \param[in] sec    Poincare section: sec={SECg,SECg2}
 
   \param[in] x    [DIM]	x=(l,L,g,G),     point z^u, on the section g=0.
   \param[in] x_car[DIM]	x=(x,y,p_x,p_y), point z^u, on the section g=0.
@@ -244,17 +244,13 @@ int omega_pos_stoch(double mu, double x[DIM], double x_car[DIM], int N,
   
   \returns
   a non-zero error code to indicate an error and 0 to indicate success.
- 
-  \remark We assume that point $z_u$ is on the SECg \f$ \{g=0\} \f$
-  section.
-
  */
 
 // NOTE: Instead of P^{N-i}(z^u), we could have used
 // frtbp_red(2(N-i)\pi, z^u). They should give the same point.
 
-int omega_neg_stoch(double mu, double x[DIM], double x_car[DIM], int N, 
-        double T0, double *omega)
+int omega_neg_stoch(double mu, section_t sec, double x[DIM], double x_car[DIM], 
+		int N, double T0, double *omega)
 {
    double result, error;
 
@@ -285,7 +281,7 @@ int omega_neg_stoch(double mu, double x[DIM], double x_car[DIM], int N,
       for(j=0;j<DIM;j++) xi[j]=x[j];
       for(j=0;j<DIM;j++) xi_car[j]=x_car[j];
 
-      if(prtbp_del_car(mu,SECg2,(N-i),xi,xi_car,&t))
+      if(prtbp_del_car(mu,sec,(N-i),xi,xi_car,&t))
       {
          fprintf(stderr, "omega_neg_stoch: error computing point P^{%d}(z^u)\n",
                (N-i));
@@ -324,6 +320,8 @@ int omega_neg_stoch(double mu, double x[DIM], double x_car[DIM], int N,
   It reads the following input from stdin:
   - mu
      mass parameter for the RTBP
+  - sec
+     Poincare section
 
   And a sequence of lines:
   - T
@@ -349,6 +347,8 @@ int omega_neg_stoch(double mu, double x[DIM], double x_car[DIM], int N,
 int main( )
 {
    double mu;
+   section_t sec;		/* Poincare section */
+
    double zu[DIM];	    /* preimage of primary homoclinic point */
    double zu_car[DIM];	/* preimage of primary homoclinic point (Cartesian) */
 
@@ -363,14 +363,31 @@ int main( )
       along homoclinic orbit (length of integration) */
    int M;	
 
-   // aux vars
+   // auxiliary vars
+   char section_str[10];    // holds input string "SEC1", "SEC2" etc
+
    int i;
    double t;
+   double w_neg2;	/* value of integral \omega_-^* */
 
-   // Input mass parameter
-   if(scanf("%le", &mu)<1)
+   // Input parameters from stdin.
+   if(scanf("%le %s", &mu, section_str)<2)
    {
       perror("main: error reading input");
+      exit(EXIT_FAILURE);
+   }
+
+   if (strcmp(section_str,"SEC1") == 0)
+      sec = SEC1;
+   else if (strcmp(section_str,"SEC2") == 0)
+      sec = SEC2;
+   else if (strcmp(section_str,"SECg") == 0)
+      sec = SECg;
+   else if (strcmp(section_str,"SECg2") == 0)
+      sec = SECg2;
+   else
+   {
+      perror("main: error reading section string");
       exit(EXIT_FAILURE);
    }
 
@@ -384,7 +401,7 @@ int main( )
       //T0 = (T-2*M_PI)/mu;
       T0 = T-2*M_PI;
 
-      //omega_pos(mu, zu, M, T0, &w_pos);
+      //omega_pos(mu, sec, zu, M, T0, &w_pos);
 
       // Compute $\omega_-^*$, integrating along $z(s) = \gamma^*(s)$.
       // Note: since the homoclinic point is at the symmetry axis, we have
@@ -392,9 +409,9 @@ int main( )
       //w_neg = -w_pos;
 
       // TESTING
-      omega_neg_stoch(mu, zu, zu_car, M-1, T0, &w_neg);
-      printf("%.15e\n", w_neg);
-      omega_neg_stoch(mu, zu, zu_car, M, T0, &w_neg);
+      omega_neg_stoch(mu, sec, zu, zu_car, M-1, T0, &w_neg2);
+      printf("%.15e ", w_neg2);
+      omega_neg_stoch(mu, sec, zu, zu_car, M, T0, &w_neg);
 
       //w_out = w_pos-w_neg;
 

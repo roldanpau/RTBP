@@ -58,7 +58,7 @@ double integrand_omega_in(double s, void *params)
    x[5] = 0;	// I (not used).
 
    // Compute x = \lambda(s)
-   status = frtbp_red(mu,s,x);
+   status = frtbp_red_l(mu,s,x);
    if(status)
    {
       fprintf(stderr, "integrand_omega_in: error integrating trajectory");
@@ -207,7 +207,7 @@ double integrand_inner_circ(double s, void *params)
    x[5] = 0;	// I (not used).
 
    // Compute x = \gamma(s)
-   status = frtbp_red(mu,s,x);
+   status = frtbp_red_l(mu,s,x);
    if(status)
    {
       fprintf(stderr, "integrand: error integrating trajectory");

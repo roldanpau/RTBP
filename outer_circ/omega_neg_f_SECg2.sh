@@ -5,7 +5,7 @@ datfile=omega_neg_f_SECg2.dat
 resfile=omega_neg_f_SECg2.res
 errfile=omega_neg_f_SECg2.err
 
-echo "0.95387536e-3" >$datfile   # mu
+echo "0.95387536e-3 SECg2" >$datfile   # mu
 
 cut -d ' ' -f 2 ../portbp/porbits.res > temp1    # period T
 

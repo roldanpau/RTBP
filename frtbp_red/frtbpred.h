@@ -37,4 +37,5 @@
   We request absolute local error 10^{-16} and relative local error 0.
   */
 
-int frtbp_red(double mu, double s1, double x[DIMRED]);
+int frtbp_red_l(double mu, double s1, double x[DIMRED]);
+int frtbp_red_g(double mu, double s1, double x[DIMRED]);
