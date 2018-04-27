@@ -276,8 +276,8 @@ int intersec_del_car_unst(double mu, section_t sec, double H, double p[2],
    // discrepancy.
    // Thus we enlarge [h1,h2] a little bit to account for this discrepancy.
    // NOTE: The number 0.9 is crucial! We tried 0.999 and did not work...
-   h1 *= 0.9;
-   h2 /= 0.9;
+   h1 *= 0.97;
+   h2 /= 0.97;
 
    T = gsl_root_fsolver_brent;
    s = gsl_root_fsolver_alloc (T);
@@ -530,7 +530,7 @@ distance_f_unst (double h, void *params)
        // Return distance(h) = l - g(q_u), 
        d=remainder(z_del[2]-l,2*M_PI);
    }
-   else if(sec==SECg)
+   else if(sec==SECg || sec==SECg2)
    {
        // Return distance(h) = l - l(q_u), 
        d=remainder(z_del[0]-l,2*M_PI);

@@ -353,6 +353,7 @@ bool crossing_fwd_del (section_t sec, double x[DIM], double y[DIM])
    // auxiliary variables
    double n1,n2;
    bool bCrossing;
+   double rem1, rem2;
 
    switch(sec)
    {
@@ -383,7 +384,17 @@ bool crossing_fwd_del (section_t sec, double x[DIM], double y[DIM])
               // Inevitably, g will jump by almost TWOPI when (x,y) changes
               // from the 2nd quadrant to the 3rd (see cardel.c).
               // We need to exclude this case as a "fake" crossing of section.
+              //
+              // NOTE: Maybe it would be better to rule out fake crossings by
+              // looking if x[2]*y[2]<0.
               bCrossing = ((n1!=n2) && !(fabs(x[2]-y[2])>(TWOPI-1.0)));
+              break;
+          }
+      case SECg2 :	// section {g=\pi}
+          {
+              rem1 = remainder(x[2]-M_PI, TWOPI);
+              rem2 = remainder(y[2]-M_PI, TWOPI);
+              bCrossing = ((rem1*rem2<0) && !(fabs(x[2])<0.1 && fabs(y[2])<0.1));
               break;
           }
    }
@@ -422,6 +433,7 @@ bool crossing_bwd_del (section_t sec, double x[DIM], double y[DIM])
    // auxiliary variables
    double n1,n2;
    bool bCrossing;
+   double rem1, rem2;
 
    switch(sec)
    {
@@ -452,7 +464,17 @@ bool crossing_bwd_del (section_t sec, double x[DIM], double y[DIM])
               // Inevitably, g will jump by almost TWOPI when (x,y) changes
               // from the 2nd quadrant to the 3rd (see cardel.c).
               // We need to exclude this case as a "fake" crossing of section.
+              //
+              // NOTE: Maybe it would be better to rule out fake crossings by
+              // looking if x[2]*y[2]<0.
               bCrossing = ((n1!=n2) && !(fabs(x[2]-y[2])>(TWOPI-0.1)));
+              break;
+          }
+      case SECg2 :	// section {g=\pi}
+          {
+              rem1 = remainder(x[2]-M_PI, TWOPI);
+              rem2 = remainder(y[2]-M_PI, TWOPI);
+              bCrossing = ((rem1*rem2<0) && !(fabs(x[2])<0.1 && fabs(y[2])<0.1));
               break;
           }
    }

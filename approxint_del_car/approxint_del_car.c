@@ -342,6 +342,16 @@ u_i (double mu, section_t sec, int k, double a, double *l4_del, double *l4,
           // if the angle has been reset from \pi to -\pi
           //if(l2 < l1) break;
        }
+       else if(sec==SECg2)
+       {
+          // For the upper branch, since dl/dt<0, it is enough to check 
+          // if the angle has been reset from >a to <a
+          if(l1 > a && l2 < a) break;
+          
+          // For the lower branch, since dl/dt>0, it is enough to check 
+          // if the angle has been reset from <a to >a
+          //if(l1 < a && l2 > a) break;
+       }
        else
        {
           fprintf(stderr, "u_i: unknown section type. Exiting\n");

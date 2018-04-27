@@ -161,7 +161,7 @@ int omega_pos_stoch(double mu, double x[DIM], double x_car[DIM], int N,
       for(j=0;j<DIM;j++) xi[j]=x[j];
       for(j=0;j<DIM;j++) xi_car[j]=x_car[j];
 
-      if(prtbp_del_car_inv(mu,SECg,(N-i),xi,xi_car,&t))
+      if(prtbp_del_car_inv(mu,SECg2,(N-i),xi,xi_car,&t))
       {
          fprintf(stderr, "omega_pos_stoch: error computing point P^{i}(z)\n");
          return(1);
@@ -285,7 +285,7 @@ int omega_neg_stoch(double mu, double x[DIM], double x_car[DIM], int N,
       for(j=0;j<DIM;j++) xi[j]=x[j];
       for(j=0;j<DIM;j++) xi_car[j]=x_car[j];
 
-      if(prtbp_del_car(mu,SECg,(N-i),xi,xi_car,&t))
+      if(prtbp_del_car(mu,SECg2,(N-i),xi,xi_car,&t))
       {
          fprintf(stderr, "omega_neg_stoch: error computing point P^{%d}(z^u)\n",
                (N-i));

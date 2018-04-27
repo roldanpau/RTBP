@@ -141,8 +141,9 @@ int prtbp_del_car(double mu, section_t sec, int cuts, double x_del[DIM],
    // If it is slightly before the section, then one more spureous iterate
    // will be counted.
    if(sec==SEC1) x_del[0]=0;
-   else if(sec==SEC2) x_del[0]=-M_PI;
+   else if(sec==SEC2) x_del[0]=-M_PI;   // Since dl/dt>0
    else if(sec==SECg) x_del[2]=0;
+   else if(sec==SECg2) x_del[2]=M_PI;   // Since dg/dt<0
 
    // Set time to reach Poincare section
    (*ti)=t_pre+t1;
@@ -218,9 +219,9 @@ int prtbp_del_car_inv(double mu, section_t sec, int cuts,
    // If it is slightly before the section, then one more spureous iterate
    // will be counted.
    if(sec==SEC1) x_del[0]=0;
-   else if(sec==SEC2) x_del[0]=M_PI;
+   else if(sec==SEC2) x_del[0]=M_PI;   // Since dl/dt>0
    else if(sec==SECg) x_del[2]=0;
-
+   else if(sec==SECg2) x_del[2]=-M_PI;   // Since dg/dt<0
 
    // Set time to reach Poincare section
    (*ti)=t_pre+t1;
@@ -258,6 +259,11 @@ bool onsection_del_car (section_t sec, double a[DIM])
       case SECg :       // section {g=0}
          {
             bonsection = (fabs(remainder(g,TWOPI))<POINCARE_DEL_CAR_TOL);
+            break;
+         }
+      case SECg2 :       // section {g=\pi}
+         {
+            bonsection = (fabs(remainder(g-M_PI,TWOPI))<POINCARE_DEL_CAR_TOL);
             break;
          }
    }
@@ -312,6 +318,11 @@ double inter_del_car_f(double t, void *p)
             d = remainder(g,TWOPI);
 	        //fprintf(stderr,"DEBUG: t=%.15le, y=%.15le, px=%.15le, g=%.15le\n",
 			//		t, pt[1], pt[2], g);
+            break;
+         }
+      case SECg2 :       // section {g=\pi}
+         {
+            d = remainder(g-M_PI,TWOPI);
             break;
          }
    }
