@@ -20,6 +20,13 @@
 #include <frtbpred.h>
 #include <prtbp_del_car.h>
 
+// We request a absolute error of 0 and a relative error $10^{-13}$.
+
+// NOTE: we can't reach accuracy of 10^{-13} when computing
+// omega_pos_f, so we lower it to 10^{-9}
+const double INTEGRATION_EPSABS = 0.0;
+const double INTEGRATION_EPSREL = 1.e-9;
+
 /// Parameters to the \ref integrand_omega_pm function.
 struct iparams_omega_pm
 {
@@ -172,12 +179,8 @@ int omega_pos_stoch(double mu, section_t sec, double x[DIM], double x_car[DIM],
       params.x[3] = xi[3];
 
       // Integrate integrand function from -2\pi to 0. 
-      // We request a absolute error of 0 and a relative error $10^{-13}$.
-
-      // NOTE: we can't reach accuracy of 10^{-13} when computing
-      // omega_pos_f, so we lower it to 10^{-9}
-      gsl_integration_qags (&F, -2*M_PI, 0, 0, 1.e-9, 1000, w, &result,
-	    &error); 
+      gsl_integration_qags (&F, -2*M_PI, 0, INTEGRATION_EPSABS,
+			  INTEGRATION_EPSREL, 1000, w, &result, &error); 
       fprintf (stderr, "estimated error = % .3le\n", error);
 
       // \omega_+
@@ -294,12 +297,8 @@ int omega_neg_stoch(double mu, section_t sec, double x[DIM], double x_car[DIM],
       params.x[3] = xi[3];
 
       // Integrate integrand function from 2\pi to 0. 
-      // We request a absolute error of 0 and a relative error $10^{-13}$.
-
-      // NOTE: we can't reach accuracy of 10^{-13} when computing
-      // omega_pos_f, so we lower it to 10^{-9}
-      gsl_integration_qags (&F, 2*M_PI, 0, 0, 1.e-9, 1000, w, &result,
-	    &error); 
+      gsl_integration_qags (&F, 2*M_PI, 0, INTEGRATION_EPSABS,
+			  INTEGRATION_EPSREL, 1000, w, &result, &error); 
       fprintf (stderr, "estimated error = % .3le\n", error);
 
       // \omega_-
@@ -368,7 +367,7 @@ int main( )
 
    int i;
    double t;
-   double w_neg2;	/* value of integral \omega_-^* */
+   double w_neg_test;	/* value of integral \omega_-^* */
 
    // Input parameters from stdin.
    if(scanf("%le %s", &mu, section_str)<2)
@@ -409,16 +408,20 @@ int main( )
       //w_neg = -w_pos;
 
       // TESTING
-      omega_neg_stoch(mu, sec, zu, zu_car, M-1, T0, &w_neg2);
-      printf("%.15e ", w_neg2);
-      omega_neg_stoch(mu, sec, zu, zu_car, M, T0, &w_neg);
+	  for(i=1; i<=M; i++) 
+	  {
+		  omega_neg_stoch(mu, sec, zu, zu_car, i, T0, &w_neg_test);
+		  printf("%d %.15e \n", i, w_neg_test);
 
-      //w_out = w_pos-w_neg;
+		  //omega_neg_stoch(mu, sec, zu, zu_car, M, T0, &w_neg);
 
-      // Output result to stdout.
-      printf("%.15e\n", w_neg);
-      //printf("%.15e\n", w_pos);
-      fflush(NULL);
+		  //w_out = w_pos-w_neg;
+
+		  // Output result to stdout.
+		  //printf("%.15e\n", w_neg);
+		  //printf("%.15e\n", w_pos);
+		  fflush(NULL);
+	  }
    }
    exit(EXIT_SUCCESS);
 }
