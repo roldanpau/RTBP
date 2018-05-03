@@ -46,7 +46,7 @@ int main( )
    }
 
    // Integrate trajectory numerically. 
-   status=frtbp_red_l(mu,s1,x);
+   status=frtbp_red_g(mu,s1,x);
    if(status)
    {
       fprintf(stderr, "main: error integrating trajectory");

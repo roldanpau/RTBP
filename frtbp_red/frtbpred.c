@@ -10,11 +10,11 @@
 #include <gsl/gsl_odeiv.h>
 #include "rtbpred.h"	// DIMRED, rtbp_red
 
+double EPS_ABS=1.e-16;     /* absolute error for local error control */
+double EPS_REL=0.0;        /* relative error for local error control */
+
 int frtbp_red_l(double mu, double s1, double x[DIMRED])
 {
-   double eps_abs = 1.e-16;     /* absolute error for local error control */
-   double eps_rel = 0.0;        /* relative error for local error control */
-
    double t = 0.0;
    double h;    /* step size */
    int status;
@@ -24,9 +24,9 @@ int frtbp_red_l(double mu, double s1, double x[DIMRED])
    gsl_odeiv_step *s = gsl_odeiv_step_alloc(T,DIMRED);
 
    // Control to determine optimal step size: keep the local error on each
-   // step within an absolute error of eps_abs and relative error of eps_rel
+   // step within an absolute error of EPS_ABS and relative error of EPS_REL
    // with respect to the solution.
-   gsl_odeiv_control *c = gsl_odeiv_control_y_new(eps_abs,eps_rel);
+   gsl_odeiv_control *c = gsl_odeiv_control_y_new(EPS_ABS,EPS_REL);
    gsl_odeiv_evolve *e = gsl_odeiv_evolve_alloc(DIMRED);
 
    // define system of equations (NULL = we don't provide the jacobian)
@@ -69,9 +69,6 @@ int frtbp_red_l(double mu, double s1, double x[DIMRED])
 
 int frtbp_red_g(double mu, double s1, double x[DIMRED])
 {
-   double eps_abs = 1.e-16;     /* absolute error for local error control */
-   double eps_rel = 0.0;        /* relative error for local error control */
-
    double t = 0.0;
    double h;    /* step size */
    int status;
@@ -81,9 +78,9 @@ int frtbp_red_g(double mu, double s1, double x[DIMRED])
    gsl_odeiv_step *s = gsl_odeiv_step_alloc(T,DIMRED);
 
    // Control to determine optimal step size: keep the local error on each
-   // step within an absolute error of eps_abs and relative error of eps_rel
+   // step within an absolute error of EPS_ABS and relative error of EPS_REL
    // with respect to the solution.
-   gsl_odeiv_control *c = gsl_odeiv_control_y_new(eps_abs,eps_rel);
+   gsl_odeiv_control *c = gsl_odeiv_control_y_new(EPS_ABS,EPS_REL);
    gsl_odeiv_evolve *e = gsl_odeiv_evolve_alloc(DIMRED);
 
    // define system of equations (NULL = we don't provide the jacobian)
