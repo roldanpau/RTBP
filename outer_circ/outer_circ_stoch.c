@@ -164,8 +164,8 @@ int omega_pos_stoch(double mu, section_t sec, double x[DIM], double x_car[DIM],
    {
       // $\gamma_i(s)$ is the homoclinic trajectory that starts at the
       // point \xi = P^{-(N-i)}(z^s) = P^{i}(z). 
-      for(j=0;j<DIM;j++) xi[j]=x[j];
-      for(j=0;j<DIM;j++) xi_car[j]=x_car[j];
+       dblcpy(xi,x,DIM);
+       dblcpy(xi_car,x_car,DIM);
 
       if(prtbp_del_car_inv(mu,sec,(N-i),xi,xi_car,&t))
       {
@@ -173,10 +173,7 @@ int omega_pos_stoch(double mu, section_t sec, double x[DIM], double x_car[DIM],
          return(1);
       }
 
-      params.x[0] = xi[0];
-      params.x[1] = xi[1];
-      params.x[2] = xi[2];
-      params.x[3] = xi[3];
+      dblcpy(params.x, xi, DIM);
 
       // Integrate integrand function from -2\pi to 0. 
       gsl_integration_qags (&F, -2*M_PI, 0, INTEGRATION_EPSABS,
@@ -281,8 +278,8 @@ int omega_neg_stoch(double mu, section_t sec, double x[DIM], double x_car[DIM],
    {
       // $\gamma_i(s)$ is the homoclinic trajectory that starts at the
       // point \xi = P^{N-i}(z^u) = P^{-i}(z). 
-      for(j=0;j<DIM;j++) xi[j]=x[j];
-      for(j=0;j<DIM;j++) xi_car[j]=x_car[j];
+       dblcpy(xi,x,DIM);
+       dblcpy(xi_car,x_car,DIM);
 
       if(prtbp_del_car(mu,sec,(N-i),xi,xi_car,&t))
       {
@@ -291,10 +288,7 @@ int omega_neg_stoch(double mu, section_t sec, double x[DIM], double x_car[DIM],
          return(1);
       }
 
-      params.x[0] = xi[0];
-      params.x[1] = xi[1];
-      params.x[2] = xi[2];
-      params.x[3] = xi[3];
+      dblcpy(params.x, xi, DIM);
 
       // Integrate integrand function from 2\pi to 0. 
       gsl_integration_qags (&F, 2*M_PI, 0, INTEGRATION_EPSABS,
