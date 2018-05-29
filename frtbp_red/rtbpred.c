@@ -5,6 +5,7 @@
     $Date: 2013-03-26 22:18:24 $
 */
 
+#include <math.h>	        // fabs
 #include <gsl/gsl_errno.h>	// GSL_SUCCESS
 #include <rtbpdel.h>		// ERR_COLLISION, rtbp_del
 
@@ -60,6 +61,12 @@ int rtbp_red_l(double s, const double *x, double *y, void *params)
    // Reduced vector field is simply the non-reduced one scaled by the $\dot
    // l$ component.
    dl = y[0];
+   if(fabs(dl)<1.e-15)
+   {
+       fprintf(stderr, "rtbp_red: Singularity of the vectorfield!\n");
+       return 2;
+   }
+
    y[0] = 1; 		// dl/ds
    y[1] /= dl;		// dL/ds
    y[2] /= dl; 		// dg/ds
@@ -87,6 +94,15 @@ int rtbp_red_g(double s, const double *x, double *y, void *params)
    // Reduced vector field is simply the non-reduced one scaled by the $\dot
    // g$ component.
    dg = y[2];
+   if(fabs(dg)<1.e-15)
+   {
+       fprintf(stderr, "rtbp_red: Singularity of the vectorfield!\n");
+       return 2;
+   }
+
+   // DEBUG:
+   fprintf(stderr, "dl=%e, dg=%e\n", y[0], y[2]);
+
    y[0] /= dg; 		// dl/ds
    y[1] /= dg;		// dL/ds
    y[2] = 1; 		// dg/ds
