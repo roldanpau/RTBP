@@ -28,7 +28,7 @@
 #include "lift.h"
 
 /// Number of points in discretization of linear segment
-const int NPOINTS = 10000; 
+const int NPOINTS = 1000; 
 
 /**
   Main program.
@@ -36,13 +36,14 @@ const int NPOINTS = 10000;
   Input params (stdin): 
   
 //    - mass parameter 
-//    - Poincare section "sec"
+//    - Cartesian Poincare section "sec"
 //    - energy value "H"
 //    - number of cuts "k" with Poincare section
 //    - fixed point "p"
 //    - linear unstable (or stable) direction "v"
 //    - unstable (or stable) eigenvalue "lambda"
-//    - number of desired iterations by the Poincare map "n"
+//    - Delaunay Poincare section "sec_del"
+//    - number of desired iterations by the Delaunay Poincare map "n"
 //    - "stable": flag specifying whether to compute the unstable manifold
 //    (unstable==0) or the stable manifold (stable==1).
 //    - h: small increment in the direction of v
@@ -70,7 +71,9 @@ int main( )
    double p[2];		// fixed point
    double v[2];		// stable/unstable direction
    double lambda;	// stable/unstable eigenvalue
-   int n;		// number of desired iterations of linear segment
+
+   section_t sec_del;   // Delaunay Poincare section
+   int n;		        // number of desired iterations of linear segment
 
    // "stable" flag specifies wheather we want to compute the unstable (=0)
    // or stable (=1) manifold
@@ -96,10 +99,12 @@ int main( )
    int status, iter, i, j;
    double ti;
    char section_str[10];        // holds input string "SEC1", "SEC2" etc
+   char sec_del_str[10];        // holds input string "SECg", "SECg2" etc
 
    // 1. Input parameters from stdin.
-   if(scanf("%le %s %le %d %le %le %le %le %le %d %d %le %d", 
-	    &mu, section_str, &H, &k, p, p+1, v, v+1, &lambda, &n, &stable, &h) < 12)
+   if(scanf("%le %s %le %d %le %le %le %le %le %s %d %d %le %d", 
+        &mu, section_str, &H, &k, p, p+1, v, v+1, &lambda, sec_del_str, &n,
+        &stable, &h) < 13)
    {
       perror("main: error reading input");
       exit(EXIT_FAILURE);
@@ -112,6 +117,16 @@ int main( )
    else
    {
       perror("main: error reading section string");
+      exit(EXIT_FAILURE);
+   }
+
+   if (strcmp(sec_del_str,"SECg") == 0)
+      sec_del = SECg;
+   else if (strcmp(sec_del_str,"SECg2") == 0)
+      sec_del = SECg2;
+   else
+   {
+      perror("main: error reading sec_del string");
       exit(EXIT_FAILURE);
    }
 
@@ -165,7 +180,7 @@ int main( )
 	 {
 	    if(!stable)	// unstable manifold
 	    {
-	       if(prtbp_del_car(mu,SECg,1,l4_del+DIM*i,l4+DIM*i,&ti))
+	       if(prtbp_del_car(mu,sec_del,1,l4_del+DIM*i,l4+DIM*i,&ti))
 	       {
               fprintf(stderr, "main: error computing Poincare map\n");
               exit(EXIT_FAILURE);
@@ -173,7 +188,7 @@ int main( )
 	    }
 	    else		// stable manifold
 	    {
-	       if(prtbp_del_car_inv(mu,SECg,1,l4_del+DIM*i,l4+DIM*i,&ti))
+	       if(prtbp_del_car_inv(mu,sec_del,1,l4_del+DIM*i,l4+DIM*i,&ti))
 	       {
               fprintf(stderr, "main: error computing inverse Poincare map\n");
               exit(EXIT_FAILURE);
