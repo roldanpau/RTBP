@@ -28,7 +28,7 @@
 #include "lift.h"
 
 /// Number of points in discretization of linear segment
-const int NPOINTS = 10; 
+const int NPOINTS = 10000; 
 
 /**
   Main program.

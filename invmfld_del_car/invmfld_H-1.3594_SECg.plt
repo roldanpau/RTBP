@@ -7,9 +7,6 @@ unset label
 
 #set out "invmfld_H\-1.3594_SECg.eps"
 #set term post eps
-
-#set out "invmfld_ell05_SEC2.eps"
-#set term post eps
 #set title "Invariant manifolds of fixed point"
 set xlabel "l"
 set ylabel "L"
@@ -35,10 +32,10 @@ set style line 2 lt 0 lc rgb "blue"
 #stmfld_H-1.3594_p1.res" u ($1):(-$2) = unstmfld of p_2
 
 plot [-0.1:2*pi+0.1] \
-"unstmfld_H-1.3594_SECg_br1.res" u ($1<0 ? $1+2*pi : $1):2 w p ls 1 not, \
-"unstmfld_H-1.3594_SECg_br2.res" u ($1<0 ? $1+2*pi : $1):2 w p ls 1 not, \
-"unstmfld_H-1.3594_SECg_br1.res" u ($1<0 ? -$1 : 2*pi-$1):2 w p ls 2 not, \
-"unstmfld_H-1.3594_SECg_br2.res" u ($1<0 ? -$1 : 2*pi-$1):2 w p ls 2 not
+"unstmfld_H-1.3594_SECg_br1_cut.res" u ($1<0 ? $1+2*pi : $1):2 w l ls 1 not, \
+"unstmfld_H-1.3594_SECg_br2_cut.res" u ($1<0 ? $1+2*pi : $1):2 w l ls 1 not, \
+"unstmfld_H-1.3594_SECg_br1_cut.res" u ($1<0 ? -$1 : 2*pi-$1):2 w l ls 2 not, \
+"unstmfld_H-1.3594_SECg_br2_cut.res" u ($1<0 ? -$1 : 2*pi-$1):2 w l ls 2 not
 
 #"unstmfld_neg.res" w l lt 1 lc 1 not, \
 #"stmfld.res" w l lt 1 lc 3 not, \
