@@ -1,9 +1,12 @@
 /*! \file
-    \brief Outer Map of the Circular Problem for Stochastic paper: main prog.
+    \brief Outer Map of the Circular Problem for Stochastic paper: test prog.
 
-    Compute the integrals $\omega_+^j$ and $\omega_-^j$ related to the outer
-    map of the circular problem.
+    Test convergence of the integral defining $\omega_-$ as a function of the
+    number of poincare iterates $N$ in the following way:
+    For each $N$, compute the difference $|\int_0^N ... - \int_0^^{N-1}|$.
 
+    This difference should go to zero as $N\to +\infty$, and ideally it should
+    be much smaller than the size of $\omega_-$ itself.
 
     $Author: roldan $
     $Date: 2013-03-26 22:32:02 $
@@ -19,7 +22,7 @@
 #include "outer_circ_stoch_module.h"
 
 /**
-  Outer Map of the Circular Problem: main prog.
+  Outer Map of the Circular Problem: test prog.
 
   This program computes the integrals \f$ \omega_{+,-}^j \f$ related to the
   outer map of the circular problem.
@@ -74,6 +77,10 @@ int main( )
    // auxiliary vars
    char section_str[10];    // holds input string "SEC1", "SEC2" etc
 
+   int i;
+   double t;
+   double w_neg_test;	/* value of integral \omega_-^* */
+
    // Input parameters from stdin.
    if(scanf("%le %s", &mu, section_str)<2)
    {
@@ -112,14 +119,21 @@ int main( )
       // \omega_-^* = -\omega_+^*.
       //w_neg = -w_pos;
 
-      omega_neg_stoch(mu, sec, zu, zu_car, M, T0, &w_neg);
+      // TESTING
+	  for(i=1; i<=M; i++) 
+	  {
+		  omega_neg_stoch(mu, sec, zu, zu_car, i, T0, &w_neg_test);
+		  printf("%d %.15e \n", i, w_neg_test);
 
-      //w_out = w_pos-w_neg;
+		  //omega_neg_stoch(mu, sec, zu, zu_car, M, T0, &w_neg);
 
-      // Output result to stdout.
-      printf("%.15e\n", w_neg);
-      //printf("%.15e\n", w_pos);
-      fflush(NULL);
+		  //w_out = w_pos-w_neg;
+
+		  // Output result to stdout.
+		  //printf("%.15e\n", w_neg);
+		  //printf("%.15e\n", w_pos);
+		  fflush(NULL);
+	  }
    }
    exit(EXIT_SUCCESS);
 }
