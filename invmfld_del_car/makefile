@@ -6,7 +6,7 @@ includedir = $(prefix)/include
 libdir = $(exec_prefix)/lib
 CFLAGS = -O3
 LDFLAGS = -O3
-LDLIBS = -lm -lgsl -lgslcblas -lds
+LDLIBS = -lds -lm -lgsl -lgslcblas
 
 RESULTS = \
 	  unstmfld.res unstmfld_neg.res \

@@ -102,7 +102,7 @@ int main( )
    char sec_del_str[10];        // holds input string "SECg", "SECg2" etc
 
    // 1. Input parameters from stdin.
-   if(scanf("%le %s %le %d %le %le %le %le %le %s %d %d %le %d", 
+   if(scanf("%le %s %le %d %le %le %le %le %le %s %d %d %le", 
         &mu, section_str, &H, &k, p, p+1, v, v+1, &lambda, sec_del_str, &n,
         &stable, &h) < 13)
    {
