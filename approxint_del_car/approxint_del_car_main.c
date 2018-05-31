@@ -7,17 +7,11 @@
 #include <stdlib.h>	// EXIT_SUCCESS, EXIT_FAILURE
 #include <string.h>	// strcmp
 
-#include <section.h>	// SEC2, SECg
+#include <section.h>	// SEC2, SECg, branch_t
 #include <errmfld.h>	// h_opt
-#include "approxint_del_car.h"	// approxint_del_car_unst, approxint_del_car_st
 
-/// Specifies which branch (left or right) of a 1d manifold.
-/// 
-/// Given a fixed point p of a map P(x,p_x) of the plane, 
-/// and the stable/unstable manifold of p, 
-/// one can consider either the left or right branch of the manifold, 
-/// namely the branch with p_x>0 or the branch with p_x<0.
-typedef enum {LEFT, RIGHT} branch_t;
+// approxint_del_car_unst, approxint_del_car_st
+#include "approxint_del_car.h"	
 
 /** 
    Approximate Intersection of Invariant Manifolds: main prog
@@ -121,8 +115,21 @@ int main( )
       exit(EXIT_FAILURE);
    }
 
+   switch(branch) 
+   {
+       case 0 : 
+           br = LEFT;
+           break;
 
-   br = (branch==0 ? LEFT : RIGHT);
+       case 1 : 
+           br = RIGHT;
+           break;
+
+       default :
+               fprintf(stderr, "main: branch must be either 0 (LEFT) or 1 \
+                       (RIGHT)");
+               exit(EXIT_FAILURE);
+   }
 
    // For each energy level H in the range, do
    while(scanf("%le %le %le %le %le %le", 
@@ -145,7 +152,7 @@ int main( )
       // cross the $x$ axis).
       if(!stable)
       {
-	 status = approxint_del_car_unst(mu, sec, H, k, p, v, lambda, h, a, 
+	 status = approxint_del_car_unst(mu, sec, H, k, p, v, lambda, h, br, a, 
              &iter, &h_1, &h_2, z);
 	 if(status)
 	 {
@@ -156,8 +163,8 @@ int main( )
       }
       else
       {
-	 status = approxint_del_car_st(mu, H, k, p, v, lambda, h, a, &iter, &h_1, 
-	       &h_2, z);
+     status = approxint_del_car_st(mu, sec, H, k, p, v, lambda, h, br, a,
+             &iter, &h_1, &h_2, z);
 	 if(status)
 	 {
 	    fprintf(stderr, 

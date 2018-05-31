@@ -13,7 +13,7 @@
 #include <assert.h>
 #include <hinv.h>
 #include <cardel.h>
-#include <section.h>    // section_t
+#include <section.h>    // section_t, branch_t
 #include <prtbp_nl_2d.h>
 #include <prtbp_del_car.h>
 #include <disc.h>	   
@@ -33,17 +33,18 @@ const int MAXITER = 100;
 const int NPOINTS = 5;
 
 int 
-u_i (double mu, section_t sec, int k, double a, double *l4_del, double *l4, 
-        int *idx);
+u_i (double mu, section_t sec, int k, branch_t br, double a, double *l4_del,
+        double *l4, int *idx);
 int 
-s_i (double mu, double H, int k, double z[2], double a, double *l, int *idx);
+s_i (double mu, section_t sec, int k, double a, double *l4_del, double *l4, 
+        int *idx);
 
 // Obs! parameter lambda_u is not used?
 
 int 
 approxint_del_car_unst (double mu, section_t sec, double H, int k, 
-        double p[2], double v[2], double lambda, double h, double a, 
-        int *piter, double *h_1, double *h_2, double z[2])
+        double p[2], double v[2], double lambda, double h, branch_t br, 
+        double a, int *piter, double *h_1, double *h_2, double z[2])
 {
    double p0[2];        // p0 = p+hv
    double p1[2];        // p1 = P(p0)
@@ -101,13 +102,13 @@ approxint_del_car_unst (double mu, section_t sec, double H, int k,
 
    // Flow the (discretized) linear segment to Delaunay section before the
    // iteration.
-   status=u_i(mu, sec, 1, a, l4_del, l4, &i);
+   status=u_i(mu, sec, 1, br, a, l4_del, l4, &i);
 
    // Iterate the (discretized) linear segment "iter" times by the Poincare map
    for(iter=1;iter<=MAXITER;iter++)
    {
       //fprintf(stderr, "DEBUG: before %d iteration of linear segment: l=%.15le, g=%.15le\n", iter, l4_del[0], l4_del[2]);
-      status=u_i(mu, sec, 1, a, l4_del, l4, &i);
+      status=u_i(mu, sec, 1, br, a, l4_del, l4, &i);
       //fprintf(stderr, "DEBUG: after %d iteration of linear segment: l=%.15le, g=%.15le\n", iter, l4_del[0], l4_del[2]);
       if(status)
       {
@@ -140,10 +141,10 @@ approxint_del_car_unst (double mu, section_t sec, double H, int k,
    return(0);
 }
 
-int 
-approxint_del_car_st (double mu, double H, int k, double p[2], double v[2],
-      double lambda, double h, double a, 
-      int *piter, double *h_1, double *h_2, double z[2])
+int
+approxint_del_car_st (double mu, section_t sec, double H, int k, 
+        double p[2], double v[2], double lambda, double h, branch_t br, 
+        double a, int *piter, double *h_1, double *h_2, double z[2])
 {
    double p0[2];        // p0 = p+hv
    double p1[2];        // p1 = P(p0)
@@ -252,6 +253,8 @@ approxint_del_car_st (double mu, double H, int k, double p[2], double v[2],
 // k
 //    number of cuts with poincare section per iterated poincare map
 //    $\sixmap$.
+// br
+//    branch type: br={LEFT, RIGHT}
 // a
 //    axis $p_x=a$ parallel to the $x$ axis.
 // lu
@@ -270,8 +273,8 @@ approxint_del_car_st (double mu, double H, int k, double p[2], double v[2],
 //    1: Problems computing the Poincare iterates.
 
 int 
-u_i (double mu, section_t sec, int k, double a, double *l4_del, double *l4, 
-        int *idx)
+u_i (double mu, section_t sec, int k, branch_t br, double a, double *l4_del,
+        double *l4, int *idx)
 {
    // Auxiliary variables
    int status, iter, i;
@@ -308,49 +311,69 @@ u_i (double mu, section_t sec, int k, double a, double *l4_del, double *l4,
 
        if(sec==SEC1)
        {
-          // For the upper branch, since dg/dt<0, it is enough to check 
-          // if the angle has passed from >a to <a
-          if(g1 > a && g2 < a) break;
-          
-          // For the lower branch, since dg/dt>0, it is enough to check 
-          // if the angle has passed from <a to >a
-          //if(g1 < a && g2 > a) break;
+           if(br==RIGHT) 
+           {
+              // For the upper branch, since dg/dt<0, it is enough to check 
+              // if the angle has passed from >a to <a
+              if(g1 > a && g2 < a) break;
+           }
+           else
+           {
+              // For the lower branch, since dg/dt>0, it is enough to check 
+              // if the angle has passed from <a to >a
+              if(g1 < a && g2 > a) break;
+           }
        }
        else if(sec==SEC2)
        {
-          // For the upper branch, since dg/dt<0, it is enough to check 
-          // if the angle has been reset from 0 to 2\pi
-          if(g2 > g1) {
-              //fprintf(stderr, "DEBUG: g=%.15le, gprime=%.15le\n", l4_del[DIM*i+2], l4_del[DIM*(i+1)+2]);
-              break;
-          }
-          
-          // For the lower branch, since dg/dt>0, it is enough to check 
-          // if the angle has been reset from 2\pi to 0
-          //if(g2 < g1) break;
+           if(br==RIGHT) 
+           {
+              // For the upper branch, since dg/dt<0, it is enough to check 
+              // if the angle has been reset from 0 to 2\pi
+              if(g2 > g1) {
+                  //fprintf(stderr, "DEBUG: g=%.15le, gprime=%.15le\n", l4_del[DIM*i+2], l4_del[DIM*(i+1)+2]);
+                  break;
+              }
+           }
+           else
+           {
+              // For the lower branch, since dg/dt>0, it is enough to check 
+              // if the angle has been reset from 2\pi to 0
+              if(g2 < g1) break;
+           }
        }
        else if(sec==SECg)
        {
-          // For the upper branch, since dl/dt<0, it is enough to check 
-          // if the angle has been reset from -\pi to \pi
-          if(l2 > l1) {
-              //fprintf(stderr, "DEBUG: g=%.15le, gprime=%.15le\n", l4_del[DIM*i+2], l4_del[DIM*(i+1)+2]);
-              break;
-          }
-          
-          // For the lower branch, since dl/dt>0, it is enough to check 
-          // if the angle has been reset from \pi to -\pi
-          //if(l2 < l1) break;
+           if(br==RIGHT) 
+           {
+              // For the upper branch, since dl/dt<0, it is enough to check 
+              // if the angle has been reset from -\pi to \pi
+              if(l2 > l1) {
+                  //fprintf(stderr, "DEBUG: g=%.15le, gprime=%.15le\n", l4_del[DIM*i+2], l4_del[DIM*(i+1)+2]);
+                  break;
+              }
+           }
+           else
+           {
+              // For the lower branch, since dl/dt>0, it is enough to check 
+              // if the angle has been reset from \pi to -\pi
+              if(l2 < l1) break;
+           }
        }
        else if(sec==SECg2)
        {
-          // For the upper branch, since dl/dt<0, it is enough to check 
-          // if the angle has been reset from >a to <a
-          if(l1 > a && l2 < a) break;
-          
-          // For the lower branch, since dl/dt>0, it is enough to check 
-          // if the angle has been reset from <a to >a
-          //if(l1 < a && l2 > a) break;
+           if(br==RIGHT) 
+           {
+              // For the upper branch, since dl/dt<0, it is enough to check 
+              // if the angle has been reset from >a to <a
+              if(l1 > a && l2 < a) break;
+           }
+           else
+           {
+              // For the lower branch, since dl/dt>0, it is enough to check 
+              // if the angle has been reset from <a to >a
+              if(l1 < a && l2 > a) break;
+           }
        }
        else
        {

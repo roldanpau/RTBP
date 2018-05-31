@@ -58,6 +58,7 @@
   Small linear displacement along the manifold. This is typically obtained in
   function \ref h_opt.
 
+  \param[in] br     branch type: br={LEFT, RIGHT}
   \param[in] a		line $g=a$ parallel to the $G$ axis.
 
   \param[out] piter
@@ -82,8 +83,8 @@
 
 int 
 approxint_del_car_unst (double mu, section_t sec, double H, int k, 
-        double p[2], double v[2], double lambda, double h, double a, 
-      int *piter, double *h_1, double *h_2, double z[2]);
+        double p[2], double v[2], double lambda, double h, branch_t br, 
+        double a, int *piter, double *h_1, double *h_2, double z[2]);
 
 /**
   Approximate intersection of stable invariant manifold with symmetry line.
@@ -91,7 +92,7 @@ approxint_del_car_unst (double mu, section_t sec, double H, int k,
   Exactly as \ref approxint_del_car_unst.
   */
   
-int 
-approxint_del_car_st (double mu, double H, int k, 
-        double p[2], double v[2], double lambda, double h, double a, 
-      int *piter, double *h_1, double *h_2, double z[2]);
+int
+approxint_del_car_st (double mu, section_t sec, double H, int k, 
+        double p[2], double v[2], double lambda, double h, branch_t br, 
+        double a, int *piter, double *h_1, double *h_2, double z[2]);
