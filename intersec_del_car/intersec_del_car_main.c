@@ -8,7 +8,8 @@
 #include <string.h>	// strcmp
 #include <rtbp.h>	// DIM
 
-#include <section.h>
+#include <section.h>    // section_t, branch_t
+
 #include "intersec_del_car.h"
 
 #include <utils_module.h>	// dblprint
@@ -18,6 +19,7 @@
  *
   \param[in] mu         mass parameter for the RTBP
   \param[in] sec        Poincare section: sec={SEC1,SEC2}
+  \param[in] br         branch type: br={LEFT, RIGHT}
   \param[in] H          energy value
 
   \param[in] n
@@ -54,6 +56,7 @@
  * 
  *    - mass parameter 
  *    - section type "sec": sec={SEC1,SEC2}
+ *    - branch type "br": br={LEFT, RIGHT}
  *    - stable flag
  *    - axis line "l"
  *
@@ -93,6 +96,7 @@ int main( )
 {
    double mu, H;
    section_t sec;   // Poincare section
+   branch_t br;     // branch type
 
    double p[2];		// fixed point
    double v[2];		// eigenvector
@@ -125,10 +129,11 @@ int main( )
 
    // auxiliary vars
    char section_str[10];    // holds input string "SEC1", "SEC2" etc
+   char branch_str[10];    // holds input string "LEFT", "RIGHT" etc
    int status;
 
    // 1. Input parameters from stdin.
-   if(scanf("%le %s %d %le", &mu, section_str, &stable, &l) < 4)
+   if(scanf("%le %s %s %d %le", &mu, section_str, branch_str, &stable, &l) < 5)
    {
       perror("main: error reading input");
       exit(EXIT_FAILURE);
@@ -148,6 +153,16 @@ int main( )
       exit(EXIT_FAILURE);
    }
 
+   if (strcmp(branch_str,"RIGHT") == 0)
+      br = RIGHT;
+   else if (strcmp(branch_str,"LEFT") == 0)
+      br = LEFT;
+   else
+   {
+      perror("main: error reading branch string");
+      exit(EXIT_FAILURE);
+   }
+
    while(scanf("%le %le %le %le %le %le %d %le %le", 
 	    &H, p, p+1, v, v+1, &lambda, &n, &h1, &h2) == 9)
    {
@@ -157,7 +172,7 @@ int main( )
       // the manifolds
       if(!stable)
       {
-          status = intersec_del_car_unst(mu, sec, H, p, v, lambda, n, 
+          status = intersec_del_car_unst(mu, sec, br, H, p, v, lambda, n, 
                   h1, h2, l, &h, p_u, &t, z_del, z_car, z_u, z_u_car);
           if(status)
           {
@@ -167,12 +182,13 @@ int main( )
       }
       else
       {
-	 status = intersec_del_car_st(mu, H, p, v, lambda, n, h1, h2, l, &h, p_u, &t, z);
-	 if(status)
-	 {
-	    fprintf(stderr, "main: error computing intersection point\n");
-	    exit(EXIT_FAILURE);
-	 }
+          status = intersec_del_car_st(mu, sec, br, H, p, v, lambda, n, 
+                  h1, h2, l, &h, p_u, &t, z_del, z_car, z_u, z_u_car);
+          if(status)
+          {
+              fprintf(stderr, "main: error computing intersection point\n");
+              exit(EXIT_FAILURE);
+          }
       }
 
       // 3. Output the following data to stdout:

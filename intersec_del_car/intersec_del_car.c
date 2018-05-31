@@ -18,6 +18,7 @@
 #include <prtbp_del_car.h>
 #include <lift.h>
 #include <utils_module.h>	// dblcpy
+#include <section.h>	    // section_t, branch_t
 
 /// Tolerance (precision) for bisection method.
 //
@@ -198,6 +199,7 @@ int iterate_del_car_unst(double mu, section_t sec, double H, int n,
   
   \param[in] mu         mass parameter for the RTBP
   \param[in] sec        Poincare section: sec={SEC1,SEC2}
+  \param[in] br         branch type: br={LEFT,RIGHT}
   \param[in] H          energy value
   \param[in] p          fixed point $p=(x,p_x)$
   \param[in] v          eigenvector associated to unstable direction
@@ -249,9 +251,9 @@ int iterate_del_car_unst(double mu, section_t sec, double H, int n,
 // =====
 // For the moment, we work with the 3:1 resonant family of periodic orbits.
 
-int intersec_del_car_unst(double mu, section_t sec, double H, double p[2], 
-        double v[2], double lambda, int n, double h1, double h2, double l,
-        double *h, double p_u[2], double *t, double z_del[DIM], 
+int intersec_del_car_unst(double mu, section_t sec, branch_t br, double H,
+        double p[2], double v[2], double lambda, int n, double h1, double h2,
+        double l, double *h, double p_u[2], double *t, double z_del[DIM], 
         double z_car[DIM], double z_u[DIM], double z_u_car[DIM])
 {
    const gsl_root_fsolver_type *T;
@@ -282,11 +284,16 @@ int intersec_del_car_unst(double mu, section_t sec, double H, double p[2],
    T = gsl_root_fsolver_brent;
    s = gsl_root_fsolver_alloc (T);
 
-   // For first branch, h1<h2, so...
-   gsl_root_fsolver_set (s, &f, h1, h2);
-
-   // For second branch, h2<h1, so...
-   //gsl_root_fsolver_set (s, &f, h2, h1);
+   if(br==RIGHT)
+   {
+       // For first branch, h1<h2, so...
+       gsl_root_fsolver_set (s, &f, h1, h2);
+   }
+   else
+   {
+       // For second branch, h2<h1, so...
+       gsl_root_fsolver_set (s, &f, h2, h1);
+   }
 
    // auxiliary vars
    int status;
@@ -353,10 +360,13 @@ int intersec_del_car_unst(double mu, section_t sec, double H, double p[2],
   Exactly as \ref intersec_del_car_unst.
   */
 
-int intersec_del_car_st(double mu, double H, double p[2], double v[2], 
-      double lambda, int n, double h1, double h2, double l,
-      double *h, double p_s[2], double *t, double z[2])
+int intersec_del_car_st(double mu, section_t sec, branch_t br, double H,
+        double p[2], double v[2], double lambda, int n, double h1, double h2,
+        double l, double *h, double p_u[2], double *t, double z_del[DIM], 
+        double z_car[DIM], double z_u[DIM], double z_u_car[DIM])
 {
+    /* OLD CODE
+
    const gsl_root_fsolver_type *T;
    gsl_root_fsolver *s;
 
@@ -393,7 +403,7 @@ int intersec_del_car_st(double mu, double H, double p[2], double v[2],
       {
 	iter++;
 	status = gsl_root_fsolver_iterate (s);
-	if (status)   /* check if solver is stuck */
+	if (status)   /* check if solver is stuck 
 	  break;
   
 	x_lo = gsl_root_fsolver_x_lower(s);
@@ -421,20 +431,21 @@ int intersec_del_car_st(double mu, double H, double p[2], double v[2],
    // Compute the following:
    // - point p_s
 
-    p_s[0] = p[0] + (*h) * v[0];
-    p_s[1] = p[1] + (*h) * v[1];
+    p_u[0] = p[0] + (*h) * v[0];
+    p_u[1] = p[1] + (*h) * v[1];
 
    // - intersection point z = P^{-1}(p_s),
    // - t: integration time to reach homoclinic point $z$.
 
-   z[0] = p_s[0];
-   z[1] = p_s[1];
+   z[0] = p_u[0];
+   z[1] = p_u[1];
    status=prtbp_2d_inv(mu,SEC2,H,2*n,z,t); 	// $z = P^{-n}(z)$
    if(status)
       {
 	 fprintf(stderr, "intersec_del_car: error computing intersection point\n");
 	 return(1);
       }
+      */
    return(0);
 }
 

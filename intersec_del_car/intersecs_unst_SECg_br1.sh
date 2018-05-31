@@ -11,8 +11,8 @@ cut -d ' ' -f 2-4 ../approxint_del_car/approxints_unst_SECg_br1.res \
     > temp4.txt    # n, h1, h2
 
 
-# Header: mu, sec, unstable flag, axis line $g=a$
-echo "0.95387536e-3 SECg 0 3.14159265358979323844" > $datfile
+# Header: mu, sec, branch, unstable flag, axis line $g=a$
+echo "0.95387536e-3 SECg RIGHT 0 3.14159265358979323844" > $datfile
 
 paste -d ' ' temp1.txt temp2.txt temp3.txt temp4.txt |tac >> $datfile
 
