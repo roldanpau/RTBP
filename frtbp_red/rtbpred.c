@@ -101,7 +101,7 @@ int rtbp_red_g(double s, const double *x, double *y, void *params)
    }
 
    // DEBUG:
-   fprintf(stderr, "dl=%e, dg=%e\n", y[0], y[2]);
+   //fprintf(stderr, "dl=%e, dg=%e\n", y[0], y[2]);
 
    y[0] /= dg; 		// dl/ds
    y[1] /= dg;		// dL/ds

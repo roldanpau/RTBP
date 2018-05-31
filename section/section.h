@@ -24,4 +24,12 @@ extern const double TWOPI;
 /// Thus we define a new section SECg2 that corresponds to {g=\pi}.
 typedef enum {SEC1, SEC2, SECg, SECg2} section_t;    
 
+/// Specifies which branch (left or right) of a 1d manifold.
+/// 
+/// Given a fixed point p of a map P(x,p_x) of the plane, 
+/// and the stable/unstable manifold of p, 
+/// one can consider either the left or right branch of the manifold, 
+/// namely the branch with p_x>0 or the branch with p_x<0.
+typedef enum {LEFT, RIGHT} branch_t;
+
 #endif // SECTION_H_INCLUDED
