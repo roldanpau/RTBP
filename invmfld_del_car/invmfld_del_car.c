@@ -21,14 +21,14 @@
 #include <rtbp.h>	// DIM
 #include <hinv.h>	
 #include <cardel.h>
-#include <prtbp_2d.h>
+#include <prtbp_nl_2d.h>
 #include <prtbp_del_car.h>
 #include <errmfld.h>
 #include <disc.h>
 #include "lift.h"
 
 /// Number of points in discretization of linear segment
-const int NPOINTS = 1000; 
+const int NPOINTS = 100; 
 
 /**
   Main program.
@@ -146,14 +146,18 @@ int main( )
    p1[0] = p0[0];
    p1[1] = p0[1];
    if(!stable) 	// unstable manifold
-      status=prtbp_2d(mu,sec,H,k,p1,&ti); 	// $p_1 = P(p_0)$
+      status=prtbp_nl_2d(mu,sec,H,k,p1,&ti); 	// $p_1 = P(p_0)$
    else 	// stable manifold
-      status=prtbp_2d_inv(mu,sec,H,k,p1,&ti);	// $p_1 = P^{-1}(p_0)$
+      //status=prtbp_2d_inv(mu,sec,H,k,p1,&ti);	// $p_1 = P^{-1}(p_0)$
    if(status)
    {
       fprintf(stderr, "main: error computing Poincare map\n");
       return(1);
    }
+
+   // DEBUG:
+   //printf("p0: "); dblprint(p0,2); printf("\n");
+   //printf("p1: "); dblprint(p1,2); printf("\n");
 
    // Discretize linear segment
    disc(p0, p1, NPOINTS, l);
