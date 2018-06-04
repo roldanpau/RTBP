@@ -33,9 +33,9 @@ set style line 2 lt 0 lc rgb "blue"
 
 plot [-pi-0.1:pi+0.1] \
 "unstmfld_H-1.4994_SECg2_br1_cut.res" u 1:2 w l ls 1 not, \
-"unstmfld_H-1.4994_SECg2_br2_cut.res" u 1:2 w l ls 1 not, \
+"unstmfld_H-1.4994_SECg2_br2.res" u 1:2 w l ls 1 not, \
 "unstmfld_H-1.4994_SECg2_br1_cut.res" u (-$1):2 w l ls 2 not, \
-"unstmfld_H-1.4994_SECg2_br2_cut.res" u (-$1):2 w l ls 2 not
+"unstmfld_H-1.4994_SECg2_br2.res" u (-$1):2 w l ls 2 not
 
 #plot [-0.1:2*pi+0.1] \
 #"unstmfld_H-1.7194_SECg2_br1.res" u ($1<0 ? $1+2*pi : $1):2 w l ls 1 not, \
