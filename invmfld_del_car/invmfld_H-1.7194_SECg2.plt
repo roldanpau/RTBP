@@ -1,9 +1,10 @@
 unset label 
 
 # fixed points
-#set label "p0" at first -6.389031137499175e-02, 2.621258562749938e+00
-#set label "p1" at first -6.389031137499175e-02, -2.621258562749938e+00
-#set label "z" at first -0.087032, first 0.0
+set label "p" at first -pi+0.2, 6.923540823087978e-01
+set label "p" at first pi-0.2, 6.923540823087978e-01
+set label "z1" at first 0, 6.977129268113177e-01-0.0002
+set label "z2" at first 0, 6.928500635543233e-01+0.0002
 
 #set out "invmfld_H\-1.7194_SECg2.eps"
 #set term post eps
@@ -15,6 +16,7 @@ f(x)=0.0
 
 set style line 1 lt 10 lc rgb "red" 
 set style line 2 lt 0 lc rgb "blue" 
+set style line 3 lt 5 lc rgb "gray" 
 
 #"< echo -7.115565698852543e-02 2.457642042989651e+00" w p pt 2 lc 1 not, \
 #"< echo -7.115565698852543e-02 -2.457642042989651e+00" w p pt 2 lc 3 not, \
@@ -31,7 +33,9 @@ set style line 2 lt 0 lc rgb "blue"
 #unstmfld_H-1.7194_p1.res" u ($1):(-$2) = stmfld of p_2
 #stmfld_H-1.7194_p1.res" u ($1):(-$2) = unstmfld of p_2
 
-plot [-pi-0.1:pi+0.1] \
+set arrow from 0, graph 0 to 0, graph 1 nohead ls 3
+
+plot [-pi:pi] \
 "unstmfld_H-1.7194_SECg2_br1.res" u 1:2 w l ls 1 not, \
 "unstmfld_H-1.7194_SECg2_br2.res" u 1:2 w l ls 1 not, \
 "unstmfld_H-1.7194_SECg2_br1.res" u (-$1):2 w l ls 2 not, \
