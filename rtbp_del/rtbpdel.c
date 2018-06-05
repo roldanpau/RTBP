@@ -338,7 +338,6 @@ int dot_l(const double *x, double *dl, void *params)
    return GSL_SUCCESS;
 }
 
-/*
 int dot_g(const double *x, double *dg, void *params)
 {
    double mu = *(double *)params;
@@ -397,7 +396,6 @@ int dot_g(const double *x, double *dg, void *params)
 
    return GSL_SUCCESS;
 }
-*/
 
 // Compute \mu\partial_G \Delta H_{\circ}.
 // This function is almost identical to dot_g, except that we avoid the

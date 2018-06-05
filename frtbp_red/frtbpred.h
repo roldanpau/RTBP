@@ -11,8 +11,9 @@
   Flow of the Reduced Restricted Three Body Problem
 
   Compute the flow $\phi(s,x)$ of the reduced RTBP for a given time and
-  initial condition. Reduced means that we identify $l$ with time and then
-  we do not need to integrate this variable.
+  initial condition. Reduced means that we identify $l$ with time (in
+  frtbp_red_l) or $g$ with time (in frtbp_red_g) and then we do not need to
+  integrate this variable.
   The time $s$ may be positive or negative, allowing for forward or backward
   integration.
   The trajectory is integrated numerically.

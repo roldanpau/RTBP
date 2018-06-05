@@ -88,7 +88,7 @@ int rtbp_del(double t, const double *x, double *y, void *params);
  */
 int dot_l(const double *x, double *dl, void *params);
 
-//int dot_g(const double *x, double *dg, void *params);
+int dot_g(const double *x, double *dg, void *params);
 
 /**
   Compute the function f0.
