@@ -1,5 +1,5 @@
 // ==========================================
-// Continuation of the shift A^+ wrt energy H
+// Continuation of the shift A_in wrt energy H
 // ==========================================
 // FILE:          $RCSfile: inner_ell_stoch_main.c,v $
 // AUTHOR:        $Author: roldan $
@@ -7,11 +7,16 @@
 // DATE:          $Date: 2011-07-01 09:20:28 $
 //
 // PURPOSE:
-// Consider the family of 7:1 resonant periodic orbits in the RTBP.
+// Consider the family of 3:1 resonant periodic orbits in the RTBP.
+// Define the integral (a part of $B_in^j$ defined in the paper)
+//    A_in := i \int_0^{2\pi} \frac{\Delta H_ell^{1,+}\circ \lambda}
+//       {-1+\mu\partial_G \Delta H_circ\circ \lambda} e^{i\tilde\lambda}
+//       d\sigma.
 // Compute the periodic orbit for a given (wide) range of energies, and
-// compute how the integral $A^+$ changes when we change the energy H.
-// This function determines the twist of the inner map of the elliptic
-// problem.
+// compute how the integral $A_in$ changes when we change the energy H.
+//
+// The function $B_in^j = \frac{1-e^{i\omega}}{1-e^{i2\pi\nu}} A_in$ is
+// computed in outer_ell_stoch/B_in.c
 //
 // NOTES:
 //
@@ -65,6 +70,7 @@ int main( )
          perror("main: error writting output");
          exit(EXIT_FAILURE);
       }
+	  fflush(NULL);
    }
    exit(EXIT_SUCCESS);
 }

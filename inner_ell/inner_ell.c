@@ -54,7 +54,7 @@
 #include <stdlib.h>	// EXIT_SUCCESS, EXIT_FAILURE
 
 #include <gsl/gsl_integration.h>	// gsl_integration_qags
-#include <rtbpdel.h>			// rtbp_del, re_dDHell, im_dDHell
+#include <rtbpdel.h>			// rtbp_del, re_DHell, im_DHell
 #include <frtbpred.h>
 
 struct iparams_inner_ell
@@ -85,7 +85,7 @@ struct iparams_inner_ell
 // NOTES
 // =====
 //
-// CALLS TO: rtbp_del, re_dDHell
+// CALLS TO: rtbp_del, re_DHell
 
 double re_f_integrand(double mu, double x2[DIM])
 {
@@ -106,7 +106,7 @@ double re_f_integrand(double mu, double x2[DIM])
    }
 
    // Compute the real part of the numerator 
-   re_num = re_dDHell(x2,&mu);
+   re_num = re_DHell(x2,&mu);
 
    return re_num/den;
 }
@@ -133,7 +133,7 @@ double re_f_integrand(double mu, double x2[DIM])
 // NOTES
 // =====
 //
-// CALLS TO: rtbp_del, im_dDHell
+// CALLS TO: rtbp_del, im_DHell
 
 double im_f_integrand(double mu, double x2[DIM])
 {
@@ -154,7 +154,7 @@ double im_f_integrand(double mu, double x2[DIM])
    }
 
    // Compute the imaginary part of the numerator 
-   im_num = im_dDHell(x2,&mu);
+   im_num = im_DHell(x2,&mu);
 
    return im_num/den;
 }
@@ -224,7 +224,9 @@ double re_integrand_inner_ell(double s, void *params)
    re_f = re_f_integrand(mu,x2);
    im_f = im_f_integrand(mu,x2);
 
-   return re_f*cos(t) + im_f*sin(t);
+   // PRG (6/6/18): I believe this was computed wrong in the last paper!!!
+   //return re_f*cos(t) + im_f*sin(t);
+   return -(re_f*sin(t) + im_f*cos(t));
 }
 
 // name OF FUNCTION: im_integrand_inner_ell
@@ -293,7 +295,9 @@ double im_integrand_inner_ell(double s, void *params)
    re_f = re_f_integrand(mu,x2);
    im_f = im_f_integrand(mu,x2);
 
-   return re_f*sin(t) - im_f*cos(t);
+   // PRG (6/6/18): I believe this was computed wrong in the last paper!!!
+   //return re_f*sin(t) - im_f*cos(t);
+   return re_f*cos(t) - im_f*sin(t);
 }
 
 // name OF FUNCTION: re_inner_ell
