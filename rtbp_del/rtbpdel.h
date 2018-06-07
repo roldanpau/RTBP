@@ -137,5 +137,5 @@ int f0(const double *x, double *res, void *params);
  */
 int f0_stoch(const double *x, double *res, void *params);
 
-double re_dDHell(const double *x, void *params);
-double im_dDHell(const double *x, void *params);
+double re_DHell(const double *x, void *params);
+double im_DHell(const double *x, void *params);

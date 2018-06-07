@@ -11,9 +11,9 @@
 // Hamilt_del
 //    Computes the Hamiltonian of the RTBP problem in Delaunay coordinates.
 //
-// re_dDHell 
-// im_dDHell
-//    This function computes the function $\partial_t \Delta_{ell}^{1,+}$
+// re_DHell 
+// im_DHell
+//    This function computes the function $\Delta_{ell}^{1,+}$
 //    (real and imaginary part).
 
 #include <math.h>		// M_PI
@@ -132,7 +132,7 @@ double eccentric(double e, double l)
     return(r);
 }
 
-// This is used in functions re_dDHell, im_dDHell below
+// This is used in functions re_DHell, im_DHell below
 double Delta(double r, double v, double g)
 {
    return sqrt(r*r + 1.0 - 2.0*r*cos(v+g));
@@ -518,13 +518,13 @@ int f0_stoch(const double *x, double *res, void *params)
    return GSL_SUCCESS;
 }
 
-// name OF FUNCTION: re_dDHell
+// name OF FUNCTION: re_DHell
 // CREDIT: Marcel Guardia and Pau Roldan
 // PURPOSE:
 //    The inner dynamics of the elliptic problem is given by the complex
 //    integral $A^+$ (see Marcel's notes "Inner and outer dynamics").
-//    This function computes the function $\partial_t \Delta H_{ell}^{1,+}$
-//    (real part). See also my yellow notebook.
+//    This function computes the function $\Delta H_{ell}^{1,+}$ (real part).
+//    See also my yellow notebook.
 //
 // NOTES:
 //    This function is located in this file because it closely resembles the
@@ -538,13 +538,13 @@ int f0_stoch(const double *x, double *res, void *params)
 // - params pointer to the parameter of the system: the mass ratio "mu".
 // 
 // RETURN VALUE:
-// value of the function $\partial_t \Delta H_{ell}^{1,+}$ (real part).
+// value of the function $\Delta H_{ell}^{1,+}$ (real part).
 //
 // CALLS TO:
 //
 // CALLED FROM: re_integrand_inner_ell
 
-double re_dDHell(const double *x, void *params)
+double re_DHell(const double *x, void *params)
 {
    double mu = *(double *)params;
    double l = fmod(x[0],2*M_PI);
@@ -578,13 +578,13 @@ double re_dDHell(const double *x, void *params)
       mu/umu*(r/umu*sin(vg))/(D_r_umu*D_r_umu*D_r_umu);
 }
 
-// name OF FUNCTION: im_dDHell
+// name OF FUNCTION: im_DHell
 // CREDIT: Marcel Guardia and Pau Roldan
 // PURPOSE:
 //    The inner dynamics of the elliptic problem is given by the complex
 //    integral $A^+$ (see Marcel's notes "Inner and outer dynamics").
-//    This function computes the function $\partial_t \Delta H_{ell}^{1,+}$
-//    (imarinary part). See also my yellow notebook.
+//    This function computes the function $\Delta H_{ell}^{1,+}$ (imarinary
+//    part). See also my yellow notebook.
 //
 // NOTES:
 //    This function is located in this file because it closely resembles the
@@ -598,13 +598,13 @@ double re_dDHell(const double *x, void *params)
 // - params pointer to the parameter of the system: the mass ratio "mu".
 // 
 // RETURN VALUE:
-// value of the function $\partial_t \Delta H_{ell}^{1,+}$ (imaginary part).
+// value of the function $\Delta H_{ell}^{1,+}$ (imaginary part).
 //
 // CALLS TO:
 //
 // CALLED FROM: im_integrand_inner_ell
 
-double im_dDHell(const double *x, void *params)
+double im_DHell(const double *x, void *params)
 {
    double mu = *(double *)params;
    double l = fmod(x[0],2*M_PI);
