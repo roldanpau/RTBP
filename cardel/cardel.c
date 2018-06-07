@@ -14,6 +14,7 @@ void cardel(double X[DIM], double Y[DIM])
    double l,L,g,G;
 
    // auxiliary variables
+   double Lsq;                  // L^2
    double r = sqrt(x*x+y*y);	// radius (polar coords)
 
 
@@ -44,7 +45,9 @@ void cardel(double X[DIM], double Y[DIM])
 
    // PRG (04/05/2018): This line seems to prevent prtbp_del_car from
    // converging when trying to compute intersection with section.
-   L = sqrt( -1.0/( px*px + py*py -2.0/r ));
+   Lsq = -1.0/( px*px + py*py -2.0/r );
+   L = sqrt(Lsq);
+
    // In the line below, I try using the Hamiltonian of the RTBP instead of the
    // one of the 2BP. This seems to fix prtbp_del_car. However, I'm not
    // convinced it's correct...
@@ -55,9 +58,9 @@ void cardel(double X[DIM], double Y[DIM])
    // expression.
    // L = sqrt( -0.5/( J+G-mDH ) );
 
-   e = sqrt(1.0 - G*G/(L*L));
+   e = sqrt(1.0 - G*G/Lsq);
 
-   cu = 1.0/e*(1.0-r/(L*L));
+   cu = 1.0/e*(1.0-r/Lsq);
 
    // Make sure cos(u) is in the range [-1,1].
    // It can sometimes be outside the range due to roundoff.
