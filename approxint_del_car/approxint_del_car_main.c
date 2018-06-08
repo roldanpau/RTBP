@@ -141,6 +141,12 @@ int main( )
       // in the linear approximation of the manifold is smallest.
       h = h_opt(mu,SEC2,H,k,p,v,lambda,stable);
 
+      // Swap branches, to have RIGHT branch = upper branch in Delaunay, and
+      // LEFT branch = lower branch in Delaunay.
+      // This is only necessary in the stable case.
+      if(stable)
+          h=-h;
+
       // By default we work with the RIGHT branch of the manifolds.
       // To work with the LEFT branch of the manifolds instead,
       // we just take the negative of the displacement h in the linear

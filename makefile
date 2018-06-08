@@ -10,7 +10,7 @@ DIRS = rtbp taylor frtbp section hinv cardel prtbp_del_car prtbp utils \
        sec1sec2 \
        hyper \
        approxint_del_car \
-       inner_ell_stoch
+       inner_ell_stoch outer_ell_stoch
 
 # the sets of directories to do various things in
 BUILDDIRS = $(DIRS:%=build-%)
@@ -81,6 +81,7 @@ install-sec1sec2: build-portbp
 install-hyper: build-hyper
 install-approxint_del_car: build-approxint_del_car
 install-inner_ell_stoch: build-inner_ell_stoch
+install-outer_ell_stoch: build-outer_ell_stoch
 
 test: $(TESTDIRS) all
 $(TESTDIRS): 

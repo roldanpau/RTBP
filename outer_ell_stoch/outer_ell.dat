@@ -1,0 +1,37 @@
+0.95387536e-3 
+
+-1.6
+
+2.692746702860161e+00 1.912881089379898e+00 
+0.000000000000000e+00 1.463351068712191e+00
+
+3.590438604319427e+00 1.912881089379897e+00 
+0.000000000000000e+00 1.463351068712187e+00
+
+2.692747012422147e+00 1.912881022922339e+00 
+0.000000000000000e+00 1.463351059216689e+00
+
+3.590438294757439e+00 1.912881022922339e+00 
+0.000000000000000e+00 1.463351059216690e+00
+
+-7.827243574644292e+01
+
+6
+
+
+# Compute integral $B_{out}^{f,+}$ corresponding to INNER separatrix ("f"). 
+# Input: 
+# - mu
+# - energy H, 
+# - periodic point p3=(l,L,g,G), 
+# - periodic point p4=(l,L,g,G), 
+# - homoclinic point z2_u=(l,L,g,G),
+# - homoclinic point z2_s=(l,L,g,G),
+# omega_+, M
+
+# M is the number of iterations that we do to find the homoclinic
+# point starting from the linear fundam. segment.
+
+# z = 3.141592653589793e+00 1.898105382308375e+00 
+#0.0e+00 1.461215243215079e+00
+

@@ -304,11 +304,13 @@ double im_integrand_inner_ell_stoch(double s, void *params)
 // =======
 // The inner map for the elliptic problem is given by
 // 
-//    \[ A_{in}^j(I) = \mu\int_0^{T} \frac{\Delta H_{ell}^{1,+}}
+//    \[ B_{in}^j(I) = i\mu \frac{1-e^{i\omega}}{1-e^{i2\pi\nu}} 
+//       \int_0^{T} \frac{\Delta H_{ell}^{1,+}}
 //       {-1+\mu\partial_G \Delta H_{circ}} e^{it(s)} ds. \]
 //
 // Given an energy level $H$, this function computes the real part of
-// $A_{in}^j(I)$.
+// \[ A_{in}(I) := i\mu \int_0^{T} \frac{\Delta H_{ell}^{1,+}} 
+//       {-1+\mu\partial_G \Delta H_{circ}} e^{it(s)} ds. \]
 //
 // PARAMETERS
 // ==========
@@ -319,7 +321,7 @@ double im_integrand_inner_ell_stoch(double s, void *params)
 // x
 //    x=(l,L,g=0,G), periodic point of period 1, on the section g=0.
 // re_A
-//    On return of this function, re_A contains the real part of $A^+(I)$.
+//    On return of this function, re_A contains the real part of $A_{in}(I)$.
 // 
 // RETURN VALUE
 // ============
@@ -365,7 +367,8 @@ int re_inner_ell_stoch(double mu, double T, double x[DIM], double *re_A)
 // PURPOSE
 // =======
 // Given an energy level $H$, this function computes the imaginary part of
-// $A_{in}^j(I)$.
+// \[ A_{in}(I) := i\mu \int_0^{T} \frac{\Delta H_{ell}^{1,+}} 
+//       {-1+\mu\partial_G \Delta H_{circ}} e^{it(s)} ds. \]
 
 int im_inner_ell_stoch(double mu, double T, double x[DIM], double *im_A)
 {

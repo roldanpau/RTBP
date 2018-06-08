@@ -52,6 +52,10 @@
   success.
 */    
 
-int prtbp_nl_2d(double mu, section_t sec, double H, int cuts, double p[2], double *ti);
+int prtbp_nl_2d(double mu, section_t sec, double H, int cuts, double p[2],
+        double *ti);
+
+int prtbp_nl_2d_inv(double mu, section_t sec, double H, int cuts, double p[2],
+        double *ti);
 
 #endif // PRTBP_NL_2D_H_INCLUDED

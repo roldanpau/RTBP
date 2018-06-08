@@ -158,6 +158,46 @@ int iterate_del_car_unst(double mu, section_t sec, double H, int n,
    return(0);
 }
 
+int iterate_del_car_st(double mu, section_t sec, double H, int n, 
+        double p_u[2], double *t, double z_del[DIM], double z_car[DIM],
+	double z_u[DIM], double z_u_car[DIM])
+{
+    // auxiliary variables
+    int status;
+
+   // Lift point from \R^2 to \R^4
+   status=lift(mu,SEC2,H,1,p_u,z_car);
+   if(status)
+   {
+      perror("intersec_del_car: error lifting point");
+      return(1);
+   }
+
+   // Transform point to Delaunay coordinates
+   cardel(z_car,z_del);
+
+   // Flow the point to Delaunay section before the iteration.
+   status=prtbp_del_car_inv(mu,sec,1,z_del,z_car,t);  // $q_u = P^{n}(p_u)$
+   if(status)
+   {
+      fprintf(stderr, "intersec_del_car: error flowing point to Delaunay sec\n");
+      return(1);
+   }
+
+   // Return z_u
+   dblcpy(z_u,z_del, DIM);
+   dblcpy(z_u_car,z_car, DIM);
+
+   // unstable manifold
+   status=prtbp_del_car_inv(mu,sec,n,z_del,z_car,t);  // $q_u = P^{n}(p_u)$
+   if(status)
+   {
+      fprintf(stderr, "intersec_del_car: error computing Poincare map\n");
+      //return(1);
+   }
+   return(0);
+}
+
 /**
   Intersection of unstable invariant manifold with symmetry line.
 
@@ -365,13 +405,12 @@ int intersec_del_car_st(double mu, section_t sec, branch_t br, double H,
         double l, double *h, double p_u[2], double *t, double z_del[DIM], 
         double z_car[DIM], double z_u[DIM], double z_u_car[DIM])
 {
-    /* OLD CODE
-
    const gsl_root_fsolver_type *T;
    gsl_root_fsolver *s;
 
    struct dparams params;
    params.mu = mu;
+   params.sec = sec;
    params.H = H;
    params.p[0] = p[0];
    params.p[1] = p[1];
@@ -381,14 +420,29 @@ int intersec_del_car_st(double mu, section_t sec, branch_t br, double H,
    params.l = l;
    gsl_function f = {&distance_f_st, &params};
 
-   // For some reason, bisection method complains that interval [h1,h2] does
-   // not straddle 0, so we try to enlarge it a little bit.
-   h1 *= 0.9;
-   h2 /= 0.9;
+   // Bisection method sometimes complains that interval [h1,h2] does not
+   // straddle 0. The reason is that approxint_del_car sets h1 and h2 from
+   // points in the linear segment l, whereas intersec_del_car uses h1 and h2
+   // to recover those endpoints of the segment u_i, so there is a small
+   // discrepancy.
+   // Thus we enlarge [h1,h2] a little bit to account for this discrepancy.
+   // NOTE: The number 0.9 is crucial! We tried 0.999 and did not work...
+   h1 *= 0.97;
+   h2 /= 0.97;
 
    T = gsl_root_fsolver_brent;
    s = gsl_root_fsolver_alloc (T);
-   gsl_root_fsolver_set (s, &f, h1, h2);
+
+   if(br==RIGHT)
+   {
+       // For first branch, h2<h1, so...
+       gsl_root_fsolver_set (s, &f, h2, h1);
+   }
+   else
+   {
+       // For second branch, h1<h2, so...
+       gsl_root_fsolver_set (s, &f, h1, h2);
+   }
 
    // auxiliary vars
    int status;
@@ -403,7 +457,7 @@ int intersec_del_car_st(double mu, section_t sec, branch_t br, double H,
       {
 	iter++;
 	status = gsl_root_fsolver_iterate (s);
-	if (status)   /* check if solver is stuck 
+	if (status)   /* check if solver is stuck */
 	  break;
   
 	x_lo = gsl_root_fsolver_x_lower(s);
@@ -429,26 +483,25 @@ int intersec_del_car_st(double mu, section_t sec, branch_t br, double H,
        return(2);
 
    // Compute the following:
-   // - point p_s
+   // - point p_u
 
     p_u[0] = p[0] + (*h) * v[0];
     p_u[1] = p[1] + (*h) * v[1];
 
-   // - intersection point z = P^{-1}(p_s),
+  // - Point in local unstable manifold of the appropriate pendulum (Delaunay
+  // coords). This will be needed in outer_circ.
+  // - Point in local unstable manifold of the appropriate pendulum (Cartesian
+  // coords). This will be needed in outer_circ.
+   // - intersection point z = P(p_u),
    // - t: integration time to reach homoclinic point $z$.
-
-   z[0] = p_u[0];
-   z[1] = p_u[1];
-   status=prtbp_2d_inv(mu,SEC2,H,2*n,z,t); 	// $z = P^{-n}(z)$
+   status=iterate_del_car_st(mu,sec,H,n,p_u,t,z_del,z_car,z_u,z_u_car);
    if(status)
-      {
-	 fprintf(stderr, "intersec_del_car: error computing intersection point\n");
-	 return(1);
-      }
-      */
+   {
+      perror("intersec_del_car: error iterating point");
+      return(1);
+   }
    return(0);
 }
-
 // name OF FUNCTION: distance_f
 // CREDIT: 
 //
@@ -554,21 +607,28 @@ double
 distance_f_st (double h, void *params)
 {
    double mu, H;
+   section_t sec;   // Poincare section
    double p[2]; 		// fixed point
-   double v[2];			// stable vector
+   double v[2];		// unstable vector
 
-   double n; 			// num. of interations in the stable dir.
-   double l; 			// axis line
+   double n; 			// num. of interations in the unstable dir.
+   double l;		// axis line
 
-   double p_s[2]; 		// point in the stable segment
+   double p_u[2]; 		// point in the unstable segment
 
    double t;			// integration time to reach homo. pt.
 
+   double d;            // distance(h) = l - p_x(q_u).
+
    // auxiliary vars
    int status;
-   double ti;
+   double z_car[DIM]; 		// homoclinic point (cartesian)
+   double z_del[DIM]; 		// homoclinic point (Delaunay)
+   double z_u[DIM]; 		// point in the local unstable manifold (Delaunay)
+   double z_u_car[DIM]; 	// point in the local unstable manifold (Cartesian)
 
    mu = ((struct dparams *)params)->mu;
+   sec = ((struct dparams *)params)->sec;
    H = ((struct dparams *)params)->H;
 
    p[0] = (((struct dparams *)params)->p)[0];
@@ -580,19 +640,27 @@ distance_f_st (double h, void *params)
    n = ((struct dparams *)params)->n;
    l = ((struct dparams *)params)->l;
 
-   // Set up point in the stable segment
-   p_s[0] = p[0] + h*v[0];
-   p_s[1] = p[1] + h*v[1];
+   // Set up point in the unstable segment
+   p_u[0] = p[0] + h*v[0];
+   p_u[1] = p[1] + h*v[1];
 
-   // stable manifold
-   status=prtbp_2d_inv(mu,SEC2,H,2*n,p_s,&t);       // $p_s = P^{-n}(p_s)$
+   status=iterate_del_car_st(mu,sec,H,n,p_u,&t,z_del,z_car,z_u,z_u_car);
    if(status)
    {
-      fprintf(stderr, "distance_f: error computing Poincare map\n");
+      perror("intersec_del_car: error iterating point");
       return(1);
    }
 
-   // Return 
-   //    distance(h) = l - p_x(q_u), 
-   return l - p_s[1];
+   if(sec==SEC1 || sec==SEC2)
+   {
+       // Return distance(h) = l - g(q_u), 
+       d=remainder(z_del[2]-l,2*M_PI);
+   }
+   else if(sec==SECg || sec==SECg2)
+   {
+       // Return distance(h) = l - l(q_u), 
+       d=remainder(z_del[0]-l,2*M_PI);
+       //fprintf(stderr, "distance=%.16e\n", d);
+   }
+   return d;
 }

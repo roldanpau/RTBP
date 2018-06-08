@@ -45,6 +45,7 @@
 
   For each input line, it outputs result to stdout:
   - omega_neg
+  - omega_pos
  
  */
  
@@ -60,7 +61,10 @@ int main( )
    double zu[DIM];	    /* preimage of primary homoclinic point */
    double zu_car[DIM];	/* preimage of primary homoclinic point (Cartesian) */
 
-   double w_pos;	/* value of integral \omega_+^* */
+   //double zs[DIM];	    /* preimage of primary homoclinic point */
+   //double zs_car[DIM];	/* preimage of primary homoclinic point (Cartesian) */
+
+   //double w_pos;	/* value of integral \omega_+^* */
    double w_neg;	/* value of integral \omega_-^* */
    double w_out;	/* value of integral \omega_{out}^* */
 
@@ -101,24 +105,40 @@ int main( )
                zu_car, zu_car+1, zu_car+2, zu_car+3, 
                &M) == 10)
    {
+       // Instead of fetching zs from intersecs_st_SECg_br1.res, 
+       // we set it to the symmetric point of zu. 
+       // This is done so that omega_neg and omega_pos are actually symmetric.
+       /*
+       dblcpy(zs,zu,DIM);
+       zs[0] = -zu[0];
+       zs[2] = -zu[2];
+
+       dblcpy(zs_car,zu_car,DIM);
+       zs_car[1] = -zu_car[1];
+       zs_car[2] = -zu_car[2];
+       */
+
       // TESTING...
       //T0 = (T-2*M_PI)/mu;
       T0 = T-2*M_PI;
 
-      //omega_pos(mu, sec, zu, M, T0, &w_pos);
-
       // Compute $\omega_-^*$, integrating along $z(s) = \gamma^*(s)$.
       // Note: since the homoclinic point is at the symmetry axis, we have
       // \omega_-^* = -\omega_+^*.
-      //w_neg = -w_pos;
 
       omega_neg_stoch(mu, sec, zu, zu_car, M, T0, &w_neg);
+
+      // Compute $\omega_+^*$, integrating along $z(s) = \gamma^*(s)$.
+      // Note: since the homoclinic point is at the symmetry axis, we should
+      // have \omega_-^* = -\omega_+^*.
+
+      //omega_pos_stoch(mu, sec, zs, zs_car, M, T0, &w_pos);
 
       //w_out = w_pos-w_neg;
 
       // Output result to stdout.
       printf("%.15e\n", w_neg);
-      //printf("%.15e\n", w_pos);
+      //printf(" %.15e\n", w_pos);
       fflush(NULL);
    }
    exit(EXIT_SUCCESS);

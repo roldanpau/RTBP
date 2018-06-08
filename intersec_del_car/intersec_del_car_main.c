@@ -20,6 +20,10 @@
   \param[in] mu         mass parameter for the RTBP
   \param[in] sec        Poincare section: sec={SEC1,SEC2}
   \param[in] br         branch type: br={LEFT, RIGHT}
+
+  \param[in] stable     stable flag specifies wheather we want to compute the
+  unstable (=0) or stable (=1) manifold
+
   \param[in] H          energy value
 
   \param[in] n

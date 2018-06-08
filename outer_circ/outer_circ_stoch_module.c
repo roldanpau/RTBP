@@ -108,7 +108,9 @@ int omega_pos_stoch(double mu, section_t sec, double x[DIM], double x_car[DIM],
 
       if(prtbp_del_car_inv(mu,sec,(N-i),xi,xi_car,&t))
       {
-         fprintf(stderr, "omega_pos_stoch: error computing point P^{i}(z)\n");
+         fprintf(stderr, 
+                 "omega_pos_stoch: error computing point P^{-%d}(z^s)\n", 
+                 N-i);
          return(1);
       }
 

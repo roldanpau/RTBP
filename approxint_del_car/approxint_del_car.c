@@ -36,8 +36,8 @@ int
 u_i (double mu, section_t sec, int k, branch_t br, double a, double *l4_del,
         double *l4, int *idx);
 int 
-s_i (double mu, section_t sec, int k, double a, double *l4_del, double *l4, 
-        int *idx);
+s_i (double mu, section_t sec, int k, branch_t br, double a, double *l4_del,
+        double *l4, int *idx);
 
 // Obs! parameter lambda_u is not used?
 
@@ -141,7 +141,7 @@ approxint_del_car_unst (double mu, section_t sec, double H, int k,
    return(0);
 }
 
-int
+int 
 approxint_del_car_st (double mu, section_t sec, double H, int k, 
         double p[2], double v[2], double lambda, double h, branch_t br, 
         double a, int *piter, double *h_1, double *h_2, double z[2])
@@ -152,13 +152,15 @@ approxint_del_car_st (double mu, section_t sec, double H, int k,
    // Linear segment approximating local invariant manifold
    double l[2*NPOINTS];
 
-   // Auxiliary variables
-   int status, iter, i;
-   double ti;
-   double l_bak[2*NPOINTS];    // Aux copy of l
+   // Linear segment approximating local invariant manifold (points in 4d)
+   double l4[DIM*NPOINTS];
 
-   fprintf(stderr, "approxint_del_car_st: this function is not implemented!\n");
-   exit(1);
+   // Linear segment approximating local invariant manifold (Delaunay coords)
+   double l4_del[DIM*NPOINTS];
+
+   // Auxiliary variables
+   int status, iter, i, iskip;
+   double ti;
 
    // we DO NOT assume that $v=(x,p_x)$ points "to the right", i.e.
    // we DO NOT assume that the first component of $v$ is $x>0$
@@ -174,7 +176,7 @@ approxint_del_car_st (double mu, section_t sec, double H, int k,
    // Compute $p_1$
    p1[0] = p0[0];
    p1[1] = p0[1];
-   //status=prtbp_nl_2d_inv(mu,SEC2,H,k,p1,&ti);        // $p_1 = \sixmap^{-1}(p_0)$
+   status=prtbp_nl_2d_inv(mu,SEC2,H,k,p1,&ti);        // $p_1 = P(p_0)$
    if(status)
    {
       fprintf(stderr, "approxint_del_car: error computing Poincare map\n");
@@ -184,42 +186,58 @@ approxint_del_car_st (double mu, section_t sec, double H, int k,
    // Discretize linear segment
    disc(p0, p1, NPOINTS, l);
 
-   // Make a copy of l in order to not modify it.
-   memcpy(l_bak, l, 2*NPOINTS*sizeof(double));
+   // IMPROVEMENT: Use cardel_2d instead of lift+cardel.
+
+   // Lift points in linear segment from \R^2 to \R^4
+   status=lift(mu,SEC2,H,NPOINTS,l,l4);
+   if(status)
+   {
+      perror("main: error lifting points in linear segment");
+      exit(EXIT_FAILURE);
+   }
+
+   // Transform points in linear segment to Delaunay coordinates
+   for(i=0; i<NPOINTS; i++)
+       cardel(l4+DIM*i,l4_del+DIM*i);
+
+   // Flow the (discretized) linear segment to Delaunay section before the
+   // iteration.
+   status=s_i(mu, sec, 1, br, a, l4_del, l4, &i);
 
    // Iterate the (discretized) linear segment "iter" times by the Poincare map
    for(iter=1;iter<=MAXITER;iter++)
    {
-      //status=s_i(mu, H, k, z, a, l, &i);
+      //fprintf(stderr, "DEBUG: before %d iteration of linear segment: l=%.15le, g=%.15le\n", iter, l4_del[0], l4_del[2]);
+      status=s_i(mu, sec, 1, br, a, l4_del, l4, &i);
+      //fprintf(stderr, "DEBUG: after %d iteration of linear segment: l=%.15le, g=%.15le\n", iter, l4_del[0], l4_del[2]);
       if(status)
       {
-	 fprintf(stderr, 
-	       "approxint_del_car: error during %d-th iteration of linear segment\n",
-	       iter);
-	 return(1);
+          fprintf(stderr, 
+                  "approxint_del_car: error during %d-th iteration of linear segment\n", iter);
+          return(1);
       }
       if(i>=0)	// intersection found
-	 break;
+          break;
    }
 
    if(iter==(MAXITER+1))
    {
-      // Manifold does not intersect $x$ axis!!
+      // Manifold does not intersect line $g=a$!!
       return(2);
    }
 
-   // Manifold intersects $x$ axis.
+   // Manifold intersects line $g=a$
    *piter = iter;
 
-   // Endpoints of segment s_i: 
-   // P[2] = (x, p_x) = (l_bak[2i], l_bak[2i+1]),
-   // Q[2] = (x, p_x) = (l_bak[2i+2], l_bak[2i+3]).
-   *h_1 = (l_bak[2*i+1]-p[1])/v[1];
-   *h_2 = (l_bak[2*i+3]-p[1])/v[1];
+   // Endpoints of segment u_i: 
+   // P[2] = (x, p_x) = (l[2i], l[2i+1]),
+   // Q[2] = (x, p_x) = (l[2i+2], l[2i+3]).
+   *h_1 = (l[2*i+1]-p[1])/v[1];
+   *h_2 = (l[2*i+3]-p[1])/v[1];
 
-   // update approximate intersection point
-   z[0] = l[2*i];
-   z[1] = l[2*i+1];
+   // return approximate intersection point
+   z[0] = l4_del[DIM*i+2];
+   z[1] = l4_del[DIM*i+3];
    return(0);
 }
 
@@ -373,6 +391,142 @@ u_i (double mu, section_t sec, int k, branch_t br, double a, double *l4_del,
               // For the lower branch, since dl/dt>0, it is enough to check 
               // if the angle has been reset from <a to >a
               if(l1 < a && l2 > a) break;
+           }
+       }
+       else
+       {
+          fprintf(stderr, "u_i: unknown section type. Exiting\n");
+          exit(1);
+       }
+   }
+
+   if(i==(NPOINTS-1))
+   {
+      // Manifold does not intersect line $g=a$
+      *idx=-1;
+      return(0);
+   }
+
+   // Manifold intersects the line $g=a$.
+
+   //dx = l[2*i+1]-l[2*i+3];	// P2 - Q2
+   //dy = l[2*i]-l[2*i+2];	// P1 - Q1
+   //alpha2 = atan2(dy,dx);	
+   //fprintf(stderr, "Approximate splitting half-angle: %f\n", alpha2);
+
+   fprintf(stderr, "Approximate interval: %d\n", i);
+   *idx=i;
+   return(0);
+}
+
+int 
+s_i (double mu, section_t sec, int k, branch_t br, double a, double *l4_del,
+        double *l4, int *idx)
+{
+   // Auxiliary variables
+   int status, iter, i;
+   double ti;
+   double dx,dy;
+   double g1, g2;
+   double l1, l2;
+
+   // Approximate splitting half-angle
+   //double alpha2;
+
+   // 3. Iterate the (discretized) linear segment one more time by the
+   // Poincare map
+   for(i=0;i<NPOINTS;i++)
+   {
+       if(prtbp_del_car_inv(mu,sec,k,l4_del+DIM*i,l4+DIM*i,&ti))
+       {
+          fprintf(stderr, "u_i: error computing Poincare map of %d-th point\n", i);
+          return(1);
+       }
+   }
+
+   // We look for the first unst segment U_i that crosses the line $g=a$.
+   for(i=0; i<(NPOINTS-1); i++)
+   {
+       l1=l4_del[DIM*i];
+       l2=l4_del[DIM*(i+1)];
+  
+      // Endpoints of segment U_i: 
+      // P[2] = (g_1, G_1) = (l4_del[4i+2], l4_del[4i+3]),
+      // Q[2] = (g_2, G_2) = (l4_del[4(i+1)+2], l4_del[4(i+1)+3]).
+       g1=l4_del[DIM*i+2];
+       g2=l4_del[DIM*(i+1)+2];
+
+       // CHECK SEC1 AND SEC2 PORTION OF CODE!!!
+       /*
+       if(sec==SEC1)
+       {
+           if(br==RIGHT) 
+           {
+              // For the upper branch, since dg/dt<0, it is enough to check 
+              // if the angle has passed from >a to <a
+              if(g1 > a && g2 < a) break;
+           }
+           else
+           {
+              // For the lower branch, since dg/dt>0, it is enough to check 
+              // if the angle has passed from <a to >a
+              if(g1 < a && g2 > a) break;
+           }
+       }
+       else if(sec==SEC2)
+       {
+           if(br==RIGHT) 
+           {
+              // For the upper branch, since dg/dt<0, it is enough to check 
+              // if the angle has been reset from 0 to 2\pi
+              if(g2 > g1) {
+                  //fprintf(stderr, "DEBUG: g=%.15le, gprime=%.15le\n", l4_del[DIM*i+2], l4_del[DIM*(i+1)+2]);
+                  break;
+              }
+           }
+           else
+           {
+              // For the lower branch, since dg/dt>0, it is enough to check 
+              // if the angle has been reset from 2\pi to 0
+              if(g2 < g1) break;
+           }
+       }
+       */
+       if(sec==SECg)
+       {
+           if(br==RIGHT) 
+           {
+              // For the upper branch, since dl/dt<0, but we are integrating
+              // backwards, it is enough to check if the angle has been reset
+              // from \pi to -\pi
+              if(l2 < l1) {
+                  //fprintf(stderr, "DEBUG: g=%.15le, gprime=%.15le\n", l4_del[DIM*i+2], l4_del[DIM*(i+1)+2]);
+                  break;
+              }
+           }
+           else
+           {
+              // For the lower branch, since dl/dt>0, but we are integrating
+              // backwards, it is enough to check if the angle has been reset
+              // from -\pi to \pi
+              if(l2 > l1) break;
+           }
+       }
+       else if(sec==SECg2)
+       {
+           if(br==RIGHT) 
+           {
+              // For the upper branch, since dl/dt<0, but we are integrating
+              // backwards, it is enough to check if the angle has been reset
+              // from <a to >a
+              if(l1 < a && l2 > a) break;
+           }
+           else
+           {
+              // For the lower branch, since dl/dt>0, but we are integrating
+              // backwards, it is enough to check if the angle has been reset
+              // from >a to <a
+              if(l1 > a && l2 < a) break;
            }
        }
        else
