@@ -13,8 +13,8 @@
 //
 // re_DHell 
 // im_DHell
-//    This function computes the function $\Delta_{ell}^{1,+}$
-//    (real and imaginary part).
+//    This function computes the function $\Delta_{ell}^{1,+}$ (real and
+//    imaginary part).
 
 #include <math.h>		// M_PI
 #include <stdlib.h>		// EXIT_FAILURE
@@ -524,7 +524,6 @@ int f0_stoch(const double *x, double *res, void *params)
 //    The inner dynamics of the elliptic problem is given by the complex
 //    integral $A^+$ (see Marcel's notes "Inner and outer dynamics").
 //    This function computes the function $\Delta H_{ell}^{1,+}$ (real part).
-//    See also my yellow notebook.
 //
 // NOTES:
 //    This function is located in this file because it closely resembles the
@@ -566,7 +565,6 @@ double re_DHell(const double *x, void *params)
 
    // auxiliary variables
    double umu = 1.0-mu;
-   double musq = mu*mu;
 
    // auxiliary variables
    double vg = v+g;
@@ -574,8 +572,11 @@ double re_DHell(const double *x, void *params)
    double D_r_mu = Delta(-r/mu,v,g);
    double D_r_umu = Delta(r/umu,v,g);
 
-   return -umu/musq*(-r/mu*sin(vg))/(D_r_mu*D_r_mu*D_r_mu) -
-      mu/umu*(r/umu*sin(vg))/(D_r_umu*D_r_umu*D_r_umu);
+   double D_r_mu_cb = D_r_mu*D_r_mu*D_r_mu;
+   double D_r_umu_cb = D_r_umu*D_r_umu*D_r_umu;
+
+   return umu/mu*(1+r/mu*cos(vg))/(2*D_r_mu_cb) + \
+       mu/umu*(1-r/umu*cos(vg))/(2*D_r_umu_cb);
 }
 
 // name OF FUNCTION: im_DHell
@@ -583,8 +584,8 @@ double re_DHell(const double *x, void *params)
 // PURPOSE:
 //    The inner dynamics of the elliptic problem is given by the complex
 //    integral $A^+$ (see Marcel's notes "Inner and outer dynamics").
-//    This function computes the function $\Delta H_{ell}^{1,+}$ (imarinary
-//    part). See also my yellow notebook.
+//    This function computes the function $\Delta H_{ell}^{1,+}$
+//    (imarinary part). See also my yellow notebook.
 //
 // NOTES:
 //    This function is located in this file because it closely resembles the
@@ -626,6 +627,130 @@ double im_DHell(const double *x, void *params)
 
    // auxiliary variables
    double umu = 1.0-mu;
+
+   // auxiliary variables
+   double vg = v+g;
+
+   double D_r_mu = Delta(-r/mu,v,g);
+   double D_r_umu = Delta(r/umu,v,g);
+
+   double D_r_mu_cb = D_r_mu*D_r_mu*D_r_mu;
+   double D_r_umu_cb = D_r_umu*D_r_umu*D_r_umu;
+
+   return umu/mu*r/mu*sin(vg)/D_r_mu_cb - mu/umu*r/umu*sin(vg)/D_r_umu_cb;
+}
+
+// name OF FUNCTION: re_dDHell
+// CREDIT: Marcel Guardia and Pau Roldan
+// PURPOSE:
+//    The inner dynamics of the elliptic problem is given by the complex
+//    integral $A^+$ (see Marcel's notes "Inner and outer dynamics").
+//    This function computes the function $\partial_t \Delta H_{ell}^{1,+}$
+//    (real part). See also my yellow notebook.
+//
+// NOTES:
+//    This function is located in this file because it closely resembles the
+//    function rtbp_del.
+//
+//    We normalize $\ell$ between 0 and 2\pi to compute the vectorfield.
+//    This is done so that function "eccentric" is more precise.
+//
+// PARAMETERS:
+// - x point in phase space, 4 coordinates: (l,L,g,G).
+// - params pointer to the parameter of the system: the mass ratio "mu".
+// 
+// RETURN VALUE:
+// value of the function $\partial_t \Delta H_{ell}^{1,+}$ (real part).
+//
+// CALLS TO:
+//
+// CALLED FROM: re_integrand_inner_ell
+
+/* This function should have never been used. Use re_DHell instead!
+double re_dDHell(const double *x, void *params)
+{
+   double mu = *(double *)params;
+   double l = fmod(x[0],2*M_PI);
+   double L = x[1];
+   double g = x[2];
+   double G = x[3];
+
+   // eccentricity
+   double e = sqrt(1.0 - G*G/(L*L));
+
+   // eccentric anomaly (angle u)
+   double u = eccentric(e,l);
+
+   // NOTE: v in (-pi,pi)
+   double v = 2.0*atan( sqrt((1.0+e)/(1.0-e))*tan(u/2.0) );
+
+   // modulus of asteroid r
+   double r = L*L*(1.0-e*cos(u));
+
+   // auxiliary variables
+   double umu = 1.0-mu;
+   double musq = mu*mu;
+
+   // auxiliary variables
+   double vg = v+g;
+
+   double D_r_mu = Delta(-r/mu,v,g);
+   double D_r_umu = Delta(r/umu,v,g);
+
+   return -umu/musq*(-r/mu*sin(vg))/(D_r_mu*D_r_mu*D_r_mu) -
+      mu/umu*(r/umu*sin(vg))/(D_r_umu*D_r_umu*D_r_umu);
+}
+*/
+
+// name OF FUNCTION: im_dDHell
+// CREDIT: Marcel Guardia and Pau Roldan
+// PURPOSE:
+//    The inner dynamics of the elliptic problem is given by the complex
+//    integral $A^+$ (see Marcel's notes "Inner and outer dynamics").
+//    This function computes the function $\partial_t \Delta H_{ell}^{1,+}$
+//    (imarinary part). See also my yellow notebook.
+//
+// NOTES:
+//    This function is located in this file because it closely resembles the
+//    function rtbp_del.
+//
+//    We normalize $\ell$ between 0 and 2\pi to compute the vectorfield.
+//    This is done so that function "eccentric" is more precise.
+//
+// PARAMETERS:
+// - x point in phase space, 4 coordinates: (l,L,g,G).
+// - params pointer to the parameter of the system: the mass ratio "mu".
+// 
+// RETURN VALUE:
+// value of the function $\partial_t \Delta H_{ell}^{1,+}$ (imaginary part).
+//
+// CALLS TO:
+//
+// CALLED FROM: im_integrand_inner_ell
+
+/* This function should have never been used. Use im_DHell instead!
+double im_dDHell(const double *x, void *params)
+{
+   double mu = *(double *)params;
+   double l = fmod(x[0],2*M_PI);
+   double L = x[1];
+   double g = x[2];
+   double G = x[3];
+
+   // eccentricity
+   double e = sqrt(1.0 - G*G/(L*L));
+
+   // eccentric anomaly (angle u)
+   double u = eccentric(e,l);
+
+   // NOTE: v in (-pi,pi)
+   double v = 2.0*atan( sqrt((1.0+e)/(1.0-e))*tan(u/2.0) );
+
+   // modulus of asteroid r
+   double r = L*L*(1.0-e*cos(u));
+
+   // auxiliary variables
+   double umu = 1.0-mu;
    double musq = mu*mu;
 
    // auxiliary variables
@@ -637,3 +762,4 @@ double im_DHell(const double *x, void *params)
    return -umu/musq*(1.0+r/mu*cos(vg))/(2.0*D_r_mu*D_r_mu*D_r_mu) -
       mu/umu*(1.0-r/umu*cos(vg))/(2.0*D_r_umu*D_r_umu*D_r_umu);
 }
+*/

@@ -139,3 +139,8 @@ int f0_stoch(const double *x, double *res, void *params);
 
 double re_DHell(const double *x, void *params);
 double im_DHell(const double *x, void *params);
+
+/* This functions should have never been used. Use re/im_DHell instead!
+double re_dDHell(const double *x, void *params);
+double im_dDHell(const double *x, void *params);
+*/
