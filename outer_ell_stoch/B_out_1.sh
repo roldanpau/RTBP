@@ -1,4 +1,4 @@
-# Compute function $B_{out}^j$ associated to outer map of elliptic problem.
+# Compute function $B_{out}^1$ associated to outer map of elliptic problem.
 #
 # Actually, we only compute the integral called $B^+$ in my notes. This is
 # enough, because 
@@ -6,9 +6,9 @@
 # where
 #    re(C^+)=re(B^+), and im(C^+)=-im(B^+).
 
-DATFILE=B_out_j.dat
-RESFILE=B_out_j.res
-ERRFILE=B_out_j.err
+DATFILE=B_out_1.dat
+RESFILE=B_out_1.res
+ERRFILE=B_out_1.err
 
 lines=`wc -l ../outer_circ/omega_neg_SECg_br1.res | cut -d ' ' -f 1`
 
