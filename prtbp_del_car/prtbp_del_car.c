@@ -21,8 +21,9 @@
 
 // Unfortunately, this code does not get as much precision as prtbp_del. 
 // Empirically, we get precisions close to 1.e-8. 
-// The reason is that we approach the limit of precision of our forward error
-// FE = |t-t^*|, whereas the backward error is still large BE = |g(phi(t))|.
+// The reason is that the problem of evaluating the function $g(phi(t))$ is
+// highly sensitive: small changes to the argument $t$ lead to large changes in
+// the solution $g(phi(t))$.
 const double POINCARE_DEL_CAR_TOL=1.e-16;
 
 /// Integration "step" for prtbp. 
