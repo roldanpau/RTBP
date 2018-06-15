@@ -304,13 +304,18 @@ double im_integrand_inner_ell_stoch(double s, void *params)
 // =======
 // The inner map for the elliptic problem is given by
 // 
-//    \[ B_{in}^j(I) = i\mu \frac{1-e^{i\omega}}{1-e^{i2\pi\nu}} 
+//    \[ B_{in}^j(I) = i \frac{1-e^{i\omega}}{1-e^{i2\pi\nu}} 
 //       \int_0^{T} \frac{\Delta H_{ell}^{1,+}}
 //       {-1+\mu\partial_G \Delta H_{circ}} e^{it(s)} ds. \]
 //
 // Given an energy level $H$, this function computes the real part of
-// \[ A_{in}(I) := i\mu \int_0^{T} \frac{\Delta H_{ell}^{1,+}} 
+// \[ A_{in}(I) := i \int_0^{T} \frac{\Delta H_{ell}^{1,+}} 
 //       {-1+\mu\partial_G \Delta H_{circ}} e^{it(s)} ds. \]
+//
+// NOTE: We noticed that in the paper there was a mistake in the formulas: mu
+// was included twice, both in $\Delta H_{ell}^{1,+}$, and factored in front of
+// the integrals in $B_{in}^j$ and $B_{out}^j$. Thus I decide to remove the
+// extra mu factored in front of the integrals in this file.
 //
 // PARAMETERS
 // ==========
@@ -357,7 +362,7 @@ int re_inner_ell_stoch(double mu, double T, double x[DIM], double *re_A)
 
    gsl_integration_workspace_free (w);
 
-   *re_A = mu*result;		// real(A^+)
+   *re_A = result;		// real(A^+)
    return 0;
 }
 
@@ -367,7 +372,7 @@ int re_inner_ell_stoch(double mu, double T, double x[DIM], double *re_A)
 // PURPOSE
 // =======
 // Given an energy level $H$, this function computes the imaginary part of
-// \[ A_{in}(I) := i\mu \int_0^{T} \frac{\Delta H_{ell}^{1,+}} 
+// \[ A_{in}(I) := i\int_0^{T} \frac{\Delta H_{ell}^{1,+}} 
 //       {-1+\mu\partial_G \Delta H_{circ}} e^{it(s)} ds. \]
 
 int im_inner_ell_stoch(double mu, double T, double x[DIM], double *im_A)
@@ -397,6 +402,6 @@ int im_inner_ell_stoch(double mu, double T, double x[DIM], double *im_A)
 
    gsl_integration_workspace_free (w);
 
-   *im_A = mu*result;		// imaginary(A^+)
+   *im_A = result;		// imaginary(A^+)
    return 0;
 }

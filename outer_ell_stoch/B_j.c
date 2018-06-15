@@ -15,7 +15,7 @@
 //
 // where 
 // \[ B_{in}^j = \frac{1-e^{i\omega^j}}{1-e^{i2\pi\nu}} A_in, \]
-// \[ B_{out}^j = -\mu B^+ + \mu C^+ = -i 2\mu \Im(B^+), \]
+// \[ B_{out}^j = -B^+ + C^+ = -i 2 \Im(B^+), \]
 // \[ \nu = T/mu. \]
 //
 // Thus
@@ -25,6 +25,11 @@
 //
 // with
 //    \[ \omega^j = -2\omega_-^j. \]
+//
+// NOTE: We noticed that in the paper there was a mistake in the formulas: mu
+// was included twice, both in $\Delta H_{ell}^{1,+}$, and factored in front of
+// the integrals in $B_{in}^j$ and $B_{out}^j$. Thus I decide to remove the
+// extra mu factored in front of the integrals in this file.
 //
 //
 // OVERALL METHOD
@@ -77,7 +82,7 @@ int main( )
 
       // Compute complex function $B^j$
       reB = 1/(c*c+d*d)*((a*c+b*d)*reBin - (a*d-b*c)*imBin);
-      imB = -2*mu*imBpos + 1/(c*c+d*d)*((a*d-b*c)*reBin + (a*c+b*d)*imBin);
+      imB = -2*imBpos + 1/(c*c+d*d)*((a*d-b*c)*reBin + (a*c+b*d)*imBin);
 
       // Output data to stdout
       //    H \re(B^j) \im(B^j)
