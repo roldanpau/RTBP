@@ -54,22 +54,9 @@ bool onsection_nl (section_t sec, double a[DIM], int *sign)
    double py = a[3];
    double vy = py-x;
 
-   switch(sec)
-   {
-      case SEC1 :       // section {y=0, v_y>0}
-         {
-            bonsection = (y == 0 && vy > 0);
-            break;
-         }
-      case SEC2 :       // section {y=0, v_y<0}
-         {
-            bonsection = (y == 0 && vy < 0);
-            break;
-         }
-   }
    // TWO CONSECUTIVE ITERATES must NOT lie both to the right or to the left
    // of the origin, so they must have different sign.
-   bonsection = (bonsection && (*sign)*x<0);
+   bonsection = ((y == 0) && (*sign)*x<0);
 
    // If we intersected the x axis, determine if we crossed to the left
    // or to the right of the origin.
@@ -111,22 +98,9 @@ bool crossing_nl (section_t sec, double a[DIM], double b[DIM], int *sign)
 
    bool bcrossing = false;
 
-   switch(sec)
-   {
-      case SEC1 :       // section {y=0, v_y>0}
-         {
-            bcrossing = (a[1]*b[1]<0 && vy>0);
-            break;
-         }
-      case SEC2 :       // section {y=0, v_y<0}
-         {
-            bcrossing = (a[1]*b[1]<0 && vy<0);
-            break;
-         }
-   }
    // TWO CONSECUTIVE ITERATES must NOT lie both to the right or to the left
    // of the origin, so they must have different sign.
-   bcrossing = (bcrossing && (*sign)*x<0);
+   bcrossing = ((a[1]*b[1]<0) && (*sign)*x<0);
 
    // If we have intersected the x axis, determine if we crossed to the left
    // or to the right of the origin.
@@ -154,6 +128,12 @@ int prtbp_nl(double mu, section_t sec, int cuts, double x[DIM], double *ti)
    int status;
    int i,n;
    double t1;
+
+   // DEBUG
+   double x_init[DIM];
+
+   for(i=0;i<DIM;i++)
+	    x_init[i]=x[i];
 
    // Save sign of previous intersection with x axis
    sign = (x[0]>0 ? +1 : -1);
@@ -209,6 +189,15 @@ int prtbp_nl(double mu, section_t sec, int cuts, double x[DIM], double *ti)
    // Here, point x is on section with tolerance POINCARE_TOL_NL_DEL. 
    // We force x to be exactly on section.
    x[1] = 0;    // y
+
+   if(x_init[2]>0 && x[2]<0)
+   {
+	   fprintf(stderr, "prtbp_nl: skipped an iterate!\n");
+	   fprintf(stderr, "x_init: %.15le %.15le %.15le %.15le\n",
+			   x_init[0],x_init[1],x_init[2],x_init[3]);
+	   fprintf(stderr, "x: %.15le %.15le %.15le %.15le\n",
+			   x[0],x[1],x[2],x[3]);
+   }
 
    // Set time to reach Poincare section
    (*ti)=t_pre+t1;

@@ -142,13 +142,11 @@ int main( )
    // i.e. compute its orbit (and print it to stdout). 
    for(iter=0;iter<n;iter++)
    {
-      for(j=1;j<=k;j++)
-      {
 	 for(i=0;i<NPOINTS;i++)
 	 {
 	    if(!stable)	// unstable manifold
 	    {
-	       if(prtbp_nl_2d(mu,sec,H,1,l+2*i,&ti))
+	       if(prtbp_nl_2d(mu,sec,H,k,l+2*i,&ti))
 	       {
 		  fprintf(stderr, "main: error computing Poincare map\n");
 		  exit(EXIT_FAILURE);
@@ -156,7 +154,7 @@ int main( )
 	    }
 	    else		// stable manifold
 	    {
-	       if(prtbp_nl_2d_inv(mu,sec,H,1,l+2*i,&ti))
+	       if(prtbp_nl_2d_inv(mu,sec,H,k,l+2*i,&ti))
 	       {
 		  fprintf(stderr, "main: error computing inverse Poincare map\n");
 		  exit(EXIT_FAILURE);
@@ -164,20 +162,16 @@ int main( )
 	    }
 	 }
 
-	 if(ifp==-1 || j==ifp)	// print only manifold of i-th fixed point p_i
-	 {
-	    // Print iteration of linear segment
-	    for(i=0;i<NPOINTS;i++)
-	    {
-	       if(printf("% .15le % .15le\n", l[2*i], l[2*i+1])<0)
-	       {
-		  perror("main: error writting output");
-		  exit(EXIT_FAILURE);
-	       }
-	    }
-	    printf("\n");
-	 }
-      }
+	// Print iteration of linear segment
+	for(i=0;i<NPOINTS;i++)
+	{
+	   if(printf("% .15le % .15le\n", l[2*i], l[2*i+1])<0)
+	   {
+	  perror("main: error writting output");
+	  exit(EXIT_FAILURE);
+	   }
+	}
+	printf("\n");
    }
 
    // 4. Estimate error commited in the linear approximation of the manifold
