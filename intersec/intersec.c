@@ -10,7 +10,7 @@
 #include <gsl/gsl_roots.h>
 
 #include <rtbp.h>	// DIM
-#include <prtbp_2d.h>	// prtbp_2d, prtbp_2d_inv
+#include <prtbp_nl_2d.h>	// prtbp_nl_2d, prtbp_nl_2d_inv
 
 /// Tolerance (precision) for bisection method 
 const double BISECT_TOL=1.e-15;
@@ -38,7 +38,7 @@ print_state (size_t iter, gsl_root_fsolver * s)
   double x_lo = gsl_root_fsolver_x_lower (s);
   double x_hi = gsl_root_fsolver_x_upper (s);
 
- fprintf (stderr, "iter = %3u, [%.7f, %.7f], root = %.7f, err(est) = %.15f\n",
+ fprintf (stderr, "iter = %3lu, [%.7f, %.7f], root = %.7f, err(est) = %.15f\n",
 	 iter,
 	 x_lo, 
 	 x_hi,
@@ -199,7 +199,7 @@ int intersec_unst(double mu, double H, double p[2], double v[2],
 
    z[0] = p_u[0];
    z[1] = p_u[1];
-   status=prtbp_2d(mu,SEC2,H,2*n,z,t); 	// $z = P^n(z)$
+   status=prtbp_nl_2d(mu,SEC2,H,2*n,z,t); 	// $z = P^n(z)$
    if(status)
       {
 	 fprintf(stderr, "intersec: error computing intersection point\n");
@@ -290,7 +290,7 @@ int intersec_st(double mu, double H, double p[2], double v[2],
 
    z[0] = p_s[0];
    z[1] = p_s[1];
-   status=prtbp_2d_inv(mu,SEC2,H,2*n,z,t); 	// $z = P^{-n}(z)$
+   status=prtbp_nl_2d_inv(mu,SEC2,H,2*n,z,t); 	// $z = P^{-n}(z)$
    if(status)
       {
 	 fprintf(stderr, "intersec: error computing intersection point\n");
@@ -373,7 +373,7 @@ distance_f_unst (double h, void *params)
    p_u[1] = p[1] + h*v[1];
 
    // unstable manifold
-   status=prtbp_2d(mu,SEC2,H,2*n,p_u,&t);       // $p_u = P^{n}(p_u)$
+   status=prtbp_nl_2d(mu,SEC2,H,2*n,p_u,&t);       // $p_u = P^{n}(p_u)$
    if(status)
    {
       fprintf(stderr, "distance_f: error computing Poincare map\n");
@@ -420,7 +420,7 @@ distance_f_st (double h, void *params)
    p_s[1] = p[1] + h*v[1];
 
    // stable manifold
-   status=prtbp_2d_inv(mu,SEC2,H,2*n,p_s,&t);       // $p_s = P^{-n}(p_s)$
+   status=prtbp_nl_2d_inv(mu,SEC2,H,2*n,p_s,&t);       // $p_s = P^{-n}(p_s)$
    if(status)
    {
       fprintf(stderr, "distance_f: error computing Poincare map\n");
