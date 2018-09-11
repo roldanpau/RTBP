@@ -39,13 +39,9 @@ struct inter_nl_f_params
   \param[in] sec 	type of Poincare section (sect = SEC1 or SEC2).
   \param[in] a 		point, 4 coordinates: (x, y, p_x, p_y).
 
-  \param[in,out] sign
-    (pointer to) sign of previous intersection with x axis (sign = +1 if x>0
-    or sign = -1 if x<0).
-
   \returns true if point $a$ is exactly on section, false if it is not.
   */
-bool onsection_nl (section_t sec, double a[DIM], int *sign)
+bool onsection_nl (section_t sec, double a[DIM])
 {
    bool bonsection = false;
 
@@ -67,15 +63,6 @@ bool onsection_nl (section_t sec, double a[DIM], int *sign)
             break;
          }
    }
-   // TWO CONSECUTIVE ITERATES must NOT lie both to the right or to the left
-   // of the origin, so they must have different sign.
-   bonsection = (bonsection && (*sign)*x<0);
-
-   // If we intersected the x axis, determine if we crossed to the left
-   // or to the right of the origin.
-   if(y == 0)
-      *sign = (x>0 ? +1 : -1);
-
    return(bonsection);
 }
 
@@ -88,10 +75,6 @@ bool onsection_nl (section_t sec, double a[DIM], int *sign)
   \param[in] a		First point, 4 coordinates: (x, y, p_x, p_y).
   \param[in] b		Second point, 4 coordinates: (x, y, p_x, p_y).
 
-  \param[in,out] sign
-    (pointer to) sign of previous intersection with x axis (sign = +1 if x>0
-    or sign = -1 if x<0).
-
   \return 		true if trajectory cuts section, false if it does not.
   */
 // NOTES
@@ -100,7 +83,7 @@ bool onsection_nl (section_t sec, double a[DIM], int *sign)
 // precisely on the section, not at the point $b$.
 // However, we don't expect $v_y$ to change much between these two points.
 
-bool crossing_nl (section_t sec, double a[DIM], double b[DIM], int *sign)
+bool crossing_nl (section_t sec, double a[DIM], double b[DIM])
 {
    double x = a[0];
    double py = a[3];
@@ -124,16 +107,62 @@ bool crossing_nl (section_t sec, double a[DIM], double b[DIM], int *sign)
             break;
          }
    }
-   // TWO CONSECUTIVE ITERATES must NOT lie both to the right or to the left
-   // of the origin, so they must have different sign.
-   bcrossing = (bcrossing && (*sign)*x<0);
-
-   // If we have intersected the x axis, determine if we crossed to the left
-   // or to the right of the origin.
-   if(a[1]*b[1]<0)
-      *sign = (x>0 ? +1 : -1);
-
    return(bcrossing);
+}
+
+int onemorecut_nl(double mu, section_t sec, double x[DIM], double *t, 
+		int *sign, double x_pre[DIM], double *t_pre)
+{
+	int i;
+	int status;
+
+	// First of two possible crossings with {y=0}
+	do {
+	 
+		// Save previous value of point "x" and time "t"
+		for(i=0;i<DIM;i++)
+			x_pre[i]=x[i];
+		*(t_pre)=(*t);
+	 
+		// Integrate for a "short" time t1=SHORT_TIME_NL, short enough so that
+		// we can detect crossing of Poincare section.
+
+		// WARNING! Before we used t1=1 as a "short" time, but sometime this
+		// was too long...
+		status = frtbp(mu,SHORT_TIME_NL,x);
+		(*t) += SHORT_TIME_NL;
+		if (status != GSL_SUCCESS)
+		{
+			fprintf(stderr, "prtbp_nl: error integrating trajectory\n");
+			return(1);
+		}
+	} 
+	// while(no crossing of Poincare section)
+	while(!(onsection_nl(sec,x) || crossing_nl(sec,x_pre,x))); 
+
+	// Second of two possible crossings with {y=0}
+	do {
+	 
+		// Save previous value of point "x" and time "t"
+		for(i=0;i<DIM;i++)
+			x_pre[i]=x[i];
+		*(t_pre)=(*t);
+	 
+		// Integrate for a "short" time t1=SHORT_TIME_NL, short enough so that
+		// we can detect crossing of Poincare section.
+
+		// WARNING! Before we used t1=1 as a "short" time, but sometime this
+		// was too long...
+		status = frtbp(mu,SHORT_TIME_NL,x);
+		(*t) += SHORT_TIME_NL;
+		if (status != GSL_SUCCESS)
+		{
+			fprintf(stderr, "prtbp_nl: error integrating trajectory\n");
+			return(1);
+		}
+	} 
+	// while(no crossing of Poincare section)
+	while(!(onsection_nl(sec,x) || crossing_nl(sec,x_pre,x))); 
 }
 
 // NOTES
@@ -151,7 +180,6 @@ int prtbp_nl(double mu, section_t sec, int cuts, double x[DIM], double *ti)
    double t_pre;	/* previous value of time t */
    double x_pre[DIM];	/* previous value of point x */
    int sign;		/* sign of previous intersection with x axis */
-   int status;
    int i,n;
    double t1;
 
@@ -161,29 +189,8 @@ int prtbp_nl(double mu, section_t sec, int cuts, double x[DIM], double *ti)
    n=0;
    while(n!=cuts)
    {
-      // Integrate trajectory until it reaches section
-      do
-      {
-	 // Save previous value of point "x" and time "t"
-	 for(i=0;i<DIM;i++)
-	    x_pre[i]=x[i];
-	 t_pre=t;
-
-	 // Integrate for a "short" time t1=SHORT_TIME_NL, short enough so that
-	 // we can detect crossing of Poincare section.
-
-	 // WARNING! Before we used t1=1 as a "short" time, but sometime this
-	 // was too long...
-	 status = frtbp(mu,SHORT_TIME_NL,x);
-	 t += SHORT_TIME_NL;
-	 if (status != GSL_SUCCESS)
-	 {
-	    fprintf(stderr, "prtbp_nl: error integrating trajectory\n");
-	    return(1);
-	 }
-      } 
-      // while(no crossing of Poincare section)
-      while(!(onsection_nl(sec,x,&sign) || crossing_nl(sec,x_pre,x,&sign))); 
+	  // Integrate trajectory until it reaches section
+	  onemorecut_nl(mu,sec,x,&t,&sign,x_pre,&t_pre);
       n++;
    }
    // point "x" is exactly on the section
