@@ -18,7 +18,7 @@
 #include <stdlib.h>	// EXIT_SUCCESS, EXIT_FAILURE
 #include <string.h>	// strcmp
 #include <math.h>	// sqrt
-#include <prtbp_2d.h>	// prtbp_2d, prtbp_2d_inv
+#include <prtbp_nl_2d.h>	// prtbp_nl_2d, prtbp_nl_2d_inv
 #include <errmfld.h>
 #include "disc.h"	// disc
 
@@ -126,9 +126,9 @@ int main( )
    p1[0] = p0[0];
    p1[1] = p0[1];
    if(!stable) 	// unstable manifold
-      status=prtbp_2d(mu,sec,H,k,p1,&ti); 	// $p_1 = P(p_0)$
+      status=prtbp_nl_2d(mu,sec,H,k,p1,&ti); 	// $p_1 = P(p_0)$
    else 	// stable manifold
-      status=prtbp_2d_inv(mu,sec,H,k,p1,&ti);	// $p_1 = P^{-1}(p_0)$
+      status=prtbp_nl_2d_inv(mu,sec,H,k,p1,&ti);	// $p_1 = P^{-1}(p_0)$
    if(status)
    {
       fprintf(stderr, "main: error computing Poincare map\n");
@@ -148,7 +148,7 @@ int main( )
 	 {
 	    if(!stable)	// unstable manifold
 	    {
-	       if(prtbp_2d(mu,sec,H,1,l+2*i,&ti))
+	       if(prtbp_nl_2d(mu,sec,H,1,l+2*i,&ti))
 	       {
 		  fprintf(stderr, "main: error computing Poincare map\n");
 		  exit(EXIT_FAILURE);
@@ -156,7 +156,7 @@ int main( )
 	    }
 	    else		// stable manifold
 	    {
-	       if(prtbp_2d_inv(mu,sec,H,1,l+2*i,&ti))
+	       if(prtbp_nl_2d_inv(mu,sec,H,1,l+2*i,&ti))
 	       {
 		  fprintf(stderr, "main: error computing inverse Poincare map\n");
 		  exit(EXIT_FAILURE);
