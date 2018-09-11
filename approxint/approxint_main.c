@@ -4,18 +4,11 @@
 */
 
 #include <stdio.h>
-#include <stdlib.h>	// EXIT_SUCCESS, EXIT_FAILURE
-#include <prtbp.h>	// SEC2
+#include <stdlib.h>		// EXIT_SUCCESS, EXIT_FAILURE
+#include <section.h>	// branch_t
+#include <prtbp.h>		// SEC2
 #include <errmfld.h>	// h_opt
 #include "approxint.h"	// approxint_unst, approxint_st
-
-/// Specifies which branch (left or right) of a 1d manifold.
-/// 
-/// Given a fixed point p of a map P(x,p_x) of the plane, 
-/// and the stable/unstable manifold of p, 
-/// one can consider either the left or right branch of the manifold, 
-/// namely the branch with p_x>0 or the branch with p_x<0.
-typedef enum {LEFT, RIGHT} branch_t;
 
 /** 
    Approximate Intersection of Invariant Manifolds: main prog

@@ -11,7 +11,7 @@
 #include <string.h>	// memcpy
 #include <math.h>	// atan2
 #include <assert.h>
-#include <prtbp_2d.h>	// prtbp_2d, prtbp_2d_inv
+#include <prtbp_nl_2d.h>	// prtbp_nl_2d, prtbp_nl_2d_inv
 #include <disc.h>	// disc
 
 /*! \brief 
@@ -22,6 +22,11 @@ const int MAXITER = 100;
 
 /// Number of points in the discretization of unst segment.
 const int NPOINTS = 100;
+
+/*! \brief 
+  Tolerance to max distance between two continuous points in manifold.
+ */
+const double MFLD_CONT_TOL= 0.01; 
 
 int 
 u_i (double mu, double H, int k, double z[2], double a, double *l, int *idx);
@@ -67,7 +72,7 @@ approxint_unst (double mu, double H, int k, double p[2], double v[2],
    // Compute $p_1$
    p1[0] = p0[0];
    p1[1] = p0[1];
-   status=prtbp_2d(mu,SEC2,H,k,p1,&ti);        // $p_1 = P(p_0)$
+   status=prtbp_nl_2d(mu,SEC2,H,k,p1,&ti);        // $p_1 = P(p_0)$
    if(status)
    {
       fprintf(stderr, "approxint: error computing Poincare map\n");
@@ -146,7 +151,7 @@ approxint_st (double mu, double H, int k, double p[2], double v[2],
    // Compute $p_1$
    p1[0] = p0[0];
    p1[1] = p0[1];
-   status=prtbp_2d_inv(mu,SEC2,H,k,p1,&ti);        // $p_1 = \sixmap^{-1}(p_0)$
+   status=prtbp_nl_2d_inv(mu,SEC2,H,k,p1,&ti);        // $p_1 = \sixmap^{-1}(p_0)$
    if(status)
    {
       fprintf(stderr, "approxint: error computing Poincare map\n");
@@ -254,7 +259,7 @@ approxint_st (double mu, double H, int k, double p[2], double v[2],
   \note We have problems computing some invariant manifolds, because suddenly
   they look "broken". To prevent this, we check that the manifolds are indeed
   continuous, i.e. we check that each two consecutive points in the manifold
-  are close together (closer than say 0.1).
+  are close together (closer than MFLD_CONT_TOL).
   */ 
 
 int 
@@ -272,7 +277,7 @@ u_i (double mu, double H, int k, double z[2], double a, double *l, int *idx)
    // Poincare map
    for(i=0;i<NPOINTS;i++)
    {
-	 if(prtbp_2d(mu,SEC2,H,k,l+2*i,&ti))
+	 if(prtbp_nl_2d(mu,SEC2,H,k,l+2*i,&ti))
 	 {
 	    fprintf(stderr, "u_i: error computing Poincare map\n");
 	    return(1);
@@ -289,12 +294,17 @@ u_i (double mu, double H, int k, double z[2], double a, double *l, int *idx)
   
       // Check that the manifolds are indeed continuous, i.e. we check that
       // each two consecutive points in the manifold  are close together.
-      if( fabs(l[2*i+2]-l[2*i]) + fabs(l[2*i+3]-l[2*i+1]) > 0.1 )
+
+	   // prtbp_nl already takes care of loops, so this check is not needed
+	   /*
+      if( fabs(l[2*i+2]-l[2*i]) + fabs(l[2*i+3]-l[2*i+1]) > MFLD_CONT_TOL )
       {
 	 // Segment U_i is too large
-	 fprintf(stderr, "u_i: segment is too large!\n");
+	 fprintf(stderr, "u_i: segment has size %e --too large!\n",
+			 fabs(l[2*i+2]-l[2*i]) + fabs(l[2*i+3]-l[2*i+1]));
 	 return(1);
       }
+	  */
 
       if(((l[2*i+1]-a)*(l[2*i+3]-a)<=0) && 
 	    fabs(l[2*i]-z[0]) < 0.02)	// point belongs to primary family
@@ -324,7 +334,7 @@ u_i (double mu, double H, int k, double z[2], double a, double *l, int *idx)
   \note We have problems computing some invariant manifolds, because suddenly
   they look "broken". To prevent this, we check that the manifolds are indeed
   continuous, i.e. we check that each two consecutive points in the manifold
-  are close together (closer than say 0.1).
+  are close together (closer than say MFLD_CONT_TOL).
   */ 
 
 int 
@@ -342,7 +352,7 @@ s_i (double mu, double H, int k, double z[2], double a, double *l, int *idx)
    // Poincare map
    for(i=0;i<NPOINTS;i++)
    {
-	 if(prtbp_2d_inv(mu,SEC2,H,k,l+2*i,&ti))
+	 if(prtbp_nl_2d_inv(mu,SEC2,H,k,l+2*i,&ti))
 	 {
 	    fprintf(stderr, "s_i: error computing Poincare map\n");
 	    return(1);
@@ -358,12 +368,16 @@ s_i (double mu, double H, int k, double z[2], double a, double *l, int *idx)
 
       // Check that the manifolds are indeed continuous, i.e. we check that
       // each two consecutive points in the manifold  are close together.
-      if( fabs(l[2*i+2]-l[2*i]) + fabs(l[2*i+3]-l[2*i+1]) > 0.1 )
+
+	   // prtbp_nl already takes care of loops, so this check is not needed
+	   /*
+      if( fabs(l[2*i+2]-l[2*i]) + fabs(l[2*i+3]-l[2*i+1]) > MFLD_CONT_TOL )
       {
 	 // Segment S_i is too large
 	 fprintf(stderr, "s_i: segment is too large!\n");
 	 return(1);
       }
+	  */
 
       if(((l[2*i+1]-a)*(l[2*i+3]-a)<=0) && 
 	    fabs(l[2*i]-z[0]) < 0.02)	// point belongs to primary family
