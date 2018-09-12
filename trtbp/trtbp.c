@@ -47,7 +47,32 @@
 #include <frtbp.h>	// frtbp
 #include <rtbp.h>	// DIM
 
-inline void print_pt(double t, double x[DIM]);
+// name OF FUNCTION: print_pt
+// CREDIT: 
+// PURPOSE:
+// Print a point of a trajectory to stdout.
+// The format in which the point is printed is:
+//    t x\n
+// where x is the position at time t.
+//
+// PARAMETERS:
+// - t adimensional time at which the trajectory is at point x.
+// - x point in phase space, 4 coordinates: (x, X, y, Y).
+// 
+// RETURN VALUE:
+//
+// CALLS TO: none
+//
+// CALLED FROM: main
+
+void print_pt(double t, double x[DIM])
+{
+   if(printf("%le %le %le %le %le\n", t, x[0], x[1], x[2], x[3])<0)
+   {
+      perror("main: error writting output");
+      exit(EXIT_FAILURE);
+   }
+}
 
 int main( )
 {
@@ -107,29 +132,3 @@ int main( )
    exit(EXIT_SUCCESS);
 }
 
-// name OF FUNCTION: print_pt
-// CREDIT: 
-// PURPOSE:
-// Print a point of a trajectory to stdout.
-// The format in which the point is printed is:
-//    t x\n
-// where x is the position at time t.
-//
-// PARAMETERS:
-// - t adimensional time at which the trajectory is at point x.
-// - x point in phase space, 4 coordinates: (x, X, y, Y).
-// 
-// RETURN VALUE:
-//
-// CALLS TO: none
-//
-// CALLED FROM: main
-
-inline void print_pt(double t, double x[DIM])
-{
-   if(printf("%le %le %le %le %le\n", t, x[0], x[1], x[2], x[3])<0)
-   {
-      perror("main: error writting output");
-      exit(EXIT_FAILURE);
-   }
-}
