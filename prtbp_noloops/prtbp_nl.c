@@ -16,9 +16,10 @@
 #include <rtbp.h>	// DIM
 
 #include <section.h>	// section_t
+#include <utils_module.h>	// dblcpy
 
 const double POINCARE_TOL_NL=1.e-16;
-const double SHORT_TIME_NL=0.01;		///< integration "step" for prtbp_nl
+const double SHORT_TIME_NL=0.001;		///< integration "step" for prtbp_nl
 
 int inter_nl(double mu, section_t sec, double epsabs, double x[DIM], double t0,
       double t1, double *t);
@@ -111,36 +112,11 @@ bool crossing_nl (section_t sec, double a[DIM], double b[DIM])
 }
 
 int onemorecut_nl(double mu, section_t sec, double x[DIM], double *t, 
-		int *sign, double x_pre[DIM], double *t_pre)
+		double x_pre[DIM], double *t_pre)
 {
 	int i;
 	int status;
 
-	// First of two possible crossings with {y=0}
-	do {
-	 
-		// Save previous value of point "x" and time "t"
-		for(i=0;i<DIM;i++)
-			x_pre[i]=x[i];
-		*(t_pre)=(*t);
-	 
-		// Integrate for a "short" time t1=SHORT_TIME_NL, short enough so that
-		// we can detect crossing of Poincare section.
-
-		// WARNING! Before we used t1=1 as a "short" time, but sometime this
-		// was too long...
-		status = frtbp(mu,SHORT_TIME_NL,x);
-		(*t) += SHORT_TIME_NL;
-		if (status != GSL_SUCCESS)
-		{
-			fprintf(stderr, "prtbp_nl: error integrating trajectory\n");
-			return(1);
-		}
-	} 
-	// while(no crossing of Poincare section)
-	while(!(onsection_nl(sec,x) || crossing_nl(sec,x_pre,x))); 
-
-	// Second of two possible crossings with {y=0}
 	do {
 	 
 		// Save previous value of point "x" and time "t"
@@ -179,23 +155,57 @@ int prtbp_nl(double mu, section_t sec, int cuts, double x[DIM], double *ti)
    double t = 0.0;
    double t_pre;	/* previous value of time t */
    double x_pre[DIM];	/* previous value of point x */
-   int sign;		/* sign of previous intersection with x axis */
    int i,n;
    double t1;
 
-   // Save sign of previous intersection with x axis
-   sign = (x[0]>0 ? +1 : -1);
+   // auxiliary variables
+   double x1[DIM], x2[DIM];
+   double tfirst, tsecond;
+   double t_pre1, t_pre2;
+   double x_pre1[DIM], x_pre2[DIM];
 
+   tfirst = 0.0;
    n=0;
    while(n!=cuts)
    {
+	   tfirst=t;
+	   dblcpy(x1,x,DIM);
+
 	  // Integrate trajectory until it reaches section
-	  onemorecut_nl(mu,sec,x,&t,&sign,x_pre,&t_pre);
+	  onemorecut_nl(mu,sec,x1,&tfirst,x_pre1,&t_pre1);
+	  tsecond=tfirst;
+	  dblcpy(x2,x1,DIM);
+	  onemorecut_nl(mu,sec,x2,&tsecond,x_pre2,&t_pre2);
+
+	  if(x_pre1[0]*x_pre2[0]<0)
+	  {
+		  t=tfirst;
+		  dblcpy(x,x1,DIM);
+		  dblcpy(x_pre,x_pre1,DIM);
+		  t_pre=t_pre1;
+	  }
+	  if(x_pre1[0]*x_pre2[0]>0)
+	  {
+		 if (fabs(x_pre1[0])<fabs(x_pre2[0]))
+		  {
+			  t=tfirst;
+			  dblcpy(x,x1,DIM);
+			  dblcpy(x_pre,x_pre1,DIM);
+			  t_pre=t_pre1;
+		  }
+		  else // fabs(x_pre1[0])>fabs(x_pre2[0])
+		  {
+			  t=tsecond;
+			  dblcpy(x,x2,DIM);
+			  dblcpy(x_pre,x_pre2,DIM);
+			  t_pre=t_pre2;
+		  }
+	  }
       n++;
    }
    // point "x" is exactly on the section
    // This would be very unlikely...
-   if(onsection_nl(sec,x,&sign))
+   if(onsection_nl(sec,x))
    {
       (*ti)=t;
       return(0);
@@ -271,12 +281,12 @@ int prtbp_nl_inv(double mu, section_t sec, int cuts, double x[DIM], double *ti)
 	 }
       } 
       // while(no crossing of Poincare section)
-      while(!(onsection_nl(sec,x,&sign) || crossing_nl(sec,x_pre,x,&sign))); 
+      while(!(onsection_nl(sec,x) || crossing_nl(sec,x_pre,x))); 
       n++;
    }
    // point "x" is exactly on the section
    // This would be very unlikely...
-   if(onsection_nl(sec,x,&sign))
+   if(onsection_nl(sec,x))
    {
       (*ti)=t;
       return(0);

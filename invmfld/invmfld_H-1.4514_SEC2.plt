@@ -32,10 +32,10 @@ f(x)=0.0
 #stmfld_H-1.4514_p1.res" u ($1):(-$2) = unstmfld of p_2
 
 plot \
-"unstmfld_H-1.4514_p1.res" w lp  lc 1 not, \
-"unstmfld_H-1.4514_p1_branch2.res" w d  lc 1 not, \
+"unstmfld_H-1.4514_p1.res" w l  lc 1 not, \
 f(x) w l lt 3 lc 2 not
 
+#"unstmfld_H-1.4514_p1_branch2.res" w l  lc 1 not, \
 #"unstmfld_H-1.4514_p1.res" u ($1):(-$2) w l  lc 3 not, \
 #"unstmfld_H-1.4514_p1_branch2.res" u ($1):(-$2) w d  lc 3 not, \
 #"stmfld_H-1.4514_p1.res" w l  lc 3 not, \
