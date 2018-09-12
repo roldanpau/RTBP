@@ -51,6 +51,7 @@ bool onsection_nl (section_t sec, double a[DIM])
    double py = a[3];
    double vy = py-x;
 
+   /*
    switch(sec)
    {
       case SEC1 :       // section {y=0, v_y>0}
@@ -64,6 +65,8 @@ bool onsection_nl (section_t sec, double a[DIM])
             break;
          }
    }
+   */
+   bonsection = (y == 0);
    return(bonsection);
 }
 
@@ -95,6 +98,7 @@ bool crossing_nl (section_t sec, double a[DIM], double b[DIM])
 
    bool bcrossing = false;
 
+   /*
    switch(sec)
    {
       case SEC1 :       // section {y=0, v_y>0}
@@ -108,10 +112,44 @@ bool crossing_nl (section_t sec, double a[DIM], double b[DIM])
             break;
          }
    }
+   */
+   bcrossing = (a[1]*b[1]<0);
    return(bcrossing);
 }
 
-int onemorecut_nl(double mu, section_t sec, double x[DIM], double *t, 
+int onemorecut_nl_1(double mu, section_t sec, double x[DIM], double *t, 
+		double x_pre[DIM], double *t_pre)
+{
+	int i;
+	int status;
+
+    int sign = ((x[0]<0) ? -1:1);
+
+	do {
+	 
+		// Save previous value of point "x" and time "t"
+		for(i=0;i<DIM;i++)
+			x_pre[i]=x[i];
+		*(t_pre)=(*t);
+	 
+		// Integrate for a "short" time t1=SHORT_TIME_NL, short enough so that
+		// we can detect crossing of Poincare section.
+
+		// WARNING! Before we used t1=1 as a "short" time, but sometime this
+		// was too long...
+		status = frtbp(mu,SHORT_TIME_NL,x);
+		(*t) += SHORT_TIME_NL;
+		if (status != GSL_SUCCESS)
+		{
+			fprintf(stderr, "prtbp_nl: error integrating trajectory\n");
+			return(1);
+		}
+	} 
+	// while(no crossing of Poincare section)
+	while(!(onsection_nl(sec,x) || crossing_nl(sec,x_pre,x)) || (sign*x[0]>0)); 
+}
+
+int onemorecut_nl_2(double mu, section_t sec, double x[DIM], double *t, 
 		double x_pre[DIM], double *t_pre)
 {
 	int i;
@@ -172,10 +210,10 @@ int prtbp_nl(double mu, section_t sec, int cuts, double x[DIM], double *ti)
 	   dblcpy(x1,x,DIM);
 
 	  // Integrate trajectory until it reaches section
-	  onemorecut_nl(mu,sec,x1,&tfirst,x_pre1,&t_pre1);
+	  onemorecut_nl_1(mu,sec,x1,&tfirst,x_pre1,&t_pre1);
 	  tsecond=tfirst;
 	  dblcpy(x2,x1,DIM);
-	  onemorecut_nl(mu,sec,x2,&tsecond,x_pre2,&t_pre2);
+	  onemorecut_nl_2(mu,sec,x2,&tsecond,x_pre2,&t_pre2);
 
 	  if(x_pre1[0]*x_pre2[0]<0)
 	  {
@@ -186,20 +224,10 @@ int prtbp_nl(double mu, section_t sec, int cuts, double x[DIM], double *ti)
 	  }
 	  if(x_pre1[0]*x_pre2[0]>0)
 	  {
-		 if (fabs(x_pre1[0])<fabs(x_pre2[0]))
-		  {
-			  t=tfirst;
-			  dblcpy(x,x1,DIM);
-			  dblcpy(x_pre,x_pre1,DIM);
-			  t_pre=t_pre1;
-		  }
-		  else // fabs(x_pre1[0])>fabs(x_pre2[0])
-		  {
-			  t=tsecond;
-			  dblcpy(x,x2,DIM);
-			  dblcpy(x_pre,x_pre2,DIM);
-			  t_pre=t_pre2;
-		  }
+          t=tsecond;
+          dblcpy(x,x2,DIM);
+          dblcpy(x_pre,x_pre2,DIM);
+          t_pre=t_pre2;
 	  }
       n++;
    }
