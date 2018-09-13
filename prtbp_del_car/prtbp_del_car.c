@@ -420,7 +420,7 @@ int inter_del_car(double mu, section_t sec, double epsabs,
 		// thus the residual |cardel(frtbp(t))| will never get very small even
 		// though the root is computed with extreme precision |t-t^*|<10^{-15}.
 		// Thus we stop as soon as forward error is small enough.
-        //f=inter_del_car_f(*t,&params);
+        f=inter_del_car_f(*t,&params);
         //status = gsl_root_test_residual(f, epsabs);
 		t_lo = gsl_root_fsolver_x_lower(s);
 		t_hi = gsl_root_fsolver_x_upper(s);
