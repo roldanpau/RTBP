@@ -33,12 +33,12 @@ const double POINCARE_DEL_CAR_TOL=1.e-16;
 // Poincare map. However, setting it too small will increase computation 
 // time a lot.
 //
-// I have used the following values:
+// I have used the following vals:
 // SHORT_TIME_DEL_CAR = 0.001 when computing approximate intersections, 
 // and 0.0001 when computing true homoclinic intersections.
 
 // PRG (04/04/2018): const double SHORT_TIME_DEL_CAR=0.001;		
-const double SHORT_TIME_DEL_CAR=0.01;
+const double SHORT_TIME_DEL_CAR=0.1;
 
 bool onsection_del_car (section_t sec, double a[DIM]);
 int inter_del_car(double mu, section_t sec, double epsabs, 
@@ -54,6 +54,11 @@ struct inter_del_car_f_params
    double mu; section_t sec;
    double x; double y; double px; double py;
 };
+
+double WrapPosNegPI(double fAng)
+{
+	return fmod(fAng + M_PI, TWOPI) - M_PI;
+}
 
 /**
  * \remark We do not impose that $x$ is on the section.
@@ -74,6 +79,14 @@ int prtbp_del_car(double mu, section_t sec, int cuts, double x_del[DIM],
    int status;
    int i,n;
    double t1;
+   double g;
+
+   /* Normalize g between (-pi,pi]
+   g=x_del[2];
+   if(g<=-M_PI || g>M_PI)
+   {
+	   x_del[2] = WrapPosNegPI(g);
+   } */
 
    n=0;
    while(n!=cuts)
@@ -390,8 +403,8 @@ int inter_del_car(double mu, section_t sec, double epsabs,
     double f;
     gsl_function F;
 
-	double t_lo = t0;
-	double t_hi = t1;
+	//double t_lo = t0;
+	//double t_hi = t1;
 
     struct inter_del_car_f_params params = {mu, sec, x_car[0], x_car[1], x_car[2], x_car[3]};
     *t=0.0;
@@ -421,16 +434,15 @@ int inter_del_car(double mu, section_t sec, double epsabs,
 		// though the root is computed with extreme precision |t-t^*|<10^{-15}.
 		// Thus we stop as soon as forward error is small enough.
         f=inter_del_car_f(*t,&params);
-        //status = gsl_root_test_residual(f, epsabs);
-		t_lo = gsl_root_fsolver_x_lower(s);
-		t_hi = gsl_root_fsolver_x_upper(s);
-        status = gsl_root_test_interval(t_lo, t_hi, epsabs, 0);
+        status = gsl_root_test_residual(f, epsabs);
+		//t_lo = gsl_root_fsolver_x_lower(s);
+		//t_hi = gsl_root_fsolver_x_upper(s);
+        //status = gsl_root_test_interval(t_lo, t_hi, epsabs, 0);
       }
     while (status == GSL_CONTINUE && iter < max_iter);
     gsl_root_fsolver_free (s);
 
-    /*
-    if(iter>=max_iter)
+    if(iter>=max_iter && f>1.e-10)
     {
        fprintf(stderr, \
                "inter_del_car: maximum number of iterations reached\n");
@@ -438,7 +450,7 @@ int inter_del_car(double mu, section_t sec, double epsabs,
                "inter_del_car: latest residual: %.15e\n",f);
        return(ERR_MAXITER_DEL_CAR);
     }
-    */
+
     // "*t" is the intersection time.
     if(frtbp(mu,*t,x_car))	// compute the intersection point "x"
     {
@@ -446,14 +458,5 @@ int inter_del_car(double mu, section_t sec, double epsabs,
        exit(EXIT_FAILURE);
     }
     cardel(x_car,x_del);
-
-    if(iter>=max_iter)
-    {
-       fprintf(stderr, \
-               "inter_del_car: maximum number of iterations reached\n");
-       fprintf(stderr, \
-               "inter_del_car: latest residual: %.15e\n",f);
-       return(ERR_MAXITER_DEL_CAR);
-    }
     return 0;
 }

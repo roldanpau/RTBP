@@ -1,12 +1,14 @@
-#set out "intersecs.eps"
-#set term postscript enhanced monochrome eps
+set out "intersecs.bak2.eps"
+set term postscript enhanced monochrome eps
 
 set key top left horizontal
 
 set xlabel "H"
 set ylabel "L"
 
-plot [:-1.4894] \
+#plot [:-1.4894] \
+
+plot \
 "intersecs_unst_SECg_br1.res" u 1:6 w l t "z1p", \
 "intersecs_unst_SECg_br2.res" u 1:6 w l t "z1m", \
 "intersecs_unst_SECg2_br1.res" u 1:6 w l t "z2p", \

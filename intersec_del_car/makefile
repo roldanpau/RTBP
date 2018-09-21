@@ -4,8 +4,8 @@ exec_prefix = $(prefix)
 bindir = $(exec_prefix)/bin
 includedir = $(prefix)/include
 libdir = $(exec_prefix)/lib
-CFLAGS = -O3
-LDFLAGS = -O3
+CFLAGS = -g
+LDFLAGS = -g
 LDLIBS = -lgsl -lgslcblas -lds -lm
 
 all : intersec_del_car

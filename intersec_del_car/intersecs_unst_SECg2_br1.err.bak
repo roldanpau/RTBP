@@ -1,16 +1,4 @@
 Processing energy level -1.719400e+00...
-inter_del_car: maximum number of iterations reached
-inter_del_car: latest residual: 1.265086391200043e-08
-prtbp_del_car: error intersecting trajectory with section
-prtbp_del_car: giving up...
-inter_del_car: maximum number of iterations reached
-inter_del_car: latest residual: 7.139568936054275e-10
-prtbp_del_car: error intersecting trajectory with section
-prtbp_del_car: giving up...
-inter_del_car: maximum number of iterations reached
-inter_del_car: latest residual: 1.082698375398650e-10
-prtbp_del_car: error intersecting trajectory with section
-prtbp_del_car: giving up...
 Done!
 Processing energy level -1.717400e+00...
 Done!
@@ -35,78 +23,10 @@ Done!
 Processing energy level -1.697400e+00...
 Done!
 Processing energy level -1.695400e+00...
-inter_del_car: maximum number of iterations reached
-inter_del_car: latest residual: 1.294143725516506e-08
-prtbp_del_car: error intersecting trajectory with section
-prtbp_del_car: giving up...
-inter_del_car: maximum number of iterations reached
-inter_del_car: latest residual: 1.588644771288727e-10
-prtbp_del_car: error intersecting trajectory with section
-prtbp_del_car: giving up...
-inter_del_car: maximum number of iterations reached
-inter_del_car: latest residual: 3.380553614817927e-10
-prtbp_del_car: error intersecting trajectory with section
-prtbp_del_car: giving up...
-inter_del_car: maximum number of iterations reached
-inter_del_car: latest residual: 1.390536574774615e-10
-prtbp_del_car: error intersecting trajectory with section
-prtbp_del_car: giving up...
-inter_del_car: maximum number of iterations reached
-inter_del_car: latest residual: 1.967115359491345e-10
-prtbp_del_car: error intersecting trajectory with section
-prtbp_del_car: giving up...
-inter_del_car: maximum number of iterations reached
-inter_del_car: latest residual: 3.646523083489228e-10
-prtbp_del_car: error intersecting trajectory with section
-prtbp_del_car: giving up...
-inter_del_car: maximum number of iterations reached
-inter_del_car: latest residual: 2.593205650214259e-10
-prtbp_del_car: error intersecting trajectory with section
-prtbp_del_car: giving up...
-inter_del_car: maximum number of iterations reached
-inter_del_car: latest residual: 2.688493871971787e-10
-prtbp_del_car: error intersecting trajectory with section
-prtbp_del_car: giving up...
-inter_del_car: maximum number of iterations reached
-inter_del_car: latest residual: 1.387685522047377e-10
-prtbp_del_car: error intersecting trajectory with section
-prtbp_del_car: giving up...
-inter_del_car: maximum number of iterations reached
-inter_del_car: latest residual: 3.978239959678831e-10
-prtbp_del_car: error intersecting trajectory with section
-prtbp_del_car: giving up...
-inter_del_car: maximum number of iterations reached
-inter_del_car: latest residual: 3.333586739984185e-10
-prtbp_del_car: error intersecting trajectory with section
-prtbp_del_car: giving up...
-inter_del_car: maximum number of iterations reached
-inter_del_car: latest residual: 2.325606374142808e-10
-prtbp_del_car: error intersecting trajectory with section
-prtbp_del_car: giving up...
-inter_del_car: maximum number of iterations reached
-inter_del_car: latest residual: 1.812603400708213e-10
-prtbp_del_car: error intersecting trajectory with section
-prtbp_del_car: giving up...
-inter_del_car: maximum number of iterations reached
-inter_del_car: latest residual: 1.812603400708213e-10
-prtbp_del_car: error intersecting trajectory with section
-prtbp_del_car: giving up...
 Done!
 Processing energy level -1.693400e+00...
 Done!
 Processing energy level -1.691400e+00...
-inter_del_car: maximum number of iterations reached
-inter_del_car: latest residual: 2.779851904222141e-10
-prtbp_del_car: error intersecting trajectory with section
-prtbp_del_car: giving up...
-inter_del_car: maximum number of iterations reached
-inter_del_car: latest residual: 1.227669077508153e-09
-prtbp_del_car: error intersecting trajectory with section
-prtbp_del_car: giving up...
-inter_del_car: maximum number of iterations reached
-inter_del_car: latest residual: 2.895119033397009e-08
-prtbp_del_car: error intersecting trajectory with section
-prtbp_del_car: giving up...
 Done!
 Processing energy level -1.689400e+00...
 Done!
@@ -159,26 +79,6 @@ Done!
 Processing energy level -1.641400e+00...
 Done!
 Processing energy level -1.639400e+00...
-inter_del_car: maximum number of iterations reached
-inter_del_car: latest residual: 1.324570231275857e-09
-prtbp_del_car: error intersecting trajectory with section
-prtbp_del_car: giving up...
-inter_del_car: maximum number of iterations reached
-inter_del_car: latest residual: 6.851070821767280e-10
-prtbp_del_car: error intersecting trajectory with section
-prtbp_del_car: giving up...
-inter_del_car: maximum number of iterations reached
-inter_del_car: latest residual: 2.280367006335382e-10
-prtbp_del_car: error intersecting trajectory with section
-prtbp_del_car: giving up...
-inter_del_car: maximum number of iterations reached
-inter_del_car: latest residual: 2.280367006335382e-10
-prtbp_del_car: error intersecting trajectory with section
-prtbp_del_car: giving up...
-inter_del_car: maximum number of iterations reached
-inter_del_car: latest residual: 2.280367006335382e-10
-prtbp_del_car: error intersecting trajectory with section
-prtbp_del_car: giving up...
 Done!
 Processing energy level -1.637400e+00...
 Done!

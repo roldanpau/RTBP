@@ -14,7 +14,6 @@
 #include <rtbp.h>		// DIM
 #include <hinv.h>
 #include <cardel.h>
-#include <prtbp_2d.h>		// prtbp_2d_inv
 #include <prtbp_del_car.h>
 #include <lift.h>
 #include <utils_module.h>	// dblcpy
@@ -25,7 +24,7 @@
 // Note that this is the requested precision for the interval 
 // (h_1, h_2) on the local unstable manifold, NOT for the 
 // homoclinic point itself!
-const double BISECT_TOL=1.e-14;
+const double BISECT_TOL=1.e-16;
 
 // Parameters to distance_f_unst and distance_f_st functions.
 struct dparams
@@ -123,7 +122,7 @@ int iterate_del_car_unst(double mu, section_t sec, double H, int n,
 	double z_u[DIM], double z_u_car[DIM])
 {
     // auxiliary variables
-    int status;
+    int status, i;
 
    // Lift point from \R^2 to \R^4
    status=lift(mu,SEC2,H,1,p_u,z_car);
@@ -152,8 +151,8 @@ int iterate_del_car_unst(double mu, section_t sec, double H, int n,
    status=prtbp_del_car(mu,sec,n,z_del,z_car,t);  // $q_u = P^{n}(p_u)$
    if(status)
    {
-      fprintf(stderr, "intersec_del_car: error computing Poincare map\n");
-      //return(1);
+	  fprintf(stderr, "intersec_del_car: error computing Poincare map\n");
+	  //return(1);
    }
    return(0);
 }
@@ -311,6 +310,19 @@ int intersec_del_car_unst(double mu, section_t sec, branch_t br, double H,
    params.l = l;
    gsl_function f = {&distance_f_unst, &params};
 
+   // auxiliary vars
+   int status;
+   size_t iter = 0, max_iter = 100;
+   double d;
+   //double x_lo, x_hi;
+
+   /*
+	fprintf(stderr, "P(0): %.15le, P(1): %.15le\n", p[0] + h1*v[0], 
+			p[1] + h1*v[1]);
+	fprintf(stderr, "Q(0): %.15le, Q(1): %.15le\n", p[0] + h2*v[0], 
+			p[1] + h2*v[1]);
+			*/
+
    // Bisection method sometimes complains that interval [h1,h2] does not
    // straddle 0. The reason is that approxint_del_car sets h1 and h2 from
    // points in the linear segment l, whereas intersec_del_car uses h1 and h2
@@ -318,8 +330,15 @@ int intersec_del_car_unst(double mu, section_t sec, branch_t br, double H,
    // discrepancy.
    // Thus we enlarge [h1,h2] a little bit to account for this discrepancy.
    // NOTE: The number 0.9 is crucial! We tried 0.999 and did not work...
-   h1 *= 0.97;
-   h2 /= 0.97;
+   //h1 *= 0.99;
+   //h2 /= 0.99;
+
+	/*
+	fprintf(stderr, "P(0): %.15le, P(1): %.15le\n", p[0] + h1*v[0], 
+			p[1] + h1*v[1]);
+	fprintf(stderr, "Q(0): %.15le, Q(1): %.15le\n", p[0] + h2*v[0], 
+			p[1] + h2*v[1]);
+			*/
 
    T = gsl_root_fsolver_brent;
    s = gsl_root_fsolver_alloc (T);
@@ -335,43 +354,48 @@ int intersec_del_car_unst(double mu, section_t sec, branch_t br, double H,
        gsl_root_fsolver_set (s, &f, h2, h1);
    }
 
-   // auxiliary vars
-   int status;
-   size_t iter = 0;
-   double x_lo, x_hi;
-
    // Find a root of the distance function, i.e. an intersection point of
    // the manifolds (using a bisection method).
    //print_state (iter, s);
 
     do
       {
-	iter++;
-	status = gsl_root_fsolver_iterate (s);
-	if (status)   /* check if solver is stuck */
-	  break;
-  
-	x_lo = gsl_root_fsolver_x_lower(s);
-	x_hi = gsl_root_fsolver_x_upper(s);
+		iter++;
+		status = gsl_root_fsolver_iterate (s);
+		if (status)   /* check if solver is stuck */
+		  break;
+	  
+		// the root is:
+		*h = gsl_root_fsolver_root(s);
 
-	// epsabs=BISECT_TOL, epsrel=0
-	status =
-	  gsl_root_test_interval (x_lo, x_hi, BISECT_TOL, 0);
-        //print_state (iter, s);
+		d=distance_f_unst(*h,&params);
+		status = gsl_root_test_residual(d,BISECT_TOL);
+
+
+		//x_lo = gsl_root_fsolver_x_lower(s);
+		//x_hi = gsl_root_fsolver_x_upper(s);
+
+		// epsabs=BISECT_TOL, epsrel=0
+		//status =
+		//  gsl_root_test_interval (x_lo, x_hi, BISECT_TOL, 0);
+			//print_state (iter, s);
       }
-    while (status == GSL_CONTINUE && iter < 1000);
+    while (status == GSL_CONTINUE && iter < max_iter);
+    gsl_root_fsolver_free (s);
 
     //fprintf (stderr, "status = %s\n", gsl_strerror (status));
-
-    // the root is:
-    *h = gsl_root_fsolver_root(s);
 
     // If bisection did not converge, warn calling function.
     // In this case, the root is updated to the closest zero, 
     // but we don't compute further results, which would be unaccurate (ps,
     // pu, z)
     if(status != GSL_SUCCESS)
+	{
+		fprintf(stderr, "intersec_del_car_unst: bisection did not converge!\n");
+       fprintf(stderr, \
+               "intersec_del_car_unst: latest residual: %.15e\n",d);
        return(2);
+	}
 
    // Compute the following:
    // - point p_u

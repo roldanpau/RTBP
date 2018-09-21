@@ -9,7 +9,7 @@ cut -d ' ' -f 2 ../hyper/hypers.res > temp3.txt        	# rho_u
 # Header: mu, sec, k, unstable flag, branch flag, axis line $g=a$
 # Note: k refers to iterates on the Euclidean section, NOT on SECg.
 # Note: the axis line $g=a$ is actually NOT used for section SECg.
-echo "0.95387536e-3 SECg 2 0 0 3.14159265358979323844" > $datfile
+echo "0.95387536e-3 SECg 4 0 0 3.14159265358979323844" > $datfile
 
 paste -d ' ' temp1.txt temp2.txt temp3.txt >> $datfile
 rm temp1.txt temp2.txt temp3.txt

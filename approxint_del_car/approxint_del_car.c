@@ -18,6 +18,7 @@
 #include <prtbp_del_car.h>
 #include <disc.h>	   
 #include <lift.h>
+#include <utils_module.h>	// dblcpy
 
 /*! \brief 
   Max number of iterations of unst segment before we give up looking for
@@ -30,11 +31,11 @@ const int MAXITER = 100;
 /// linear segment is discretized into very few points (e.g. 5).
 /// Probably, the more points we use, the higher the probability that 
 /// prtbp_del_car fails.
-const int NPOINTS = 5;
+const int NPOINTS = 11;
 
 int 
-u_i (double mu, section_t sec, int k, branch_t br, double a, double *l4_del,
-        double *l4, int *idx);
+u_i (double mu, section_t sec, int k, int iter, branch_t br, double a, 
+		double *l4_del, double *l4, int *idx);
 int 
 s_i (double mu, section_t sec, int k, branch_t br, double a, double *l4_del,
         double *l4, int *idx);
@@ -53,7 +54,7 @@ approxint_del_car_unst (double mu, section_t sec, double H, int k,
    double l[2*NPOINTS];
 
    // Linear segment approximating local invariant manifold (points in 4d)
-   double l4[DIM*NPOINTS];
+   double l4_car[DIM*NPOINTS];
 
    // Linear segment approximating local invariant manifold (Delaunay coords)
    double l4_del[DIM*NPOINTS];
@@ -61,6 +62,8 @@ approxint_del_car_unst (double mu, section_t sec, double H, int k,
    // Auxiliary variables
    int status, iter, i, iskip;
    double ti;
+   double l4_del_cpy[DIM*NPOINTS];	// copy of l4_del
+   double l4_car_cpy[DIM*NPOINTS];	// copy of l4_car
 
    // we DO NOT assume that $v=(x,p_x)$ points "to the right", i.e.
    // we DO NOT assume that the first component of $v$ is $x>0$
@@ -74,6 +77,7 @@ approxint_del_car_unst (double mu, section_t sec, double H, int k,
    p0[1] = p[1] + h*v[1];
 
    // Compute $p_1$
+   /*
    p1[0] = p0[0];
    p1[1] = p0[1];
    status=prtbp_nl_2d(mu,SEC2,H,k,p1,&ti);        // $p_1 = P(p_0)$
@@ -82,6 +86,9 @@ approxint_del_car_unst (double mu, section_t sec, double H, int k,
       fprintf(stderr, "approxint_del_car: error computing Poincare map\n");
       return(1);
    }
+   */
+   p1[0] = p0[0] + lambda*h*v[0];
+   p1[1] = p0[1] + lambda*h*v[1];
 
    // Discretize linear segment
    disc(p0, p1, NPOINTS, l);
@@ -89,7 +96,7 @@ approxint_del_car_unst (double mu, section_t sec, double H, int k,
    // IMPROVEMENT: Use cardel_2d instead of lift+cardel.
 
    // Lift points in linear segment from \R^2 to \R^4
-   status=lift(mu,SEC2,H,NPOINTS,l,l4);
+   status=lift(mu,SEC2,H,NPOINTS,l,l4_car);
    if(status)
    {
       perror("main: error lifting points in linear segment");
@@ -98,18 +105,31 @@ approxint_del_car_unst (double mu, section_t sec, double H, int k,
 
    // Transform points in linear segment to Delaunay coordinates
    for(i=0; i<NPOINTS; i++)
-       cardel(l4+DIM*i,l4_del+DIM*i);
+       cardel(l4_car+DIM*i,l4_del+DIM*i);
 
    // Flow the (discretized) linear segment to Delaunay section before the
    // iteration.
-   status=u_i(mu, sec, 1, br, a, l4_del, l4, &i);
+   for(i=0;i<NPOINTS;i++)
+   {
+       if(prtbp_del_car(mu,sec,1,l4_del+DIM*i,l4_car+DIM*i,&ti))
+       {
+          fprintf(stderr, 
+                  "approxint_del_car: error during %d-th iteration"
+				  " of linear segment\n", 0);
+          return(1);
+       }
+   }
 
-   // Iterate the (discretized) linear segment "iter" times by the Poincare map
+   dblcpy(l4_del_cpy, l4_del, DIM*NPOINTS);
+   dblcpy(l4_car_cpy, l4_car, DIM*NPOINTS);
+
    for(iter=1;iter<=MAXITER;iter++)
    {
-      //fprintf(stderr, "DEBUG: before %d iteration of linear segment: l=%.15le, g=%.15le\n", iter, l4_del[0], l4_del[2]);
-      status=u_i(mu, sec, 1, br, a, l4_del, l4, &i);
-      //fprintf(stderr, "DEBUG: after %d iteration of linear segment: l=%.15le, g=%.15le\n", iter, l4_del[0], l4_del[2]);
+	   dblcpy(l4_del, l4_del_cpy, DIM*NPOINTS);
+	   dblcpy(l4_car, l4_car_cpy, DIM*NPOINTS);
+
+	   // Iterate the (discretized) linear segment "iter" times by the Poincare map
+      status=u_i(mu, sec, 1, iter, br, a, l4_del, l4_car, &i);
       if(status)
       {
           fprintf(stderr, 
@@ -132,12 +152,18 @@ approxint_del_car_unst (double mu, section_t sec, double H, int k,
    // Endpoints of segment u_i: 
    // P[2] = (x, p_x) = (l[2i], l[2i+1]),
    // Q[2] = (x, p_x) = (l[2i+2], l[2i+3]).
-   *h_1 = (l[2*i+1]-p[1])/v[1];
-   *h_2 = (l[2*i+3]-p[1])/v[1];
+   //*h_1 = (l[2*i+1]-p[1])/v[1];
+   //*h_2 = (l[2*i+3]-p[1])/v[1];
+   *h_1 = (l[2*i+0]-p[0])/v[0];
+   *h_2 = (l[2*i+2]-p[0])/v[0];
+
+   fprintf(stderr, "p(0): %.15e, p(1): %.15e\n", p[0], p[1]);
+   fprintf(stderr, "P(0): %.15e, P(1): %.15e\n", l[2*i+0], l[2*i+1]);
+   fprintf(stderr, "Q(0): %.15e, Q(1): %.15e\n", l[2*i+2], l[2*i+3]);
 
    // return approximate intersection point
-   z[0] = l4_del[DIM*i+2];
-   z[1] = l4_del[DIM*i+3];
+   z[0] = l4_del[DIM*i+0];
+   z[1] = l4_del[DIM*i+1];
    return(0);
 }
 
@@ -271,6 +297,8 @@ approxint_del_car_st (double mu, section_t sec, double H, int k,
 // k
 //    number of cuts with poincare section per iterated poincare map
 //    $\sixmap$.
+// iter
+//    number of Poincare iterates
 // br
 //    branch type: br={LEFT, RIGHT}
 // a
@@ -291,24 +319,26 @@ approxint_del_car_st (double mu, section_t sec, double H, int k,
 //    1: Problems computing the Poincare iterates.
 
 int 
-u_i (double mu, section_t sec, int k, branch_t br, double a, double *l4_del,
-        double *l4, int *idx)
+u_i (double mu, section_t sec, int k, int iter, branch_t br, double a, 
+		double *l4_del, double *l4, int *idx)
 {
    // Auxiliary variables
-   int status, iter, i;
+   int status, i;
    double ti;
    double dx,dy;
    double g1, g2;
    double l1, l2;
+   double n1, n2;
+   bool bCrossing;
 
    // Approximate splitting half-angle
    //double alpha2;
 
-   // 3. Iterate the (discretized) linear segment one more time by the
+   // 3. Iterate the (discretized) linear segment "iter" times by the
    // Poincare map
    for(i=0;i<NPOINTS;i++)
    {
-       if(prtbp_del_car(mu,sec,k,l4_del+DIM*i,l4+DIM*i,&ti))
+       if(prtbp_del_car(mu,sec,k*iter,l4_del+DIM*i,l4+DIM*i,&ti))
        {
           fprintf(stderr, "u_i: error computing Poincare map of %d-th point\n", i);
           return(1);
@@ -333,13 +363,21 @@ u_i (double mu, section_t sec, int k, branch_t br, double a, double *l4_del,
            {
               // For the upper branch, since dg/dt<0, it is enough to check 
               // if the angle has passed from >a to <a
-              if(g1 > a && g2 < a) break;
+              if(g1 > a && g2 < a) 
+			  {
+				  *idx = i;
+				  break;
+			  }
            }
            else
            {
               // For the lower branch, since dg/dt>0, it is enough to check 
               // if the angle has passed from <a to >a
-              if(g1 < a && g2 > a) break;
+              if(g1 < a && g2 > a)
+			  {
+				  *idx = i;
+				  break;
+			  }
            }
        }
        else if(sec==SEC2)
@@ -348,16 +386,22 @@ u_i (double mu, section_t sec, int k, branch_t br, double a, double *l4_del,
            {
               // For the upper branch, since dg/dt<0, it is enough to check 
               // if the angle has been reset from 0 to 2\pi
-              if(g2 > g1) {
+              if(g2 > g1) 
+			  {
                   //fprintf(stderr, "DEBUG: g=%.15le, gprime=%.15le\n", l4_del[DIM*i+2], l4_del[DIM*(i+1)+2]);
-                  break;
-              }
+				  *idx = i;
+				  break;
+			  }
            }
            else
            {
               // For the lower branch, since dg/dt>0, it is enough to check 
               // if the angle has been reset from 2\pi to 0
-              if(g2 < g1) break;
+              if(g2 < g1)
+			  {
+				  *idx = i;
+				  break;
+			  }
            }
        }
        else if(sec==SECg)
@@ -366,16 +410,56 @@ u_i (double mu, section_t sec, int k, branch_t br, double a, double *l4_del,
            {
               // For the upper branch, since dl/dt<0, it is enough to check 
               // if the angle has been reset from -\pi to \pi
-              if(l2 > l1) {
-                  //fprintf(stderr, "DEBUG: g=%.15le, gprime=%.15le\n", l4_del[DIM*i+2], l4_del[DIM*(i+1)+2]);
-                  break;
-              }
+			   /*
+              if(l2 > l1) 
+			  {
+                  fprintf(stderr, "DEBUG: l=%.15le, lprime=%.15le\n", l1, l2);
+				  *idx = i;
+				  break;
+			  }
+			  */
+			  // Since dl/dt<0, we want to identify (-2\pi,0], so we use "ceil"
+              // function.
+              n1 = ceil((l1-M_PI)/TWOPI);
+              n2 = ceil((l2-M_PI)/TWOPI);
+			  // Inevitably, l will jump by almost TWOPI when (x,y) changes
+              // from the 2nd quadrant to the 3rd (see cardel.c).
+              // We need to include this case as a true crossing of section.
+              bCrossing = ((n1!=n2 && fabs(l1-l2)<M_PI) ||
+                      (-M_PI<l1 && l1<0 && 0<l2 && l2<M_PI));
+              if(bCrossing)
+			  {
+                  fprintf(stderr, "DEBUG: l=%.15le, lprime=%.15le\n", l1, l2);
+				  *idx = i;
+				  break;
+			  }
            }
            else
            {
               // For the lower branch, since dl/dt>0, it is enough to check 
               // if the angle has been reset from \pi to -\pi
-              if(l2 < l1) break;
+			   /*
+              if(l2 < l1)
+			  {
+				  *idx = i;
+				  break;
+			  }
+			  */
+			  // Since dl/dt>0, we want to identify [0,2\pi), so we use "floor"
+              // function.
+              n1 = floor((l1-M_PI)/TWOPI);
+              n2 = floor((l2-M_PI)/TWOPI);
+			  // Inevitably, l will jump by almost TWOPI when (x,y) changes
+              // from the 3rd quadrant to the 2nd (see cardel.c).
+              // We need to include this case as a true crossing of section.
+              bCrossing = ((n1!=n2 && fabs(l1-l2)<M_PI) ||
+                      (-M_PI<l2 && l2<0 && 0<l1 && l1<M_PI));
+              if(bCrossing)
+			  {
+                  fprintf(stderr, "DEBUG: l=%.15le, lprime=%.15le\n", l1, l2);
+				  *idx = i;
+				  break;
+			  }
            }
        }
        else if(sec==SECg2)
@@ -384,13 +468,41 @@ u_i (double mu, section_t sec, int k, branch_t br, double a, double *l4_del,
            {
               // For the upper branch, since dl/dt<0, it is enough to check 
               // if the angle has been reset from >a to <a
-              if(l1 > a && l2 < a) break;
+			   /*
+              if(l1 > a && l2 < a)
+			  {
+				  *idx = i;
+				  break;
+			  }
+			  */
+			  // Since dl/dt<0, we want to identify (-2\pi,0], so we use "ceil"
+              // function.
+              n1 = ceil(l1/TWOPI);
+              n2 = ceil(l2/TWOPI);
+              // Inevitably, l will jump by almost TWOPI when (x,y) changes
+              // from the 2nd quadrant to the 3rd (see cardel.c).
+              // We need to exclude this case as a "fake" crossing of section.
+              //
+              // NOTE: Maybe it would be better to rule out fake crossings by
+              // looking if x[2]*y[2]<0.
+              bCrossing = ((n1!=n2 && fabs(l1-l2)<M_PI) && 
+                      !(-M_PI<l1 && l1<0 && 0<l2 && l2<M_PI));
+              if(bCrossing)
+			  {
+                  fprintf(stderr, "DEBUG: l=%.15le, lprime=%.15le\n", l1, l2);
+				  *idx = i;
+				  break;
+			  }
            }
            else
            {
               // For the lower branch, since dl/dt>0, it is enough to check 
               // if the angle has been reset from <a to >a
-              if(l1 < a && l2 > a) break;
+              if(l1 < a && l2 > a)
+			  {
+				  *idx = i;
+				  break;
+			  }
            }
        }
        else
@@ -414,8 +526,7 @@ u_i (double mu, section_t sec, int k, branch_t br, double a, double *l4_del,
    //alpha2 = atan2(dy,dx);	
    //fprintf(stderr, "Approximate splitting half-angle: %f\n", alpha2);
 
-   fprintf(stderr, "Approximate interval: %d\n", i);
-   *idx=i;
+   fprintf(stderr, "Approximate interval: %d\n", *idx);
    return(0);
 }
 

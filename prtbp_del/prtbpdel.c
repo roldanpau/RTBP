@@ -387,14 +387,26 @@ bool crossing_fwd_del (section_t sec, double x[DIM], double y[DIM])
               //
               // NOTE: Maybe it would be better to rule out fake crossings by
               // looking if x[2]*y[2]<0.
-              bCrossing = ((n1!=n2) && !(fabs(x[2]-y[2])>(TWOPI-1.0)));
+              bCrossing = ((n1!=n2 && fabs(x[2]-y[2])<M_PI) && 
+					  !(-M_PI<x[2] && x[2]<0 && 0<y[2] && y[2]<M_PI));
               break;
           }
       case SECg2 :	// section {g=\pi}
           {
-              rem1 = remainder(x[2]-M_PI, TWOPI);
-              rem2 = remainder(y[2]-M_PI, TWOPI);
-              bCrossing = ((rem1*rem2<0) && !(fabs(x[2])<0.1 && fabs(y[2])<0.1));
+              // Since dg/dt<0, we want to identify (-2\pi,0], so we use "ceil"
+              // function.
+              n1 = ceil((x[2]-M_PI)/TWOPI);
+              n2 = ceil((y[2]-M_PI)/TWOPI);
+              // Inevitably, g will jump by almost TWOPI when (x,y) changes
+              // from the 2nd quadrant to the 3rd (see cardel.c).
+              // We need to include this case as a true crossing of section.
+              bCrossing = ((n1!=n2 && fabs(x[2]-y[2])<M_PI) || 
+					  (-M_PI<x[2] && x[2]<0 && 0<y[2] && y[2]<M_PI));
+			  /*
+			  if(bCrossing)
+				  fprintf(stderr, "n1: %e, n2: %e, x[2]: %e, y[2]: %e\n", n1,
+						  n2, x[2], y[2]);
+			  */
               break;
           }
    }

@@ -170,7 +170,7 @@ int main( )
    while(scanf("%le %le %le %le %le %le %d %le %le", 
 	    &H, p, p+1, v, v+1, &lambda, &n, &h1, &h2) == 9)
    {
-      fprintf(stderr, "Processing energy level %le...", H);
+      fprintf(stderr, "Processing energy level %le...\n", H);
 
       // 2. Find a root of the distance function, i.e. an intersection point of
       // the manifolds
