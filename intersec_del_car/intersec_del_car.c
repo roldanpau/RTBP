@@ -313,8 +313,8 @@ int intersec_del_car_unst(double mu, section_t sec, branch_t br, double H,
    // auxiliary vars
    int status;
    size_t iter = 0, max_iter = 100;
-   double d;
-   //double x_lo, x_hi;
+   double d;    // distance to symmetry line
+   double x_lo, x_hi;
 
    /*
 	fprintf(stderr, "P(0): %.15le, P(1): %.15le\n", p[0] + h1*v[0], 
@@ -372,13 +372,15 @@ int intersec_del_car_unst(double mu, section_t sec, branch_t br, double H,
 		status = gsl_root_test_residual(d,BISECT_TOL);
 
 
-		//x_lo = gsl_root_fsolver_x_lower(s);
-		//x_hi = gsl_root_fsolver_x_upper(s);
+        /*
+		x_lo = gsl_root_fsolver_x_lower(s);
+		x_hi = gsl_root_fsolver_x_upper(s);
 
 		// epsabs=BISECT_TOL, epsrel=0
-		//status =
-		//  gsl_root_test_interval (x_lo, x_hi, BISECT_TOL, 0);
+		status =
+		  gsl_root_test_interval (x_lo, x_hi, BISECT_TOL, 0);
 			//print_state (iter, s);
+            */
       }
     while (status == GSL_CONTINUE && iter < max_iter);
     gsl_root_fsolver_free (s);
@@ -392,9 +394,10 @@ int intersec_del_car_unst(double mu, section_t sec, branch_t br, double H,
     if(status != GSL_SUCCESS)
 	{
 		fprintf(stderr, "intersec_del_car_unst: bisection did not converge!\n");
+		d=distance_f_unst(*h,&params);
        fprintf(stderr, \
                "intersec_del_car_unst: latest residual: %.15e\n",d);
-       return(2);
+       //return(2);
 	}
 
    // Compute the following:

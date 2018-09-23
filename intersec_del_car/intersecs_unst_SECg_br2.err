@@ -1,462 +1,1256 @@
 Processing energy level -1.719400e+00...
 inter_del_car: maximum number of iterations reached
-inter_del_car: latest residual: 1.265086391200043e-08
+inter_del_car: latest residual: 2.329970349990163e-08
 prtbp_del_car: error intersecting trajectory with section
 prtbp_del_car: giving up...
 inter_del_car: maximum number of iterations reached
-inter_del_car: latest residual: 7.139568936054275e-10
+inter_del_car: latest residual: 2.329970349990163e-08
 prtbp_del_car: error intersecting trajectory with section
 prtbp_del_car: giving up...
 inter_del_car: maximum number of iterations reached
-inter_del_car: latest residual: 1.082698375398650e-10
+inter_del_car: latest residual: 2.195035264662692e-10
 prtbp_del_car: error intersecting trajectory with section
 prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 2.195035264662692e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 6.602616231532465e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 6.602616231532465e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 6.962346255079410e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 6.962346255079410e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 2.335549531551351e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 2.335549531551351e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 2.335549531551351e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 2.335549531551351e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 2.335549531551351e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 2.335549531551351e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: 3.063422795435145e-06
 Done!
 Processing energy level -1.717400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -2.891946713483140e-02
 Done!
 Processing energy level -1.715400e+00...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 5.501199495938636e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 5.501199495938636e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.150084472101298e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.150084472101298e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.011208894396987e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.011208894396987e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.109143887845221e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.109143887845221e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.853095454862341e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.853095454862341e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.148099393333268e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.148099393333268e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.148099393333268e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.148099393333268e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.148099393333268e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.148099393333268e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: 1.235645381036932e-05
 Done!
 Processing energy level -1.713400e+00...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 2.555764488931800e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 2.555764488931800e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.391518011928383e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.391518011928383e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.084541345619527e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.084541345619527e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.065560972790536e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.065560972790536e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.065560972790536e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.065560972790536e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.065560972790536e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.065560972790536e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.065560972790536e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.065560972790536e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: 5.444534056486816e-06
 Done!
 Processing energy level -1.711400e+00...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.634742741174477e-08
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.634742741174477e-08
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 4.507543227560973e-09
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 4.507543227560973e-09
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 2.297120405003739e-08
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 2.297120405003739e-08
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.278293293438537e-08
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.278293293438537e-08
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.278293293438537e-08
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.278293293438537e-08
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: 6.346248326849491e-08
 Done!
 Processing energy level -1.709400e+00...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.195175869384002e-08
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.195175869384002e-08
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.208277922160050e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.208277922160050e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 3.750724175688447e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 3.750724175688447e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 2.757367667527433e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 2.757367667527433e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 2.684665822982879e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 2.684665822982879e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 4.583302626315344e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 4.583302626315344e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.012168127090263e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.012168127090263e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 3.572195872436623e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 3.572195872436623e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 2.883866478953223e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 2.883866478953223e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 2.883866478953223e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 2.883866478953223e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: 2.039668857811705e-06
 Done!
 Processing energy level -1.707400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.821670929100172e-02
 Done!
 Processing energy level -1.705400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -8.528625567500114e-03
 Done!
 Processing energy level -1.703400e+00...
 Done!
 Processing energy level -1.701400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -2.922934462074966e-02
 Done!
 Processing energy level -1.699400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -7.189334568336481e-03
 Done!
 Processing energy level -1.697400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -2.684546514906527e-02
 Done!
 Processing energy level -1.695400e+00...
-inter_del_car: maximum number of iterations reached
-inter_del_car: latest residual: 1.294143725516506e-08
-prtbp_del_car: error intersecting trajectory with section
-prtbp_del_car: giving up...
-inter_del_car: maximum number of iterations reached
-inter_del_car: latest residual: 1.588644771288727e-10
-prtbp_del_car: error intersecting trajectory with section
-prtbp_del_car: giving up...
-inter_del_car: maximum number of iterations reached
-inter_del_car: latest residual: 3.380553614817927e-10
-prtbp_del_car: error intersecting trajectory with section
-prtbp_del_car: giving up...
-inter_del_car: maximum number of iterations reached
-inter_del_car: latest residual: 1.390536574774615e-10
-prtbp_del_car: error intersecting trajectory with section
-prtbp_del_car: giving up...
-inter_del_car: maximum number of iterations reached
-inter_del_car: latest residual: 1.967115359491345e-10
-prtbp_del_car: error intersecting trajectory with section
-prtbp_del_car: giving up...
-inter_del_car: maximum number of iterations reached
-inter_del_car: latest residual: 3.646523083489228e-10
-prtbp_del_car: error intersecting trajectory with section
-prtbp_del_car: giving up...
-inter_del_car: maximum number of iterations reached
-inter_del_car: latest residual: 2.593205650214259e-10
-prtbp_del_car: error intersecting trajectory with section
-prtbp_del_car: giving up...
-inter_del_car: maximum number of iterations reached
-inter_del_car: latest residual: 2.688493871971787e-10
-prtbp_del_car: error intersecting trajectory with section
-prtbp_del_car: giving up...
-inter_del_car: maximum number of iterations reached
-inter_del_car: latest residual: 1.387685522047377e-10
-prtbp_del_car: error intersecting trajectory with section
-prtbp_del_car: giving up...
-inter_del_car: maximum number of iterations reached
-inter_del_car: latest residual: 3.978239959678831e-10
-prtbp_del_car: error intersecting trajectory with section
-prtbp_del_car: giving up...
-inter_del_car: maximum number of iterations reached
-inter_del_car: latest residual: 3.333586739984185e-10
-prtbp_del_car: error intersecting trajectory with section
-prtbp_del_car: giving up...
-inter_del_car: maximum number of iterations reached
-inter_del_car: latest residual: 2.325606374142808e-10
-prtbp_del_car: error intersecting trajectory with section
-prtbp_del_car: giving up...
-inter_del_car: maximum number of iterations reached
-inter_del_car: latest residual: 1.812603400708213e-10
-prtbp_del_car: error intersecting trajectory with section
-prtbp_del_car: giving up...
-inter_del_car: maximum number of iterations reached
-inter_del_car: latest residual: 1.812603400708213e-10
-prtbp_del_car: error intersecting trajectory with section
-prtbp_del_car: giving up...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -2.031914525655187e-02
 Done!
 Processing energy level -1.693400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -2.664025891262378e-02
 Done!
 Processing energy level -1.691400e+00...
-inter_del_car: maximum number of iterations reached
-inter_del_car: latest residual: 2.779851904222141e-10
-prtbp_del_car: error intersecting trajectory with section
-prtbp_del_car: giving up...
-inter_del_car: maximum number of iterations reached
-inter_del_car: latest residual: 1.227669077508153e-09
-prtbp_del_car: error intersecting trajectory with section
-prtbp_del_car: giving up...
-inter_del_car: maximum number of iterations reached
-inter_del_car: latest residual: 2.895119033397009e-08
-prtbp_del_car: error intersecting trajectory with section
-prtbp_del_car: giving up...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -2.107431184727915e-02
 Done!
 Processing energy level -1.689400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.569915270130906e-02
 Done!
 Processing energy level -1.687400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.050325622316972e-02
 Done!
 Processing energy level -1.685400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.870788645157573e-02
 Done!
 Processing energy level -1.683400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.424431807922399e-02
 Done!
 Processing energy level -1.681400e+00...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 6.221864801148058e-09
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 6.221864801148058e-09
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 6.434186516912632e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 6.434186516912632e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 2.672710941453715e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 2.672710941453715e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.487312495385140e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.487312495385140e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 4.399836051049988e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 4.399836051049988e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 4.399836051049988e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 4.399836051049988e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: 7.598193727531566e-07
 Done!
 Processing energy level -1.679400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -5.721873882066575e-03
 Done!
 Processing energy level -1.677400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -2.903101580001621e-02
 Done!
 Processing energy level -1.675400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.148551700630884e-02
 Done!
 Processing energy level -1.673400e+00...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.369170465892466e-08
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.369170465892466e-08
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 2.220730266344617e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 2.220730266344617e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.105595615058519e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.105595615058519e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.570548135987337e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.570548135987337e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.750319889026741e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.750319889026741e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: 3.550529826590321e-06
 Done!
 Processing energy level -1.671400e+00...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.889050693648642e-09
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.889050693648642e-09
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 9.199396799886017e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 9.199396799886017e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 3.343871846084312e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 3.343871846084312e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 8.517226923743237e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 8.517226923743237e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 2.150657429922376e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 2.150657429922376e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 2.632423168336118e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 2.632423168336118e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 6.578675382229449e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 6.578675382229449e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 6.578675382229449e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 6.578675382229449e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 6.578675382229449e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 6.578675382229449e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 6.578675382229449e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 6.578675382229449e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: 6.413908346658559e-07
 Done!
 Processing energy level -1.669400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -2.890317027212852e-02
 Done!
 Processing energy level -1.667400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -2.572326545515136e-02
 Done!
 Processing energy level -1.665400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -2.263206888070224e-02
 Done!
 Processing energy level -1.663400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -5.920051884730437e-03
 Done!
 Processing energy level -1.661400e+00...
 Done!
 Processing energy level -1.659400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -2.852297943943949e-02
 Done!
 Processing energy level -1.657400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -2.599302990808683e-02
 Done!
 Processing energy level -1.655400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -2.353650630128401e-02
 Done!
 Processing energy level -1.653400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -2.115129502882285e-02
 Done!
 Processing energy level -1.651400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.883539865735395e-02
 Done!
 Processing energy level -1.649400e+00...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 9.326830863187752e-09
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 9.326830863187752e-09
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 4.774318718148152e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 4.774318718148152e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 2.579270130809164e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 2.579270130809164e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 4.727018776407022e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 4.727018776407022e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.839910446221893e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.839910446221893e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.839910446221893e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.839910446221893e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.839910446221893e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.839910446221893e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.839910446221893e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.839910446221893e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.839910446221893e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.839910446221893e-10
+prtbp_del_car: error intersecting trajectory with section
+prtbp_del_car: giving up...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: 6.603287099338218e-07
 Done!
 Processing energy level -1.647400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -2.859960340906742e-02
 Done!
 Processing energy level -1.645400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -2.662002869331870e-02
 Done!
 Processing energy level -1.643400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -2.470475558786944e-02
 Done!
 Processing energy level -1.641400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -2.285234863593510e-02
 Done!
 Processing energy level -1.639400e+00...
-inter_del_car: maximum number of iterations reached
-inter_del_car: latest residual: 1.324570231275857e-09
-prtbp_del_car: error intersecting trajectory with section
-prtbp_del_car: giving up...
-inter_del_car: maximum number of iterations reached
-inter_del_car: latest residual: 6.851070821767280e-10
-prtbp_del_car: error intersecting trajectory with section
-prtbp_del_car: giving up...
-inter_del_car: maximum number of iterations reached
-inter_del_car: latest residual: 2.280367006335382e-10
-prtbp_del_car: error intersecting trajectory with section
-prtbp_del_car: giving up...
-inter_del_car: maximum number of iterations reached
-inter_del_car: latest residual: 2.280367006335382e-10
-prtbp_del_car: error intersecting trajectory with section
-prtbp_del_car: giving up...
-inter_del_car: maximum number of iterations reached
-inter_del_car: latest residual: 2.280367006335382e-10
-prtbp_del_car: error intersecting trajectory with section
-prtbp_del_car: giving up...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -2.106137992873336e-02
 Done!
 Processing energy level -1.637400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.933045238092879e-02
 Done!
 Processing energy level -1.635400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.765821921327637e-02
 Done!
 Processing energy level -1.633400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.604339964390622e-02
 Done!
 Processing energy level -1.631400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -2.790027751363944e-02
 Done!
 Processing energy level -1.629400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -2.638961377507076e-02
 Done!
 Processing energy level -1.627400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -2.493739784584559e-02
 Done!
 Processing energy level -1.625400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -2.354275331548239e-02
 Done!
 Processing energy level -1.623400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -2.220472381763061e-02
 Done!
 Processing energy level -1.621400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -2.092229563151937e-02
 Done!
 Processing energy level -1.619400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.969441842504516e-02
 Done!
 Processing energy level -1.617400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.852002374199424e-02
 Done!
 Processing energy level -1.615400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.739804119100397e-02
 Done!
 Processing energy level -1.613400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.632741215796729e-02
 Done!
 Processing energy level -1.611400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.530710111575395e-02
 Done!
 Processing energy level -1.609400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.433610463130552e-02
 Done!
 Processing energy level -1.607400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.341345814823880e-02
 Done!
 Processing energy level -1.605400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -2.434808924008980e-02
 Done!
 Processing energy level -1.603400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -2.329230462999154e-02
 Done!
 Processing energy level -1.601400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -2.228800050048907e-02
 Done!
 Processing energy level -1.599400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -2.133466099100367e-02
 Done!
 Processing energy level -1.597400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -2.043166343529634e-02
 Done!
 Processing energy level -1.595400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.957829313659820e-02
 Done!
 Processing energy level -1.593400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.877375767299494e-02
 Done!
 Processing energy level -1.591400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.801720052858835e-02
 Done!
 Processing energy level -1.589400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.730771388034791e-02
 Done!
 Processing energy level -1.587400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.664435033495559e-02
 Done!
 Processing energy level -1.585400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.602613356182747e-02
 Done!
 Processing energy level -1.583400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.545206779382591e-02
 Done!
 Processing energy level -1.581400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.492114609663941e-02
 Done!
 Processing energy level -1.579400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.443235748652416e-02
 Done!
 Processing energy level -1.577400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.398469294089733e-02
 Done!
 Processing energy level -1.575400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.357715031959028e-02
 Done!
 Processing energy level -1.573400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.320873831904779e-02
 Done!
 Processing energy level -1.571400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.287847950768040e-02
 Done!
 Processing energy level -1.569400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.258541258963763e-02
 Done!
 Processing energy level -1.567400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.232859393597030e-02
 Done!
 Processing energy level -1.565400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.210709852223424e-02
 Done!
 Processing energy level -1.563400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -2.019682731142991e-02
 Done!
 Processing energy level -1.561400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.949143743076753e-02
 Done!
 Processing energy level -1.559400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.882174752379129e-02
 Done!
 Processing energy level -1.557400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.818742117039340e-02
 Done!
 Processing energy level -1.555400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.758805004760111e-02
 Done!
 Processing energy level -1.553400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.702315899041595e-02
 Done!
 Processing energy level -1.551400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.649221118288802e-02
 Done!
 Processing energy level -1.549400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.599461346138575e-02
 Done!
 Processing energy level -1.547400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.552972164614275e-02
 Done!
 Processing energy level -1.545400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.509684586069859e-02
 Done!
 Processing energy level -1.543400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.469525575349939e-02
 Done!
 Processing energy level -1.541400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.432418561161830e-02
 Done!
 Processing energy level -1.539400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.398283928994282e-02
 Done!
 Processing energy level -1.537400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.367039497103217e-02
 Done!
 Processing energy level -1.535400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.338600965305492e-02
 Done!
 Processing energy level -1.533400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.312882342423904e-02
 Done!
 Processing energy level -1.531400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.289796342953897e-02
 Done!
 Processing energy level -1.529400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.269254761438576e-02
 Done!
 Processing energy level -1.527400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.251168812952530e-02
 Done!
 Processing energy level -1.525400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.235449448723802e-02
 Done!
 Processing energy level -1.523400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.222007643029377e-02
 Done!
 Processing energy level -1.521400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.210754652865731e-02
 Done!
 Processing energy level -1.519400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.201602250874334e-02
 Done!
 Processing energy level -1.517400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.194462934587692e-02
 Done!
 Processing energy level -1.515400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.189250110704920e-02
 Done!
 Processing energy level -1.513400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.185878258532247e-02
 Done!
 Processing energy level -1.511400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.184263071651470e-02
 Done!
 Processing energy level -1.509400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.184321582254766e-02
 Done!
 Processing energy level -1.507400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.185972266914792e-02
 Done!
 Processing energy level -1.505400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.189135137503561e-02
 Done!
 Processing energy level -1.503400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.193731817978261e-02
 Done!
 Processing energy level -1.501400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.199685607776324e-02
 Done!
 Processing energy level -1.499400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.206921535585126e-02
 Done!
 Processing energy level -1.497400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.215366401589657e-02
 Done!
 Processing energy level -1.495400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.224948812428295e-02
 Done!
 Processing energy level -1.493400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.235599207001670e-02
 Done!
 Processing energy level -1.491400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.247249877427414e-02
 Done!
 Processing energy level -1.489400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.259834984132269e-02
 Done!
 Processing energy level -1.487400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.273290563745455e-02
 Done!
 Processing energy level -1.485400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.287554537037749e-02
 Done!
 Processing energy level -1.483400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.302566710644548e-02
 Done!
 Processing energy level -1.481400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.318268774416431e-02
 Done!
 Processing energy level -1.479400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.334604301153197e-02
 Done!
 Processing energy level -1.477400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.351518739898028e-02
 Done!
 Processing energy level -1.475400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.368959408456716e-02
 Done!
 Processing energy level -1.473400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.386875487734551e-02
 Done!
 Processing energy level -1.471400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.405218009615616e-02
 Done!
 Processing energy level -1.469400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.423939847610889e-02
 Done!
 Processing energy level -1.467400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.442995705465133e-02
 Done!
 Processing energy level -1.465400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.462342105629810e-02
 Done!
 Processing energy level -1.463400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.481937376455011e-02
 Done!
 Processing energy level -1.461400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.501741638151532e-02
 Done!
 Processing energy level -1.459400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.521716788872274e-02
 Done!
 Processing energy level -1.457400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.541826492294129e-02
 Done!
 Processing energy level -1.455400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.562036160280922e-02
 Done!
 Processing energy level -1.453400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.582312939375541e-02
 Done!
 Processing energy level -1.451400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.602625693590243e-02
 Done!
 Processing energy level -1.449400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.622944989029218e-02
 Done!
 Processing energy level -1.447400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.643243074130574e-02
 Done!
 Processing energy level -1.445400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.663493866664778e-02
 Done!
 Processing energy level -1.443400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.683672931145264e-02
 Done!
 Processing energy level -1.441400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.703757461388555e-02
 Done!
 Processing energy level -1.439400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.723726259995217e-02
 Done!
 Processing energy level -1.437400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.743559720790699e-02
 Done!
 Processing energy level -1.435400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.763239803086503e-02
 Done!
 Processing energy level -1.433400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.782750011929890e-02
 Done!
 Processing energy level -1.431400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.802075376145940e-02
 Done!
 Processing energy level -1.429400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.821202421772528e-02
 Done!
 Processing energy level -1.427400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.840119149115571e-02
 Done!
 Processing energy level -1.425400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.858815006190140e-02
 Done!
 Processing energy level -1.423400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.877280862336139e-02
 Done!
 Processing energy level -1.421400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.895508977111859e-02
 Done!
 Processing energy level -1.419400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.913492977064335e-02
 Done!
 Processing energy level -1.417400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.931227819341075e-02
 Done!
 Processing energy level -1.415400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.948709765046441e-02
 Done!
 Processing energy level -1.413400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.965936340411201e-02
 Done!
 Processing energy level -1.411400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.982906308560972e-02
 Done!
 Processing energy level -1.409400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -1.999619633149541e-02
 Done!
 Processing energy level -1.407400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -2.016077436723762e-02
 Done!
 Processing energy level -1.405400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -2.032281968236527e-02
 Done!
 Processing energy level -1.403400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -2.048236559687222e-02
 Done!
 Processing energy level -1.401400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -2.063945588810245e-02
 Done!
 Processing energy level -1.399400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -2.079414432054705e-02
 Done!
 Processing energy level -1.397400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -2.094649425871964e-02
 Done!
 Processing energy level -1.395400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -2.109657815813648e-02
 Done!
 Processing energy level -1.393400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -2.124447718298317e-02
 Done!
 Processing energy level -1.391400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -2.139028066135706e-02
 Done!
 Processing energy level -1.389400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -2.153408561744063e-02
 Done!
 Processing energy level -1.387400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -2.167599629161110e-02
 Done!
 Processing energy level -1.385400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -2.181612362886076e-02
 Done!
 Processing energy level -1.383400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -2.195458473553469e-02
 Done!
 Processing energy level -1.381400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -2.209150239041735e-02
 Done!
 Processing energy level -1.379400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -2.222700450953896e-02
 Done!
 Processing energy level -1.377400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -2.236122362528103e-02
 Done!
 Processing energy level -1.375400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -2.249429629444366e-02
 Done!
 Processing energy level -1.373400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -2.262636264362961e-02
 Done!
 Processing energy level -1.371400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -2.275756576845467e-02
 Done!
 Processing energy level -1.369400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -2.288805126830029e-02
 Done!
 Processing energy level -1.367400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -2.301796665414324e-02
 Done!
 Processing energy level -1.365400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -2.314746089301023e-02
 Done!
 Processing energy level -1.363400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -2.327668383282200e-02
 Done!
 Processing energy level -1.361400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -2.340578578773389e-02
 Done!
 Processing energy level -1.359400e+00...
+intersec_del_car_unst: bisection did not converge!
+intersec_del_car_unst: latest residual: -2.353491694610232e-02
 Done!

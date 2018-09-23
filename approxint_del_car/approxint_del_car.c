@@ -31,7 +31,7 @@ const int MAXITER = 100;
 /// linear segment is discretized into very few points (e.g. 5).
 /// Probably, the more points we use, the higher the probability that 
 /// prtbp_del_car fails.
-const int NPOINTS = 11;
+const int NPOINTS = 101;
 
 int 
 u_i (double mu, section_t sec, int k, int iter, branch_t br, double a, 
@@ -157,13 +157,15 @@ approxint_del_car_unst (double mu, section_t sec, double H, int k,
    *h_1 = (l[2*i+0]-p[0])/v[0];
    *h_2 = (l[2*i+2]-p[0])/v[0];
 
+   /*
    fprintf(stderr, "p(0): %.15e, p(1): %.15e\n", p[0], p[1]);
    fprintf(stderr, "P(0): %.15e, P(1): %.15e\n", l[2*i+0], l[2*i+1]);
    fprintf(stderr, "Q(0): %.15e, Q(1): %.15e\n", l[2*i+2], l[2*i+3]);
+   */
 
    // return approximate intersection point
-   z[0] = l4_del[DIM*i+0];
-   z[1] = l4_del[DIM*i+1];
+   z[0] = (l4_del[DIM*i+0] + l4_del[DIM*(i+1)+0])/2.0;
+   z[1] = (l4_del[DIM*i+1] + l4_del[DIM*(i+1)+1])/2.0;
    return(0);
 }
 
@@ -429,7 +431,7 @@ u_i (double mu, section_t sec, int k, int iter, branch_t br, double a,
                       (-M_PI<l1 && l1<0 && 0<l2 && l2<M_PI));
               if(bCrossing)
 			  {
-                  fprintf(stderr, "DEBUG: l=%.15le, lprime=%.15le\n", l1, l2);
+                  //fprintf(stderr, "DEBUG: l=%.15le, lprime=%.15le\n", l1, l2);
 				  *idx = i;
 				  break;
 			  }
