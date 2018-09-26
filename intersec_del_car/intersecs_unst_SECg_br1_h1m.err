@@ -1,0 +1,5 @@
+Processing energy level -1.719400e+00...
+Optimal displacement: 1.000000e-03
+Estimated error of manifold: 1.721074e-06
+gsl: brent.c:74: ERROR: endpoints do not straddle y=0
+Default GSL error handler invoked.

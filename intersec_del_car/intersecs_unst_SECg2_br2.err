@@ -2,1085 +2,694 @@ Processing energy level -1.359400e+00...
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 8.901089e-05
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -2.510511694459608e-02
+intersec_del_car_unst: latest residual: -1.161830891934440e-02
 Done!
 Processing energy level -1.361400e+00...
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 9.006371e-05
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -2.487022885416609e-02
+intersec_del_car_unst: latest residual: -1.101256845256340e-02
 Done!
 Processing energy level -1.363400e+00...
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 9.112022e-05
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -2.461908304407512e-02
+intersec_del_car_unst: latest residual: 7.497062404404292e-02
 Done!
 Processing energy level -1.365400e+00...
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 9.218018e-05
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -2.435059165134790e-02
+intersec_del_car_unst: latest residual: -1.138448264053860e-02
 Done!
 Processing energy level -1.367400e+00...
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 9.324335e-05
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -2.406354089300250e-02
+intersec_del_car_unst: latest residual: -1.289064300393933e-02
 Done!
 Processing energy level -1.369400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.008391e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -1.529881397418772e-02
+intersec_del_car_unst: latest residual: 7.329052276700543e-02
 Done!
 Processing energy level -1.371400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.020645e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -1.430144485138998e-02
+intersec_del_car_unst: latest residual: -1.241679293996065e-02
 Done!
 Processing energy level -1.373400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.032953e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -2.903834432539304e-02
+intersec_del_car_unst: latest residual: 7.234263445397893e-02
 Done!
 Processing energy level -1.375400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.045314e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -2.860216823572864e-02
+intersec_del_car_unst: latest residual: -1.415747830416894e-02
 Done!
 Processing energy level -1.377400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.057727e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -2.814193949944691e-02
+intersec_del_car_unst: latest residual: -1.305438767076678e-02
 Done!
 Processing energy level -1.379400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.070187e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -2.765576638313744e-02
+intersec_del_car_unst: latest residual: -1.412562071428689e-02
 Done!
 Processing energy level -1.381400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.082686e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -2.714148568789324e-02
+intersec_del_car_unst: latest residual: -1.459765457514178e-02
 Done!
 Processing energy level -1.383400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.095231e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -2.659659812826454e-02
+intersec_del_car_unst: latest residual: -1.393389057095096e-02
 Done!
 Processing energy level -1.385400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.107806e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -2.601818182349400e-02
+intersec_del_car_unst: latest residual: -1.520093696114883e-02
 Done!
 Processing energy level -1.387400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.120417e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -2.540277558058948e-02
+intersec_del_car_unst: latest residual: -1.505858258764056e-02
 Done!
 Processing energy level -1.389400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.133055e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -2.474621444135475e-02
+intersec_del_car_unst: latest residual: 6.830816523925354e-02
 Done!
 Processing energy level -1.391400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.145712e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -2.404339512076503e-02
+intersec_del_car_unst: latest residual: 6.771386594469103e-02
 Done!
 Processing energy level -1.393400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.158391e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -2.328792773947633e-02
+intersec_del_car_unst: latest residual: -1.552186641493444e-02
 Done!
 Processing energy level -1.395400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.171081e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -2.247159865142967e-02
+intersec_del_car_unst: latest residual: 6.682188704885383e-02
 Done!
 Processing energy level -1.397400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.183779e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -2.158350011873281e-02
+intersec_del_car_unst: latest residual: 6.626857264716851e-02
 Done!
 Processing energy level -1.399400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.196478e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -2.060853090623116e-02
+intersec_del_car_unst: latest residual: -1.597679101366137e-02
 Done!
 Processing energy level -1.401400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.209173e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -1.952459819886829e-02
+intersec_del_car_unst: latest residual: -1.712402661306883e-02
 Done!
 Processing energy level -1.403400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.221860e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -1.829679223809061e-02
+intersec_del_car_unst: latest residual: -1.730623794556732e-02
 Done!
 Processing energy level -1.405400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.234528e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -1.686316111144981e-02
+intersec_del_car_unst: latest residual: 6.435642444513290e-02
 Done!
 Processing energy level -1.407400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.247174e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -1.873758765008601e-02
+intersec_del_car_unst: latest residual: 6.377874203918921e-02
 Done!
 Processing energy level -1.409400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.259789e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -3.377539341911398e-02
+intersec_del_car_unst: latest residual: -1.767122928172629e-02
 Done!
 Processing energy level -1.411400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.272367e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -3.306335716049436e-02
+intersec_del_car_unst: latest residual: 6.278758042668903e-02
 Done!
 Processing energy level -1.413400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.284900e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -3.231454980135534e-02
+intersec_del_car_unst: latest residual: -1.894589430267477e-02
 Done!
 Processing energy level -1.415400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.297379e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -3.152581053668430e-02
+intersec_del_car_unst: latest residual: -1.802739015477878e-02
 Done!
 Processing energy level -1.417400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.309799e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -3.069347871954273e-02
+intersec_del_car_unst: latest residual: 6.113369963131560e-02
 Done!
 Processing energy level -1.419400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.322147e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -2.981326879876561e-02
+intersec_del_car_unst: latest residual: -1.929211316703616e-02
 Done!
 Processing energy level -1.421400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.334418e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -2.888010053120937e-02
+intersec_del_car_unst: latest residual: 5.999483260327382e-02
 Done!
 Processing energy level -1.423400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.346603e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -2.788786605172933e-02
+intersec_del_car_unst: latest residual: -1.926012322972351e-02
 Done!
 Processing energy level -1.425400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.358692e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -2.682909941702619e-02
+intersec_del_car_unst: latest residual: -1.956635727656084e-02
 Done!
 Processing energy level -1.427400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.370675e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -2.569449556853112e-02
+intersec_del_car_unst: latest residual: -1.870754521513840e-02
 Done!
 Processing energy level -1.429400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.382543e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -2.447218547843499e-02
+intersec_del_car_unst: latest residual: 5.746052871829505e-02
 Done!
 Processing energy level -1.431400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.394285e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -2.314659344240655e-02
+intersec_del_car_unst: latest residual: 5.679251284098263e-02
 Done!
 Processing energy level -1.433400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.405892e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -2.169654298704690e-02
+intersec_del_car_unst: latest residual: -1.910225363394266e-02
 Done!
 Processing energy level -1.435400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.417354e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -2.009189744922599e-02
+intersec_del_car_unst: latest residual: -2.009189695307508e-02
 Done!
 Processing energy level -1.437400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.428660e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -2.001248016439108e-02
+intersec_del_car_unst: latest residual: 5.463960995237194e-02
 Done!
 Processing energy level -1.439400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.439797e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -2.227255914229379e-02
+intersec_del_car_unst: latest residual: -1.927290716341661e-02
 Done!
 Processing energy level -1.441400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.450756e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -2.503726915099425e-02
+intersec_del_car_unst: latest residual: 5.306521676394277e-02
 Done!
 Processing energy level -1.443400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.461526e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -2.870168355104524e-02
+intersec_del_car_unst: latest residual: -2.015093909693565e-02
 Done!
 Processing energy level -1.445400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.472095e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -3.361241117685662e-02
+intersec_del_car_unst: latest residual: 5.139672664785405e-02
 Done!
 Processing energy level -1.447400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.482451e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -3.239666397852689e-02
+intersec_del_car_unst: latest residual: -1.997513226229944e-02
 Done!
 Processing energy level -1.449400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.492583e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -3.111108740957250e-02
+intersec_del_car_unst: latest residual: -2.020924285844455e-02
 Done!
 Processing energy level -1.451400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.502479e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -2.974762610518897e-02
+intersec_del_car_unst: latest residual: -1.924260221005508e-02
 Done!
 Processing energy level -1.453400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.512127e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -2.829654295784148e-02
+intersec_del_car_unst: latest residual: -1.941793599037583e-02
 Done!
 Processing energy level -1.455400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.521515e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -2.674588026115857e-02
+intersec_del_car_unst: latest residual: -2.001664913993469e-02
 Done!
 Processing energy level -1.457400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.530632e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -2.508067853338042e-02
+intersec_del_car_unst: latest residual: -1.915256439083533e-02
 Done!
 Processing energy level -1.459400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.539464e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -2.328180553674285e-02
+intersec_del_car_unst: latest residual: -1.840523826395168e-02
 Done!
 Processing energy level -1.461400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.548000e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -2.132412979004721e-02
+intersec_del_car_unst: latest residual: 4.285061220774150e-02
 Done!
 Processing energy level -1.463400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.556229e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -1.917352935196834e-02
+intersec_del_car_unst: latest residual: -1.892464441628229e-02
 Done!
 Processing energy level -1.465400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.564137e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -1.786358372842348e-02
+intersec_del_car_unst: latest residual: -1.786358365397546e-02
 Done!
 Processing energy level -1.467400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.571714e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -1.968024990368120e-02
+intersec_del_car_unst: latest residual: 3.859811411031402e-02
 Done!
 Processing energy level -1.469400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.578948e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -2.168828411147365e-02
+intersec_del_car_unst: latest residual: -1.706603869966852e-02
 Done!
 Processing energy level -1.471400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.585827e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -2.392766766299897e-02
+intersec_del_car_unst: latest residual: -1.700881603422433e-02
 Done!
 Processing energy level -1.473400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.592340e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -2.645592757872837e-02
+intersec_del_car_unst: latest residual: -1.622673033170990e-02
 Done!
 Processing energy level -1.475400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.598475e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -2.581385287631266e-02
+intersec_del_car_unst: latest residual: -1.505384933406408e-02
 Done!
 Processing energy level -1.477400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.604222e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -2.343152041668987e-02
+intersec_del_car_unst: latest residual: 2.902358166211086e-02
 Done!
 Processing energy level -1.479400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.609571e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -2.077210250715825e-02
+intersec_del_car_unst: latest residual: -1.262080106442912e-02
 Done!
 Processing energy level -1.481400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.614511e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -1.773719301817131e-02
+intersec_del_car_unst: latest residual: -1.134438866042473e-02
 Done!
 Processing energy level -1.483400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.619032e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -1.414620020999138e-02
+intersec_del_car_unst: latest residual: -1.001736641257732e-02
 Done!
 Processing energy level -1.485400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.623125e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -9.582115957519455e-03
+intersec_del_car_unst: latest residual: -8.631687240538914e-03
 Done!
 Processing energy level -1.487400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.626781e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -7.178775291560482e-03
+intersec_del_car_unst: latest residual: -5.326785118531539e-03
 Done!
 Processing energy level -1.489400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.629991e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -8.453157141714601e-03
+intersec_del_car_unst: latest residual: -2.093306972904854e-04
 Done!
 Processing energy level -1.491400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.632748e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -9.802714812734079e-03
+intersec_del_car_unst: latest residual: 8.053053673373604e-01
 Done!
 Processing energy level -1.493400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.635044e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -1.123246979165366e-02
+intersec_del_car_unst: latest residual: -2.320609565343707e-03
 Done!
 Processing energy level -1.495400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.636872e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -1.274804858579172e-02
+intersec_del_car_unst: latest residual: 8.009475922938318e-01
 Done!
 Processing energy level -1.497400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.638226e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -1.435580407580806e-02
+intersec_del_car_unst: latest residual: -1.589440942187537e-03
 Done!
 Processing energy level -1.499400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.639101e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -1.606297525600104e-02
+intersec_del_car_unst: latest residual: 7.961390012032246e-01
 Done!
 Processing energy level -1.501400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.639491e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -1.787789527671613e-02
+intersec_del_car_unst: latest residual: 7.940957672454535e-01
 Done!
 Processing energy level -1.503400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.639393e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -1.125448955597292e-02
+intersec_del_car_unst: latest residual: -5.813109299520479e-04
 Done!
 Processing energy level -1.505400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.638803e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -5.092140615332801e-03
+intersec_del_car_unst: latest residual: -2.090673320338960e-03
 Done!
 Processing energy level -1.507400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.637719e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -1.441777383504912e-04
+intersec_del_car_unst: latest residual: 7.871021528994487e-01
 Done!
 Processing energy level -1.509400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.636139e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -1.678076385134411e-03
+intersec_del_car_unst: latest residual: -1.678076775406448e-03
 Done!
 Processing energy level -1.511400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.634062e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -3.277424112650550e-03
+intersec_del_car_unst: latest residual: -1.252423477140873e-03
 Done!
 Processing energy level -1.513400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.631488e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -4.945782363572817e-03
+intersec_del_car_unst: latest residual: 7.794335512398984e-01
 Done!
 Processing energy level -1.515400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.628417e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -6.686904054973485e-03
+intersec_del_car_unst: latest residual: -2.697475545740071e-03
 Done!
 Processing energy level -1.517400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.624852e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -8.504765193633853e-03
+intersec_del_car_unst: latest residual: 7.745692868945236e-01
 Done!
 Processing energy level -1.519400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.620795e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -1.040360179402901e-02
+intersec_del_car_unst: latest residual: -1.888379476301311e-03
 Done!
 Processing energy level -1.521400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.616250e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -1.238795316205422e-02
+intersec_del_car_unst: latest residual: -1.369391134387840e-03
 Done!
 Processing energy level -1.523400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.611221e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -1.446271632862526e-02
+intersec_del_car_unst: latest residual: -8.016235279434025e-04
 Done!
 Processing energy level -1.525400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.605714e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -1.663321228817020e-02
+intersec_del_car_unst: latest residual: 7.630980485958153e-01
 Done!
 Processing energy level -1.527400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.599735e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -1.890527065622043e-02
+intersec_del_car_unst: latest residual: 7.609558266678312e-01
 Done!
 Processing energy level -1.529400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.593291e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -2.128533787557352e-02
+intersec_del_car_unst: latest residual: -9.345892187082499e-04
 Done!
 Processing energy level -1.531400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.586391e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -2.378061777078873e-02
+intersec_del_car_unst: latest residual: -2.520304283175993e-03
 Done!
 Processing energy level -1.533400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.579044e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -2.639925920530896e-02
+intersec_del_car_unst: latest residual: -1.162199709566685e-03
 Done!
 Processing energy level -1.535400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.571260e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -2.713138926424040e-02
+intersec_del_car_unst: latest residual: -5.127237555362701e-04
 Done!
 Processing energy level -1.537400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.563051e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -2.520874847766930e-02
+intersec_del_car_unst: latest residual: 7.461173503672109e-01
 Done!
 Processing energy level -1.539400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.554427e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -2.339267231798769e-02
+intersec_del_car_unst: latest residual: -2.046682056573576e-03
 Done!
 Processing energy level -1.541400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.545403e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -2.169117094276396e-02
+intersec_del_car_unst: latest residual: -6.525392231363245e-04
 Done!
 Processing energy level -1.543400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.535992e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -2.010955076114521e-02
+intersec_del_car_unst: latest residual: -6.574971382841070e-04
 Done!
 Processing energy level -1.545400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.526209e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -1.865070289622404e-02
+intersec_del_car_unst: latest residual: -1.985816024225175e-03
 Done!
 Processing energy level -1.547400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.516068e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -1.731551145625519e-02
+intersec_del_car_unst: latest residual: -2.389480494815760e-03
 Done!
 Processing energy level -1.549400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.505588e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -1.610330055126346e-02
+intersec_del_car_unst: latest residual: -1.423908627211357e-03
 Done!
 Processing energy level -1.551400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.494784e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -1.501226143509390e-02
+intersec_del_car_unst: latest residual: -5.791994521132824e-04
 Done!
 Processing energy level -1.553400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.483675e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -2.214998163596604e-02
+intersec_del_car_unst: latest residual: -1.007153645364631e-03
 Done!
 Processing energy level -1.555400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.472279e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -2.454396887162395e-02
+intersec_del_car_unst: latest residual: -2.562511840924436e-03
 Done!
 Processing energy level -1.557400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.460617e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -2.694544083540373e-02
+intersec_del_car_unst: latest residual: 7.146980930427829e-01
 Done!
 Processing energy level -1.559400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.448707e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -2.756008081054964e-02
+intersec_del_car_unst: latest residual: 7.118660391090901e-01
 Done!
 Processing energy level -1.561400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.436572e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -2.651312545043863e-02
+intersec_del_car_unst: latest residual: -4.262579689685922e-04
 Done!
 Processing energy level -1.563400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.424232e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -2.557937366673568e-02
+intersec_del_car_unst: latest residual: -3.275499823867855e-04
 Done!
 Processing energy level -1.565400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.411710e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -2.475824478976028e-02
+intersec_del_car_unst: latest residual: -1.274443845842061e-03
 Done!
 Processing energy level -1.567400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.399029e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -2.404869795946738e-02
+intersec_del_car_unst: latest residual: -2.096107459198714e-03
 Done!
 Processing energy level -1.569400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.386212e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -2.344936346578749e-02
+intersec_del_car_unst: latest residual: -2.775417395059701e-03
 Done!
 Processing energy level -1.571400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.373283e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -2.295865142154586e-02
+intersec_del_car_unst: latest residual: -2.582499104726074e-03
 Done!
 Processing energy level -1.573400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.360266e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -2.257483832042807e-02
+intersec_del_car_unst: latest residual: -2.441170166483901e-03
 Done!
 Processing energy level -1.575400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.347187e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -2.229613407387054e-02
+intersec_del_car_unst: latest residual: -2.398897361089756e-03
 Done!
 Processing energy level -1.577400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.334071e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -2.212073263565924e-02
+intersec_del_car_unst: latest residual: -2.453518393555035e-03
 Done!
 Processing energy level -1.579400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.320945e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -1.452939625915231e-02
+intersec_del_car_unst: latest residual: 6.757973463985445e-01
 Done!
 Processing energy level -1.581400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.307836e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -1.489357923363321e-02
+intersec_del_car_unst: latest residual: -2.158347872983040e-03
 Done!
 Processing energy level -1.583400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.294770e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -1.497319055140571e-02
+intersec_del_car_unst: latest residual: -2.269419387237566e-03
 Done!
 Processing energy level -1.585400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.281775e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -1.473727397373483e-02
+intersec_del_car_unst: latest residual: 6.642076254827726e-01
 Done!
 Processing energy level -1.587400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.268880e-06
 intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -1.415365937881334e-02
+intersec_del_car_unst: latest residual: -2.798491459165888e-03
 Done!
 Processing energy level -1.589400e+00...
 Optimal displacement: 1.000000e-03
 Estimated error of manifold: 1.256114e-06
-intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -1.318885567971175e-02
-Done!
-Processing energy level -1.591400e+00...
-Optimal displacement: 1.000000e-03
-Estimated error of manifold: 1.243505e-06
-intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -1.180771285391083e-02
-Done!
-Processing energy level -1.593400e+00...
-Optimal displacement: 1.000000e-03
-Estimated error of manifold: 1.231085e-06
-intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -9.972757282906683e-03
-Done!
-Processing energy level -1.595400e+00...
-Optimal displacement: 1.000000e-03
-Estimated error of manifold: 1.218882e-06
-intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -7.643078044044597e-03
-Done!
-Processing energy level -1.597400e+00...
-Optimal displacement: 1.000000e-03
-Estimated error of manifold: 1.206928e-06
-intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -4.772596757933614e-03
-Done!
-Processing energy level -1.599400e+00...
-Optimal displacement: 1.000000e-03
-Estimated error of manifold: 1.195255e-06
-intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -7.963132347544727e-03
-Done!
-Processing energy level -1.601400e+00...
-Optimal displacement: 1.000000e-03
-Estimated error of manifold: 1.183894e-06
-intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -8.794435506685353e-03
-Done!
-Processing energy level -1.603400e+00...
-Optimal displacement: 1.000000e-03
-Estimated error of manifold: 1.172878e-06
-intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -9.727785377092658e-03
-Done!
-Processing energy level -1.605400e+00...
-Optimal displacement: 1.000000e-03
-Estimated error of manifold: 1.162241e-06
-intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -1.076202682777936e-02
-Done!
-Processing energy level -1.607400e+00...
-Optimal displacement: 1.000000e-03
-Estimated error of manifold: 1.152014e-06
-intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -1.189608600620725e-02
-Done!
-Processing energy level -1.609400e+00...
-Optimal displacement: 1.000000e-03
-Estimated error of manifold: 1.142233e-06
-intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -1.312896759846701e-02
-Done!
-Processing energy level -1.611400e+00...
-Optimal displacement: 1.000000e-03
-Estimated error of manifold: 1.132932e-06
-intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -1.445975406269509e-02
-Done!
-Processing energy level -1.613400e+00...
-Optimal displacement: 1.000000e-03
-Estimated error of manifold: 1.124145e-06
-intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -2.287792103206769e-02
-Done!
-Processing energy level -1.615400e+00...
-Optimal displacement: 1.000000e-03
-Estimated error of manifold: 1.115907e-06
-intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -2.426356118307065e-02
-Done!
-Processing energy level -1.617400e+00...
-Optimal displacement: 1.000000e-03
-Estimated error of manifold: 1.108255e-06
-intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -2.575457693677153e-02
-Done!
-Processing energy level -1.619400e+00...
-Optimal displacement: 1.000000e-03
-Estimated error of manifold: 1.101223e-06
-intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -2.735004889850692e-02
-Done!
-Processing energy level -1.621400e+00...
-Optimal displacement: 1.000000e-03
-Estimated error of manifold: 1.094847e-06
-intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -2.012180117665107e-02
-Done!
-Processing energy level -1.623400e+00...
-Optimal displacement: 1.000000e-03
-Estimated error of manifold: 1.089163e-06
-intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -7.632832404438551e-03
-Done!
-Processing energy level -1.625400e+00...
-Optimal displacement: 1.000000e-03
-Estimated error of manifold: 1.084206e-06
-intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -7.321551463331482e-03
-Done!
-Processing energy level -1.627400e+00...
-Optimal displacement: 1.000000e-03
-Estimated error of manifold: 1.080011e-06
-intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -9.484148708884055e-03
-Done!
-Processing energy level -1.629400e+00...
-Optimal displacement: 1.000000e-03
-Estimated error of manifold: 1.076613e-06
-intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -1.175251487144753e-02
-Done!
-Processing energy level -1.631400e+00...
-Optimal displacement: 1.000000e-03
-Estimated error of manifold: 1.074045e-06
-intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -1.412626711027676e-02
-Done!
-Processing energy level -1.633400e+00...
-Optimal displacement: 1.000000e-03
-Estimated error of manifold: 1.072341e-06
-intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -1.660514914694099e-02
-Done!
-Processing energy level -1.635400e+00...
-Optimal displacement: 1.000000e-03
-Estimated error of manifold: 1.071533e-06
-intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -2.520974558588025e-02
-Done!
-Processing energy level -1.637400e+00...
-Optimal displacement: 1.000000e-03
-Estimated error of manifold: 1.071653e-06
-intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -2.543903402496629e-02
-Done!
-Processing energy level -1.639400e+00...
-Optimal displacement: 1.000000e-03
-Estimated error of manifold: 1.072728e-06
-intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -2.346327631669476e-04
-Done!
-Processing energy level -1.641400e+00...
-Optimal displacement: 1.000000e-03
-Estimated error of manifold: 1.074789e-06
-intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -3.314265663614755e-03
-Done!
-Processing energy level -1.643400e+00...
-Optimal displacement: 1.000000e-03
-Estimated error of manifold: 1.077859e-06
-intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -6.505170695291755e-03
-Done!
-Processing energy level -1.645400e+00...
-Optimal displacement: 1.000000e-03
-Estimated error of manifold: 1.081965e-06
-intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -1.571552446095981e-02
-Done!
-Processing energy level -1.647400e+00...
-Optimal displacement: 1.000000e-03
-Estimated error of manifold: 1.087127e-06
-intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -1.911839134327325e-02
-Done!
-Processing energy level -1.649400e+00...
-Optimal displacement: 1.000000e-03
-Estimated error of manifold: 1.093366e-06
-intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -2.263974752599386e-02
-Done!
-Processing energy level -1.651400e+00...
-Optimal displacement: 1.000000e-03
-Estimated error of manifold: 1.100699e-06
-intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -2.628072878004971e-02
-Done!
-Processing energy level -1.653400e+00...
-Optimal displacement: 1.000000e-03
-Estimated error of manifold: 1.109139e-06
-intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -6.900138728715892e-03
-Done!
-Processing energy level -1.655400e+00...
-Optimal displacement: 1.000000e-03
-Estimated error of manifold: 1.118700e-06
-intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -1.099350426838709e-02
-Done!
-Processing energy level -1.657400e+00...
-Optimal displacement: 1.000000e-03
-Estimated error of manifold: 1.129389e-06
-intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -1.521664661742370e-02
-Done!
-Processing energy level -1.659400e+00...
-Optimal displacement: 1.000000e-03
-Estimated error of manifold: 1.141212e-06
-intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -2.554638841125988e-02
-Done!
-Processing energy level -1.661400e+00...
-Optimal displacement: 1.000000e-03
-Estimated error of manifold: 1.154173e-06
-intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -1.714346092784774e-03
-Done!
-Processing energy level -1.663400e+00...
-Optimal displacement: 1.000000e-03
-Estimated error of manifold: 1.168269e-06
-intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -6.562000804125554e-03
-Done!
-Processing energy level -1.665400e+00...
-Optimal displacement: 1.000000e-03
-Estimated error of manifold: 1.183497e-06
-intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -1.764125095493261e-02
-Done!
-Processing energy level -1.667400e+00...
-Optimal displacement: 1.000000e-03
-Estimated error of manifold: 1.199849e-06
-intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -2.282151473013882e-02
-Done!
-Processing energy level -1.669400e+00...
-Optimal displacement: 1.000000e-03
-Estimated error of manifold: 1.217311e-06
-intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -6.709971355029336e-03
-Done!
-Processing energy level -1.671400e+00...
-Optimal displacement: 1.000000e-03
-Estimated error of manifold: 1.235868e-06
-intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -1.245021480870368e-02
-Done!
-Processing energy level -1.673400e+00...
-Optimal displacement: 1.000000e-03
-Estimated error of manifold: 1.255499e-06
-intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -1.836789051455336e-02
-Done!
-Processing energy level -1.675400e+00...
-Optimal displacement: 1.000000e-03
-Estimated error of manifold: 1.276175e-06
-intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -3.709439746500553e-03
-Done!
-Processing energy level -1.677400e+00...
-Optimal displacement: 1.000000e-03
-Estimated error of manifold: 1.297866e-06
-intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -1.025047725906853e-02
-Done!
-Processing energy level -1.679400e+00...
-Optimal displacement: 1.000000e-03
-Estimated error of manifold: 1.320531e-06
-intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -2.344229694352806e-02
-Done!
-Processing energy level -1.681400e+00...
-Optimal displacement: 1.000000e-03
-Estimated error of manifold: 1.344123e-06
-intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -3.944453437454675e-03
-Done!
-Processing energy level -1.683400e+00...
-Optimal displacement: 1.000000e-03
-Estimated error of manifold: 1.368585e-06
-intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -1.797470752962686e-02
-Done!
-Processing energy level -1.685400e+00...
-Optimal displacement: 1.000000e-03
-Estimated error of manifold: 1.393851e-06
-intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -6.246343788935786e-03
-Done!
-Processing energy level -1.687400e+00...
-Optimal displacement: 1.000000e-03
-Estimated error of manifold: 1.419839e-06
-intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -1.456704727188101e-02
-Done!
-Processing energy level -1.689400e+00...
-Optimal displacement: 1.000000e-03
-Estimated error of manifold: 1.446455e-06
-intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -4.212234756788199e-03
-Done!
-Processing energy level -1.691400e+00...
-Optimal displacement: 1.000000e-03
-Estimated error of manifold: 1.473583e-06
-intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -2.027395370063200e-02
-Done!
-Processing energy level -1.693400e+00...
-Optimal displacement: 1.000000e-03
-Estimated error of manifold: 1.501088e-06
-intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -4.616859455541911e-03
-Done!
-Processing energy level -1.695400e+00...
-Optimal displacement: 1.000000e-03
-Estimated error of manifold: 1.528804e-06
-intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -2.186684641269878e-02
-Done!
-Processing energy level -1.697400e+00...
-Optimal displacement: 1.000000e-03
-Estimated error of manifold: 1.556532e-06
-intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -1.482396384664322e-02
-Done!
-Processing energy level -1.699400e+00...
-Optimal displacement: 1.000000e-03
-Estimated error of manifold: 1.584031e-06
-intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -8.883356248269126e-03
-Done!
-Processing energy level -1.701400e+00...
-Optimal displacement: 1.000000e-03
-Estimated error of manifold: 1.611006e-06
-intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -4.134477515213589e-03
-Done!
-Processing energy level -1.703400e+00...
-Optimal displacement: 1.000000e-03
-Estimated error of manifold: 1.637091e-06
-intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -2.484255074436026e-02
-Done!
-Processing energy level -1.705400e+00...
-Optimal displacement: 1.000000e-03
-Estimated error of manifold: 1.661835e-06
-intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -2.256243342087432e-02
-Done!
-Processing energy level -1.707400e+00...
-Optimal displacement: 1.000000e-03
-Estimated error of manifold: 1.684672e-06
-intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -5.521960959657268e-03
-Done!
-Processing energy level -1.709400e+00...
-Optimal displacement: 1.000000e-03
-Estimated error of manifold: 1.704882e-06
-intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -6.935656244674465e-03
-Done!
-Processing energy level -1.711400e+00...
-Optimal displacement: 1.000000e-03
-Estimated error of manifold: 1.721541e-06
-intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -1.775833507795837e-02
-Done!
-Processing energy level -1.713400e+00...
-Optimal displacement: 1.000000e-03
-Estimated error of manifold: 1.733438e-06
-intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -8.352689756721859e-03
-Done!
-Processing energy level -1.715400e+00...
-Optimal displacement: 1.000000e-03
-Estimated error of manifold: 1.738958e-06
-intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -2.564711616615614e-03
-Done!
-Processing energy level -1.717400e+00...
-Optimal displacement: 1.000000e-03
-Estimated error of manifold: 1.735883e-06
-intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -8.493397085900084e-03
-Done!
-Processing energy level -1.719400e+00...
-Optimal displacement: 1.000000e-03
-Estimated error of manifold: 1.721074e-06
-intersec_del_car_unst: bisection did not converge!
-intersec_del_car_unst: latest residual: -1.976270464436071e-02
-Done!
+gsl: brent.c:74: ERROR: endpoints do not straddle y=0
+Default GSL error handler invoked.
