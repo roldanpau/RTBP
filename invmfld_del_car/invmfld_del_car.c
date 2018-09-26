@@ -25,10 +25,9 @@
 #include <prtbp_del_car.h>
 #include <errmfld.h>
 #include <disc.h>
+#include <approxint_del_car.h>	// iterate_segment
+#include <utils_module.h>		// dblcpy
 #include "lift.h"
-
-/// Number of points in discretization of linear segment
-const int NPOINTS = 100; 
 
 /**
   Main program.
@@ -64,6 +63,13 @@ const int NPOINTS = 100;
 
 int main( )
 {
+	/// Number of points in the discretization of unst segment.
+	/// WARNING!!! Oddly, approxint_del_car does not work properly unless
+	/// linear segment is discretized into very few points (e.g. 5).
+	/// Probably, the more points we use, the higher the probability that
+	/// prtbp_del_car fails.
+	const int NPOINTS=11;
+
    double mu, H;
    section_t sec;
    int k;		// number of iterates of Poincare map
@@ -88,7 +94,7 @@ int main( )
    double l[2*NPOINTS];
 
    // Linear segment approximating local invariant manifold (points in 4d)
-   double l4[DIM*NPOINTS];
+   double l4_car[DIM*NPOINTS];
 
    // Linear segment approximating local invariant manifold (Delaunay coords)
    double l4_del[DIM*NPOINTS];
@@ -98,6 +104,9 @@ int main( )
    // Auxiliary variables
    int status, iter, i, j;
    double ti;
+   double l4_del_cpy[DIM*NPOINTS];  // copy of l4_del
+   double l4_car_cpy[DIM*NPOINTS];  // copy of l4_car
+
    char section_str[10];        // holds input string "SEC1", "SEC2" etc
    char sec_del_str[10];        // holds input string "SECg", "SECg2" etc
 
@@ -154,10 +163,10 @@ int main( )
       fprintf(stderr, "main: error computing Poincare map\n");
       return(1);
    }
-
-   // DEBUG:
-   //printf("p0: "); dblprint(p0,2); printf("\n");
-   //printf("p1: "); dblprint(p1,2); printf("\n");
+   /*
+   p1[0] = p0[0] + lambda*h*v[0];
+   p1[1] = p0[1] + lambda*h*v[1];
+   */
 
    // Discretize linear segment
    disc(p0, p1, NPOINTS, l);
@@ -165,7 +174,7 @@ int main( )
    // IMPROVEMENT: instead of lift+cardel here, why not use cardel_2d???
 
    // Lift points in linear segment from \R^2 to \R^4
-   status=lift(mu,sec,H,NPOINTS,l,l4);
+   status=lift(mu,sec,H,NPOINTS,l,l4_car);
    if(status)
    {
       perror("main: error lifting points in linear segment");
@@ -174,44 +183,59 @@ int main( )
 
    // Transform points in linear segment to Delaunay coordinates
    for(i=0; i<NPOINTS; i++)
-       cardel(l4+DIM*i,l4_del+DIM*i);
+       cardel(l4_car+DIM*i,l4_del+DIM*i);
+
+   // Flow the (discretized) linear segment to Delaunay section before the
+   // iteration.
+   if(iterate_segment(mu,sec_del,1,1,l4_del,l4_car))
+   {
+	  fprintf(stderr,
+			  "main: error flowing linear segment to Delaunay seciton"
+			  " before the iteration\n");
+      return(1);
+   }
+
+   dblcpy(l4_del_cpy, l4_del, DIM*NPOINTS);
+   dblcpy(l4_car_cpy, l4_car, DIM*NPOINTS);
 
    // 3. Iterate the (discretized) linear segment "n" times 
    // by the Poincare map, i.e. compute its orbit (and print it to stdout). 
-   for(iter=0;iter<n;iter++)
+   for(iter=1;iter<=n;iter++)
    {
-	 for(i=0;i<NPOINTS;i++)
-	 {
+       dblcpy(l4_del, l4_del_cpy, DIM*NPOINTS);
+       dblcpy(l4_car, l4_car_cpy, DIM*NPOINTS);
+
 	    if(!stable)	// unstable manifold
 	    {
-	       if(prtbp_del_car(mu,sec_del,1,l4_del+DIM*i,l4+DIM*i,&ti))
-	       {
+		   if(iterate_segment(mu,sec_del,1,iter,l4_del,l4_car))
+		   {
               fprintf(stderr, "main: error computing Poincare map\n");
               exit(EXIT_FAILURE);
-	       }
+		   }
 	    }
 	    else		// stable manifold
 	    {
-	       if(prtbp_del_car_inv(mu,sec_del,1,l4_del+DIM*i,l4+DIM*i,&ti))
-	       {
-              fprintf(stderr, "main: error computing inverse Poincare map\n");
+			/*
+		   if(iterate_segment_inv(mu,sec_del,1,iter,l4_del,l4_car))
+		   {
+              fprintf(stderr, "main: error computing Poincare map\n");
               exit(EXIT_FAILURE);
-	       }
+		   }
+		   */
 	    }
-	 }
 
-	// Print iteration of linear segment
-	for(i=0;i<NPOINTS;i++)
-	{
-	   if(printf("% .15le % .15le\n", 
-				   l4_del[DIM*i+0], 
-				   l4_del[DIM*i+1])<0)
-	   {
-		  perror("main: error writting output");
-		  exit(EXIT_FAILURE);
-	   }
-	}
-	//printf("\n");
+		// Print iteration of linear segment
+		for(i=0;i<NPOINTS;i++)
+		{
+		   if(printf("% .15le % .15le\n", 
+					   l4_del[DIM*i+0], 
+					   l4_del[DIM*i+1])<0)
+		   {
+			  perror("main: error writting output");
+			  exit(EXIT_FAILURE);
+		   }
+		}
+		//printf("\n");
    }
 
    // 4. Estimate error commited in the linear approximation of the manifold

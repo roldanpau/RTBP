@@ -38,7 +38,7 @@ const double POINCARE_DEL_CAR_TOL=1.e-16;
 // and 0.0001 when computing true homoclinic intersections.
 
 // PRG (04/04/2018): const double SHORT_TIME_DEL_CAR=0.001;		
-const double SHORT_TIME_DEL_CAR=0.1;
+const double SHORT_TIME_DEL_CAR=0.001;
 
 bool onsection_del_car (section_t sec, double a[DIM]);
 int inter_del_car(double mu, section_t sec, double epsabs, 

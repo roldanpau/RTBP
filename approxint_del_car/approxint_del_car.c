@@ -31,8 +31,11 @@ const int MAXITER = 100;
 /// linear segment is discretized into very few points (e.g. 5).
 /// Probably, the more points we use, the higher the probability that 
 /// prtbp_del_car fails.
-const int NPOINTS = 101;
+const int NPOINTS=11;
 
+int 
+iterate_segment (double mu, section_t sec, int k, int iter, double *l4_del,
+		double *l4);
 int 
 u_i (double mu, section_t sec, int k, int iter, branch_t br, double a, 
 		double *l4_del, double *l4, int *idx);
@@ -77,7 +80,6 @@ approxint_del_car_unst (double mu, section_t sec, double H, int k,
    p0[1] = p[1] + h*v[1];
 
    // Compute $p_1$
-   /*
    p1[0] = p0[0];
    p1[1] = p0[1];
    status=prtbp_nl_2d(mu,SEC2,H,k,p1,&ti);        // $p_1 = P(p_0)$
@@ -86,9 +88,10 @@ approxint_del_car_unst (double mu, section_t sec, double H, int k,
       fprintf(stderr, "approxint_del_car: error computing Poincare map\n");
       return(1);
    }
-   */
+   /*
    p1[0] = p0[0] + lambda*h*v[0];
    p1[1] = p0[1] + lambda*h*v[1];
+   */
 
    // Discretize linear segment
    disc(p0, p1, NPOINTS, l);
@@ -109,15 +112,10 @@ approxint_del_car_unst (double mu, section_t sec, double H, int k,
 
    // Flow the (discretized) linear segment to Delaunay section before the
    // iteration.
-   for(i=0;i<NPOINTS;i++)
+   if(iterate_segment(mu,sec,1,1,l4_del,l4_car))
    {
-       if(prtbp_del_car(mu,sec,1,l4_del+DIM*i,l4_car+DIM*i,&ti))
-       {
-          fprintf(stderr, 
-                  "approxint_del_car: error during %d-th iteration"
-				  " of linear segment\n", 0);
-          return(1);
-       }
+	  fprintf(stderr, "approxint_del_car: error iterating linear segment\n");
+	  return(1);
    }
 
    dblcpy(l4_del_cpy, l4_del, DIM*NPOINTS);
@@ -154,8 +152,12 @@ approxint_del_car_unst (double mu, section_t sec, double H, int k,
    // Q[2] = (x, p_x) = (l[2i+2], l[2i+3]).
    //*h_1 = (l[2*i+1]-p[1])/v[1];
    //*h_2 = (l[2*i+3]-p[1])/v[1];
+   /*
    *h_1 = (l[2*i+0]-p[0])/v[0];
    *h_2 = (l[2*i+2]-p[0])/v[0];
+   */
+   *h_1 = (l[2*i+0]-p0[0])/(p1[0]-p0[0]);
+   *h_2 = (l[2*i+2]-p0[0])/(p1[0]-p0[0]);
 
    /*
    fprintf(stderr, "p(0): %.15e, p(1): %.15e\n", p[0], p[1]);
@@ -269,6 +271,27 @@ approxint_del_car_st (double mu, section_t sec, double H, int k,
    return(0);
 }
 
+int 
+iterate_segment (double mu, section_t sec, int k, int iter, double *l4_del,
+		double *l4)
+{
+   // Auxiliary variables
+   int i;
+   double ti;
+
+   for(i=0;i<NPOINTS;i++)
+   {
+       if(prtbp_del_car(mu,sec,k*iter,l4_del+DIM*i,l4+DIM*i,&ti))
+       {
+          fprintf(stderr, 
+				  "iterate_segment: error computing Poincare map of "
+				  "%d-th point\n", i);
+          return(1);
+       }
+   }
+   return(0);
+}
+
 // name OF FUNCTION: u_i
 //
 // PURPOSE
@@ -338,13 +361,10 @@ u_i (double mu, section_t sec, int k, int iter, branch_t br, double a,
 
    // 3. Iterate the (discretized) linear segment "iter" times by the
    // Poincare map
-   for(i=0;i<NPOINTS;i++)
+   if(iterate_segment(mu,sec,k,iter,l4_del,l4))
    {
-       if(prtbp_del_car(mu,sec,k*iter,l4_del+DIM*i,l4+DIM*i,&ti))
-       {
-          fprintf(stderr, "u_i: error computing Poincare map of %d-th point\n", i);
-          return(1);
-       }
+	  fprintf(stderr, "u_i: error iterating linear segment\n");
+	  return(1);
    }
 
    // We look for the first unst segment U_i that crosses the line $g=a$.

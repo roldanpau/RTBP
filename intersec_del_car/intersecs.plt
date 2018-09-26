@@ -19,8 +19,7 @@ plot \
 "intersecs_unst_SECg_br2.res" u 1:6 w l t "z1m", \
 "intersecs_unst_SECg2_br1.res" u 1:6 w lp t "z2p", \
 "../approxint_del_car/approxints_unst_SECg2_br1.res" u 1:6 w l t "z2p", \
-"intersecs_unst_SECg2_br2.res" u 1:6 w lp t "z2m", \
-"../approxint_del_car/approxints_unst_SECg2_br2.res" u 1:6 w l t "z2m"
+"intersecs_unst_SECg2_br2.res" u 1:6 w lp t "z2m"
 
 set term pop
 set out 

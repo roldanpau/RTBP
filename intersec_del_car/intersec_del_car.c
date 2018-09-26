@@ -32,8 +32,8 @@ struct dparams
    double mu;		// mass parameter
    section_t sec;   // Poincare section 
    double H;		// energy value
-   double p[2];		// fixed point
-   double v[2];		// unstable/stable vector
+   double p0[2];		// fixed point
+   double p1[2];		// unstable/stable vector
    double n;		// num. of iteration in the unstable/stable dir.
    double l;		// axis line
 };
@@ -291,7 +291,7 @@ int iterate_del_car_st(double mu, section_t sec, double H, int n,
 // For the moment, we work with the 3:1 resonant family of periodic orbits.
 
 int intersec_del_car_unst(double mu, section_t sec, branch_t br, double H,
-        double p[2], double v[2], double lambda, int n, double h1, double h2,
+        double p0[2], double p1[2], double lambda, int n, double h1, double h2,
         double l, double *h, double p_u[2], double *t, double z_del[DIM], 
         double z_car[DIM], double z_u[DIM], double z_u_car[DIM])
 {
@@ -302,17 +302,17 @@ int intersec_del_car_unst(double mu, section_t sec, branch_t br, double H,
    params.mu = mu;
    params.sec = sec;
    params.H = H;
-   params.p[0] = p[0];
-   params.p[1] = p[1];
-   params.v[0] = v[0];
-   params.v[1] = v[1];
+   params.p0[0] = p0[0];
+   params.p0[1] = p0[1];
+   params.p1[0] = p1[0];
+   params.p1[1] = p1[1];
    params.n = n;
    params.l = l;
    gsl_function f = {&distance_f_unst, &params};
 
    // auxiliary vars
    int status;
-   size_t iter = 0, max_iter = 100;
+   size_t iter = 0, max_iter = 50;
    double d;    // distance to symmetry line
    double x_lo, x_hi;
 
@@ -343,16 +343,7 @@ int intersec_del_car_unst(double mu, section_t sec, branch_t br, double H,
    T = gsl_root_fsolver_brent;
    s = gsl_root_fsolver_alloc (T);
 
-   if(br==RIGHT)
-   {
-       // For first branch, h1<h2, so...
-       gsl_root_fsolver_set (s, &f, h1, h2);
-   }
-   else
-   {
-       // For second branch, h2<h1, so...
-       gsl_root_fsolver_set (s, &f, h2, h1);
-   }
+   gsl_root_fsolver_set (s, &f, h1, h2);
 
    // Find a root of the distance function, i.e. an intersection point of
    // the manifolds (using a bisection method).
@@ -403,8 +394,8 @@ int intersec_del_car_unst(double mu, section_t sec, branch_t br, double H,
    // Compute the following:
    // - point p_u
 
-    p_u[0] = p[0] + (*h) * v[0];
-    p_u[1] = p[1] + (*h) * v[1];
+    p_u[0] = p0[0] + (*h) * (p1[0]-p0[0]);
+    p_u[1] = p0[1] + (*h) * (p1[1]-p0[1]);
 
   // - Point in local unstable manifold of the appropriate pendulum (Delaunay
   // coords). This will be needed in outer_circ.
@@ -428,7 +419,7 @@ int intersec_del_car_unst(double mu, section_t sec, branch_t br, double H,
   */
 
 int intersec_del_car_st(double mu, section_t sec, branch_t br, double H,
-        double p[2], double v[2], double lambda, int n, double h1, double h2,
+        double p0[2], double p1[2], double lambda, int n, double h1, double h2,
         double l, double *h, double p_u[2], double *t, double z_del[DIM], 
         double z_car[DIM], double z_u[DIM], double z_u_car[DIM])
 {
@@ -439,10 +430,10 @@ int intersec_del_car_st(double mu, section_t sec, branch_t br, double H,
    params.mu = mu;
    params.sec = sec;
    params.H = H;
-   params.p[0] = p[0];
-   params.p[1] = p[1];
-   params.v[0] = v[0];
-   params.v[1] = v[1];
+   params.p0[0] = p0[0];
+   params.p0[1] = p0[1];
+   params.p1[0] = p1[0];
+   params.p1[1] = p1[1];
    params.n = n;
    params.l = l;
    gsl_function f = {&distance_f_st, &params};
@@ -512,8 +503,8 @@ int intersec_del_car_st(double mu, section_t sec, branch_t br, double H,
    // Compute the following:
    // - point p_u
 
-    p_u[0] = p[0] + (*h) * v[0];
-    p_u[1] = p[1] + (*h) * v[1];
+    p_u[0] = p0[0] + (*h) * (p1[0]-p0[0]);
+    p_u[1] = p0[1] + (*h) * (p1[1]-p0[1]);
 
   // - Point in local unstable manifold of the appropriate pendulum (Delaunay
   // coords). This will be needed in outer_circ.
@@ -573,8 +564,8 @@ distance_f_unst (double h, void *params)
 {
    double mu, H;
    section_t sec;   // Poincare section
-   double p[2]; 		// fixed point
-   double v[2];		// unstable vector
+   double p0[2]; 		// fixed point
+   double p1[2];		// unstable vector
 
    double n; 			// num. of interations in the unstable dir.
    double l;		// axis line
@@ -596,18 +587,18 @@ distance_f_unst (double h, void *params)
    sec = ((struct dparams *)params)->sec;
    H = ((struct dparams *)params)->H;
 
-   p[0] = (((struct dparams *)params)->p)[0];
-   p[1] = (((struct dparams *)params)->p)[1];
+   p0[0] = (((struct dparams *)params)->p0)[0];
+   p0[1] = (((struct dparams *)params)->p0)[1];
 
-   v[0] = (((struct dparams *)params)->v)[0];
-   v[1] = (((struct dparams *)params)->v)[1];
+   p1[0] = (((struct dparams *)params)->p1)[0];
+   p1[1] = (((struct dparams *)params)->p1)[1];
 
    n = ((struct dparams *)params)->n;
    l = ((struct dparams *)params)->l;
 
    // Set up point in the unstable segment
-   p_u[0] = p[0] + h*v[0];
-   p_u[1] = p[1] + h*v[1];
+   p_u[0] = p0[0] + h * (p1[0]-p0[0]);
+   p_u[1] = p0[1] + h * (p1[1]-p0[1]);
 
    status=iterate_del_car_unst(mu,sec,H,n,p_u,&t,z_del,z_car,z_u,z_u_car);
    if(status)
@@ -635,8 +626,8 @@ distance_f_st (double h, void *params)
 {
    double mu, H;
    section_t sec;   // Poincare section
-   double p[2]; 		// fixed point
-   double v[2];		// unstable vector
+   double p0[2]; 		// fixed point
+   double p1[2];		// unstable vector
 
    double n; 			// num. of interations in the unstable dir.
    double l;		// axis line
@@ -658,18 +649,18 @@ distance_f_st (double h, void *params)
    sec = ((struct dparams *)params)->sec;
    H = ((struct dparams *)params)->H;
 
-   p[0] = (((struct dparams *)params)->p)[0];
-   p[1] = (((struct dparams *)params)->p)[1];
+   p0[0] = (((struct dparams *)params)->p0)[0];
+   p0[1] = (((struct dparams *)params)->p0)[1];
 
-   v[0] = (((struct dparams *)params)->v)[0];
-   v[1] = (((struct dparams *)params)->v)[1];
+   p1[0] = (((struct dparams *)params)->p1)[0];
+   p1[1] = (((struct dparams *)params)->p1)[1];
 
    n = ((struct dparams *)params)->n;
    l = ((struct dparams *)params)->l;
 
-   // Set up point in the unstable segment
-   p_u[0] = p[0] + h*v[0];
-   p_u[1] = p[1] + h*v[1];
+   // Set up point in the stable segment
+   p_u[0] = p0[0] + h * (p1[0]-p0[0]);
+   p_u[1] = p0[1] + h * (p1[1]-p0[1]);
 
    status=iterate_del_car_st(mu,sec,H,n,p_u,&t,z_del,z_car,z_u,z_u_car);
    if(status)

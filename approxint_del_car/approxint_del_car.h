@@ -96,3 +96,16 @@ int
 approxint_del_car_st (double mu, section_t sec, double H, int k, 
         double p[2], double v[2], double lambda, double h, branch_t br, 
         double a, int *piter, double *h_1, double *h_2, double z[2]);
+
+/**
+  Iterate linear segment "iter" times by the Poincare map.
+
+  \returns a non-zero error code to indicate an error and 0 to indicate
+  success.
+
+  \retval 1 Problems computing the Poincare iterates.
+  */
+
+int
+iterate_segment (double mu, section_t sec, int k, int iter, double *l4_del,
+        double *l4);

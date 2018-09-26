@@ -1,12 +1,12 @@
 unset label 
 
 # fixed points
-set label "p" at first -pi+0.2, 6.923540823087978e-01
-set label "p" at first pi-0.2, 6.923540823087978e-01
-set label "z1" at first 0, 6.977129268113177e-01-0.0002
-set label "z2" at first 0, 6.928500635543233e-01+0.0002
+#set label "p" at first -pi+0.2, 6.923540823087978e-01
+#set label "p" at first pi-0.2, 6.923540823087978e-01
+#set label "z1" at first 0, 6.977129268113177e-01-0.0002
+#set label "z2" at first 0, 6.928500635543233e-01+0.0002
 
-#set out "invmfld_H\-1.7194_SECg2.eps"
+#set out "invmfld_H\-1.5954_SECg2.eps"
 #set term post eps
 #set title "Invariant manifolds of fixed point"
 set xlabel "l"
@@ -38,10 +38,10 @@ set arrow from 0, graph 0 to 0, graph 1 nohead ls 3
 #plot [-pi:pi] \
 
 plot [:] \
-"unstmfld_H-1.7194_SECg2_br1.res" u 1:2 w l ls 1 not, \
-"unstmfld_H-1.7194_SECg2_br2.res" u 1:2 w l ls 1 not, \
-"unstmfld_H-1.7194_SECg2_br1.res" u (-$1):2 w l ls 2 not, \
-"unstmfld_H-1.7194_SECg2_br2.res" u (-$1):2 w l ls 2 not
+"unstmfld_H-1.5954_SECg2_br1.res" u 1:2 w l ls 1 not, \
+"unstmfld_H-1.5954_SECg2_br2.res" u 1:2 w l ls 1 not, \
+"unstmfld_H-1.5954_SECg2_br1.res" u (-$1):2 w l ls 2 not, \
+"unstmfld_H-1.5954_SECg2_br2.res" u (-$1):2 w l ls 2 not
 
 #plot [-0.1:2*pi+0.1] \
 #"unstmfld_H-1.7194_SECg2_br1.res" u ($1<0 ? $1+2*pi : $1):2 w l ls 1 not, \

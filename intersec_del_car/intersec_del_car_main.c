@@ -9,6 +9,9 @@
 #include <rtbp.h>	// DIM
 
 #include <section.h>    // section_t, branch_t
+#include <errmfld.h>    // h_opt
+
+#include <prtbp_nl_2d.h>
 
 #include "intersec_del_car.h"
 
@@ -119,6 +122,9 @@ int main( )
 
    double l;		// axis line p_x = l
 
+   double p0[2];        // p0 = p+hv
+   double p1[2];        // p1 = P(p0)
+
    double h;		// root of distance function
 
    double p_u[2];	// point in the unstable segment
@@ -172,11 +178,41 @@ int main( )
    {
       fprintf(stderr, "Processing energy level %le...\n", H);
 
+      // Compute optimal displacement h such that the estimate error commited
+      // in the linear approximation of the manifold is smallest.
+      h = h_opt(mu,SEC2,H,4,p,v,lambda,stable);
+
+      // Swap branches, to have RIGHT branch = upper branch in Delaunay, and
+      // LEFT branch = lower branch in Delaunay.
+      // This is only necessary in the stable case.
+      if(stable)
+          h=-h;
+
+      // By default we work with the RIGHT branch of the manifolds.
+      // To work with the LEFT branch of the manifolds instead,
+      // we just take the negative of the displacement h in the linear
+      // approximation.
+      if(br==LEFT) h=-h;
+
+   // Compute $p_0$
+   p0[0] = p[0] + h*v[0];
+   p0[1] = p[1] + h*v[1];
+
+   // Compute $p_1$
+   p1[0] = p0[0];
+   p1[1] = p0[1];
+   status=prtbp_nl_2d(mu,SEC2,H,4,p1,&t);        // $p_1 = P(p_0)$
+   if(status)
+   {
+      fprintf(stderr, "approxint_del_car: error computing Poincare map\n");
+      return(1);
+   }
+
       // 2. Find a root of the distance function, i.e. an intersection point of
       // the manifolds
       if(!stable)
       {
-          status = intersec_del_car_unst(mu, sec, br, H, p, v, lambda, n, 
+          status = intersec_del_car_unst(mu, sec, br, H, p0, p1, lambda, n, 
                   h1, h2, l, &h, p_u, &t, z_del, z_car, z_u, z_u_car);
           if(status)
           {

@@ -37,10 +37,12 @@ build-frtbp: install-taylor
 build-cardel:install-hinv
 build-prtbp_del_car: install-cardel install-section install-frtbp \
     install-prtbp_del install-utils
-build-intersec_del_car: install-utils install-prtbp install-prtbp_del_car
+build-intersec_del_car: install-utils install-prtbp install-prtbp_del_car \
+	install-errmfld
 build-errmfld: install-prtbp_noloops
 build-invmfld: install-errmfld
-build-invmfld_del_car: install-errmfld install-invmfld
+build-invmfld_del_car: install-errmfld install-invmfld \
+	install-approxint_del_car
 build-frtbp_red: install-rtbp_del
 build-frtbp_del: install-rtbp_del
 build-prtbp_del: install-frtbp_del install-hinv_del
