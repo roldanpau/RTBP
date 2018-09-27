@@ -67,7 +67,7 @@ install-prbtp_del_car: build-prtbp_del_car
 install-prbtp: build-prtbp
 install-utils: build-utils
 install-intersec_del_car: build-intersec_del_car
-install-prbtp_noloops: build-prtbp_noloops
+install-prtbp_noloops: build-prtbp_noloops
 install-errmfld: build-errmfld
 install-invmfld: build-invmfld
 install-invmfld_del_car: build-invmfld_del_car

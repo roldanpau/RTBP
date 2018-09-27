@@ -312,33 +312,16 @@ int intersec_del_car_unst(double mu, section_t sec, branch_t br, double H,
 
    // auxiliary vars
    int status;
-   size_t iter = 0, max_iter = 50;
+   size_t iter = 0, max_iter = 100;
    double d;    // distance to symmetry line
    double x_lo, x_hi;
 
    /*
-	fprintf(stderr, "P(0): %.15le, P(1): %.15le\n", p[0] + h1*v[0], 
-			p[1] + h1*v[1]);
-	fprintf(stderr, "Q(0): %.15le, Q(1): %.15le\n", p[0] + h2*v[0], 
-			p[1] + h2*v[1]);
-			*/
-
-   // Bisection method sometimes complains that interval [h1,h2] does not
-   // straddle 0. The reason is that approxint_del_car sets h1 and h2 from
-   // points in the linear segment l, whereas intersec_del_car uses h1 and h2
-   // to recover those endpoints of the segment u_i, so there is a small
-   // discrepancy.
-   // Thus we enlarge [h1,h2] a little bit to account for this discrepancy.
-   // NOTE: The number 0.9 is crucial! We tried 0.999 and did not work...
-   //h1 *= 0.99;
-   //h2 /= 0.99;
-
-	/*
-	fprintf(stderr, "P(0): %.15le, P(1): %.15le\n", p[0] + h1*v[0], 
-			p[1] + h1*v[1]);
-	fprintf(stderr, "Q(0): %.15le, Q(1): %.15le\n", p[0] + h2*v[0], 
-			p[1] + h2*v[1]);
-			*/
+	fprintf(stderr, "P(0): %.15le, P(1): %.15le\n", p0[0] + h1*(p1[0]-p0[0]), 
+			p0[1] + h1*(p1[1]-p0[1]));
+	fprintf(stderr, "Q(0): %.15le, Q(1): %.15le\n", p0[0] + h2*(p1[0]-p0[0]), 
+			p0[1] + h2*(p1[1]-p0[1]));
+    */
 
    T = gsl_root_fsolver_brent;
    s = gsl_root_fsolver_alloc (T);

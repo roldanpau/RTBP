@@ -136,7 +136,7 @@ int prtbp_del_car(double mu, section_t sec, int cuts, double x_del[DIM],
    // Intersect trajectory starting at point x with section.
    // WARNING! passing 0 instead of 0.0 gives me trouble?!?!
    if(inter_del_car(mu, sec, POINCARE_DEL_CAR_TOL, x_del, x_car, 0.0, 
-               t-t_pre, &t1))
+               SHORT_TIME_DEL_CAR, &t1))
    {
           fprintf(stderr, "prtbp_del_car: error intersecting trajectory with section\n");
           fprintf(stderr, "prtbp_del_car: giving up...\n");
@@ -221,8 +221,8 @@ int prtbp_del_car_inv(double mu, section_t sec, int cuts,
    // Intersect trajectory starting at point x with section.
    // Note that (t-t_pre) < 0.
    // WARNING! passing 0 instead of 0.0 gives me trouble?!?!
-   if(inter_del_car(mu, sec, POINCARE_DEL_CAR_TOL, x_del, x_car, t-t_pre, 0.0,
-               &t1))
+   if(inter_del_car(mu, sec, POINCARE_DEL_CAR_TOL, x_del, x_car,
+               -SHORT_TIME_DEL_CAR, 0.0, &t1))
    {
           fprintf(stderr, "prtbp_del_car: error intersecting trajectory with section\n");
           fprintf(stderr, "prtbp_del_car: giving up...\n");

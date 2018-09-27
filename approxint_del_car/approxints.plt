@@ -7,9 +7,6 @@ set xlabel "H"
 set ylabel "L"
 
 
-#"../approxint_del_car/approxints_unst_SECg2_br1.res.bak" u 1:6 w l t "z2p", \
-#"../approxint_del_car/approxints_unst_SECg2_br2.res.bak.2" u 1:6 w l t "z2m", \
-
 #plot [:-1.4894] \
 
 plot \
