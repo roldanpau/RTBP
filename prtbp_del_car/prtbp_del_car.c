@@ -38,7 +38,7 @@ const double POINCARE_DEL_CAR_TOL=1.e-16;
 // and 0.0001 when computing true homoclinic intersections.
 
 // PRG (04/04/2018): const double SHORT_TIME_DEL_CAR=0.001;		
-const double SHORT_TIME_DEL_CAR=0.001;
+const double SHORT_TIME_DEL_CAR=1;
 
 bool onsection_del_car (section_t sec, double a[DIM]);
 int inter_del_car(double mu, section_t sec, double epsabs, 
@@ -79,7 +79,7 @@ int prtbp_del_car(double mu, section_t sec, int cuts, double x_del[DIM],
    int status;
    int i,n;
    double t1;
-   double g;
+   //double g;
 
    /* Normalize g between (-pi,pi]
    g=x_del[2];
@@ -125,30 +125,36 @@ int prtbp_del_car(double mu, section_t sec, int cuts, double x_del[DIM],
    if(onsection_del_car(sec,x_del))
    {
       (*ti)=t;
-      return(0);
    }
-   // Crossing happened between times t_pre and t. 
-
-   // Restore previous value of point "x_del" and "x_car"
-   dblcpy(x_del, x_del_pre, DIM);
-   dblcpy(x_car, x_car_pre, DIM);
-
-   // Intersect trajectory starting at point x with section.
-   // WARNING! passing 0 instead of 0.0 gives me trouble?!?!
-   if(inter_del_car(mu, sec, POINCARE_DEL_CAR_TOL, x_del, x_car, 0.0, 
-               SHORT_TIME_DEL_CAR, &t1))
+   else
    {
-          fprintf(stderr, "prtbp_del_car: error intersecting trajectory with section\n");
-          fprintf(stderr, "prtbp_del_car: giving up...\n");
-          /*fprintf(stderr, "x_del_pre: %.15e %.15e %.15e %.15e\n", 
-                  x_del_pre[0], x_del_pre[1], x_del_pre[2], x_del_pre[3]);
-          fprintf(stderr, "x_car_pre: %.15e %.15e %.15e %.15e\n", 
-                  x_car_pre[0], x_car_pre[1], x_car_pre[2], x_car_pre[3]);
-          fprintf(stderr, "t: %.15e\n", 
-                  SHORT_TIME_DEL_CAR);
-          return(1);
-                  */
+       // Crossing happened between times t_pre and t. 
+
+       // Restore previous value of point "x_del" and "x_car"
+       dblcpy(x_del, x_del_pre, DIM);
+       dblcpy(x_car, x_car_pre, DIM);
+
+       // Intersect trajectory starting at point x with section.
+       // WARNING! passing 0 instead of 0.0 gives me trouble?!?!
+       if(inter_del_car(mu, sec, POINCARE_DEL_CAR_TOL, x_del, x_car, 0.0, 
+                   SHORT_TIME_DEL_CAR, &t1))
+       {
+              fprintf(stderr, "prtbp_del_car: error intersecting trajectory with section\n");
+              fprintf(stderr, "prtbp_del_car: giving up...\n");
+              /*fprintf(stderr, "x_del_pre: %.15e %.15e %.15e %.15e\n", 
+                      x_del_pre[0], x_del_pre[1], x_del_pre[2], x_del_pre[3]);
+              fprintf(stderr, "x_car_pre: %.15e %.15e %.15e %.15e\n", 
+                      x_car_pre[0], x_car_pre[1], x_car_pre[2], x_car_pre[3]);
+              fprintf(stderr, "t: %.15e\n", 
+                      SHORT_TIME_DEL_CAR);
+              return(1);
+                      */
+       }
+
+       // Set time to reach Poincare section
+       (*ti)=t_pre+t1;
    }
+
    // Here, point x is on section with tolerance POINCARE_DEL_CAR_TOL. 
    //
    // CAREFUL! Make sure to return a point that is exactly ON the section.
@@ -158,9 +164,6 @@ int prtbp_del_car(double mu, section_t sec, int cuts, double x_del[DIM],
    else if(sec==SEC2) x_del[0]=-M_PI;   // Since dl/dt>0
    else if(sec==SECg) x_del[2]=0;
    else if(sec==SECg2) x_del[2]=M_PI;   // Since dg/dt<0
-
-   // Set time to reach Poincare section
-   (*ti)=t_pre+t1;
    return(0);
 }
 
@@ -442,13 +445,13 @@ int inter_del_car(double mu, section_t sec, double epsabs,
     while (status == GSL_CONTINUE && iter < max_iter);
     gsl_root_fsolver_free (s);
 
-    if(iter>=max_iter && f>1.e-10)
+    if(iter>=max_iter && f>1.e-14)
     {
        fprintf(stderr, \
                "inter_del_car: maximum number of iterations reached\n");
        fprintf(stderr, \
-               "inter_del_car: latest residual: %.15e\n",f);
-       return(ERR_MAXITER_DEL_CAR);
+               "inter_del_car: latest residual: %e\n",f);
+       //return(ERR_MAXITER_DEL_CAR);
     }
 
     // "*t" is the intersection time.

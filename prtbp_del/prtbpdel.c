@@ -354,6 +354,7 @@ bool crossing_fwd_del (section_t sec, double x[DIM], double y[DIM])
    double n1,n2;
    bool bCrossing;
    double rem1, rem2;
+   bool bCrossing1, bCrossing2, bCrossing3;
 
    switch(sec)
    {
@@ -398,15 +399,18 @@ bool crossing_fwd_del (section_t sec, double x[DIM], double y[DIM])
               n1 = ceil((x[2]-M_PI)/TWOPI);
               n2 = ceil((y[2]-M_PI)/TWOPI);
               // Inevitably, g will jump by almost TWOPI when (x,y) changes
-              // from the 2nd quadrant to the 3rd (see cardel.c).
+              // from the 3rd quadrant to the 2nd (see cardel.c).
               // We need to include this case as a true crossing of section.
-              bCrossing = ((n1!=n2 && fabs(x[2]-y[2])<M_PI) || 
-					  (-M_PI<x[2] && x[2]<0 && 0<y[2] && y[2]<M_PI));
-			  /*
-			  if(bCrossing)
+              bCrossing1 = (n1!=n2 && fabs(x[2]-y[2])<M_PI);
+              bCrossing2 = (-M_PI<x[2] && x[2]<0 && 0<y[2] && y[2]<M_PI);
+              bCrossing3 = (M_PI<x[2] && x[2]<3*M_PI/2 && -3*M_PI/2<y[2] &&
+                      y[2]<-M_PI);
+              bCrossing = (bCrossing1 || bCrossing2 || bCrossing3);
+              /*
+			  if(bCrossing3)
 				  fprintf(stderr, "n1: %e, n2: %e, x[2]: %e, y[2]: %e\n", n1,
 						  n2, x[2], y[2]);
-			  */
+                          */
               break;
           }
    }

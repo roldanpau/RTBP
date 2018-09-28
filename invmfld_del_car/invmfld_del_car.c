@@ -25,7 +25,7 @@
 #include <prtbp_del_car.h>
 #include <errmfld.h>
 #include <disc.h>
-#include <approxint_del_car.h>	// iterate_segment
+#include <approxint_del_car.h>	// NPOINTS, iterate_segment
 #include <utils_module.h>		// dblcpy
 #include "lift.h"
 
@@ -63,13 +63,6 @@
 
 int main( )
 {
-	/// Number of points in the discretization of unst segment.
-	/// WARNING!!! Oddly, approxint_del_car does not work properly unless
-	/// linear segment is discretized into very few points (e.g. 5).
-	/// Probably, the more points we use, the higher the probability that
-	/// prtbp_del_car fails.
-	const int NPOINTS=11;
-
    double mu, H;
    section_t sec;
    int k;		// number of iterates of Poincare map
@@ -194,6 +187,19 @@ int main( )
 			  " before the iteration\n");
       return(1);
    }
+
+    // Print iteration of linear segment
+    for(i=0;i<NPOINTS;i++)
+    {
+       if(printf("% .15le % .15le\n", 
+                   l4_del[DIM*i+0], 
+                   l4_del[DIM*i+1])<0)
+       {
+          perror("main: error writting output");
+          exit(EXIT_FAILURE);
+       }
+    }
+    //printf("\n");
 
    dblcpy(l4_del_cpy, l4_del, DIM*NPOINTS);
    dblcpy(l4_car_cpy, l4_car, DIM*NPOINTS);

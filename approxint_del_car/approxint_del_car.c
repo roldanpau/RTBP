@@ -19,6 +19,7 @@
 #include <disc.h>	   
 #include <lift.h>
 #include <utils_module.h>	// dblcpy
+#include "approxint_del_car.h"
 
 /*! \brief 
   Max number of iterations of unst segment before we give up looking for
@@ -31,7 +32,7 @@ const int MAXITER = 100;
 /// linear segment is discretized into very few points (e.g. 5).
 /// Probably, the more points we use, the higher the probability that 
 /// prtbp_del_car fails.
-const int NPOINTS=11;
+const int NPOINTS=1001;
 
 int 
 iterate_segment (double mu, section_t sec, int k, int iter, double *l4_del,
@@ -166,8 +167,10 @@ approxint_del_car_unst (double mu, section_t sec, double H, int k,
    */
 
    // return approximate intersection point
-   z[0] = (l4_del[DIM*i+0] + l4_del[DIM*(i+1)+0])/2.0;
-   z[1] = (l4_del[DIM*i+1] + l4_del[DIM*(i+1)+1])/2.0;
+   //z[0] = (l4_del[DIM*i+0] + l4_del[DIM*(i+1)+0])/2.0;
+   //z[1] = (l4_del[DIM*i+1] + l4_del[DIM*(i+1)+1])/2.0;
+   z[0] = l4_del[DIM*(i+1)+0];
+   z[1] = l4_del[DIM*(i+1)+1];
    return(0);
 }
 
@@ -488,7 +491,7 @@ u_i (double mu, section_t sec, int k, int iter, branch_t br, double a,
        {
            if(br==RIGHT) 
            {
-              // For the upper branch, since dl/dt<0, it is enough to check 
+              // For the top branch, since dl/dt<0, it is enough to check 
               // if the angle has been reset from >a to <a
 			   /*
               if(l1 > a && l2 < a)
@@ -518,7 +521,7 @@ u_i (double mu, section_t sec, int k, int iter, branch_t br, double a,
            }
            else
            {
-              // For the lower branch, since dl/dt>0, it is enough to check 
+              // For the bottom branch, since dl/dt>0, it is enough to check 
               // if the angle has been reset from <a to >a
               if(l1 < a && l2 > a)
 			  {

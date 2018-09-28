@@ -330,7 +330,7 @@ int intersec_del_car_unst(double mu, section_t sec, branch_t br, double H,
 			p0[1] + h2*(p1[1]-p0[1]));
     */
 
-   T = gsl_root_fsolver_brent;
+   T = gsl_root_fsolver_bisection;
    s = gsl_root_fsolver_alloc (T);
 
    gsl_root_fsolver_set (s, &f, h1, h2);
