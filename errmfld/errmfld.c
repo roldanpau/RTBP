@@ -136,7 +136,7 @@ double h_opt(double mu, section_t sec, double H, int k, double p[2],
       err = err2;
       h = h/10.0;
       err2=err_mfld(mu,sec,H,k,p,v,lambda,stable,h);
-   } while(err2>1.e-4 && (err/err2)>10);
+   } while(err2>1.e-6 && (err/err2)>10);
 
    fprintf(stderr,"Optimal displacement: %e\n", h*10.0);
    fprintf(stderr,"Estimated error of manifold: %e\n", err);

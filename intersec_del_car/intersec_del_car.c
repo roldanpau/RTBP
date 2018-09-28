@@ -26,6 +26,13 @@
 // homoclinic point itself!
 const double BISECT_TOL=1.e-16;
 
+/*! \brief
+  Max number of iterations of numerical method before we give up
+  looking for intersection. WARNING! For Brent's (bisection-like) method, do
+  not set this to less than 100 iterations, to ensure that it converges.
+ */
+const int MAXITER_INTERSEC_DEL_CAR = 100;
+
 // Parameters to distance_f_unst and distance_f_st functions.
 struct dparams
 {
@@ -312,7 +319,7 @@ int intersec_del_car_unst(double mu, section_t sec, branch_t br, double H,
 
    // auxiliary vars
    int status;
-   size_t iter = 0, max_iter = 100;
+   size_t iter = 0;
    double d;    // distance to symmetry line
    double x_lo, x_hi;
 
@@ -356,7 +363,7 @@ int intersec_del_car_unst(double mu, section_t sec, branch_t br, double H,
 			//print_state (iter, s);
             */
       }
-    while (status == GSL_CONTINUE && iter < max_iter);
+    while (status == GSL_CONTINUE && iter < MAXITER_INTERSEC_DEL_CAR);
     gsl_root_fsolver_free (s);
 
     //fprintf (stderr, "status = %s\n", gsl_strerror (status));
