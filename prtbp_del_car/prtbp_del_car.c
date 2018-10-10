@@ -55,11 +55,6 @@ struct inter_del_car_f_params
    double x; double y; double px; double py;
 };
 
-double WrapPosNegPI(double fAng)
-{
-	return fmod(fAng + M_PI, TWOPI) - M_PI;
-}
-
 /**
  * \remark We do not impose that $x$ is on the section.
  *
@@ -79,14 +74,6 @@ int prtbp_del_car(double mu, section_t sec, int cuts, double x_del[DIM],
    int status;
    int i,n;
    double t1;
-   //double g;
-
-   /* Normalize g between (-pi,pi]
-   g=x_del[2];
-   if(g<=-M_PI || g>M_PI)
-   {
-	   x_del[2] = WrapPosNegPI(g);
-   } */
 
    n=0;
    while(n!=cuts)
@@ -445,7 +432,7 @@ int inter_del_car(double mu, section_t sec, double epsabs,
     while (status == GSL_CONTINUE && iter < max_iter);
     gsl_root_fsolver_free (s);
 
-    if(iter>=max_iter && f>1.e-14)
+    if(iter>=max_iter && f>1.e-5)
     {
        fprintf(stderr, \
                "inter_del_car: maximum number of iterations reached\n");

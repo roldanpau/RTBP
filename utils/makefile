@@ -6,7 +6,7 @@ includedir = $(prefix)/include
 libdir = $(exec_prefix)/lib
 CFLAGS = -O3 #-g -O
 #LDFLAGS = -O3
-LDLIBS = 
+LDLIBS = -lds -lm
 
 PROGS = utils
 

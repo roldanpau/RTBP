@@ -11,9 +11,12 @@ cut -d ' ' -f 2 ../hyper/hypers.res > temp3.txt        	# rho_u
 # Note: the axis line $g=a$ is actually NOT used for section SECg2.
 echo "0.95387536e-3 SECg2 4 0 0 0.0" > $datfile
 
+#paste -d ' ' temp1.txt temp2.txt temp3.txt | tac >> $datfile
 paste -d ' ' temp1.txt temp2.txt temp3.txt >> $datfile
 rm temp1.txt temp2.txt temp3.txt
 
 ./approxint_del_car <$datfile >$resfile 2>$errfile
+#tac $resfile > temp1.txt
+#mv temp1.txt $resfile
 
 #rm $datfile

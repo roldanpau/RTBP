@@ -2,1085 +2,1187 @@
 H: -1.719400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.513228e-04
-DEBUG: l=4.455366794523780e-03, lprime=-1.926854448375864e-02
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.598721e-14
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.065814e-14
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 2.042810e-14
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.509903e-14
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.421085e-14
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.065814e-14
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.225686e-13
+DEBUG: l=4.455366752958777e-03, lprime=-1.926854445692885e-02
 Approximate interval: 2
 
 H: -1.717400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.535322e-04
-DEBUG: l=1.297882421131269e-02, lprime=-1.135657587004618e-02
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.065814e-14
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.332268e-14
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.776357e-14
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 5.861978e-14
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.509903e-14
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.243450e-14
+DEBUG: l=1.297882421738041e-02, lprime=-1.135657587136586e-02
 Approximate interval: 5
 
 H: -1.715400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.546227e-04
-DEBUG: l=1.630358209102547e-02, lprime=-1.099670644451688e-02
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.421085e-14
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 2.060574e-13
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 2.664535e-14
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.776357e-14
+DEBUG: l=1.630358210297454e-02, lprime=-1.099670646623940e-02
 Approximate interval: 1
 
 H: -1.713400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.548635e-04
-DEBUG: l=1.573809376602186e-02, lprime=-9.745314578939372e-03
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.243450e-14
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 2.664535e-14
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 2.842171e-14
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 2.131628e-14
+DEBUG: l=1.573809380784660e-02, lprime=-9.745314602420662e-03
 Approximate interval: 9
 
 H: -1.711400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.544496e-04
-DEBUG: l=9.193898586401144e-04, lprime=-2.564965510999826e-02
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.421085e-14
+DEBUG: l=9.193898587888646e-04, lprime=-2.564965509870046e-02
 Approximate interval: 9
 
 H: -1.709400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.535270e-04
-DEBUG: l=2.064532795569730e-02, lprime=-6.954183613049203e-03
+DEBUG: l=2.064532794604440e-02, lprime=-6.954183636905106e-03
 Approximate interval: 9
 
 H: -1.707400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.522077e-04
-DEBUG: l=1.004539768200577e-02, lprime=-2.296757123658244e-02
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.065814e-14
+DEBUG: l=1.004539766977437e-02, lprime=-2.296757126954573e-02
 Approximate interval: 1
 
 H: -1.705400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.505796e-04
-DEBUG: l=2.115193214973637e-02, lprime=-1.183150410769786e-02
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.243450e-14
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.065814e-14
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.776357e-14
+DEBUG: l=2.115193218785149e-02, lprime=-1.183150409439209e-02
 Approximate interval: 3
 
 H: -1.703400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.487122e-04
-DEBUG: l=2.530613023248780e-02, lprime=-6.859163383444384e-03
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.065814e-14
+DEBUG: l=2.530613022310756e-02, lprime=-6.859163400761816e-03
 Approximate interval: 6
 
 H: -1.701400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.466619e-04
-DEBUG: l=2.436831033588478e-02, lprime=-1.330083219157786e-02
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.332268e-14
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 3.019807e-14
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.598721e-14
+DEBUG: l=2.436831032667693e-02, lprime=-1.330083220572354e-02
 Approximate interval: 0
 
 H: -1.699400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.444744e-04
-DEBUG: l=2.330748225281425e-02, lprime=-1.226330071541950e-02
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.509903e-14
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.598721e-14
+DEBUG: l=2.330748228173279e-02, lprime=-1.226330071036511e-02
 Approximate interval: 4
 
 H: -1.697400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.421874e-04
-DEBUG: l=1.712102225147575e-02, lprime=-1.573797634917049e-02
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 7.283063e-14
+DEBUG: l=1.712102226087286e-02, lprime=-1.573797634489355e-02
 Approximate interval: 9
 
 H: -1.695400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.398319e-04
-DEBUG: l=1.148024860217880e-02, lprime=-2.608564427135067e-02
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.776357e-14
+DEBUG: l=1.148024861218030e-02, lprime=-2.608564429591933e-02
 Approximate interval: 4
 
 H: -1.693400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.374339e-04
-DEBUG: l=3.237531764409611e-02, lprime=-1.971079157252561e-03
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.421085e-14
+DEBUG: l=3.237531764000844e-02, lprime=-1.971079164812495e-03
 Approximate interval: 9
 
 H: -1.691400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.350151e-04
-DEBUG: l=1.153334539887350e-02, lprime=-2.696700945041685e-02
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.421085e-14
+DEBUG: l=1.153334539713390e-02, lprime=-2.696700948696170e-02
 Approximate interval: 5
 
 H: -1.689400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.325939e-04
-DEBUG: l=1.613546569569026e-02, lprime=-2.762609640316408e-02
+DEBUG: l=1.613546567450580e-02, lprime=-2.762609638838514e-02
 Approximate interval: 1
 
 H: -1.687400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.301856e-04
-DEBUG: l=1.716428574375185e-02, lprime=-2.105803810468530e-02
+DEBUG: l=1.716428575726073e-02, lprime=-2.105803809844172e-02
 Approximate interval: 7
 
 H: -1.685400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.278035e-04
-DEBUG: l=3.213917285294873e-02, lprime=-1.120597397168282e-02
+DEBUG: l=3.213917287422034e-02, lprime=-1.120597395592445e-02
 Approximate interval: 3
 
 H: -1.683400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.254586e-04
-DEBUG: l=2.718316551804884e-02, lprime=-2.129058472980044e-02
+DEBUG: l=2.718316552862987e-02, lprime=-2.129058471694906e-02
 Approximate interval: 0
 
 H: -1.681400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.231605e-04
-DEBUG: l=4.279940701248507e-03, lprime=-3.606715081168083e-02
+DEBUG: l=4.279940694209120e-03, lprime=-3.606715079690978e-02
 Approximate interval: 7
 
 H: -1.679400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.209174e-04
-DEBUG: l=4.358650871700556e-02, lprime=-2.474689946956662e-03
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 5.151435e-14
+DEBUG: l=4.358650875185434e-02, lprime=-2.474689950079351e-03
 Approximate interval: 3
 
 H: -1.677400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.187362e-04
-DEBUG: l=1.008256884540430e-02, lprime=-4.001892364290217e-02
+DEBUG: l=1.008256878872038e-02, lprime=-4.001892364162107e-02
 Approximate interval: 1
 
 H: -1.675400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.166229e-04
-DEBUG: l=1.570979518975675e-02, lprime=-2.545138513943039e-02
+DEBUG: l=1.570979517241358e-02, lprime=-2.545138514653294e-02
 Approximate interval: 8
 
 H: -1.673400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.145826e-04
-DEBUG: l=2.392593610720348e-02, lprime=-2.174449166993708e-02
+DEBUG: l=2.392593609185202e-02, lprime=-2.174449167257501e-02
 Approximate interval: 5
 
 H: -1.671400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.126198e-04
-DEBUG: l=5.143153336943996e-02, lprime=-4.508718296241568e-01
-Approximate interval: 2
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.953993e-14
+DEBUG: l=1.801446691382707e-04, lprime=-4.933618674509298e-02
+Approximate interval: 3
 
 H: -1.669400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.107381e-04
-DEBUG: l=4.456897095509907e-02, lprime=-1.166386153365741e-02
+DEBUG: l=4.456897094153396e-02, lprime=-1.166386152656881e-02
 Approximate interval: 0
 
 H: -1.667400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.089406e-04
-DEBUG: l=1.631924817318251e-02, lprime=-2.713376858895336e-02
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 2.131628e-14
+DEBUG: l=1.631924815958788e-02, lprime=-2.713376858343423e-02
 Approximate interval: 8
 
 H: -1.665400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.072301e-04
-DEBUG: l=4.553281856864137e-02, lprime=-2.948319713342473e-03
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 2.309264e-14
+DEBUG: l=4.553281855128188e-02, lprime=-2.948319691302613e-03
 Approximate interval: 5
 
 H: -1.663400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.056087e-04
-DEBUG: l=4.091534702362586e-02, lprime=-1.194362898865534e-02
+DEBUG: l=4.091534703312827e-02, lprime=-1.194362900459154e-02
 Approximate interval: 3
 
 H: -1.661400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.040782e-04
-DEBUG: l=4.904420614194755e-02, lprime=-9.030002607802106e-03
+DEBUG: l=4.904420613421558e-02, lprime=-9.030002609196302e-03
 Approximate interval: 1
 
 H: -1.659400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.026400e-04
-DEBUG: l=7.968896606013874e-03, lprime=-5.366167150511021e-02
+DEBUG: l=7.968896627078975e-03, lprime=-5.366167153319577e-02
 Approximate interval: 0
 
 H: -1.657400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.012952e-04
-DEBUG: l=4.557463574172733e-02, lprime=-2.057472775849290e-03
+DEBUG: l=4.557463573695664e-02, lprime=-2.057472775956872e-03
 Approximate interval: 7
 
 H: -1.655400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.000445e-04
-DEBUG: l=4.924236431918761e-02, lprime=-2.565110411497999e-03
+DEBUG: l=4.924236429662931e-02, lprime=-2.565110423335404e-03
 Approximate interval: 5
 
 H: -1.653400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 9.888828e-05
-DEBUG: l=7.971800048755700e-03, lprime=-4.659185904902310e-02
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 5.151435e-14
+DEBUG: l=7.971800040845464e-03, lprime=-4.659185906718973e-02
 Approximate interval: 4
 
 H: -1.651400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 9.782675e-05
-DEBUG: l=3.154473366374314e-02, lprime=-2.865341383845797e-02
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.687539e-14
+DEBUG: l=3.154473366668318e-02, lprime=-2.865341382186540e-02
 Approximate interval: 2
 
 H: -1.649400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 9.685976e-05
-DEBUG: l=3.785468936372683e-03, lprime=-6.004784246401258e-02
+DEBUG: l=3.785468925163635e-03, lprime=-6.004784245485514e-02
 Approximate interval: 1
 
 H: -1.647400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 9.598691e-05
-DEBUG: l=2.889405451153898e-02, lprime=-1.788778025831701e-02
+DEBUG: l=2.889405449727189e-02, lprime=-1.788778028121261e-02
 Approximate interval: 9
 
 H: -1.645400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 9.520756e-05
-DEBUG: l=4.113300076081051e-02, lprime=-9.661262595338229e-03
+DEBUG: l=4.113300077156264e-02, lprime=-9.661262588164164e-03
 Approximate interval: 7
 
 H: -1.643400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 9.452084e-05
-DEBUG: l=8.869867963459276e-03, lprime=-4.448870911609620e-02
+DEBUG: l=8.869867946168824e-03, lprime=-4.448870911275053e-02
 Approximate interval: 6
 
 H: -1.641400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 9.392563e-05
-DEBUG: l=3.952941542245793e-02, lprime=-1.921925870332230e-02
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.598721e-14
+DEBUG: l=3.952941541971636e-02, lprime=-1.921925870394036e-02
 Approximate interval: 4
 
 H: -1.639400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 9.342062e-05
-DEBUG: l=1.957427109755632e-02, lprime=-4.266297398434574e-02
+DEBUG: l=1.957427110642982e-02, lprime=-4.266297398582287e-02
 Approximate interval: 3
 
 H: -1.637400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 9.300430e-05
-DEBUG: l=5.056843164358006e-03, lprime=-6.100088815658438e-02
+DEBUG: l=5.056843161609189e-03, lprime=-6.100088816812269e-02
 Approximate interval: 2
 
 H: -1.635400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 9.267497e-05
-DEBUG: l=7.111908349686019e-02, lprime=-3.364823214166416e-03
+DEBUG: l=7.111908350936252e-02, lprime=-3.364823220160569e-03
 Approximate interval: 0
 
 H: -1.633400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 9.243075e-05
-DEBUG: l=4.462387406503549e-02, lprime=-4.914909001174413e-03
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.065814e-14
+DEBUG: l=4.462387406565523e-02, lprime=-4.914908994931469e-03
 Approximate interval: 9
 
 H: -1.631400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 9.226960e-05
-DEBUG: l=2.147714400166367e-02, lprime=-3.054260964444969e-02
+DEBUG: l=2.147714400528244e-02, lprime=-3.054260964342438e-02
 Approximate interval: 8
 
 H: -1.629400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 9.218936e-05
-DEBUG: l=5.903744683372451e-02, lprime=-5.590438961278464e-01
-Approximate interval: 6
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 5.950795e-14
+DEBUG: l=2.064757495275036e-03, lprime=-5.251560242048073e-02
+Approximate interval: 7
 
 H: -1.627400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 9.218772e-05
-DEBUG: l=4.714029296175444e-02, lprime=-1.322029346751398e-02
+DEBUG: l=4.714029296303084e-02, lprime=-1.322029346665595e-02
 Approximate interval: 5
 
 H: -1.625400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 9.226226e-05
-DEBUG: l=4.011366304512370e-02, lprime=-2.396634909582799e-02
+DEBUG: l=4.011366305152268e-02, lprime=-2.396634910129035e-02
 Approximate interval: 4
 
 H: -1.623400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 9.241048e-05
-DEBUG: l=3.853276910548764e-02, lprime=-2.971444648006173e-02
+DEBUG: l=3.853276911375838e-02, lprime=-2.971444647025542e-02
 Approximate interval: 3
 
 H: -1.621400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 9.262979e-05
-DEBUG: l=4.306529215121659e-02, lprime=-2.991688650688262e-02
+DEBUG: l=4.306529214008916e-02, lprime=-2.991688649793468e-02
 Approximate interval: 2
 
 H: -1.619400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 9.291753e-05
-DEBUG: l=5.448894984545376e-02, lprime=-2.388754509184689e-02
+DEBUG: l=5.448894985839190e-02, lprime=-2.388754509092506e-02
 Approximate interval: 1
 
 H: -1.617400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 9.327097e-05
-DEBUG: l=7.368204302812119e-02, lprime=-1.075184885152711e-02
+DEBUG: l=7.368204302302230e-02, lprime=-1.075184883583540e-02
 Approximate interval: 0
 
 H: -1.615400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 9.368739e-05
-DEBUG: l=1.057789599599594e-02, lprime=-7.495724523239847e-02
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.598721e-14
+DEBUG: l=1.057789601224708e-02, lprime=-7.495724523000312e-02
 Approximate interval: 0
 
 H: -1.613400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 9.416399e-05
-DEBUG: l=5.628334513528528e-02, lprime=-5.941515376404272e-01
-Approximate interval: 8
+DEBUG: l=8.083323480898198e-04, lprime=-5.229803692328503e-02
+Approximate interval: 9
 
 H: -1.611400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 9.469797e-05
-DEBUG: l=5.343187090485522e-02, lprime=-5.184804611828389e-03
+DEBUG: l=5.343187089860173e-02, lprime=-5.184804613594727e-03
 Approximate interval: 7
 
 H: -1.609400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 9.528654e-05
-DEBUG: l=5.501966242785723e-02, lprime=-7.043232382971198e-03
+DEBUG: l=5.501966242059311e-02, lprime=-7.043232388766960e-03
 Approximate interval: 6
 
 H: -1.607400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 9.592688e-05
-DEBUG: l=6.150647615081974e-02, lprime=-4.344951291353694e-03
+DEBUG: l=6.150647613287474e-02, lprime=-4.344951287436088e-03
 Approximate interval: 5
 
 H: -1.605400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 9.661621e-05
-DEBUG: l=3.417982583609910e-03, lprime=-6.295656726783330e-02
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 1.865175e-14
+DEBUG: l=3.417982574422573e-03, lprime=-6.295656725217443e-02
 Approximate interval: 5
 
 H: -1.603400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 9.735175e-05
-DEBUG: l=1.684731190093952e-02, lprime=-5.424455607163475e-02
+DEBUG: l=1.684731190661014e-02, lprime=-5.424455606754458e-02
 Approximate interval: 4
 
 H: -1.601400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 9.813072e-05
-DEBUG: l=3.660653133707802e-02, lprime=-3.981967570058093e-02
+DEBUG: l=3.660653133902966e-02, lprime=-3.981967569358431e-02
 Approximate interval: 3
 
 H: -1.599400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 9.895040e-05
-DEBUG: l=6.331988615273369e-02, lprime=-1.880087815323035e-02
+DEBUG: l=6.331988615197640e-02, lprime=-1.880087814444517e-02
 Approximate interval: 2
 
 H: -1.597400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 9.980806e-05
-DEBUG: l=9.809964863376673e-03, lprime=-7.286121189711037e-02
+DEBUG: l=9.809964845847476e-03, lprime=-7.286121189145071e-02
 Approximate interval: 2
 
 H: -1.595400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.007010e-04
-DEBUG: l=4.683486559268519e-02, lprime=-4.358752019079341e-02
+DEBUG: l=4.683486559641556e-02, lprime=-4.358752019600202e-02
 Approximate interval: 1
 
 H: -1.593400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.016267e-04
-DEBUG: l=9.250449874541179e-02, lprime=-4.950126890491745e-03
+DEBUG: l=9.250449874475983e-02, lprime=-4.950126900622264e-03
 Approximate interval: 0
 
 H: -1.591400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.025823e-04
-DEBUG: l=4.408591803635958e-02, lprime=-5.599556202824842e-02
+DEBUG: l=4.408591802859756e-02, lprime=-5.599556202398108e-02
 Approximate interval: 0
 
 H: -1.589400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.035655e-04
-DEBUG: l=5.182760026438890e-02, lprime=-5.463633140864872e-03
+DEBUG: l=5.182760026449672e-02, lprime=-5.463633135893113e-03
 Approximate interval: 9
 
 H: -1.587400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.045735e-04
-DEBUG: l=3.320749770941078e-03, lprime=-5.425731224203573e-02
+DEBUG: l=3.320749771390598e-03, lprime=-5.425731223145461e-02
 Approximate interval: 9
 
 H: -1.585400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.056039e-04
-DEBUG: l=1.635927076626605e-02, lprime=-4.483978263476047e-02
+DEBUG: l=1.635927076382216e-02, lprime=-4.483978263430072e-02
 Approximate interval: 8
 
 H: -1.583400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.066542e-04
-DEBUG: l=3.401504129903315e-02, lprime=-3.110633357803844e-02
+DEBUG: l=3.401504130704634e-02, lprime=-3.110633357687941e-02
 Approximate interval: 7
 
 H: -1.581400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.077219e-04
-DEBUG: l=5.654053340200173e-02, lprime=-1.248200260717552e-02
+DEBUG: l=5.654053341133616e-02, lprime=-1.248200260037173e-02
 Approximate interval: 6
 
 H: -1.579400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.088046e-04
-DEBUG: l=1.159924330129566e-02, lprime=-5.788875503279899e-02
+DEBUG: l=1.159924329781821e-02, lprime=-5.788875503720890e-02
 Approximate interval: 6
 
 H: -1.577400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.098999e-04
-DEBUG: l=4.143395319565027e-02, lprime=-3.343775279162378e-02
+DEBUG: l=4.143395319655584e-02, lprime=-3.343775278715638e-02
 Approximate interval: 5
 
 H: -1.575400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.110056e-04
-DEBUG: l=7.679497562611594e-02, lprime=-2.383037177015460e-03
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 2.575717e-14
+DEBUG: l=7.679497561726882e-02, lprime=-2.383037175655442e-03
 Approximate interval: 4
 
 H: -1.573400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.121191e-04
-DEBUG: l=3.561535885775848e-02, lprime=-4.562035202370264e-02
+DEBUG: l=3.561535885984662e-02, lprime=-4.562035202187072e-02
 Approximate interval: 4
 
 H: -1.571400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.132383e-04
-DEBUG: l=7.967831674375775e-02, lprime=-6.699286393474601e-03
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 2.486900e-14
+DEBUG: l=7.967831674630144e-02, lprime=-6.699286387866115e-03
 Approximate interval: 3
 
 H: -1.569400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.143608e-04
-DEBUG: l=4.052864505486407e-02, lprime=-4.821050474422058e-02
+DEBUG: l=4.052864504867708e-02, lprime=-4.821050474582103e-02
 Approximate interval: 3
 
 H: -1.567400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.154845e-04
-DEBUG: l=9.383139556334780e-02, lprime=-6.781121852011205e-01
-Approximate interval: 2
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 9.849899e-13
+DEBUG: l=6.069394696722107e-05, lprime=-8.706327788789742e-02
+Approximate interval: 3
 
 H: -1.565400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.166072e-04
-DEBUG: l=5.756680334375162e-02, lprime=-3.998067285537153e-02
+DEBUG: l=5.756680334481053e-02, lprime=-3.998067285299502e-02
 Approximate interval: 2
 
 H: -1.563400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.177266e-04
-DEBUG: l=1.968569057867324e-02, lprime=-7.760113997688392e-02
+DEBUG: l=1.968569057494200e-02, lprime=-7.760113998354567e-02
 Approximate interval: 2
 
 H: -1.561400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.188408e-04
-DEBUG: l=8.755325322331098e-02, lprime=-1.881749193600909e-02
+DEBUG: l=8.755325321877361e-02, lprime=-1.881749192727758e-02
 Approximate interval: 1
 
 H: -1.559400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.199475e-04
-DEBUG: l=5.365503311433546e-02, lprime=-5.583512405363113e-02
+DEBUG: l=5.365503309954493e-02, lprime=-5.583512406460833e-02
 Approximate interval: 1
 
 H: -1.557400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.210447e-04
-DEBUG: l=1.817760276395789e-02, lprime=-8.999295272072005e-02
+DEBUG: l=1.817760277415384e-02, lprime=-8.999295271339033e-02
 Approximate interval: 1
 
 H: -1.555400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.221305e-04
-DEBUG: l=1.013952840010123e-01, lprime=-1.790196909185353e-02
+DEBUG: l=1.013952840014094e-01, lprime=-1.790196909754350e-02
 Approximate interval: 0
 
 H: -1.553400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.232029e-04
-DEBUG: l=7.137547433075883e-02, lprime=-5.252375778501522e-02
+DEBUG: l=7.137547434460825e-02, lprime=-5.252375779247707e-02
 Approximate interval: 0
 
 H: -1.551400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.242600e-04
-DEBUG: l=3.990015414626855e-02, lprime=-8.435780133075285e-02
+DEBUG: l=3.990015414963327e-02, lprime=-8.435780133875501e-02
 Approximate interval: 0
 
 H: -1.549400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.252998e-04
-DEBUG: l=7.027713817946585e-03, lprime=-1.134222186368390e-01
+DEBUG: l=7.027713808320631e-03, lprime=-1.134222186362836e-01
 Approximate interval: 0
 
 H: -1.547400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.263206e-04
-DEBUG: l=4.035718996534404e-02, lprime=-2.589921974218530e-02
+DEBUG: l=4.035718995787888e-02, lprime=-2.589921973978164e-02
 Approximate interval: 9
 
 H: -1.545400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.273207e-04
-DEBUG: l=8.824655676441442e-03, lprime=-5.691424138584840e-02
+DEBUG: l=8.824655684905910e-03, lprime=-5.691424138873641e-02
 Approximate interval: 9
 
 H: -1.543400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.282983e-04
-DEBUG: l=4.801014750863078e-02, lprime=-2.290205892075777e-02
+DEBUG: l=4.801014751263533e-02, lprime=-2.290205892480610e-02
 Approximate interval: 8
 
 H: -1.541400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.292517e-04
-DEBUG: l=1.830768916451495e-02, lprime=-5.283086256181430e-02
+DEBUG: l=1.830768915583044e-02, lprime=-5.283086256463430e-02
 Approximate interval: 8
 
 H: -1.539400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.301795e-04
-DEBUG: l=6.308600446411272e-02, lprime=-1.216527847214803e-02
+DEBUG: l=6.308600447002813e-02, lprime=-1.216527847265858e-02
 Approximate interval: 7
 
 H: -1.537400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.310800e-04
-DEBUG: l=3.600707668511889e-02, lprime=-4.145710322643947e-02
+DEBUG: l=3.600707669466463e-02, lprime=-4.145710322836087e-02
 Approximate interval: 7
 
 H: -1.535400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.319518e-04
-DEBUG: l=7.483031510615721e-03, lprime=-6.816509947359942e-02
+DEBUG: l=7.483031504548567e-03, lprime=-6.816509946499269e-02
 Approximate interval: 7
 
 H: -1.533400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.327936e-04
-DEBUG: l=6.150029501931042e-02, lprime=-2.123299794150106e-02
+DEBUG: l=6.150029501283927e-02, lprime=-2.123299794495579e-02
 Approximate interval: 6
 
 H: -1.531400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.336040e-04
-DEBUG: l=3.642622816927826e-02, lprime=-4.815290292327773e-02
+DEBUG: l=3.642622817169233e-02, lprime=-4.815290292739592e-02
 Approximate interval: 6
 
 H: -1.529400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.343817e-04
-DEBUG: l=9.867429217659048e-03, lprime=-7.238162901811981e-02
+DEBUG: l=9.867429222512297e-03, lprime=-7.238162902146880e-02
 Approximate interval: 6
 
 H: -1.527400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.351256e-04
-DEBUG: l=7.241857399138088e-02, lprime=-1.709674708146199e-02
+DEBUG: l=7.241857399094714e-02, lprime=-1.709674708755817e-02
 Approximate interval: 5
 
 H: -1.525400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.358346e-04
-DEBUG: l=5.051866044677668e-02, lprime=-4.247306188336764e-02
+DEBUG: l=5.051866045141133e-02, lprime=-4.247306188267422e-02
 Approximate interval: 5
 
 H: -1.523400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.365076e-04
-DEBUG: l=2.719283961947696e-02, lprime=-6.522968416199937e-02
+DEBUG: l=2.719283961598863e-02, lprime=-6.522968414755234e-02
 Approximate interval: 5
 
 H: -1.521400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.371438e-04
-DEBUG: l=2.528493858804395e-03, lprime=-8.554219561538418e-02
+DEBUG: l=2.528493849936935e-03, lprime=-8.554219561373380e-02
 Approximate interval: 5
 
 H: -1.519400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.377423e-04
-DEBUG: l=7.737944332950469e-02, lprime=-2.205622650796207e-02
+DEBUG: l=7.737944333015984e-02, lprime=-2.205622650839354e-02
 Approximate interval: 4
 
 H: -1.517400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.383023e-04
-DEBUG: l=5.875980753391025e-02, lprime=-4.468066951383412e-02
+DEBUG: l=5.875980753142707e-02, lprime=-4.468066951631174e-02
 Approximate interval: 4
 
 H: -1.515400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.388231e-04
-DEBUG: l=3.906419732066524e-02, lprime=-6.472402507480055e-02
+DEBUG: l=3.906419731875731e-02, lprime=-6.472402506835218e-02
 Approximate interval: 4
 
 H: -1.513400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.393040e-04
-DEBUG: l=1.792372425905400e-02, lprime=-8.252711099037807e-02
+DEBUG: l=1.792372427051078e-02, lprime=-8.252711098186641e-02
 Approximate interval: 4
 
 H: -1.511400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.397446e-04
-DEBUG: l=9.997199130005766e-02, lprime=-4.276302246319558e-03
+DEBUG: l=9.997199129507067e-02, lprime=-4.276302234952361e-03
 Approximate interval: 3
 
 H: -1.509400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.401444e-04
-DEBUG: l=8.551843352764410e-02, lprime=-2.583363747848280e-02
+DEBUG: l=8.551843352871927e-02, lprime=-2.583363747666396e-02
 Approximate interval: 3
 
 H: -1.507400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.405029e-04
-DEBUG: l=7.087989445475631e-02, lprime=-4.518059105231863e-02
+DEBUG: l=7.087989446384929e-02, lprime=-4.518059105570311e-02
 Approximate interval: 3
 
 H: -1.505400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.408200e-04
-DEBUG: l=5.579448699205114e-02, lprime=-6.210294142576675e-02
+DEBUG: l=5.579448699535866e-02, lprime=-6.210294142946038e-02
 Approximate interval: 3
 
 H: -1.503400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.410954e-04
-DEBUG: l=3.989956826669977e-02, lprime=-7.703486331383758e-02
+DEBUG: l=3.989956826646622e-02, lprime=-7.703486331179388e-02
 Approximate interval: 3
 
 H: -1.501400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.413289e-04
-DEBUG: l=2.278147760237691e-02, lprime=-9.043294734784904e-02
+DEBUG: l=2.278147760226160e-02, lprime=-9.043294734283497e-02
 Approximate interval: 3
 
 H: -1.499400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.415205e-04
-DEBUG: l=4.366755073908955e-03, lprime=-1.026375459523875e-01
+DEBUG: l=4.366755062067268e-03, lprime=-1.026375459498350e-01
 Approximate interval: 3
 
 H: -1.497400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.416702e-04
-DEBUG: l=1.057860772223408e-01, lprime=-1.425506497675989e-02
+DEBUG: l=1.057860772155628e-01, lprime=-1.425506498271621e-02
 Approximate interval: 2
 
 H: -1.495400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.417781e-04
-DEBUG: l=9.560892602427512e-02, lprime=-3.129638943185571e-02
+DEBUG: l=9.560892601827478e-02, lprime=-3.129638944448612e-02
 Approximate interval: 2
 
 H: -1.493400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.418443e-04
-DEBUG: l=8.563897572225637e-02, lprime=-4.604179560524402e-02
+DEBUG: l=8.563897572239917e-02, lprime=-4.604179559470709e-02
 Approximate interval: 2
 
 H: -1.491400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.418690e-04
-DEBUG: l=7.581349646746258e-02, lprime=-5.875748962070193e-02
+DEBUG: l=7.581349645764399e-02, lprime=-5.875748962778726e-02
 Approximate interval: 2
 
 H: -1.489400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.418525e-04
-DEBUG: l=6.605139908486737e-02, lprime=-6.988957319965949e-02
+DEBUG: l=6.605139908525010e-02, lprime=-6.988957319985933e-02
 Approximate interval: 2
 
 H: -1.487400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.417953e-04
-DEBUG: l=5.624383117305928e-02, lprime=-7.979271383337330e-02
+DEBUG: l=5.624383117044010e-02, lprime=-7.979271383917882e-02
 Approximate interval: 2
 
 H: -1.485400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.416976e-04
-DEBUG: l=4.623931231972891e-02, lprime=-8.871555256420469e-02
+DEBUG: l=4.623931231370834e-02, lprime=-8.871555256484237e-02
 Approximate interval: 2
 
 H: -1.483400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.415599e-04
-DEBUG: l=3.582259439373878e-02, lprime=-9.683006518419529e-02
+DEBUG: l=3.582259439673902e-02, lprime=-9.683006518302240e-02
 Approximate interval: 2
 
 H: -1.481400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.413828e-04
-DEBUG: l=2.469930858143170e-02, lprime=-1.042570674000665e-01
+DEBUG: l=2.469930856418952e-02, lprime=-1.042570674031520e-01
 Approximate interval: 2
 
 H: -1.479400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.411669e-04
-DEBUG: l=1.256766442800582e-02, lprime=-1.110833292227728e-01
+DEBUG: l=1.256766442792409e-02, lprime=-1.110833292238710e-01
 Approximate interval: 2
 
 H: -1.477400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.409127e-04
-DEBUG: l=1.271609766706133e-01, lprime=-7.893491493374957e-01
+inter_del_car: maximum number of iterations reached
+inter_del_car: latest residual: 7.638334e-14
+DEBUG: l=1.271609766742230e-01, lprime=-4.643767703264941e-04
 Approximate interval: 1
 
 H: -1.475400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.406209e-04
-DEBUG: l=1.218749924610059e-01, lprime=-1.326606295742935e-02
+DEBUG: l=1.218749924478817e-01, lprime=-1.326606294924883e-02
 Approximate interval: 1
 
 H: -1.473400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.402923e-04
-DEBUG: l=1.169516245784246e-01, lprime=-2.450208261461730e-02
+DEBUG: l=1.169516245728720e-01, lprime=-2.450208262669443e-02
 Approximate interval: 1
 
 H: -1.471400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.399275e-04
-DEBUG: l=1.123863799752305e-01, lprime=-3.386508971165467e-02
+DEBUG: l=1.123863799810240e-01, lprime=-3.386508971380718e-02
 Approximate interval: 1
 
 H: -1.469400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.395274e-04
-DEBUG: l=1.081752186711913e-01, lprime=-4.165277912262616e-02
+DEBUG: l=1.081752186644778e-01, lprime=-4.165277912349688e-02
 Approximate interval: 1
 
 H: -1.467400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.390927e-04
-DEBUG: l=1.043144962848462e-01, lprime=-4.820947177430099e-02
+DEBUG: l=1.043144962932032e-01, lprime=-4.820947177523116e-02
 Approximate interval: 1
 
 H: -1.465400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.386244e-04
-DEBUG: l=1.008008767759021e-01, lprime=-5.379282544913827e-02
+DEBUG: l=1.008008767833448e-01, lprime=-5.379282545941050e-02
 Approximate interval: 1
 
 H: -1.463400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.381232e-04
-DEBUG: l=9.763121360186083e-02, lprime=-5.858180645561240e-02
+DEBUG: l=9.763121360123211e-02, lprime=-5.858180645034694e-02
 Approximate interval: 1
 
 H: -1.461400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.375901e-04
-DEBUG: l=9.480240057888067e-02, lprime=-6.270115802662882e-02
+DEBUG: l=9.480240058154826e-02, lprime=-6.270115801227877e-02
 Approximate interval: 1
 
 H: -1.459400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.370261e-04
-DEBUG: l=9.231119676105187e-02, lprime=-6.623991451819644e-02
+DEBUG: l=9.231119675396593e-02, lprime=-6.623991451633821e-02
 Approximate interval: 1
 
 H: -1.457400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.364320e-04
-DEBUG: l=9.015403287390356e-02, lprime=-6.926341774100228e-02
+DEBUG: l=9.015403287150847e-02, lprime=-6.926341774010600e-02
 Approximate interval: 1
 
 H: -1.455400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.358087e-04
-DEBUG: l=8.832681180172275e-02, lprime=-7.182094682242599e-02
+DEBUG: l=8.832681180214902e-02, lprime=-7.182094680875839e-02
 Approximate interval: 1
 
 H: -1.453400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.351573e-04
-DEBUG: l=8.682471877095621e-02, lprime=-7.395062483464565e-02
+DEBUG: l=8.682471877631986e-02, lprime=-7.395062483429030e-02
 Approximate interval: 1
 
 H: -1.451400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.344787e-04
-DEBUG: l=8.564206052894885e-02, lprime=-7.568264691041965e-02
+DEBUG: l=8.564206051725970e-02, lprime=-7.568264690749521e-02
 Approximate interval: 1
 
 H: -1.449400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.337740e-04
-DEBUG: l=8.477215244465169e-02, lprime=-7.704145635224552e-02
+DEBUG: l=8.477215244382813e-02, lprime=-7.704145633970000e-02
 Approximate interval: 1
 
 H: -1.447400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.330440e-04
-DEBUG: l=8.420727172045123e-02, lprime=-7.804724546067715e-02
+DEBUG: l=8.420727171727155e-02, lprime=-7.804724546320363e-02
 Approximate interval: 1
 
 H: -1.445400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.322898e-04
-DEBUG: l=8.393868778531022e-02, lprime=-7.871701100908840e-02
+DEBUG: l=8.393868779308949e-02, lprime=-7.871701102743672e-02
 Approximate interval: 1
 
 H: -1.443400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.315123e-04
-DEBUG: l=8.395677476236413e-02, lprime=-7.906530738634931e-02
+DEBUG: l=8.395677476313229e-02, lprime=-7.906530738218637e-02
 Approximate interval: 1
 
 H: -1.441400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.307126e-04
-DEBUG: l=8.425120023712290e-02, lprime=-7.910478846326113e-02
+DEBUG: l=8.425120023231070e-02, lprime=-7.910478846514363e-02
 Approximate interval: 1
 
 H: -1.439400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.298916e-04
-DEBUG: l=8.481117662612081e-02, lprime=-7.884659666273097e-02
+DEBUG: l=8.481117662866866e-02, lprime=-7.884659665772498e-02
 Approximate interval: 1
 
 H: -1.437400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.290503e-04
-DEBUG: l=8.562575387894272e-02, lprime=-7.830063681777610e-02
+DEBUG: l=8.562575388614568e-02, lprime=-7.830063681440663e-02
 Approximate interval: 1
 
 H: -1.435400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.281896e-04
-DEBUG: l=8.668412960067146e-02, lprime=-7.747575832922221e-02
+DEBUG: l=8.668412958957850e-02, lprime=-7.747575834142451e-02
 Approximate interval: 1
 
 H: -1.433400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.273106e-04
-DEBUG: l=8.797595264887564e-02, lprime=-7.637985918013362e-02
+DEBUG: l=8.797595263198255e-02, lprime=-7.637985917497303e-02
 Approximate interval: 1
 
 H: -1.431400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.264141e-04
-DEBUG: l=8.949160041279353e-02, lprime=-7.501991662261015e-02
+DEBUG: l=8.949160041922755e-02, lprime=-7.501991663765856e-02
 Approximate interval: 1
 
 H: -1.429400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.255011e-04
-DEBUG: l=9.122241504334622e-02, lprime=-7.340194227189950e-02
+DEBUG: l=9.122241504361928e-02, lprime=-7.340194228127561e-02
 Approximate interval: 1
 
 H: -1.427400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.245725e-04
-DEBUG: l=9.316089056809651e-02, lprime=-7.153084885363437e-02
+DEBUG: l=9.316089056750448e-02, lprime=-7.153084886948063e-02
 Approximate interval: 1
 
 H: -1.425400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.236293e-04
-DEBUG: l=9.530080872083907e-02, lprime=-6.941020468387571e-02
+DEBUG: l=9.530080872383007e-02, lprime=-6.941020467910958e-02
 Approximate interval: 1
 
 H: -1.423400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.226722e-04
-DEBUG: l=9.763732512938750e-02, lprime=-6.704183133545166e-02
+DEBUG: l=9.763732514151091e-02, lprime=-6.704183132035024e-02
 Approximate interval: 1
 
 H: -1.421400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.217023e-04
-DEBUG: l=1.001670107588126e-01, lprime=-6.442516719568203e-02
+DEBUG: l=1.001670107626237e-01, lprime=-6.442516720032587e-02
 Approximate interval: 1
 
 H: -1.419400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.207202e-04
-DEBUG: l=1.028878540780978e-01, lprime=-6.155625801083359e-02
+DEBUG: l=1.028878540706590e-01, lprime=-6.155625802075709e-02
 Approximate interval: 1
 
 H: -1.417400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.197269e-04
-DEBUG: l=1.057992301122290e-01, lprime=-5.842611441495354e-02
+DEBUG: l=1.057992301106297e-01, lprime=-5.842611441354459e-02
 Approximate interval: 1
 
 H: -1.415400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.187232e-04
-DEBUG: l=1.089018412449470e-01, lprime=-5.501791932163472e-02
+DEBUG: l=1.089018412476349e-01, lprime=-5.501791932141034e-02
 Approximate interval: 1
 
 H: -1.413400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.177099e-04
-DEBUG: l=1.121976329945437e-01, lprime=-5.130196929063127e-02
+DEBUG: l=1.121976329758126e-01, lprime=-5.130196929369582e-02
 Approximate interval: 1
 
 H: -1.411400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.166877e-04
-DEBUG: l=1.156896870250398e-01, lprime=-4.722566363762479e-02
+DEBUG: l=1.156896870120856e-01, lprime=-4.722566364988925e-02
 Approximate interval: 1
 
 H: -1.409400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.156574e-04
-DEBUG: l=1.193820935429351e-01, lprime=-4.269103583702999e-02
+DEBUG: l=1.193820935508504e-01, lprime=-4.269103583655845e-02
 Approximate interval: 1
 
 H: -1.407400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.146197e-04
-DEBUG: l=1.232798024424360e-01, lprime=-3.749364686145049e-02
+DEBUG: l=1.232798024430066e-01, lprime=-3.749364686700016e-02
 Approximate interval: 1
 
 H: -1.405400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.135753e-04
-DEBUG: l=1.273884546369817e-01, lprime=-3.108859295195202e-02
+DEBUG: l=1.273884546420438e-01, lprime=-3.108859294247282e-02
 Approximate interval: 1
 
 H: -1.403400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.125250e-04
-DEBUG: l=1.317141948837651e-01, lprime=-1.993402484631195e-02
-Approximate interval: 1
+DEBUG: l=3.579023640783330e-02, lprime=-1.152724180535625e-01
+Approximate interval: 2
 
 H: -1.401400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.114693e-04
-DEBUG: l=4.264408990270099e-02, lprime=-1.106145966964084e-01
+DEBUG: l=4.264408989952534e-02, lprime=-1.106145967002164e-01
 Approximate interval: 2
 
 H: -1.399400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.104089e-04
-DEBUG: l=4.864448726149370e-02, lprime=-1.058134798784566e-01
+DEBUG: l=4.864448727175255e-02, lprime=-1.058134798705035e-01
 Approximate interval: 2
 
 H: -1.397400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.093445e-04
-DEBUG: l=5.422546352797941e-02, lprime=-1.008784719981838e-01
+DEBUG: l=5.422546352090230e-02, lprime=-1.008784720003565e-01
 Approximate interval: 2
 
 H: -1.395400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.082766e-04
-DEBUG: l=5.958837222214575e-02, lprime=-9.581852864652562e-02
+DEBUG: l=5.958837220343555e-02, lprime=-9.581852864642865e-02
 Approximate interval: 2
 
 H: -1.393400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.072058e-04
-DEBUG: l=6.484994841458003e-02, lprime=-9.064176137514773e-02
+DEBUG: l=6.484994841960473e-02, lprime=-9.064176136628033e-02
 Approximate interval: 2
 
 H: -1.391400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.061327e-04
-DEBUG: l=7.008819794856641e-02, lprime=-8.535486824987931e-02
+DEBUG: l=7.008819796177695e-02, lprime=-8.535486825019606e-02
 Approximate interval: 2
 
 H: -1.389400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.050578e-04
-DEBUG: l=7.536087000117259e-02, lprime=-7.996230064671844e-02
+DEBUG: l=7.536086999199776e-02, lprime=-7.996230065822907e-02
 Approximate interval: 2
 
 H: -1.387400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.039815e-04
-DEBUG: l=8.071411513975235e-02, lprime=-7.446501245457138e-02
+DEBUG: l=8.071411516294474e-02, lprime=-7.446501243911019e-02
 Approximate interval: 2
 
 H: -1.385400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.029044e-04
-DEBUG: l=8.618692304617032e-02, lprime=-6.885849796803073e-02
+DEBUG: l=8.618692306524972e-02, lprime=-6.885849797597265e-02
 Approximate interval: 2
 
 H: -1.383400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.018270e-04
-DEBUG: l=9.181347629000186e-02, lprime=-6.312952492636076e-02
+DEBUG: l=9.181347629026659e-02, lprime=-6.312952490687057e-02
 Approximate interval: 2
 
 H: -1.381400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 1.007496e-04
-DEBUG: l=9.762435630677607e-02, lprime=-5.725022288000531e-02
+DEBUG: l=9.762435630335720e-02, lprime=-5.725022287229847e-02
 Approximate interval: 2
 
 H: -1.379400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 9.967275e-05
-DEBUG: l=1.036470614334092e-01, lprime=-5.116613589881203e-02
+DEBUG: l=1.036470614424759e-01, lprime=-5.116613590091507e-02
 Approximate interval: 2
 
 H: -1.377400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 9.859679e-05
-DEBUG: l=1.099060935474773e-01, lprime=-4.476806752018267e-02
+DEBUG: l=1.099060935510217e-01, lprime=-4.476806753981524e-02
 Approximate interval: 2
 
 H: -1.375400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 9.752212e-05
-DEBUG: l=1.164227901055029e-01, lprime=-3.780804529287624e-02
+DEBUG: l=1.164227900948768e-01, lprime=-3.780804528949069e-02
 Approximate interval: 2
 
 H: -1.373400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 9.644912e-05
-DEBUG: l=1.232150362923456e-01, lprime=-2.950309430215683e-02
-Approximate interval: 2
+DEBUG: l=4.517264683419298e-02, lprime=-1.018650735862706e-01
+Approximate interval: 3
 
 H: -1.371400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 9.537811e-05
-DEBUG: l=5.196168205855073e-02, lprime=-9.499380211106262e-02
+DEBUG: l=5.196168206096491e-02, lprime=-9.499380211626229e-02
 Approximate interval: 3
 
 H: -1.369400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 9.430942e-05
-DEBUG: l=5.847935906454449e-02, lprime=-8.812220405481058e-02
+DEBUG: l=5.847935905776008e-02, lprime=-8.812220403219845e-02
 Approximate interval: 3
 
 H: -1.367400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 9.324335e-05
-DEBUG: l=6.492471726550236e-02, lprime=-8.126195175573164e-02
+DEBUG: l=6.492471727366017e-02, lprime=-8.126195176480533e-02
 Approximate interval: 3
 
 H: -1.365400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 9.218018e-05
-DEBUG: l=7.142124793846483e-02, lprime=-7.441999095986496e-02
+DEBUG: l=7.142124793953247e-02, lprime=-7.441999095720098e-02
 Approximate interval: 3
 
 H: -1.363400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 9.112022e-05
-DEBUG: l=7.805728173866872e-02, lprime=-6.759577623531871e-02
+DEBUG: l=7.805728173458049e-02, lprime=-6.759577623221152e-02
 Approximate interval: 3
 
 H: -1.361400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 9.006371e-05
-DEBUG: l=8.490148853534840e-02, lprime=-6.077689571857747e-02
+DEBUG: l=8.490148852773954e-02, lprime=-6.077689571966111e-02
 Approximate interval: 3
 
 H: -1.359400e+00
 Optimal displacement: 1.000000e-02
 Estimated error of manifold: 8.901089e-05
-DEBUG: l=9.200925293441997e-02, lprime=-5.393125970531104e-02
+DEBUG: l=9.200925295377965e-02, lprime=-5.393125969721152e-02
 Approximate interval: 3

@@ -32,17 +32,20 @@ const int MAXITER = 100;
 /// linear segment is discretized into very few points (e.g. 5).
 /// Probably, the more points we use, the higher the probability that 
 /// prtbp_del_car fails.
-const int NPOINTS=1001;
+const int NPOINTS=11;
 
 int 
-iterate_segment (double mu, section_t sec, int k, int iter, double *l4_del,
+iterate_segment_fwd (double mu, section_t sec, int k, int iter, double *l4_del,
+		double *l4);
+int 
+iterate_segment_bwd (double mu, section_t sec, int k, int iter, double *l4_del,
 		double *l4);
 int 
 u_i (double mu, section_t sec, int k, int iter, branch_t br, double a, 
 		double *l4_del, double *l4, int *idx);
 int 
-s_i (double mu, section_t sec, int k, branch_t br, double a, double *l4_del,
-        double *l4, int *idx);
+s_i (double mu, section_t sec, int k, int iter, branch_t br, double a, 
+        double *l4_del, double *l4, int *idx);
 
 // Obs! parameter lambda_u is not used?
 
@@ -113,11 +116,14 @@ approxint_del_car_unst (double mu, section_t sec, double H, int k,
 
    // Flow the (discretized) linear segment to Delaunay section before the
    // iteration.
-   if(iterate_segment(mu,sec,1,1,l4_del,l4_car))
+   // INSTEAD OF DOING THIS, WE USE ONE MORE ITERATE BELOW.
+   /*
+   if(iterate_segment_fwd(mu,sec,1,1,l4_del,l4_car))
    {
 	  fprintf(stderr, "approxint_del_car: error iterating linear segment\n");
 	  return(1);
    }
+   */
 
    dblcpy(l4_del_cpy, l4_del, DIM*NPOINTS);
    dblcpy(l4_car_cpy, l4_car, DIM*NPOINTS);
@@ -128,7 +134,9 @@ approxint_del_car_unst (double mu, section_t sec, double H, int k,
 	   dblcpy(l4_car, l4_car_cpy, DIM*NPOINTS);
 
 	   // Iterate the (discretized) linear segment "iter" times by the Poincare map
-      status=u_i(mu, sec, 1, iter, br, a, l4_del, l4_car, &i);
+       // ACTUALLY, ITERATE iter+1 TIMES TO FLOW THE LINEAR SEGMENT BEFORE THE
+       // ITERATION.
+      status=u_i(mu, sec, 1, iter+1, br, a, l4_del, l4_car, &i);
       if(status)
       {
           fprintf(stderr, 
@@ -186,7 +194,7 @@ approxint_del_car_st (double mu, section_t sec, double H, int k,
    double l[2*NPOINTS];
 
    // Linear segment approximating local invariant manifold (points in 4d)
-   double l4[DIM*NPOINTS];
+   double l4_car[DIM*NPOINTS];
 
    // Linear segment approximating local invariant manifold (Delaunay coords)
    double l4_del[DIM*NPOINTS];
@@ -194,6 +202,8 @@ approxint_del_car_st (double mu, section_t sec, double H, int k,
    // Auxiliary variables
    int status, iter, i, iskip;
    double ti;
+   double l4_del_cpy[DIM*NPOINTS];	// copy of l4_del
+   double l4_car_cpy[DIM*NPOINTS];	// copy of l4_car
 
    // we DO NOT assume that $v=(x,p_x)$ points "to the right", i.e.
    // we DO NOT assume that the first component of $v$ is $x>0$
@@ -222,7 +232,7 @@ approxint_del_car_st (double mu, section_t sec, double H, int k,
    // IMPROVEMENT: Use cardel_2d instead of lift+cardel.
 
    // Lift points in linear segment from \R^2 to \R^4
-   status=lift(mu,SEC2,H,NPOINTS,l,l4);
+   status=lift(mu,SEC2,H,NPOINTS,l,l4_car);
    if(status)
    {
       perror("main: error lifting points in linear segment");
@@ -231,18 +241,31 @@ approxint_del_car_st (double mu, section_t sec, double H, int k,
 
    // Transform points in linear segment to Delaunay coordinates
    for(i=0; i<NPOINTS; i++)
-       cardel(l4+DIM*i,l4_del+DIM*i);
+       cardel(l4_car+DIM*i,l4_del+DIM*i);
 
    // Flow the (discretized) linear segment to Delaunay section before the
    // iteration.
-   status=s_i(mu, sec, 1, br, a, l4_del, l4, &i);
+   // INSTEAD OF DOING THIS, WE USE ONE MORE ITERATE BELOW.
+   /*
+   if(iterate_segment_bwd(mu,sec,1,1,l4_del,l4_car))
+   {
+	  fprintf(stderr, "approxint_del_car: error iterating linear segment\n");
+	  return(1);
+   }
+   */
 
-   // Iterate the (discretized) linear segment "iter" times by the Poincare map
+   dblcpy(l4_del_cpy, l4_del, DIM*NPOINTS);
+   dblcpy(l4_car_cpy, l4_car, DIM*NPOINTS);
+
    for(iter=1;iter<=MAXITER;iter++)
    {
-      //fprintf(stderr, "DEBUG: before %d iteration of linear segment: l=%.15le, g=%.15le\n", iter, l4_del[0], l4_del[2]);
-      status=s_i(mu, sec, 1, br, a, l4_del, l4, &i);
-      //fprintf(stderr, "DEBUG: after %d iteration of linear segment: l=%.15le, g=%.15le\n", iter, l4_del[0], l4_del[2]);
+	   dblcpy(l4_del, l4_del_cpy, DIM*NPOINTS);
+	   dblcpy(l4_car, l4_car_cpy, DIM*NPOINTS);
+
+	   // Iterate the (discretized) linear segment "iter" times by the Poincare map
+       // ACTUALLY, ITERATE iter+1 TIMES TO FLOW THE LINEAR SEGMENT BEFORE THE
+       // ITERATION.
+      status=s_i(mu, sec, 1, iter+1, br, a, l4_del, l4_car, &i);
       if(status)
       {
           fprintf(stderr, 
@@ -265,17 +288,17 @@ approxint_del_car_st (double mu, section_t sec, double H, int k,
    // Endpoints of segment u_i: 
    // P[2] = (x, p_x) = (l[2i], l[2i+1]),
    // Q[2] = (x, p_x) = (l[2i+2], l[2i+3]).
-   *h_1 = (l[2*i+1]-p[1])/v[1];
-   *h_2 = (l[2*i+3]-p[1])/v[1];
+   *h_1 = (l[2*i+0]-p0[0])/(p1[0]-p0[0]);
+   *h_2 = (l[2*i+2]-p0[0])/(p1[0]-p0[0]);
 
    // return approximate intersection point
-   z[0] = l4_del[DIM*i+2];
-   z[1] = l4_del[DIM*i+3];
+   z[0] = l4_del[DIM*(i+1)+0];
+   z[1] = l4_del[DIM*(i+1)+1];
    return(0);
 }
 
 int 
-iterate_segment (double mu, section_t sec, int k, int iter, double *l4_del,
+iterate_segment_fwd (double mu, section_t sec, int k, int iter, double *l4_del,
 		double *l4)
 {
    // Auxiliary variables
@@ -364,7 +387,7 @@ u_i (double mu, section_t sec, int k, int iter, branch_t br, double a,
 
    // 3. Iterate the (discretized) linear segment "iter" times by the
    // Poincare map
-   if(iterate_segment(mu,sec,k,iter,l4_del,l4))
+   if(iterate_segment_fwd(mu,sec,k,iter,l4_del,l4))
    {
 	  fprintf(stderr, "u_i: error iterating linear segment\n");
 	  return(1);
@@ -461,15 +484,6 @@ u_i (double mu, section_t sec, int k, int iter, branch_t br, double a,
            }
            else
            {
-              // For the lower branch, since dl/dt>0, it is enough to check 
-              // if the angle has been reset from \pi to -\pi
-			   /*
-              if(l2 < l1)
-			  {
-				  *idx = i;
-				  break;
-			  }
-			  */
 			  // Since dl/dt>0, we want to identify [0,2\pi), so we use "floor"
               // function.
               n1 = floor((l1-M_PI)/TWOPI);
@@ -521,10 +535,18 @@ u_i (double mu, section_t sec, int k, int iter, branch_t br, double a,
            }
            else
            {
-              // For the bottom branch, since dl/dt>0, it is enough to check 
-              // if the angle has been reset from <a to >a
-              if(l1 < a && l2 > a)
+			  // Since dl/dt>0, we want to identify [0,2\pi), so we use "floor"
+              // function.
+              n1 = floor(l1/TWOPI);
+              n2 = floor(l2/TWOPI);
+			  // Inevitably, l will jump by almost TWOPI when (x,y) changes
+              // from the 3rd quadrant to the 2nd (see cardel.c).
+              // We need to include this case as a true crossing of section.
+              bCrossing = ((n1!=n2 && fabs(l1-l2)<M_PI) ||
+                      (-M_PI<l2 && l2<0 && 0<l1 && l1<M_PI));
+              if(bCrossing)
 			  {
+                  fprintf(stderr, "DEBUG: l=%.15le, lprime=%.15le\n", l1, l2);
 				  *idx = i;
 				  break;
 			  }
@@ -556,31 +578,51 @@ u_i (double mu, section_t sec, int k, int iter, branch_t br, double a,
 }
 
 int 
-s_i (double mu, section_t sec, int k, branch_t br, double a, double *l4_del,
-        double *l4, int *idx)
+iterate_segment_bwd (double mu, section_t sec, int k, int iter, double *l4_del,
+		double *l4)
 {
    // Auxiliary variables
-   int status, iter, i;
+   int i;
+   double ti;
+
+   for(i=0;i<NPOINTS;i++)
+   {
+       if(prtbp_del_car_inv(mu,sec,k*iter,l4_del+DIM*i,l4+DIM*i,&ti))
+       {
+          fprintf(stderr, 
+				  "iterate_segment: error computing Poincare map of "
+				  "%d-th point\n", i);
+          return(1);
+       }
+   }
+   return(0);
+}
+
+int 
+s_i (double mu, section_t sec, int k, int iter, branch_t br, double a, 
+        double *l4_del, double *l4, int *idx)
+{
+   // Auxiliary variables
+   int status, i;
    double ti;
    double dx,dy;
    double g1, g2;
    double l1, l2;
+   double n1, n2;
+   bool bCrossing;
 
    // Approximate splitting half-angle
    //double alpha2;
 
    // 3. Iterate the (discretized) linear segment one more time by the
    // Poincare map
-   for(i=0;i<NPOINTS;i++)
+   if(iterate_segment_bwd(mu,sec,k,iter,l4_del,l4))
    {
-       if(prtbp_del_car_inv(mu,sec,k,l4_del+DIM*i,l4+DIM*i,&ti))
-       {
-          fprintf(stderr, "u_i: error computing Poincare map of %d-th point\n", i);
-          return(1);
-       }
+	  fprintf(stderr, "s_i: error iterating linear segment\n");
+	  return(1);
    }
 
-   // We look for the first unst segment U_i that crosses the line $g=a$.
+   // We look for the first st segment S_i that crosses the line $g=a$.
    for(i=0; i<(NPOINTS-1); i++)
    {
        l1=l4_del[DIM*i];
@@ -632,42 +674,87 @@ s_i (double mu, section_t sec, int k, branch_t br, double a, double *l4_del,
        {
            if(br==RIGHT) 
            {
-              // For the upper branch, since dl/dt<0, but we are integrating
-              // backwards, it is enough to check if the angle has been reset
-              // from \pi to -\pi
-              if(l2 < l1) {
-                  //fprintf(stderr, "DEBUG: g=%.15le, gprime=%.15le\n", l4_del[DIM*i+2], l4_del[DIM*(i+1)+2]);
-                  break;
-              }
+              // Since dl/dt<0, but we are integrating backwards, we want to
+              // identify [0,2\pi), so we use "floor" function.
+              n1 = floor((l1-M_PI)/TWOPI);
+              n2 = floor((l2-M_PI)/TWOPI);
+			  // Inevitably, l will jump by almost TWOPI when (x,y) changes
+              // from the 2nd quadrant to the 3rd (see cardel.c).
+              // We need to include this case as a true crossing of section.
+              bCrossing = ((n1!=n2 && fabs(l1-l2)<M_PI) ||
+                      (-M_PI<l2 && l2<0 && 0<l1 && l1<M_PI));
+              if(bCrossing)
+			  {
+                  //fprintf(stderr, "DEBUG: l=%.15le, lprime=%.15le\n", l1, l2);
+				  *idx = i;
+				  break;
+			  }
+
            }
            else
            {
-              // For the lower branch, since dl/dt>0, but we are integrating
-              // backwards, it is enough to check if the angle has been reset
-              // from -\pi to \pi
-              if(l2 > l1) break;
+              // Since dl/dt>0, but we are integrating backwards, we want to
+              // identify (-2\pi,0], so we use "ceil" function.
+              n1 = ceil((l1-M_PI)/TWOPI);
+              n2 = ceil((l2-M_PI)/TWOPI);
+			  // Inevitably, l will jump by almost TWOPI when (x,y) changes
+              // from the 3rd quadrant to the 2nd (see cardel.c).
+              // We need to include this case as a true crossing of section.
+              bCrossing = ((n1!=n2 && fabs(l1-l2)<M_PI) ||
+                      (-M_PI<l1 && l1<0 && 0<l2 && l2<M_PI));
+              if(bCrossing)
+			  {
+                  fprintf(stderr, "DEBUG: l=%.15le, lprime=%.15le\n", l1, l2);
+				  *idx = i;
+				  break;
+			  }
            }
        }
        else if(sec==SECg2)
        {
            if(br==RIGHT) 
            {
-              // For the upper branch, since dl/dt<0, but we are integrating
-              // backwards, it is enough to check if the angle has been reset
-              // from <a to >a
-              if(l1 < a && l2 > a) break;
+              // Since dl/dt<0, but we are integrating backwards, we want to
+              // identify [0,2\pi), so we use "floor" function.
+              n1 = floor(l1/TWOPI);
+              n2 = floor(l2/TWOPI);
+              // Inevitably, l will jump by almost TWOPI when (x,y) changes
+              // from the 2nd quadrant to the 3rd (see cardel.c).
+              // We need to exclude this case as a "fake" crossing of section.
+              //
+              // NOTE: Maybe it would be better to rule out fake crossings by
+              // looking if x[2]*y[2]<0.
+              bCrossing = ((n1!=n2 && fabs(l1-l2)<M_PI) && 
+                      !(-M_PI<l2 && l2<0 && 0<l1 && l1<M_PI));
+              if(bCrossing)
+			  {
+                  fprintf(stderr, "DEBUG: l=%.15le, lprime=%.15le\n", l1, l2);
+				  *idx = i;
+				  break;
+			  }
            }
            else
            {
-              // For the lower branch, since dl/dt>0, but we are integrating
-              // backwards, it is enough to check if the angle has been reset
-              // from >a to <a
-              if(l1 > a && l2 < a) break;
+              // Since dl/dt>0, but we are integrating backwards, we want to
+              // identify (-2\pi,0], so we use "ceil" function.
+              n1 = ceil(l1/TWOPI);
+              n2 = ceil(l2/TWOPI);
+			  // Inevitably, l will jump by almost TWOPI when (x,y) changes
+              // from the 3rd quadrant to the 2nd (see cardel.c).
+              // We need to include this case as a true crossing of section.
+              bCrossing = ((n1!=n2 && fabs(l1-l2)<M_PI) ||
+                      (-M_PI<l1 && l1<0 && 0<l2 && l2<M_PI));
+              if(bCrossing)
+			  {
+                  fprintf(stderr, "DEBUG: l=%.15le, lprime=%.15le\n", l1, l2);
+				  *idx = i;
+				  break;
+			  }
            }
        }
        else
        {
-          fprintf(stderr, "u_i: unknown section type. Exiting\n");
+          fprintf(stderr, "s_i: unknown section type. Exiting\n");
           exit(1);
        }
    }
@@ -686,7 +773,6 @@ s_i (double mu, section_t sec, int k, branch_t br, double a, double *l4_del,
    //alpha2 = atan2(dy,dx);	
    //fprintf(stderr, "Approximate splitting half-angle: %f\n", alpha2);
 
-   fprintf(stderr, "Approximate interval: %d\n", i);
-   *idx=i;
+   fprintf(stderr, "Approximate interval: %d\n", *idx);
    return(0);
 }

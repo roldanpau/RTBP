@@ -25,3 +25,12 @@ double * dblcpy(double * dst, double const * src, size_t len);
   \return		void
   */
 void dblprint(double const *x, size_t len);
+
+/** 
+  Normalize angle in (-pi,pi].
+
+  \param[in] fAng	angle
+
+  \return		wrapped angle
+  */
+double WrapPosNegPI(double fAng);

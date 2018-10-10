@@ -25,7 +25,7 @@
 #include <prtbp_del_car.h>
 #include <errmfld.h>
 #include <disc.h>
-#include <approxint_del_car.h>	// NPOINTS, iterate_segment
+#include <approxint_del_car.h>	// NPOINTS, iterate_segment_fwd, _bwd
 #include <utils_module.h>		// dblcpy
 #include "lift.h"
 
@@ -180,32 +180,15 @@ int main( )
 
    // Flow the (discretized) linear segment to Delaunay section before the
    // iteration.
-   if(iterate_segment(mu,sec_del,1,1,l4_del,l4_car))
-   {
-	  fprintf(stderr,
-			  "main: error flowing linear segment to Delaunay seciton"
-			  " before the iteration\n");
-      return(1);
-   }
-
-    // Print iteration of linear segment
-    for(i=0;i<NPOINTS;i++)
-    {
-       if(printf("% .15le % .15le\n", 
-                   l4_del[DIM*i+0], 
-                   l4_del[DIM*i+1])<0)
-       {
-          perror("main: error writting output");
-          exit(EXIT_FAILURE);
-       }
-    }
-    //printf("\n");
+   // INSTEAD OF DOING THIS, WE USE ONE MORE ITERATE BELOW.
 
    dblcpy(l4_del_cpy, l4_del, DIM*NPOINTS);
    dblcpy(l4_car_cpy, l4_car, DIM*NPOINTS);
 
    // 3. Iterate the (discretized) linear segment "n" times 
    // by the Poincare map, i.e. compute its orbit (and print it to stdout). 
+   // ACTUALLY, ITERATE iter+1 TIMES TO FLOW THE LINEAR SEGMENT BEFORE THE
+   // ITERATION.
    for(iter=1;iter<=n;iter++)
    {
        dblcpy(l4_del, l4_del_cpy, DIM*NPOINTS);
@@ -213,7 +196,7 @@ int main( )
 
 	    if(!stable)	// unstable manifold
 	    {
-		   if(iterate_segment(mu,sec_del,1,iter,l4_del,l4_car))
+		   if(iterate_segment_fwd(mu,sec_del,1,iter+1,l4_del,l4_car))
 		   {
               fprintf(stderr, "main: error computing Poincare map\n");
               exit(EXIT_FAILURE);
@@ -221,13 +204,11 @@ int main( )
 	    }
 	    else		// stable manifold
 	    {
-			/*
-		   if(iterate_segment_inv(mu,sec_del,1,iter,l4_del,l4_car))
+		   if(iterate_segment_bwd(mu,sec_del,1,iter+1,l4_del,l4_car))
 		   {
               fprintf(stderr, "main: error computing Poincare map\n");
               exit(EXIT_FAILURE);
 		   }
-		   */
 	    }
 
 		// Print iteration of linear segment

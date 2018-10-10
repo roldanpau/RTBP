@@ -109,5 +109,8 @@ approxint_del_car_st (double mu, section_t sec, double H, int k,
   */
 
 int
-iterate_segment (double mu, section_t sec, int k, int iter, double *l4_del,
+iterate_segment_fwd (double mu, section_t sec, int k, int iter, double *l4_del,
+        double *l4);
+int
+iterate_segment_bwd (double mu, section_t sec, int k, int iter, double *l4_del,
         double *l4);

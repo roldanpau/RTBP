@@ -1,4 +1,4 @@
-#set out "intersecs_new.eps"
+#set out "intersecs.eps"
 #set term postscript enhanced monochrome eps
 
 set key top left horizontal

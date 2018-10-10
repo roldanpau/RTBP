@@ -3,6 +3,7 @@
 #include <assert.h>
 #include <math.h>	// sqrt
 #include <rtbp.h>	// DIM
+#include <utils_module.h>	// WrapPosNegPI
 
 void cardel(double X[DIM], double Y[DIM])
 {
@@ -124,6 +125,12 @@ void cardel(double X[DIM], double Y[DIM])
    // Let's try NOT to normalize the angles $l,g$.
    // if(l<0) l+=2*M_PI;
    // if(g<0) g+=2*M_PI;
+
+   /* Normalize g between (-pi,pi] */
+   if(g<=-M_PI || g>M_PI)
+   {
+       g = WrapPosNegPI(g);
+   }
 
    Y[0]=l;
    Y[1]=L;
