@@ -1,9 +1,9 @@
 # Compute integral $\omega_neg^j$ related to outer map for the POINCARE SECTION
 # {g=\pi}.
 
-datfile=omega_neg_f_SECg2.dat
-resfile=omega_neg_f_SECg2.res
-errfile=omega_neg_f_SECg2.err
+datfile=omega_neg_SECg2_br1.dat
+resfile=omega_neg_SECg2_br1.res
+errfile=omega_neg_SECg2_br1.err
 
 echo "0.95387536e-3 SECg2" >$datfile   # mu
 

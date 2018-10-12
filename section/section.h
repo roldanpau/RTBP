@@ -8,7 +8,7 @@
 #ifndef SECTION_H_INCLUDED
 #define SECTION_H_INCLUDED
 
-extern const double TWOPI;
+//extern const double TWOPI;
 
 /// Different Poincare sections in Cartesian coordinates.
 /// SEC1 is {y=0, p_y>0}, SEC2 is {y=0, p_y<0}.

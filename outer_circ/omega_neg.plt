@@ -1,5 +1,5 @@
-set out "omega_neg.eps"
-set term eps color
+#set out "omega_neg.eps"
+#set term eps color
 set xlabel "H"
 set ylabel "omega_neg"
 set key left top

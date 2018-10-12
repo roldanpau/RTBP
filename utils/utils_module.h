@@ -5,6 +5,8 @@
 
 #include <stddef.h>	// size_t
 
+extern const double TWOPI;
+
 /** 
   Copy an array of doubles.
 
@@ -27,10 +29,19 @@ double * dblcpy(double * dst, double const * src, size_t len);
 void dblprint(double const *x, size_t len);
 
 /** 
-  Normalize angle in (-pi,pi].
+  Normalize angle in [-pi,pi).
 
   \param[in] fAng	angle
 
   \return		wrapped angle
   */
 double WrapPosNegPI(double fAng);
+
+/** 
+  Normalize angle in [0,2pi).
+
+  \param[in] fAng	angle
+
+  \return		wrapped angle
+  */
+double WrapTwoPI(double fAng);

@@ -42,9 +42,10 @@
 #include <math.h>	// fmod
 #include <gsl/gsl_errno.h>	// GSL_SUCCESS
 #include <gsl/gsl_roots.h>
+#include <utils_module.h>	// TWOPI
 #include <frtbpdel.h>
 #include <rtbp.h>	// DIM
-#include <section.h>	// section_t, TWOPI
+#include <section.h>	// section_t
 
 // For $p_0$, I found that asking for 1.e-15 tolerance was too much...
 // For iterating $z2_u$ to obtain $z2$, I found that asking for 1.e-14
