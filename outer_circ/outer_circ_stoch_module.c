@@ -22,7 +22,7 @@
 // NOTE: we can't reach accuracy of 10^{-13} when computing
 // omega_pos_f, so we lower it to 10^{-9}
 const double INTEGRATION_EPSABS = 0.0;
-const double INTEGRATION_EPSREL = 1.e-9;
+const double INTEGRATION_EPSREL = 1.e-8;
 
 /// Parameters to the \ref integrand_omega_pm function.
 struct iparams_omega_pm

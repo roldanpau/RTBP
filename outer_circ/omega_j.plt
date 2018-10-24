@@ -1,5 +1,5 @@
-set out "omega_j.eps"
-set term postscript enhanced monochrome eps
+#set out "omega_j.eps"
+#set term postscript enhanced monochrome eps
 
 set xlabel "H"
 set ylabel

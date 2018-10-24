@@ -15,10 +15,12 @@ cut -d ' ' -f 13-20 ../intersec_del_car/intersecs_unst_SECg2_br2.res > temp2
 # M: number of iterations to reach homoclinic point z from z_u
 cut -d ' ' -f 2 ../approxint_del_car/approxints_unst_SECg2_br2.res > temp3
 
-paste -d ' ' temp1 temp2 temp3 >>$datfile
+# Select only the first 116 lines, corresponding to energies H<=-1.4894
+paste -d ' ' temp1 temp2 temp3 | sed -n '1,116p' >>$datfile
 rm temp1 temp2 temp3
 
 ./outer_circ_stoch < $datfile > $resfile 2> $errfile
+
 # Warning: we don't want to remove datafile since outer_circ is executing in
 # the background!
 #rm $datfile
