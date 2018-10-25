@@ -1,9 +1,10 @@
 #set out "omega_j.eps"
-#set term postscript enhanced monochrome eps
+#set term postscript enhanced color eps
 
 set xlabel "H"
 set ylabel
 #set key left top
+set key spacing 3
 
 plot \
 "omega_neg.res" u 1:(-2.0*$2) t "omega1p" w l, \
