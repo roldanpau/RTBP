@@ -357,7 +357,8 @@ int re_inner_ell_stoch(double mu, double T, double x[DIM], double *re_A)
    // Integrate integrand function from 0 to T. 
    // We request a absolute error of 0 and a relative error $10^{-9}$.
    // NOTE: this relative error is the same as the one used for outer_circ.
-   gsl_integration_qags (&F, 0, T, 0, 1.e-9, 1000, w, &result, &error);
+   gsl_integration_qag (&F, 0, T, 0, 1.e-9, 1000, GSL_INTEG_GAUSS61, w,
+           &result, &error);
    fprintf (stderr, "estimated error = % .3le\n", error);
 
    gsl_integration_workspace_free (w);
@@ -397,7 +398,8 @@ int im_inner_ell_stoch(double mu, double T, double x[DIM], double *im_A)
    // Integrate integrand function from 0 to T. 
    // We request a absolute error of 0 and a relative error $10^{-9}$.
    // NOTE: this relative error is the same as the one used for outer_circ.
-   gsl_integration_qags (&F, 0, T, 0, 1.e-9, 1000, w, &result, &error);
+   gsl_integration_qag (&F, 0, T, 0, 1.e-9, 1000, GSL_INTEG_GAUSS61, w,
+           &result, &error);
    fprintf (stderr, "estimated error = % .3le\n", error);
 
    gsl_integration_workspace_free (w);
