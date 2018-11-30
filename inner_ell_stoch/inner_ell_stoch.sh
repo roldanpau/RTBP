@@ -1,9 +1,17 @@
 # Compute integral A_ín(I) related to outer map of elliptic problem.
 
+lines=`wc -l ../outer_circ/omega_neg_SECg_br1.res | cut -d ' ' -f 1`
+
+echo $lines
+
 echo "0.95387536e-3" >inner_ell_stoch.dat	# mu
 
-cut -d ' ' -f 1 ../portbp/porbits.res > temp1 	# H
-cut -d ' ' -f 1-4 ../prtbp_del_car/prtbp_del_cars_SECg.res > temp2 	# periodic point p
+# Select only the first $lines lines, corresponding to energy levels 
+# H <= -1.4894
+cut -d ' ' -f 1 ../portbp/porbits.res | head -n $lines > temp1 	# H
+cut -d ' ' -f 1-4 ../prtbp_del_car/prtbp_del_cars_SECg.res | head -n $lines \
+    > temp2  # periodic point p
+
 paste -d ' ' temp1 temp2 >> inner_ell_stoch.dat
 rm temp1 temp2 
 
