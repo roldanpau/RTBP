@@ -57,7 +57,7 @@
 #include <inner_ell_stoch.h>	// re_f_integrand_stoch, im_f_integrand_stoch
 
 // 1.e-6 is too much
-const double RELERROR = 1.e-2;
+const double RELERROR = 1.e-8;
 const size_t NINTERVALS = 1000;
 
 struct iparams_outer_ell_stoch
@@ -365,8 +365,8 @@ int re_B_stoch(double mu, double p[DIM], double zu[DIM], double omega, double *r
       // Previously, we used 2M parts of size \pi. Now we use M parts of
       // size 2pi.
       // We request a absolute error of 0 and a relative error RELERROR.
-      gsl_integration_qags (&F, 0, 2*M_PI, 0, RELERROR, NINTERVALS, w,
-	    &result_i, &error);
+      gsl_integration_qag (&F, 0, 2*M_PI, 0, RELERROR, NINTERVALS,
+              GSL_INTEG_GAUSS61, w, &result_i, &error);
       fprintf (stderr, "estimated error = % .3le\n", error);
 
       // periodic point p_3
@@ -451,8 +451,8 @@ int im_B_stoch(double mu, double p[DIM], double zu[DIM], double omega, double *r
       // Previously, we used 2M parts of size \pi. Now we use M parts of
       // size 2pi.
       // We request a absolute error of 0 and a relative error RELERROR.
-      gsl_integration_qags (&F, 0, 2*M_PI, 0, RELERROR, NINTERVALS, w,
-	    &result_i, &error);
+      gsl_integration_qag (&F, 0, 2*M_PI, 0, RELERROR, NINTERVALS,
+              GSL_INTEG_GAUSS61, w, &result_i, &error);
       fprintf (stderr, "estimated error = % .3le\n", error);
 
       // periodic point p_3
@@ -618,8 +618,8 @@ int re_C_stoch(double mu, double p[DIM], double zs[DIM], double omega, double *r
       // Previously, we used 2M parts of size \pi. Now we use M parts of
       // size 2pi.
       // We request a absolute error of 0 and a relative error RELERROR.
-      gsl_integration_qags (&F, 0, -2*M_PI, 0, RELERROR, NINTERVALS, w,
-	    &result_i, &error);
+      gsl_integration_qag (&F, 0, -2*M_PI, 0, RELERROR, NINTERVALS,
+              GSL_INTEG_GAUSS61, w, &result_i, &error);
       fprintf (stderr, "estimated error = % .3le\n", error);
 
       // periodic point p_4
@@ -704,8 +704,8 @@ int im_C_stoch(double mu, double p[DIM], double zs[DIM], double omega, double *r
       // Previously, we used 2M parts of size \pi. Now we use M parts of
       // size 2pi.
       // We request a absolute error of 0 and a relative error RELERROR.
-      gsl_integration_qags (&F, 0, -2*M_PI, 0, RELERROR, NINTERVALS, w,
-	    &result_i, &error);
+      gsl_integration_qag (&F, 0, -2*M_PI, 0, RELERROR, NINTERVALS,
+              GSL_INTEG_GAUSS61, w, &result_i, &error);
       fprintf (stderr, "estimated error = % .3le\n", error);
 
       // periodic point p_4

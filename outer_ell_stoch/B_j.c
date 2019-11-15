@@ -62,6 +62,8 @@ int main( )
    double nu;   // \mu\nu = T (where T = period mod 2\pi)
 
    double reB, imB;	// \re(B^j) \im(B^j)
+   double reB_in, imB_in;	// \re(B^j_in) \im(B^j_in)
+   double imB_out;	// \im(B^j_out)
 
    double omega_j;
 
@@ -80,13 +82,21 @@ int main( )
       c = 1-cos(2*M_PI*nu);
       d = sin(2*M_PI*nu);
 
+      // Compute complex function $B^j_in$
+      reB_in = 1/(c*c+d*d)*((a*c+b*d)*reBin - (a*d-b*c)*imBin);
+      imB_in = 1/(c*c+d*d)*((a*d-b*c)*reBin + (a*c+b*d)*imBin);
+
+      // Compute complex function $B^j_out$
+      imB_out = -2*imBpos;
+
       // Compute complex function $B^j$
-      reB = 1/(c*c+d*d)*((a*c+b*d)*reBin - (a*d-b*c)*imBin);
-      imB = -2*imBpos + 1/(c*c+d*d)*((a*d-b*c)*reBin + (a*c+b*d)*imBin);
+      reB = reB_in;
+      imB = imB_out + imB_in;
 
       // Output data to stdout
       //    H \re(B^j) \im(B^j)
-      if(printf("%e %.15e %.15e\n", H, reB, imB)<0)
+      if(printf("%e %.15e %.15e %.15e %.15e %.15e\n", H, reB_in, imB_in,
+                  imB_out, reB, imB)<0)
       {
          perror("main: error writting output");
          exit(EXIT_FAILURE);

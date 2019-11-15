@@ -30,4 +30,6 @@ rm temp*
 
 B_j <$DATFILE >$RESFILE
 
-# now simply plot the file B_2.res with gnuplot using B_12.plt
+# now simply:
+# - paste B_1 and B_2 onto B_12 using B_12.sh
+# - plot the file B_12.res with gnuplot using B_12.plt
