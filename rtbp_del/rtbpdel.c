@@ -196,6 +196,10 @@ int rtbp_del(double t, const double *x, double *y, void *params)
    double g = x[2];
    double G = x[3];
 
+   // For 2BP, we can't compute vectorfield as below, 
+   // because these functions are singular (division by 0)
+   assert(mu != 0);
+
    // eccentricity
    double e = sqrt(1.0 - G*G/(L*L));
 
@@ -263,12 +267,12 @@ int rtbp_del(double t, const double *x, double *y, void *params)
 
    // vector field
    y[0] = 1.0/Lcu + dR_L;	// \dot l
-   y[1] = -dR_l;		// \dot L
+   // y[1] = -dR_l;		// \dot L
    y[2] = -1.0 + dR_G;		// \dot g
    y[3] = -dR_g;		// \dot G
 
    // DEBUG:
-   // fprintf(stderr, "%e %e %e\n", t, y[0], y[2]);
+   fprintf(stderr, "%e %e %e %e %e %e\n", t, y[0], y[2], l, g, r);
    
    return GSL_SUCCESS;
 }

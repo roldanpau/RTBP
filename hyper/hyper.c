@@ -46,10 +46,10 @@ int hyper(double mu, section_t sec, double H, int n, double p[2],
 
    // Eigenvalues
    disc = pow(T,2)/4-D;
-   //fprintf(stderr, "a=%.8e b=%.8e c=%.8e d=%.8e disc=%.8e\n", a,b,c,d,disc);
    if(disc<0)
    {
       fprintf(stderr, "hyper: eigenvalues are not real!\n");
+	  fprintf(stderr, "a=%.8e b=%.8e c=%.8e d=%.8e disc=%.8e\n", a,b,c,d,disc);
       return(ERR_NOTREAL);
    }
    L1 = T/2 + sqrt(disc);

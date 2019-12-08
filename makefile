@@ -6,7 +6,7 @@ DIRS = rtbp taylor frtbp section hinv cardel prtbp_del_car prtbp utils \
        intersec_del_car prtbp_noloops errmfld invmfld invmfld_del_car \
        rtbp_del frtbp_red hinv_del frtbp_del prtbp_del \
        inner_circ outer_circ \
-       initcond dprtbp portbp \
+       initcond initcond_apo dprtbp portbp portbp_apo\
        sec1sec2 \
        hyper \
        approxint_del_car \
@@ -49,6 +49,7 @@ build-prtbp_del: install-frtbp_del install-hinv_del
 build-inner_circ: install-frtbp_red
 build-outer_circ: install-frtbp_del install-prtbp_del install-inner_circ
 build-portbp: install-initcond install-dprtbp
+build-portbp_apo: install-initcond_apo install-dprtbp
 build-sec1sec2: install-prtbp
 
 install: $(INSTALLDIRS)
@@ -79,8 +80,10 @@ install-prtbp_del : build-prtbp_del
 install-inner_circ: build-inner_circ
 install-outer_circ: build-outer_circ
 install-initcond: build-initcond
+install-initcond_apo: build-initcond_apo
 install-dprtbp: build-dprtbp
 install-portbp: build-portbp
+install-portbp_apo: build-portbp_apo
 install-sec1sec2: build-portbp
 install-hyper: build-hyper
 install-approxint_del_car: build-approxint_del_car

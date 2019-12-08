@@ -15,7 +15,7 @@ install : initcond_apo
 	ar rv $(libdir)/libds.a initcond_apo.o
 	cp initcond_apo.h $(includedir)
 
-initcond_apo : initcond_apo_main.o initcond_apo.o $(libdir)/libds.a
+initcond_apo : initcond_apo_main.o initcond_apo.o
 #	$(CC) -o prtbp $(LDLIBS) $(CFLAGS) prtbp_main.o prtbp.o
 
 initcond_apo_main.o : initcond_apo.h
