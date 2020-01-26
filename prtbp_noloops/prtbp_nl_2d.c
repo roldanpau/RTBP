@@ -1,81 +1,96 @@
-/*! \file
-    \brief Poincare map of the Restricted Three Body Problem (2D)
+// ======================================================
+// Poincare map of the Restricted Three Body Problem (2D)
+// ======================================================
+// FILE:          $RCSfile: prtbp_2d_main.c,v $
+// AUTHOR:        $Author: roldan $
+//                All code is my own except where credited to others.
+// DATE:          $Date: 2012-11-26 10:39:05 $
+//
+// PURPOSE
+// =======
+// Let "sec" be a Poincare section in the RTBP, where
+//      - sec = SEC1 means section {y=0,p_y>0}
+//      - sec = SEC2 means section {y=0,p_y<0}.
+// This program computes the n-th iterate of the 2D Poincare map, $P^n(x)$.
+//
+// NOTES
+// =====
+//
+// OVERALL METHOD:
+//
+// 1. Input parameters from stdin:
+// 
+//    - mass parameter 
+//    - type of Poincare section "sec"
+//    - energy value "H"
+//    - number of iterates "n"
+//
+// 2. For each input line:
+//
+//    2.1. Input data:
+//    - initial point "x"
+//
+//    2.2. Compute n-th iterate of the Poincare map, $P^n(x)$.
+//
+//    2.3. Output final point $P^n(x)$ and integration time to stdout.
 
-    $Author: roldan $
-    $Date: 2013-03-26 22:22:14 $
-*/
+#include <stdio.h>
+#include <stdlib.h>	// EXIT_SUCCESS, EXIT_FAILURE
+#include <string.h>	// strcmp
+#include <gsl/gsl_errno.h>	// gsl_set_error_handler_off
+#include "prtbp.h"	// section_t
+#include "prtbp_nl_2d_module.h"	// prtbp_nl_2d
 
-#include <stdio.h>	// fprintf
-#include <stdlib.h>	// EXIT_FAILURE
-#include <math.h>	// sqrt, fabs
-#include <rtbp.h>	// DIM, rtbp
-#include <hinv.h>	// hinv
-
-#include <section.h>
-#include "prtbp_nl.h"	// prtbp_nl, prtbp_nl_inv
-
-int prtbp_nl_2d(double mu, section_t sec, double H, int cuts, double p[2],
-        double *ti)
+int main( )
 {
-   double x[DIM];
+   double mu, H, ti;
+   section_t sec;
+   double x[2];
+   int status, n;
 
    // auxiliary variables
-   int result;
+   char section_str[10];        // holds input string "SEC1", "SEC2" etc
 
-   x[0]=p[0];	// x
-   x[1]=0.0;	// y
-   x[2]=p[1]; 	// p_x
-
-   // Compute x[3]=p_y by inverting the Hamiltonian.
-   result = hinv(mu,sec,H,x);
-   if(result)
+   // Input mass parameter, Poincare section, energy value, 
+   // number of iterates from stdin.
+   if(scanf("%le %s %le %d", &mu, section_str, &H, &n) < 4)
    {
-      fprintf(stderr, "prtbp_nl_2d: error inverting the Hamiltonian\n");
-      return(1);
+      perror("main: error reading input");
+      exit(EXIT_FAILURE);
    }
 
-   // Compute Poincare map (and integration time).
-   // On exit, "prtbp_nl" guarantees that x is precisely on the Poincare section.
-   if(prtbp_nl(mu,sec,cuts,x,ti))
+   if (strcmp(section_str,"SEC1") == 0)
+      sec = SEC1;
+   else if (strcmp(section_str,"SEC2") == 0)
+      sec = SEC2;
+   else
    {
-      fprintf(stderr, "prtbp_nl_2d: error computing poincare map\n");
-      return(1);
-   }
-   // Set the image point $P^n(p)$.
-   p[0]=x[0]; 	// x'
-   p[1]=x[2];	// p_x'
-   return(0);
-}
-
-int prtbp_nl_2d_inv(double mu, section_t sec, double H, int cuts, double p[2],
-        double *ti)
-{
-   double x[DIM];
-
-   // auxiliary variables
-   int result;
-
-   x[0]=p[0];	// x
-   x[1]=0.0;	// y
-   x[2]=p[1]; 	// p_x
-
-   // Compute x[3]=p_y by inverting the Hamiltonian.
-   result = hinv(mu,sec,H,x);
-   if(result)
-   {
-      fprintf(stderr, "prtbp_nl_2d: error inverting the Hamiltonian\n");
-      return(1);
+      perror("main: error reading section string");
+      exit(EXIT_FAILURE);
    }
 
-   // Compute Poincare map (and integration time).
-   // On exit, "prtbp_nl" guarantees that x is precisely on the Poincare section.
-   if(prtbp_nl_inv(mu,sec,cuts,x,ti))
+   // Stop GSL default error handler from aborting the program
+   gsl_set_error_handler_off();
+
+   // For each initial condition, do
+   while(scanf("%le %le", x, x+1)==2)
    {
-      fprintf(stderr, "prtbp_nl_2d: error computing poincare map\n");
-      return(1);
+   // Compute n-th iterate of 2D Poincare map, $P^n(x)$ (and integration time
+   // ti).
+   status=prtbp_nl_2d(mu,sec,H,n,x,&ti);
+   if(status)
+   {
+      fprintf(stderr, \
+	    "main: error computing %d-th iterate of Poincare map\n",n);
+      exit(EXIT_FAILURE);
    }
-   // Set the image point $P^n(p)$.
-   p[0]=x[0]; 	// x'
-   p[1]=x[2];	// p_x'
-   return(0);
+
+   // Output final point and integration time to stdout.
+   if(printf("%.15le %.15le %.15le\n", x[0], x[1], ti)<0)
+   {
+      perror("main: error writting output");
+      exit(EXIT_FAILURE);
+   }
+   }
+   exit(EXIT_SUCCESS);
 }

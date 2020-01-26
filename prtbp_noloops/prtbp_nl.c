@@ -16,8 +16,10 @@
 #include <rtbp.h>	// DIM
 
 #include <section.h>	// section_t
+#include <utils_module.h>	// dblcpy
 
 const double POINCARE_TOL_NL=1.e-16;
+const double TANGENT_TOL_NL=1.e-6;     ///< tolerance for tangent condition
 const double SHORT_TIME_NL=0.01;		///< integration "step" for prtbp_nl
 
 int inter_nl(double mu, section_t sec, double epsabs, double x[DIM], double t0,
@@ -32,6 +34,31 @@ struct inter_nl_f_params
    double mu; section_t sec;
    double x; double y; double px; double py;
 };
+
+/** 
+  This function determines if the flow is tangent to the Poincare 
+  section at the point A.
+
+  \param[in] sec 	type of Poincare section (sect = SEC1 or SEC2).
+  \param[in] a 		point, 4 coordinates: (x, y, p_x, p_y).
+
+  \returns true the flow is tangent, false if it is not.
+  */
+bool tangent_nl(section_t sec, double a[DIM])
+{
+   double x = a[0];
+   double y = a[1];
+   double py = a[3];
+   double vy = py-x;
+
+   // This works for both sections:
+   if(fabs(y)<TANGENT_TOL_NL && fabs(vy)<TANGENT_TOL_NL)
+   {
+       fprintf(stderr, "tranverse_nl: Flow is tangent to section!!\n");
+       return(true);
+   }
+   return(false);
+}
 
 /** 
   This function determines if the point A is exactly on the section.
@@ -93,9 +120,6 @@ bool crossing_nl (section_t sec, double a[DIM], double b[DIM], int *sign)
    double py = a[3];
    double vy = py-x;
 
-   // auxiliary variables
-   double n1,n2;
-
    bool bcrossing = false;
 
    // TWO CONSECUTIVE ITERATES must NOT lie both to the right or to the left
@@ -113,62 +137,104 @@ bool crossing_nl (section_t sec, double a[DIM], double b[DIM], int *sign)
 // NOTES
 // =====
 // We do not impose that $x$ is on the section.
-// We do not check that flow at $x$ is transversal to section!!!
 //
 // A point is assumed to be on the Poincare section if it is within distance
 // POINCARE_TOL_NL to the section.
 //
+// Possible improvement: In frtbp, check if the flow becomes tangential to
+// section at some point.  If it does, return a flag to prtbp, which sould act
+// accordingly.
 
 int prtbp_nl(double mu, section_t sec, int cuts, double x[DIM], double *ti)
 {
    double t = 0.0;
    double t_pre;	/* previous value of time t */
+   double t_pre2;	/* previous value of time t */
    double x_pre[DIM];	/* previous value of point x */
-   int sign;		/* sign of previous intersection with x axis */
+   double x_pre2[DIM];	/* previous value of point x */
+   double x2[DIM];	
+   double t2;
+   int sign_pre;		/* sign of previous intersection with x axis */
+   int sign_cur;		/* sign of current intersection with x axis */
+   int sign_nxt;		/* sign of next intersection with x axis */
    int status;
-   int i,n;
+   int n;
    double t1;
 
-   // DEBUG
-   double x_init[DIM];
-
-   for(i=0;i<DIM;i++)
-	    x_init[i]=x[i];
-
-   // Save sign of previous intersection with x axis
-   sign = (x[0]>0 ? +1 : -1);
+   if(tangent_nl(sec,x))
+   {
+       perror("Flow is tangent to section. Cannot compute Poincare map!\n");
+       exit(EXIT_FAILURE);
+   }
 
    n=0;
-   while(n!=cuts)
+   while(n<cuts)
    {
-      // Integrate trajectory until it reaches section
-      do
-      {
-	 // Save previous value of point "x" and time "t"
-	 for(i=0;i<DIM;i++)
-	    x_pre[i]=x[i];
-	 t_pre=t;
+	   // Save sign of previous intersection with x axis
+	   sign_pre = (x[0]>0 ? +1 : -1);
 
-	 // Integrate for a "short" time t1=SHORT_TIME_NL, short enough so that
-	 // we can detect crossing of Poincare section.
+	  // Integrate trajectory until it crosses x axis
+	  do
+	  {
+		 // Save previous value of point "x" and time "t"
+		 dblcpy(x_pre, x, DIM);
+		 t_pre=t;
 
-	 // WARNING! Before we used t1=1 as a "short" time, but sometime this
-	 // was too long...
-	 status = frtbp(mu,SHORT_TIME_NL,x);
-	 t += SHORT_TIME_NL;
-	 if (status != GSL_SUCCESS)
-	 {
-	    fprintf(stderr, "prtbp_nl: error integrating trajectory\n");
-	    return(1);
-	 }
-      } 
-      // while(no crossing of Poincare section)
-      while(!(onsection_nl(sec,x,&sign) || crossing_nl(sec,x_pre,x,&sign))); 
-      n++;
+		 // Integrate for a "short" time t1=SHORT_TIME_NL, short enough so that
+		 // we can detect crossing of Poincare section.
+
+		 // WARNING! Before we used t1=1 as a "short" time, but sometime this
+		 // was too long...
+		 status = frtbp(mu,SHORT_TIME_NL,x);
+		 t += SHORT_TIME_NL;
+		 if (status != GSL_SUCCESS)
+		 {
+			fprintf(stderr, "prtbp_nl: error integrating trajectory\n");
+			return(1);
+		 }
+	  } 
+	  // while(no crossing of x axis)
+	  while(!(x[1] == 0 || x_pre[1]*x[1] < 0)); 
+
+	   // Save sign of current intersection with x axis
+	   sign_cur = (x[0]>0 ? +1 : -1);
+
+	  dblcpy(x2, x, DIM);
+	  t2 = t;
+	  // Integrate trajectory until it crosses x axis one more time
+	  do
+	  {
+		 dblcpy(x_pre2, x2, DIM);
+		 t_pre2=t2;
+
+		 // Integrate for a "short" time t1=SHORT_TIME_NL, short enough so that
+		 // we can detect crossing of Poincare section.
+
+		 // WARNING! Before we used t1=1 as a "short" time, but sometime this
+		 // was too long...
+		 status = frtbp(mu,SHORT_TIME_NL,x2);
+		 t2 += SHORT_TIME_NL;
+		 if (status != GSL_SUCCESS)
+		 {
+			fprintf(stderr, "prtbp_nl: error integrating trajectory\n");
+			return(1);
+		 }
+	  } 
+	  // while(no crossing of x axis)
+	  while(!(x2[1] == 0 || x_pre2[1]*x2[1] < 0)); 
+
+	   // Save sign of next intersection with x axis
+	   sign_nxt = (x2[0]>0 ? +1 : -1);
+
+	  if((sign_pre!=sign_cur && sign_cur!=sign_nxt) || 
+			  (sign_pre==sign_cur && sign_cur==sign_nxt)) n++;
+	  else
+		  fprintf(stderr, "prtbp_nl: skipping cut with x axis...\n");
    }
+
    // point "x" is exactly on the section
    // This would be very unlikely...
-   if(onsection_nl(sec,x,&sign))
+   if(x[1] == 0)
    {
       (*ti)=t;
       return(0);
@@ -176,8 +242,7 @@ int prtbp_nl(double mu, section_t sec, int cuts, double x[DIM], double *ti)
    // Crossing happened between times t_pre and t. 
 
    // Restore previous value of point "x"
-   for(i=0;i<DIM;i++)
-      x[i]=x_pre[i];
+   dblcpy(x, x_pre, DIM);
 
    // Intersect trajectory starting at point x with section.
    // WARNING! passing 0 instead of 0.0 gives me trouble?!?!
@@ -189,15 +254,6 @@ int prtbp_nl(double mu, section_t sec, int cuts, double x[DIM], double *ti)
    // Here, point x is on section with tolerance POINCARE_TOL_NL_DEL. 
    // We force x to be exactly on section.
    x[1] = 0;    // y
-
-   if(x_init[2]>0 && x[2]<0)
-   {
-	   fprintf(stderr, "prtbp_nl: skipped an iterate!\n");
-	   fprintf(stderr, "x_init: %.15le %.15le %.15le %.15le\n",
-			   x_init[0],x_init[1],x_init[2],x_init[3]);
-	   fprintf(stderr, "x: %.15le %.15le %.15le %.15le\n",
-			   x[0],x[1],x[2],x[3]);
-   }
 
    // Set time to reach Poincare section
    (*ti)=t_pre+t1;
