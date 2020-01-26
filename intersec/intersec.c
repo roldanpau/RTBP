@@ -10,7 +10,7 @@
 #include <gsl/gsl_roots.h>
 
 #include <rtbp.h>	// DIM
-#include <prtbp_nl_2d.h>	// prtbp_nl_2d, prtbp_nl_2d_inv
+#include <prtbp_nl_2d_module.h>	// prtbp_nl_2d, prtbp_nl_2d_inv
 
 /// Tolerance (precision) for bisection method 
 const double BISECT_TOL=1.e-15;

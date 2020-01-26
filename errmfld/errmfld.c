@@ -11,7 +11,7 @@
 #include <assert.h>
 #include <section.h>
 
-#include <prtbp_nl_2d.h>
+#include <prtbp_nl_2d_module.h>
 
 /** 
   Estimate error commited in the linear approximation of the manifold.

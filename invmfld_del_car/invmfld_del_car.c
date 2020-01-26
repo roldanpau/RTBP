@@ -21,7 +21,7 @@
 #include <rtbp.h>	// DIM
 #include <hinv.h>	
 #include <cardel.h>
-#include <prtbp_nl_2d.h>
+#include <prtbp_nl_2d_module.h>
 #include <prtbp_del_car.h>
 #include <errmfld.h>
 #include <disc.h>

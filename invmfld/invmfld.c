@@ -18,7 +18,7 @@
 #include <stdlib.h>	// EXIT_SUCCESS, EXIT_FAILURE
 #include <string.h>	// strcmp
 #include <math.h>	// sqrt
-#include <prtbp_nl_2d.h>	// prtbp_nl_2d, prtbp_nl_2d_inv
+#include <prtbp_nl_2d_module.h>	// prtbp_nl_2d, prtbp_nl_2d_inv
 #include <errmfld.h>
 #include "disc.h"	// disc
 

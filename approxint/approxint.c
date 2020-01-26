@@ -11,7 +11,7 @@
 #include <string.h>	// memcpy
 #include <math.h>	// atan2
 #include <assert.h>
-#include <prtbp_nl_2d.h>	// prtbp_nl_2d, prtbp_nl_2d_inv
+#include <prtbp_nl_2d_module.h>	// prtbp_nl_2d, prtbp_nl_2d_inv
 #include <disc.h>	// disc
 
 /*! \brief 

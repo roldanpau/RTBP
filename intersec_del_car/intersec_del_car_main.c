@@ -11,7 +11,7 @@
 #include <section.h>    // section_t, branch_t
 #include <errmfld.h>    // h_opt
 
-#include <prtbp_nl_2d.h>
+#include <prtbp_nl_2d_module.h>
 
 #include "intersec_del_car.h"
 
