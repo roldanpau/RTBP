@@ -127,7 +127,7 @@ int main( )
 
       // Output one line to stdout: H, T(H), x(H)
       // For the moment, we don't output p(H)...
-      if(printf("%.15e %.15e %.15e %.15e %.15e %.15e\n", H, T, z2[0], z2[1], z2[2], z2[3])<0)
+      if(printf("%.15e %.15e %.15e %.15e %.15e %.15e\n", H, 2*T, z2[0], z2[1], z2[2], z2[3])<0)
       {
 	 perror("main: error writting output");
 	 exit(EXIT_FAILURE);
