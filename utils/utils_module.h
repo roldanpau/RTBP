@@ -45,3 +45,13 @@ double WrapPosNegPI(double fAng);
   \return		wrapped angle
   */
 double WrapTwoPI(double fAng);
+
+/** 
+  L_2 norm of an array.
+
+  \param[in] x	array
+  \param[in] n	length of x
+
+  \return		L_2 norm of x
+  */
+double l2_norm(double const* x, int n);

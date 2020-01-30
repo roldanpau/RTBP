@@ -14,7 +14,8 @@
 
 #include <frtbp.h>	// frtbp
 #include <rtbp.h>	// DIM
-#include "prtbp.h"	// section_t
+#include <section.h>
+#include <prtbp_nl.h>
 
 const double POINCARE_TOL=1.e-16;
 const double TANGENT_TOL=1.e-6;     ///< tolerance for tangent condition
@@ -145,6 +146,8 @@ bool crossing (section_t sec, double a[DIM], double b[DIM])
 
 int prtbp(double mu, section_t sec, int cuts, double x[DIM], double *ti)
 {
+	return(prtbp_nl(mu,sec,cuts,x,ti));
+
    double t = 0.0;
    double t_pre;	/* previous value of time t */
    double x_pre[DIM];	/* previous value of point x */

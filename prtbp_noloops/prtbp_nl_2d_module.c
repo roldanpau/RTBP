@@ -41,6 +41,10 @@ int prtbp_nl_2d(double mu, section_t sec, double H, int cuts, double p[2],
       fprintf(stderr, "prtbp_nl_2d: error computing poincare map\n");
       return(1);
    }
+
+   // DEBUG:
+   //fprintf(stderr, "(x,y,px,py)=(%e,%e,%e,%e)\n", x[0],x[1],x[2],x[3]);
+
    // Set the image point $P^n(p)$.
    p[0]=x[0]; 	// x'
    p[1]=x[2];	// p_x'

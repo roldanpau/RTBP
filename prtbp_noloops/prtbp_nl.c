@@ -20,7 +20,7 @@
 
 const double POINCARE_TOL_NL=1.e-16;
 const double TANGENT_TOL_NL=1.e-6;     ///< tolerance for tangent condition
-const double SHORT_TIME_NL=0.01;		///< integration "step" for prtbp_nl
+const double SHORT_TIME_NL=0.001;		///< integration "step" for prtbp_nl
 
 int inter_nl(double mu, section_t sec, double epsabs, double x[DIM], double t0,
       double t1, double *t);
@@ -228,8 +228,8 @@ int prtbp_nl(double mu, section_t sec, int cuts, double x[DIM], double *ti)
 
 	  if((sign_pre!=sign_cur && sign_cur!=sign_nxt) || 
 			  (sign_pre==sign_cur && sign_cur==sign_nxt)) n++;
-	  else
-		  fprintf(stderr, "prtbp_nl: skipping cut with x axis...\n");
+	  //else
+	//	  fprintf(stderr, "prtbp_nl: skipping cut with x axis...\n");
    }
 
    // point "x" is exactly on the section
@@ -431,7 +431,8 @@ int inter_nl(double mu, section_t sec, double epsabs, double x[DIM], double t0,
 
     if(iter>=max_iter)
     {
-       fprintf(stderr, "inter_nl: maximum number of iterations reached\n");
+       fprintf(stderr, "inter_nl: maximum number of iterations reached.\n");
+       fprintf(stderr, "inter_nl: Last residual: %e\n", f);
        return(ERR_MAXITER_NL);
     }
     // "*t" is the intersection time.

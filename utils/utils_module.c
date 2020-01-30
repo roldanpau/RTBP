@@ -47,3 +47,15 @@ double WrapTwoPI(double fAng)
 {
     return Mod(fAng, TWOPI);
 }
+
+// L_2 norm of an array x of size n
+double l2_norm(double const* x, int n)
+{
+	double accum = 0.;
+	for (int i = 0; i<n; ++i)
+	{
+		accum += x[i] * x[i];
+	}
+	return sqrt(accum);
+}
+

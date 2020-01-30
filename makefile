@@ -34,6 +34,7 @@ $(BUILDDIRS):
 # build dependencies
 build-taylor: install-rtbp
 build-frtbp: install-taylor
+build-prtbp: install-prtbp_noloops
 build-cardel:install-hinv install-utils
 build-prtbp_del_car: install-cardel install-section install-frtbp \
     install-prtbp_del install-utils

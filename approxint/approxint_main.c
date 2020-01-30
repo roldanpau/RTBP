@@ -166,7 +166,14 @@ int main( )
 	 {
 	    fprintf(stderr, 
 		  "H=%e: couldn't find approx. intersection point\n", H);
-	    exit(EXIT_FAILURE);
+	    //exit(EXIT_FAILURE);
+	 }
+	 else
+	 {
+		  // 3. Output the following data to stdout:
+		  //    H, h_1, h_2, z
+		  printf("%.15e %d %.15e %.15e %.15e %.15e\n", H, iter, h_1, h_2, z[0], z[1]);
+		  fflush(NULL);
 	 }
       }
       else
@@ -179,13 +186,16 @@ int main( )
 		  "H=%e: couldn't find approx. intersection point\n", H);
 	    exit(EXIT_FAILURE);
 	 }
+	 else
+	 {
+		  // 3. Output the following data to stdout:
+		  //    H, h_1, h_2, z
+		  printf("%.15e %d %.15e %.15e %.15e %.15e\n", H, iter, h_1, h_2, z[0], z[1]);
+		  fflush(NULL);
+	 }
       }
       
 
-      // 3. Output the following data to stdout:
-      //    H, h_1, h_2, z
-      printf("%.15e %d %.15e %.15e %.15e %.15e\n", H, iter, h_1, h_2, z[0], z[1]);
-      fflush(NULL);
    }
    exit(EXIT_SUCCESS);
 }

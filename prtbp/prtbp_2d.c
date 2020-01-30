@@ -12,10 +12,13 @@
 #include <hinv.h>	// hinv
 
 #include <section.h>
+#include <prtbp_nl_2d_module.h>
 #include "prtbp.h"	// prtbp, prtbp_inv
 
 int prtbp_2d(double mu, section_t sec, double H, int cuts, double p[2], double *ti)
 {
+	return(prtbp_nl_2d(mu,sec,H,cuts,p,ti));
+
    double x[DIM];
 
    // auxiliary variables

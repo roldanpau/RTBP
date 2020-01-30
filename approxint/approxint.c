@@ -13,6 +13,7 @@
 #include <assert.h>
 #include <prtbp_nl_2d_module.h>	// prtbp_nl_2d, prtbp_nl_2d_inv
 #include <disc.h>	// disc
+#include <utils_module.h>	// l2_norm
 
 /*! \brief 
   Max number of iterations of unst segment before we give up looking for
@@ -249,11 +250,6 @@ approxint_st (double mu, double H, int k, double p[2], double v[2],
 // Returns a non-zero error code to indicate an error and 0 to indicate
 // success:
 //    1: Problems computing the Poincare iterates.
-//
-// NOTES
-// =====
-// If the first intersection point that we find is not part of the (continuous)
-// family of primary intersections, then we keep looking for the primary one.
 
 /** 
   \note We have problems computing some invariant manifolds, because suddenly
@@ -269,6 +265,9 @@ u_i (double mu, double H, int k, double z[2], double a, double *l, int *idx)
    int status, iter, i;
    double ti;
    double dx,dy;
+
+   // difference between two consecutive points on the manifold
+   double v[2];	
 
    // Approximate splitting half-angle
    //double alpha2;
@@ -291,6 +290,8 @@ u_i (double mu, double H, int k, double z[2], double a, double *l, int *idx)
       // P[2] = (x, p_x) = (l[2i], l[2i+1]),
       // Q[2] = (x, p_x) = (l[2i+2], l[2i+3]).
 
+	   v[0] = l[2*i]-l[2*i+2];
+	   v[1] = l[2*i+1]-l[2*i+3];
   
       // Check that the manifolds are indeed continuous, i.e. we check that
       // each two consecutive points in the manifold  are close together.
@@ -307,7 +308,7 @@ u_i (double mu, double H, int k, double z[2], double a, double *l, int *idx)
 	  */
 
       if(((l[2*i+1]-a)*(l[2*i+3]-a)<=0) && 
-	    fabs(l[2*i]-z[0]) < 0.02)	// point belongs to primary family
+	    l2_norm(v, 2) < 0.02)	// consecutive points are "close enough"
 	 break;
    }
 
