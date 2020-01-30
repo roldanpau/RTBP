@@ -1,5 +1,5 @@
 SHELL = /bin/sh
-prefix = /usr/local
+prefix = $(HOME)
 exec_prefix = $(prefix)
 bindir = $(exec_prefix)/bin
 includedir = $(prefix)/include

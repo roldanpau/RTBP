@@ -2,6 +2,13 @@
 #
 SHELL = /bin/sh
 
+# Export these variables.
+# Variables used by implicit rules like these are NOT normally passed down.
+# To override variables used by the sub-make, one has to use the -e switch 
+# to make, see below.
+export LDFLAGS = -O3 -L$(HOME)/lib
+export CFLAGS = -O3 -I$(HOME)/include
+
 DIRS = rtbp taylor frtbp section hinv cardel prtbp_del_car prtbp utils \
        intersec_del_car prtbp_noloops errmfld invmfld invmfld_del_car \
        rtbp_del frtbp_red hinv_del frtbp_del prtbp_del \
@@ -27,9 +34,12 @@ $(DIRS): $(BUILDDIRS)
 # "install-") and do a "make" in that dir.
 #
 # make "install" right after making "build" in each dir.
+#
+# To override variables CFLAGS/LDFLAGS used by the sub-make, one has to use the
+# -e switch.
 $(BUILDDIRS):
-	$(MAKE) -C $(@:build-%=%)
-	sudo $(MAKE) -C $(@:build-%=%) install
+	$(MAKE) -C $(@:build-%=%) -e
+	sudo $(MAKE) -C $(@:build-%=%) -e install
 
 # build dependencies
 build-taylor: install-rtbp
@@ -104,7 +114,7 @@ $(CLEANDIRS):
 	$(MAKE) -C $(@:clean-%=%) clean
 
 cleanlib:
-	sudo rm /usr/local/lib/libds.a
+	sudo rm $(HOME)/lib/libds.a
 
 .PHONY: $(DIRS)
 .PHONY: $(BUILDDIRS)

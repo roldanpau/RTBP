@@ -4,7 +4,7 @@ LFLAGS=-lm -s
 
 TAYLOR=taylor
 
-prefix = /usr/local
+prefix = $(HOME)
 exec_prefix = $(prefix)
 includedir = $(prefix)/include
 libdir = $(exec_prefix)/lib

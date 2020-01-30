@@ -1,11 +1,11 @@
 SHELL = /bin/sh
-prefix = /usr/local
+prefix = $(HOME)
 exec_prefix = $(prefix)
 bindir = $(exec_prefix)/bin
 includedir = $(prefix)/include
 libdir = $(exec_prefix)/lib
 CFLAGS = -O3
-LDFLAGS = -O3
+LDFLAGS = -O3 -L$(libdir)
 LDLIBS = -lgsl -lgslcblas -lds -lm
 
 RESULTS = $(UNSTRESULTS) $(STRESULTS)

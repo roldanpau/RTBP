@@ -11,12 +11,13 @@ ifeq ($(hostname),deepthought2)
    LDFLAGS = -L$(libdir)
    LDLIBS = -lm
 else
-   prefix = /usr/local
+   prefix = $(HOME)
    exec_prefix = $(prefix)
    bindir = $(exec_prefix)/bin
    includedir = $(prefix)/include
    libdir = $(exec_prefix)/lib
    CFLAGS = -O3
+   LDFLAGS = -L$(libdir)
    LDLIBS = -lm
 endif
 

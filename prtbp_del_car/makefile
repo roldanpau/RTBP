@@ -1,5 +1,5 @@
 SHELL = /bin/sh
-prefix = /usr/local
+prefix = $(HOME)
 exec_prefix = $(prefix)
 bindir = $(exec_prefix)/bin
 includedir = $(prefix)/include
@@ -30,7 +30,9 @@ results : prtbp_2d prtbp_2d_inv $(RESULTS)
 prtbp_del_car : prtbp_del_car_main.o prtbp_del_car.o
 
 prtbp_del_car_inv : prtbp_del_car_inv_main.o prtbp_del_car.o
-	$(CC) prtbp_del_car_inv_main.o prtbp_del_car.o $(LOADLIBES) $(LDLIBS) -o $@
+	$(CC) prtbp_del_car_inv_main.o prtbp_del_car.o $(LDFLAGS) $(LDLIBS) -o $@
+
+#	$(CC) prtbp_del_car_inv_main.o prtbp_del_car.o $(LOADLIBES) $(LDLIBS) -o $@
 
 prtbp_del_car_main.o : $(includedir)/rtbp.h prtbp_del_car.h
 
