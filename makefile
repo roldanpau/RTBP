@@ -6,8 +6,13 @@ SHELL = /bin/sh
 # Variables used by implicit rules like these are NOT normally passed down.
 # To override variables used by the sub-make, one has to use the -e switch 
 # to make, see below.
-export LDFLAGS = -O3 -L$(HOME)/lib
-export CFLAGS = -O3 -I$(HOME)/include
+prefix = $(HOME)
+exec_prefix = $(prefix)
+export bindir = $(exec_prefix)/bin/rtbp
+export includedir = $(prefix)/include/rtbp
+export libdir = $(exec_prefix)/lib/rtbp
+export LDFLAGS = -O3 -L$(HOME)/lib/rtbp
+export CFLAGS = -O3 -I$(HOME)/include/rtbp
 
 DIRS = rtbp taylor frtbp section hinv cardel prtbp_del_car prtbp utils \
        intersec_del_car prtbp_noloops errmfld invmfld invmfld_del_car \
@@ -38,8 +43,8 @@ $(DIRS): $(BUILDDIRS)
 # To override variables CFLAGS/LDFLAGS used by the sub-make, one has to use the
 # -e switch.
 $(BUILDDIRS):
-	$(MAKE) -C $(@:build-%=%) -e
-	sudo $(MAKE) -C $(@:build-%=%) -e install
+	$(MAKE) -e -C $(@:build-%=%) 
+	sudo -E $(MAKE) -e -C $(@:build-%=%) install
 
 # build dependencies
 build-taylor: install-rtbp
@@ -66,7 +71,7 @@ build-sec1sec2: install-prtbp
 install: $(INSTALLDIRS)
 
 $(INSTALLDIRS):
-	sudo $(MAKE) -C $(@:install-%=%) install
+	sudo -E $(MAKE) -e -C $(@:install-%=%) install
 
 # install dependencies
 install-rtbp : build-rtbp
@@ -111,10 +116,10 @@ $(TESTDIRS):
 clean: $(CLEANDIRS) cleanlib
 
 $(CLEANDIRS): 
-	$(MAKE) -C $(@:clean-%=%) clean
+	$(MAKE) -e -C $(@:clean-%=%) clean
 
 cleanlib:
-	sudo rm $(HOME)/lib/libds.a
+	sudo rm $(libdir)/libds.a
 
 .PHONY: $(DIRS)
 .PHONY: $(BUILDDIRS)

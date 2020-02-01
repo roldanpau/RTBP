@@ -2,22 +2,10 @@ SHELL = /bin/sh
 
 hostname := $(shell hostname)
 ifeq ($(hostname),deepthought2)
-   prefix = $(HOME)
-   exec_prefix = $(prefix)
-   bindir = $(exec_prefix)/bin
-   includedir = $(prefix)/include
-   libdir = $(exec_prefix)/lib
    CFLAGS = -O3 -I$(GSL_INC)
-   LDFLAGS = -L$(libdir)
    LDLIBS = -lm
 else
-   prefix = $(HOME)
-   exec_prefix = $(prefix)
-   bindir = $(exec_prefix)/bin
-   includedir = $(prefix)/include
-   libdir = $(exec_prefix)/lib
    CFLAGS = -O3
-   LDFLAGS = -L$(libdir)
    LDLIBS = -lm
 endif
 
