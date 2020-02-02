@@ -1,0 +1,21 @@
+0.95387536e-3 4 0 0 0.0
+-1.625400000000000e+00 -2.838648509378806e-01 8.402244054553363e-01 1.304208902354793e-01 -9.914587189541404e-01 1.629448714189487e+00
+
+# Debugging: 
+# Approx intersection of "problematic" unst manifold (left branch) of fixed
+# point correspondign to H=-1.6254 and horizontal axis line px=0.
+
+      - mass parameter 
+      - number of cuts "k" with Poincare section
+      - "stable" flag (unstable=0, stable=1)
+      - "branch" flag (left=0, right=1)
+      - axis line "a"
+  
+   2. For each input line, do
+   
+      2.1. Input parameters from stdin:
+         - energy value "H"
+         - fixed point "p"
+         - linear unstable,stable direction "v"
+         - unstable,stable eigenvalue "lambda"
+
