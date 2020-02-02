@@ -38,7 +38,7 @@
 #include <stdlib.h>	// EXIT_SUCCESS, EXIT_FAILURE
 #include <string.h>	// strcmp
 #include <gsl/gsl_errno.h>	// gsl_set_error_handler_off
-#include "prtbp.h"	// section_t
+#include <section.h>
 #include "prtbp_nl_2d_module.h"	// prtbp_nl_2d
 
 int main( )

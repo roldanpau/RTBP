@@ -18,6 +18,8 @@
 #include <stdlib.h>	// EXIT_SUCCESS, EXIT_FAILURE
 #include <string.h>	// strcmp
 #include <math.h>	// sqrt
+#include <lift.h>
+#include <utils_module.h>	// dblprint
 #include <prtbp_nl_2d_module.h>	// prtbp_nl_2d, prtbp_nl_2d_inv
 #include <errmfld.h>
 #include "disc.h"	// disc
@@ -84,6 +86,7 @@ int main( )
 
    // Linear segment approximating local invariant manifold
    double l[2*NPOINTS];
+   double l4[DIM*NPOINTS];	// 4D version of l
 
    double err;		// error commited in approximating the manifold
 
@@ -109,6 +112,10 @@ int main( )
       perror("main: error reading section string");
       exit(EXIT_FAILURE);
    }
+
+   // Estimate error commited in the linear approximation of the manifold
+   err = err_mfld(mu,sec,H,k,p,v,lambda,stable,h);
+   fprintf(stderr,"Estimated error of manifold: %le\n", err);
 
    // 2. Discretize the linear segment between $p0=p+hv$ and $p1=P(p0)$ into
    // a set of NPOINTS points.
@@ -138,45 +145,49 @@ int main( )
    // Discretize linear segment
    disc(p0, p1, NPOINTS, l);
 
+   // Lift points in linear segment from 2d to 4d
+   status = lift(mu, sec, H, NPOINTS, l, l4);
+   if(status)
+   {
+      fprintf(stderr, "main: error lifting point\n");
+      return(1);
+   }
+
    // 3. Iterate the (discretized) linear segment "n" times by the Poincare map,
    // i.e. compute its orbit (and print it to stdout). 
    for(iter=0;iter<n;iter++)
    {
-	 for(i=0;i<NPOINTS;i++)
+	 if(!stable)	// unstable manifold
 	 {
-	    if(!stable)	// unstable manifold
+		for(i=0;i<NPOINTS;i++)
 	    {
-	       if(prtbp_nl_2d(mu,sec,H,k,l+2*i,&ti))
+	       if(prtbp_nl(mu,sec,k,l4+DIM*i,&ti))
 	       {
-		  fprintf(stderr, "main: error computing Poincare map\n");
-		  exit(EXIT_FAILURE);
+		      fprintf(stderr, "main: error computing Poincare map\n");
+		      exit(EXIT_FAILURE);
 	       }
 	    }
-	    else		// stable manifold
+	 }
+	 else	// stable manifold
+	 {
+		for(i=0;i<NPOINTS;i++)
 	    {
-	       if(prtbp_nl_2d_inv(mu,sec,H,k,l+2*i,&ti))
+	       if(prtbp_nl_inv(mu,sec,k,l4+DIM*i,&ti))
 	       {
-		  fprintf(stderr, "main: error computing inverse Poincare map\n");
-		  exit(EXIT_FAILURE);
+		      fprintf(stderr, "main: error computing Poincare map\n");
+		      exit(EXIT_FAILURE);
 	       }
 	    }
 	 }
 
-	// Print iteration of linear segment
-	for(i=0;i<NPOINTS;i++)
-	{
-	   if(printf("% .15le % .15le\n", l[2*i], l[2*i+1])<0)
-	   {
-	  perror("main: error writting output");
-	  exit(EXIT_FAILURE);
-	   }
-	}
-	printf("\n");
+	 // Print iteration of linear segment
+	 for(i=0;i<NPOINTS;i++)
+	 {
+		dblprint(l4+DIM*i, DIM);
+		printf("\n");
+	 }
+	 printf("\n");
    }
-
-   // 4. Estimate error commited in the linear approximation of the manifold
-   err = err_mfld(mu,sec,H,k,p,v,lambda,stable,h);
-   fprintf(stderr,"Estimated error of manifold: %le\n", err);
 
    exit(EXIT_SUCCESS);
 }

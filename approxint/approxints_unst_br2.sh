@@ -15,4 +15,4 @@ rm temp1.txt temp2.txt temp3.txt
 
 ./approxint <$DATFILE >$RESFILE 2>$ERRFILE
 
-#rm $DATFILE
+rm $DATFILE

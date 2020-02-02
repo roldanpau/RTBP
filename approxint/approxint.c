@@ -10,6 +10,8 @@
 #include <stdbool.h>	// bool data type
 #include <string.h>	// memcpy
 #include <math.h>	// atan2
+#include <rtbp.h>	// DIM
+#include <lift.h>
 #include <assert.h>
 #include <prtbp_nl_2d_module.h>	// prtbp_nl_2d, prtbp_nl_2d_inv
 #include <disc.h>	// disc
@@ -23,11 +25,6 @@ const int MAXITER = 100;
 
 /// Number of points in the discretization of unst segment.
 const int NPOINTS = 100;
-
-/*! \brief 
-  Tolerance to max distance between two continuous points in manifold.
- */
-const double MFLD_CONT_TOL= 0.01; 
 
 int 
 u_i (double mu, double H, int k, double z[2], double a, double *l, int *idx);
@@ -53,6 +50,7 @@ approxint_unst (double mu, double H, int k, double p[2], double v[2],
 
    // Linear segment approximating local invariant manifold
    double l[2*NPOINTS];
+   double l4[DIM*NPOINTS];  // 4D version of l
 
    // Auxiliary variables
    int status, iter, i;
@@ -83,13 +81,21 @@ approxint_unst (double mu, double H, int k, double p[2], double v[2],
    // Discretize linear segment
    disc(p0, p1, NPOINTS, l);
 
+   // Lift points in linear segment from 2d to 4d
+   status = lift(mu, SEC2, H, NPOINTS, l, l4);
+   if(status)
+   {
+      fprintf(stderr, "main: error lifting point\n");
+      return(1);
+   }
+
    // Make a copy of l in order to not modify it.
    memcpy(l_bak, l, 2*NPOINTS*sizeof(double));
 
    // Iterate the (discretized) linear segment "iter" times by the Poincare map
    for(iter=1;iter<=MAXITER;iter++)
    {
-      status=u_i(mu, H, k, z, a, l, &i);
+      status=u_i(mu, H, k, z, a, l4, &i);
       if(status)
       {
 	 fprintf(stderr, 
@@ -117,10 +123,19 @@ approxint_unst (double mu, double H, int k, double p[2], double v[2],
    *h_2 = (l_bak[2*i+3]-p[1])/v[1];
 
    // update approximate intersection point
-   z[0] = l[2*i];
-   z[1] = l[2*i+1];
+   z[0] = l4[DIM*i];
+   z[1] = l4[DIM*i+2];
    return(0);
 }
+
+// NOTES
+// =====
+// Mental note: An alternative way to check that intersection belongs to
+// primary family may be to check that piter is always increasing. If it was
+// not, this would mean that the manifolds have developed a loop and a
+// secondary intersection has appeared.
+//
+// Obs! parameter lambda_u is not used?
 
 int 
 approxint_st (double mu, double H, int k, double p[2], double v[2],
@@ -132,6 +147,7 @@ approxint_st (double mu, double H, int k, double p[2], double v[2],
 
    // Linear segment approximating local invariant manifold
    double l[2*NPOINTS];
+   double l4[DIM*NPOINTS];  // 4D version of l
 
    // Auxiliary variables
    int status, iter, i;
@@ -152,7 +168,7 @@ approxint_st (double mu, double H, int k, double p[2], double v[2],
    // Compute $p_1$
    p1[0] = p0[0];
    p1[1] = p0[1];
-   status=prtbp_nl_2d_inv(mu,SEC2,H,k,p1,&ti);        // $p_1 = \sixmap^{-1}(p_0)$
+   status=prtbp_nl_2d_inv(mu,SEC2,H,k,p1,&ti);        // $p_1 = P(p_0)$
    if(status)
    {
       fprintf(stderr, "approxint: error computing Poincare map\n");
@@ -162,13 +178,21 @@ approxint_st (double mu, double H, int k, double p[2], double v[2],
    // Discretize linear segment
    disc(p0, p1, NPOINTS, l);
 
+   // Lift points in linear segment from 2d to 4d
+   status = lift(mu, SEC2, H, NPOINTS, l, l4);
+   if(status)
+   {
+      fprintf(stderr, "main: error lifting point\n");
+      return(1);
+   }
+
    // Make a copy of l in order to not modify it.
    memcpy(l_bak, l, 2*NPOINTS*sizeof(double));
 
    // Iterate the (discretized) linear segment "iter" times by the Poincare map
    for(iter=1;iter<=MAXITER;iter++)
    {
-      status=s_i(mu, H, k, z, a, l, &i);
+      status=s_i(mu, H, k, z, a, l4, &i);
       if(status)
       {
 	 fprintf(stderr, 
@@ -189,15 +213,15 @@ approxint_st (double mu, double H, int k, double p[2], double v[2],
    // Manifold intersects $x$ axis.
    *piter = iter;
 
-   // Endpoints of segment s_i: 
+   // Endpoints of segment u_i: 
    // P[2] = (x, p_x) = (l_bak[2i], l_bak[2i+1]),
    // Q[2] = (x, p_x) = (l_bak[2i+2], l_bak[2i+3]).
    *h_1 = (l_bak[2*i+1]-p[1])/v[1];
    *h_2 = (l_bak[2*i+3]-p[1])/v[1];
 
    // update approximate intersection point
-   z[0] = l[2*i];
-   z[1] = l[2*i+1];
+   z[0] = l4[DIM*i];
+   z[1] = l4[DIM*i+2];
    return(0);
 }
 
@@ -236,8 +260,8 @@ approxint_st (double mu, double H, int k, double p[2], double v[2],
 //    energy level).
 // a
 //    axis $p_x=a$ parallel to the $x$ axis.
-// lu
-//    NPOINTS points approximating linear unstable fundamental domain.
+// l4
+//    NPOINTS 4d points approximating linear unstable fundamental domain.
 //    On exit, this vector is modified with a new iteration of the
 //    fundamental domain.
 // idx
@@ -259,7 +283,7 @@ approxint_st (double mu, double H, int k, double p[2], double v[2],
   */ 
 
 int 
-u_i (double mu, double H, int k, double z[2], double a, double *l, int *idx)
+u_i (double mu, double H, int k, double z[2], double a, double *l4, int *idx)
 {
    // Auxiliary variables
    int status, iter, i;
@@ -276,39 +300,25 @@ u_i (double mu, double H, int k, double z[2], double a, double *l, int *idx)
    // Poincare map
    for(i=0;i<NPOINTS;i++)
    {
-	 if(prtbp_nl_2d(mu,SEC2,H,k,l+2*i,&ti))
+	 if(prtbp_nl(mu,SEC2,H,k,l4+DIM*i,&ti))
 	 {
 	    fprintf(stderr, "u_i: error computing Poincare map\n");
 	    return(1);
 	 }
    }
 
-   // We look for the first unst segment U_i that crosses the $x$ axis.
+   // We look for the first unst segment U_i that crosses the $p_x=0$ axis.
    for(i=0; i<(NPOINTS-1); i++)
    {
       // Endpoints of segment U_i: 
-      // P[2] = (x, p_x) = (l[2i], l[2i+1]),
-      // Q[2] = (x, p_x) = (l[2i+2], l[2i+3]).
+      // P[2] = (x, p_x) = (l4[4i], l4[4i+2]),
+      // Q[2] = (x, p_x) = (l4[4(i+1)], l4[4(i+1)+2]).
 
-	   v[0] = l[2*i]-l[2*i+2];
-	   v[1] = l[2*i+1]-l[2*i+3];
+	   v[0] = l4[DIM*i]-l4[DIM*(i+1)];
+	   v[1] = l4[DIM*i+2]-l4[DIM*(i+1)+2];
   
-      // Check that the manifolds are indeed continuous, i.e. we check that
-      // each two consecutive points in the manifold  are close together.
-
-	   // prtbp_nl already takes care of loops, so this check is not needed
-	   /*
-      if( fabs(l[2*i+2]-l[2*i]) + fabs(l[2*i+3]-l[2*i+1]) > MFLD_CONT_TOL )
-      {
-	 // Segment U_i is too large
-	 fprintf(stderr, "u_i: segment has size %e --too large!\n",
-			 fabs(l[2*i+2]-l[2*i]) + fabs(l[2*i+3]-l[2*i+1]));
-	 return(1);
-      }
-	  */
-
-      if(((l[2*i+1]-a)*(l[2*i+3]-a)<=0) && 
-	    l2_norm(v, 2) < 0.02)	// consecutive points are "close enough"
+      if(((l4[DIM*i+2]-a)*(l4[DIM*(i+1)+2]-a)<=0) && 
+	    l2_norm(v, 2) < 0.5)	// consecutive points are "close enough"
 	 break;
    }
 

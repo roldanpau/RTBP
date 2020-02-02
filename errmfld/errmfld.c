@@ -120,16 +120,20 @@ numerical error commited in computing the homoclinic point.
   stable flag indicating unstable manifold (stable=0) or stable manifold
   (stable=1).
 
+  \param[in] h	
+  upper bound on linear displacement along the manifold. This may be positive
+  or negative, depending on the branch that we are using.
+
   \return Returns optimal linear displacement along the manifold $h$.
 */
 
 double h_opt(double mu, section_t sec, double H, int k, double p[2], 
-      double v[2], double lambda, int stable)
+      double v[2], double lambda, int stable, double h)
 {
-   double h;
+   //double h;
    double err, err2;
 
-   h=1.e-2;
+   //h=1.e-2;
    err2 = err_mfld(mu,sec,H,k,p,v,lambda,stable,h);
    do
    {

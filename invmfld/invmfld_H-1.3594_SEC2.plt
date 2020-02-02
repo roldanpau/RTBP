@@ -31,6 +31,15 @@ plot \
 "stmfld_H-1.3594_p1_branch2.res" u ($1):(-$2) w d  lc 1 not, \
 f(x) w l lt 3 lc 2 not
 
+plot \
+"< echo -7.115565698852543e-02 2.457642042989651e+00" w p pt 2 lc 1 not, \
+"< echo -7.115565698852543e-02 -2.457642042989651e+00" w p pt 2 lc 3 not, \
+"unstmfld_H-1.3594_p1.res" w l lc 1 not, \
+"unstmfld_H-1.3594_p1_branch2.res" u ($1):($3) w l  lc 1 not, \
+"stmfld_H-1.3594_p1.res" w l  lc 3 not, \
+"stmfld_H-1.3594_p1_branch2.res" w d  lc 3 not, \
+f(x) w l lt 3 lc 2 not
+
 #"unstmfld_neg.res" w l lt 1 lc 1 not, \
 #"stmfld.res" w l lt 1 lc 3 not, \
 #"stmfld_neg.res" w l lt 1 lc 3 not, \

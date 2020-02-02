@@ -145,15 +145,17 @@ int main( )
    {
       fprintf(stderr, "\nH: %e\n", H);
 
-      // Compute optimal displacement h such that the estimate error commited
-      // in the linear approximation of the manifold is smallest.
-      h = h_opt(mu,SEC2,H,k,p,v,lambda,stable);
+	  h = 1.e-2;	// upper bound on linear displacement
 
       // By default we work with the RIGHT branch of the manifolds.
       // To work with the LEFT branch of the manifolds instead,
       // we just take the negative of the displacement h in the linear
       // approximation.
       if(br==LEFT) h=-h;
+
+      // Compute optimal displacement h such that the estimate error commited
+      // in the linear approximation of the manifold is smallest.
+      h = h_opt(mu,SEC2,H,k,p,v,lambda,stable,h);
 
       // 2. Find an approximate intersection point of the unstable manifold and
       // the $x$ axis (approximate manifold by segments, and check if they

@@ -44,7 +44,7 @@ $(DIRS): $(BUILDDIRS)
 # -e switch.
 $(BUILDDIRS):
 	$(MAKE) -e -C $(@:build-%=%) 
-	sudo -E $(MAKE) -e -C $(@:build-%=%) install
+	$(MAKE) -e -C $(@:build-%=%) install
 
 # build dependencies
 build-taylor: install-rtbp
@@ -71,7 +71,7 @@ build-sec1sec2: install-prtbp
 install: $(INSTALLDIRS)
 
 $(INSTALLDIRS):
-	sudo -E $(MAKE) -e -C $(@:install-%=%) install
+	$(MAKE) -e -C $(@:install-%=%) install
 
 # install dependencies
 install-rtbp : build-rtbp
@@ -119,7 +119,7 @@ $(CLEANDIRS):
 	$(MAKE) -e -C $(@:clean-%=%) clean
 
 cleanlib:
-	sudo rm $(libdir)/libds.a
+	rm $(libdir)/libds.a
 
 .PHONY: $(DIRS)
 .PHONY: $(BUILDDIRS)

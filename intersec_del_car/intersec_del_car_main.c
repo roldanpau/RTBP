@@ -178,9 +178,7 @@ int main( )
    {
       fprintf(stderr, "Processing energy level %le...\n", H);
 
-      // Compute optimal displacement h such that the estimate error commited
-      // in the linear approximation of the manifold is smallest.
-      h = h_opt(mu,SEC2,H,4,p,v,lambda,stable);
+	  h=1.e-2;	// upper bound on linear displacement
 
       // Swap branches, to have RIGHT branch = upper branch in Delaunay, and
       // LEFT branch = lower branch in Delaunay.
@@ -193,6 +191,10 @@ int main( )
       // we just take the negative of the displacement h in the linear
       // approximation.
       if(br==LEFT) h=-h;
+
+      // Compute optimal displacement h such that the estimate error commited
+      // in the linear approximation of the manifold is smallest.
+      h = h_opt(mu,SEC2,H,4,p,v,lambda,stable,h);
 
    // Compute $p_0$
    p0[0] = p[0] + h*v[0];

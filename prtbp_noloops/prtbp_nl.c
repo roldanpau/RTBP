@@ -20,10 +20,10 @@
 
 const double POINCARE_TOL_NL=1.e-16;
 const double TANGENT_TOL_NL=1.e-6;     ///< tolerance for tangent condition
-const double SHORT_TIME_NL=0.001;		///< integration "step" for prtbp_nl
+const double SHORT_TIME_NL=0.01;		///< integration "step" for prtbp_nl
 
-int inter_nl(double mu, section_t sec, double epsabs, double x[DIM], double t0,
-      double t1, double *t);
+int inter_nl(double mu, double epsabs, double x[DIM], double t0, double t1,
+		double *t);
 double inter_nl_f(double t, void *p);
 
 // Parameters to the intersection funtion "inter_nl_f"
@@ -31,8 +31,7 @@ struct inter_nl_f_params;	// Forward declaration
 
 struct inter_nl_f_params
 {
-   double mu; section_t sec;
-   double x; double y; double px; double py;
+   double mu; double x; double y; double px; double py;
 };
 
 /** 
@@ -246,7 +245,7 @@ int prtbp_nl(double mu, section_t sec, int cuts, double x[DIM], double *ti)
 
    // Intersect trajectory starting at point x with section.
    // WARNING! passing 0 instead of 0.0 gives me trouble?!?!
-   if(inter_nl(mu, sec, POINCARE_TOL_NL, x, 0.0, t-t_pre, &t1))
+   if(inter_nl(mu, POINCARE_TOL_NL, x, 0.0, t-t_pre, &t1))
    {
       fprintf(stderr, "prtbp_nl: error intersectig trajectory with section\n");
       return(1);
@@ -328,7 +327,7 @@ int prtbp_nl_inv(double mu, section_t sec, int cuts, double x[DIM], double *ti)
    // Intersect trajectory starting at point x with section.
    // Note that (t-t_pre) < 0.
    // WARNING! passing 0 instead of 0.0 gives me trouble?!?!
-   if(inter_nl(mu, sec, POINCARE_TOL_NL, x, t-t_pre, 0.0, &t1))
+   if(inter_nl(mu, POINCARE_TOL_NL, x, t-t_pre, 0.0, &t1))
    {
       fprintf(stderr, "prtbp_inv: error intersectig trajectory with section\n");
       return(1);
@@ -393,7 +392,7 @@ int prtbp_nl_inv(double mu, section_t sec, int cuts, double x[DIM], double *ti)
 
 const int ERR_MAXITER_NL=1;
 
-int inter_nl(double mu, section_t sec, double epsabs, double x[DIM], double t0,
+int inter_nl(double mu, double epsabs, double x[DIM], double t0,
       double t1, double *t)
 {
     int status;
@@ -402,7 +401,7 @@ int inter_nl(double mu, section_t sec, double epsabs, double x[DIM], double t0,
     gsl_root_fsolver *s;
     double f;
     gsl_function F;
-    struct inter_nl_f_params params = {mu, sec, x[0], x[1], x[2], x[3]};
+    struct inter_nl_f_params params = {mu, x[0], x[1], x[2], x[3]};
     *t=0.0;
   
     F.function = &inter_nl_f;
@@ -449,7 +448,6 @@ double inter_nl_f(double t, void *p)
    int i, status;
    struct inter_nl_f_params *params = (struct inter_nl_f_params *)p;
    double mu = (params->mu);
-   //section_t sec = (params->sec);	// not used
    double x = (params->x); 
    double y = (params->y); 
    double px = (params->px);

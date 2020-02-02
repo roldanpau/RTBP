@@ -52,7 +52,8 @@ double WrapTwoPI(double fAng)
 double l2_norm(double const* x, int n)
 {
 	double accum = 0.;
-	for (int i = 0; i<n; ++i)
+	int i;
+	for (i = 0; i<n; ++i)
 	{
 		accum += x[i] * x[i];
 	}
