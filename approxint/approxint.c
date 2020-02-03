@@ -14,6 +14,7 @@
 #include <lift.h>
 #include <assert.h>
 #include <prtbp_nl_2d_module.h>	// prtbp_nl_2d, prtbp_nl_2d_inv
+#include <prtbp_nl.h>	// prtbp_nl, prtbp_nl_inv
 #include <disc.h>	// disc
 #include <utils_module.h>	// l2_norm
 
@@ -275,13 +276,6 @@ approxint_st (double mu, double H, int k, double p[2], double v[2],
 // success:
 //    1: Problems computing the Poincare iterates.
 
-/** 
-  \note We have problems computing some invariant manifolds, because suddenly
-  they look "broken". To prevent this, we check that the manifolds are indeed
-  continuous, i.e. we check that each two consecutive points in the manifold
-  are close together (closer than MFLD_CONT_TOL).
-  */ 
-
 int 
 u_i (double mu, double H, int k, double z[2], double a, double *l4, int *idx)
 {
@@ -300,7 +294,7 @@ u_i (double mu, double H, int k, double z[2], double a, double *l4, int *idx)
    // Poincare map
    for(i=0;i<NPOINTS;i++)
    {
-	 if(prtbp_nl(mu,SEC2,H,k,l4+DIM*i,&ti))
+	 if(prtbp_nl(mu,SEC2,k,l4+DIM*i,&ti))
 	 {
 	    fprintf(stderr, "u_i: error computing Poincare map\n");
 	    return(1);
@@ -341,57 +335,43 @@ u_i (double mu, double H, int k, double z[2], double a, double *l4, int *idx)
    return(0);
 }
 
-/** 
-  \note We have problems computing some invariant manifolds, because suddenly
-  they look "broken". To prevent this, we check that the manifolds are indeed
-  continuous, i.e. we check that each two consecutive points in the manifold
-  are close together (closer than say MFLD_CONT_TOL).
-  */ 
-
 int 
-s_i (double mu, double H, int k, double z[2], double a, double *l, int *idx)
+s_i (double mu, double H, int k, double z[2], double a, double *l4, int *idx)
 {
    // Auxiliary variables
    int status, iter, i;
    double ti;
    double dx,dy;
 
+   // difference between two consecutive points on the manifold
+   double v[2];	
+
    // Approximate splitting half-angle
-   double alpha2;
+   //double alpha2;
 
    // 3. Iterate the (discretized) linear segment one more time by the
    // Poincare map
    for(i=0;i<NPOINTS;i++)
    {
-	 if(prtbp_nl_2d_inv(mu,SEC2,H,k,l+2*i,&ti))
+	 if(prtbp_nl_inv(mu,SEC2,k,l4+DIM*i,&ti))
 	 {
-	    fprintf(stderr, "s_i: error computing Poincare map\n");
+	    fprintf(stderr, "u_i: error computing Poincare map\n");
 	    return(1);
 	 }
    }
 
-   // We look for the first st segment S_i that crosses the $x$ axis.
+   // We look for the first st segment S_i that crosses the $p_x=0$ axis.
    for(i=0; i<(NPOINTS-1); i++)
    {
       // Endpoints of segment S_i: 
-      // P[2] = (x, p_x) = (l[2i], l[2i+1]),
-      // Q[2] = (x, p_x) = (l[2i+2], l[2i+3]).
+      // P[2] = (x, p_x) = (l4[4i], l4[4i+2]),
+      // Q[2] = (x, p_x) = (l4[4(i+1)], l4[4(i+1)+2]).
 
-      // Check that the manifolds are indeed continuous, i.e. we check that
-      // each two consecutive points in the manifold  are close together.
-
-	   // prtbp_nl already takes care of loops, so this check is not needed
-	   /*
-      if( fabs(l[2*i+2]-l[2*i]) + fabs(l[2*i+3]-l[2*i+1]) > MFLD_CONT_TOL )
-      {
-	 // Segment S_i is too large
-	 fprintf(stderr, "s_i: segment is too large!\n");
-	 return(1);
-      }
-	  */
-
-      if(((l[2*i+1]-a)*(l[2*i+3]-a)<=0) && 
-	    fabs(l[2*i]-z[0]) < 0.02)	// point belongs to primary family
+	   v[0] = l4[DIM*i]-l4[DIM*(i+1)];
+	   v[1] = l4[DIM*i+2]-l4[DIM*(i+1)+2];
+  
+      if(((l4[DIM*i+2]-a)*(l4[DIM*(i+1)+2]-a)<=0) && 
+	    l2_norm(v, 2) < 0.5)	// consecutive points are "close enough"
 	 break;
    }
 
@@ -413,3 +393,4 @@ s_i (double mu, double H, int k, double z[2], double a, double *l, int *idx)
    *idx=i;
    return(0);
 }
+

@@ -21,6 +21,7 @@
 #include <lift.h>
 #include <utils_module.h>	// dblprint
 #include <prtbp_nl_2d_module.h>	// prtbp_nl_2d, prtbp_nl_2d_inv
+#include <prtbp_nl.h>	// prtbp_nl, prtbp_nl_inv
 #include <errmfld.h>
 #include "disc.h"	// disc
 
