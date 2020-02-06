@@ -30,6 +30,8 @@
 #include <prtbp.h>	// prtbp
 #include <hinv.h>
 #include <math.h>	// fabs
+
+#include <prtbp_nl.h>
 #include "dprtbp.h"	// dprtbp
 #include "dprtbp_2d.h"	// ERR_IFT
 
@@ -151,6 +153,52 @@ int dprtbp_2d(double mu, section_t sec, double H, int cuts, double p[2], double 
    // Set the 2d derivative $DP(p)$.
    return(set_dprtbp_2d(dp,f,g,dp2d));
 }
+
+int dprtbp_nl_2d(double mu, section_t sec, int cuts, double x[DIM], 
+		double dp2d[4])
+{
+   double y[DIM];	// y = P(x) image of "x" under Poincare map
+   double f[DIM];	// 4D vectorfield evaluated at "x"
+   double g[DIM];	// 4D vectorfield evaluated at "y"
+
+   // 4D derivative of poincare map
+   double dp[DIMV];
+
+   // Auxiliary variables
+   double ti;
+
+   // Compute derivative of Poincare map.
+   if(dprtbp(mu,sec,cuts,x,dp))
+   {
+      fprintf(stderr, \
+	    "dprtbp_2d: error computing derivative of poincare map\n");
+      return(ERR_DPRTBP);
+   }
+
+   // Vectorfield evaluated at point "x"
+   if(rtbp(0.0,x,f,&mu))
+   {
+      fprintf(stderr, "dprtbp_2d: error computing vectorfield\n");
+      return(ERR_VECTORFIELD);
+   }
+
+   // Vectorfield evaluated at point "y=P(x)"
+   y[0]=x[0]; y[1]=x[1]; y[2]=x[2]; y[3]=x[3];
+   if(prtbp_nl(mu,sec,cuts,y,&ti))
+   {
+      fprintf(stderr, "dprtbp_2d: error computing poincare map\n");
+      return(ERR_POINCARE);
+   }
+   if(rtbp(0.0,y,g,&mu))
+   {
+      fprintf(stderr, "dprtbp_2d: error computing vectorfield");
+      exit(ERR_VECTORFIELD);
+   }
+
+   // Set the 2d derivative $DP(p)$.
+   return(set_dprtbp_2d(dp,f,g,dp2d));
+}
+
 
 // name OF FUNCTION: dprtbp_2d_inv
 // CREDIT: 

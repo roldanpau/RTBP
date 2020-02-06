@@ -54,6 +54,14 @@ int main( )
 {
    double mu, H;
 
+   // "stable" flag specifies wheather we want to compute the unstable (=0)
+   // or stable (=1) manifold
+   int stable;
+
+   // "branch" flag specifies whether we use the LEFT (=0) or RIGHT (=1) branch
+   // of the manifold
+   int branch;
+
    double v_u[2];	// unstable vector
 
    // number of desired iterations by the Poincare map
@@ -66,7 +74,7 @@ int main( )
    int status;
 
    // 1. Input parameters from stdin.
-   if(scanf("%le", &mu) < 1)
+   if(scanf("%le %d %d", &mu, &stable, &branch) < 3)
    {
       perror("main: error reading input");
       exit(EXIT_FAILURE);
@@ -75,13 +83,26 @@ int main( )
    while(scanf("%le %le %le %d %le %le", 
 	    &H, v_u, v_u+1, &n, p_u, p_u+1) == 6)
    {
-      // 2. Find splitting angle
-      status = splitting_st(mu, H, v_u, n, p_u, &angle);
-      if(status)
-      {
+		if(branch==0)	// LEFT branch
+		{
+			v_u[0] = -v_u[0];
+			v_u[1] = -v_u[1];
+		}
+
+		// 2. Find splitting angle
+		if(!stable)
+		{
+		  status = splitting_unst(mu, H, v_u, n, p_u, &angle);
+		}
+		else
+		{
+		  status = splitting_st(mu, H, v_u, n, p_u, &angle);
+		}
+	  if(status)
+	  {
 	 fprintf(stderr, "main: error computing splitting angle");
 	 exit(EXIT_FAILURE);
-      }
+	  }
 
       // 3. Output the following data to stdout:
       //    - splitting angle (in radians)

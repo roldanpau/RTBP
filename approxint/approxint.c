@@ -70,14 +70,14 @@ approxint_unst (double mu, double H, int k, double p[2], double v[2],
    p0[1] = p[1] + h*v[1];
 
    // Compute $p_1$
-   p1[0] = p0[0];
-   p1[1] = p0[1];
-   status=prtbp_nl_2d(mu,SEC2,H,k,p1,&ti);        // $p_1 = P(p_0)$
-   if(status)
-   {
-      fprintf(stderr, "approxint: error computing Poincare map\n");
-      return(1);
-   }
+   p1[0] = p[0] + lambda*h*v[0];
+   p1[1] = p[1] + lambda*h*v[1];
+   //status=prtbp_nl_2d(mu,SEC2,H,k,p1,&ti);        // $p_1 = P(p_0)$
+   //if(status)
+   //{
+   //   fprintf(stderr, "approxint: error computing Poincare map\n");
+   //   return(1);
+   //}
 
    // Discretize linear segment
    disc(p0, p1, NPOINTS, l);
@@ -167,14 +167,14 @@ approxint_st (double mu, double H, int k, double p[2], double v[2],
    p0[1] = p[1] + h*v[1];
 
    // Compute $p_1$
-   p1[0] = p0[0];
-   p1[1] = p0[1];
-   status=prtbp_nl_2d_inv(mu,SEC2,H,k,p1,&ti);        // $p_1 = P(p_0)$
-   if(status)
-   {
-      fprintf(stderr, "approxint: error computing Poincare map\n");
-      return(1);
-   }
+   p1[0] = p[0] + 1.0/lambda*h*v[0];
+   p1[1] = p[1] + 1.0/lambda*h*v[1];
+   //status=prtbp_nl_2d_inv(mu,SEC2,H,k,p1,&ti);        // $p_1 = P(p_0)$
+   //if(status)
+   //{
+   //   fprintf(stderr, "approxint: error computing Poincare map\n");
+   //   return(1);
+   //}
 
    // Discretize linear segment
    disc(p0, p1, NPOINTS, l);

@@ -12,3 +12,5 @@ int set_dprtbp_2d(double dp[DIMV], double f[DIM], double g[DIM], double
 int dprtbp_2d(double mu, section_t sec, double H, int cuts, double p[2], double dp2d[4]);
 int dprtbp_2d_inv(double mu, section_t sec, double H, int cuts, double p[2], 
       double dp2d[4]);
+int dprtbp_nl_2d(double mu, section_t sec, int cuts, double x[DIM], 
+		double dp2d[4]);

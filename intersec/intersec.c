@@ -10,6 +10,8 @@
 #include <gsl/gsl_roots.h>
 
 #include <rtbp.h>	// DIM
+#include <hinv.h>
+#include <prtbp_nl.h>	// prtbp_nl, prtbp_nl_inv
 #include <prtbp_nl_2d_module.h>	// prtbp_nl_2d, prtbp_nl_2d_inv
 
 /// Tolerance (precision) for bisection method 
@@ -108,7 +110,7 @@ print_state (size_t iter, gsl_root_fsolver * s)
   \param[out] tu
   On exit, it contains integration time to reach z from p_u.
   
-  \param[out] z[2]	
+  \param[out] z[DIM]	
   On exit, it contains homoclinic point z = P^n(p_u).
 
   \returns 
@@ -125,7 +127,7 @@ print_state (size_t iter, gsl_root_fsolver * s)
 
 int intersec_unst(double mu, double H, double p[2], double v[2], 
       double lambda, int n, double h1, double h2, double l,
-      double *h, double p_u[2], double *t, double z[2])
+      double *h, double p_u[2], double *t, double z[DIM])
 {
    const gsl_root_fsolver_type *T;
    gsl_root_fsolver *s;
@@ -141,10 +143,20 @@ int intersec_unst(double mu, double H, double p[2], double v[2],
    params.l = l;
    gsl_function f = {&distance_f_unst, &params};
 
+   // auxiliary variables
+   double htmp;
+
    // For some reason, bisection method complains that interval [h1,h2] does
    // not straddle 0, so we try to enlarge it a little bit.
-   h1 *= 0.999;
-   h2 /= 0.999;
+   //h1 *= 0.999;
+   //h2 /= 0.999;
+
+   if(h2<h1)
+   {
+	   htmp = h1;
+	   h1 = h2;
+	   h2 = htmp;
+   }
 
    T = gsl_root_fsolver_brent;
    s = gsl_root_fsolver_alloc (T);
@@ -197,9 +209,17 @@ int intersec_unst(double mu, double H, double p[2], double v[2],
    // - intersection point z = P(p_u),
    // - t: integration time to reach homoclinic point $z$.
 
-   z[0] = p_u[0];
-   z[1] = p_u[1];
-   status=prtbp_nl_2d(mu,SEC2,H,2*n,z,t); 	// $z = P^n(z)$
+   z[0] = p_u[0];	// x
+   z[1] = 0;		// y
+   z[2] = p_u[1];	// px
+   status=hinv(mu,SEC2,H,z);
+   if(status)
+   {
+      fprintf(stderr, "intersec: error lifting point\n");
+      return(1);
+   }
+
+   status=prtbp_nl(mu,SEC2,4*n,z,t); 	// $z = P^n(z)$
    if(status)
       {
 	 fprintf(stderr, "intersec: error computing intersection point\n");
@@ -216,7 +236,7 @@ int intersec_unst(double mu, double H, double p[2], double v[2],
 
 int intersec_st(double mu, double H, double p[2], double v[2], 
       double lambda, int n, double h1, double h2, double l,
-      double *h, double p_s[2], double *t, double z[2])
+      double *h, double p_s[2], double *t, double z[DIM])
 {
    const gsl_root_fsolver_type *T;
    gsl_root_fsolver *s;
@@ -232,10 +252,20 @@ int intersec_st(double mu, double H, double p[2], double v[2],
    params.l = l;
    gsl_function f = {&distance_f_st, &params};
 
+   // auxiliary variables
+   double htmp;
+
    // For some reason, bisection method complains that interval [h1,h2] does
    // not straddle 0, so we try to enlarge it a little bit.
-   h1 *= 0.9;
-   h2 /= 0.9;
+   //h1 *= 0.9;
+   //h2 /= 0.9;
+
+   if(h2<h1)
+   {
+	   htmp = h1;
+	   h1 = h2;
+	   h2 = htmp;
+   }
 
    T = gsl_root_fsolver_brent;
    s = gsl_root_fsolver_alloc (T);
@@ -288,9 +318,17 @@ int intersec_st(double mu, double H, double p[2], double v[2],
    // - intersection point z = P^{-1}(p_s),
    // - t: integration time to reach homoclinic point $z$.
 
-   z[0] = p_s[0];
-   z[1] = p_s[1];
-   status=prtbp_nl_2d_inv(mu,SEC2,H,2*n,z,t); 	// $z = P^{-n}(z)$
+   z[0] = p_s[0];	// x
+   z[1] = 0;		// y
+   z[2] = p_s[1];	// px
+   status=hinv(mu,SEC2,H,z);
+   if(status)
+   {
+      fprintf(stderr, "intersec: error lifting point\n");
+      return(1);
+   }
+
+   status=prtbp_nl_inv(mu,SEC2,4*n,z,t); 	// $z = P^{-n}(z)$
    if(status)
       {
 	 fprintf(stderr, "intersec: error computing intersection point\n");
@@ -348,7 +386,7 @@ distance_f_unst (double h, void *params)
    double n; 			// num. of interations in the unstable dir.
    double l;		// axis line
 
-   double p_u[2]; 		// point in the unstable segment
+   double p_u[DIM]; 		// point in the unstable segment
 
    double t;			// integration time to reach homo. pt.
 
@@ -369,11 +407,18 @@ distance_f_unst (double h, void *params)
    l = ((struct dparams *)params)->l;
 
    // Set up point in the unstable segment
-   p_u[0] = p[0] + h*v[0];
-   p_u[1] = p[1] + h*v[1];
+   p_u[0] = p[0] + h*v[0];	// x
+   p_u[1] = 0;				// y
+   p_u[2] = p[1] + h*v[1];	// px
+   status=hinv(mu,SEC2,H,p_u);
+   if(status)
+   {
+      fprintf(stderr, "intersec: error lifting point\n");
+      return(1);
+   }
 
    // unstable manifold
-   status=prtbp_nl_2d(mu,SEC2,H,2*n,p_u,&t);       // $p_u = P^{n}(p_u)$
+   status=prtbp_nl(mu,SEC2,4*n,p_u,&t);       // $p_u = P^{n}(p_u)$
    if(status)
    {
       fprintf(stderr, "distance_f: error computing Poincare map\n");
@@ -382,7 +427,7 @@ distance_f_unst (double h, void *params)
 
    // Return 
    //    distance(h) = l - p_x(q_u), 
-   return l - p_u[1];
+   return l - p_u[2];
 }
 
 double
@@ -395,7 +440,7 @@ distance_f_st (double h, void *params)
    double n; 			// num. of interations in the stable dir.
    double l; 			// axis line
 
-   double p_s[2]; 		// point in the stable segment
+   double p_s[DIM]; 		// point in the stable segment
 
    double t;			// integration time to reach homo. pt.
 
@@ -416,11 +461,18 @@ distance_f_st (double h, void *params)
    l = ((struct dparams *)params)->l;
 
    // Set up point in the stable segment
-   p_s[0] = p[0] + h*v[0];
-   p_s[1] = p[1] + h*v[1];
+   p_s[0] = p[0] + h*v[0];	// x
+   p_s[1] = 0;				// y
+   p_s[2] = p[1] + h*v[1];	// px
+   status=hinv(mu,SEC2,H,p_s);
+   if(status)
+   {
+      fprintf(stderr, "intersec: error lifting point\n");
+      return(1);
+   }
 
    // stable manifold
-   status=prtbp_nl_2d_inv(mu,SEC2,H,2*n,p_s,&t);       // $p_s = P^{-n}(p_s)$
+   status=prtbp_nl_inv(mu,SEC2,4*n,p_s,&t);       // $p_s = P^{-n}(p_s)$
    if(status)
    {
       fprintf(stderr, "distance_f: error computing Poincare map\n");
@@ -429,5 +481,5 @@ distance_f_st (double h, void *params)
 
    // Return 
    //    distance(h) = l - p_x(q_u), 
-   return l - p_s[1];
+   return l - p_s[2];
 }

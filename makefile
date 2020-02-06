@@ -12,7 +12,7 @@ export bindir = $(exec_prefix)/bin/rtbp
 export includedir = $(prefix)/include/rtbp
 export libdir = $(exec_prefix)/lib/rtbp
 export LDFLAGS = -O3 -L$(HOME)/lib/rtbp
-export CFLAGS = -O3 -I$(HOME)/include/rtbp
+export CFLAGS = -O3 -DNDEBUG -I$(HOME)/include/rtbp
 
 DIRS = rtbp taylor frtbp section hinv cardel prtbp_del_car prtbp utils \
        intersec_del_car prtbp_noloops errmfld invmfld invmfld_del_car \
@@ -23,7 +23,7 @@ DIRS = rtbp taylor frtbp section hinv cardel prtbp_del_car prtbp utils \
        hyper \
        approxint_del_car \
        inner_ell_stoch outer_ell_stoch \
-	   approxint intersec \
+	   approxint intersec splitting\
        trtbp
 
 # the sets of directories to do various things in
@@ -34,6 +34,11 @@ TESTDIRS = $(DIRS:%=test-%)
 
 all: $(BUILDDIRS)
 $(DIRS): $(BUILDDIRS)
+
+# Configure makefile for debug/release builds
+debug: export LDFLAGS = -g -L$(HOME)/lib/rtbp
+debug: export CFLAGS = -g -I$(HOME)/include/rtbp
+debug: $(BUILDDIRS)
 
 # For each subdir, determine the subdir name (by stripping off the 
 # "install-") and do a "make" in that dir.
@@ -107,6 +112,7 @@ install-inner_ell_stoch: build-inner_ell_stoch
 install-outer_ell_stoch: build-outer_ell_stoch
 install-approxint: build-approxint
 install-intersec: build-intersec
+install-splitting: build-splitting
 install-trtbp: build-trtbp
 
 test: $(TESTDIRS) all
