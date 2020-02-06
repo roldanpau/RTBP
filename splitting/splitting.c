@@ -109,13 +109,9 @@ int splitting_st(double mu, double H, double v[2], int n, double p[2],
    // Output splitting angle
    //dot = - w_u[1];
 
-   // For outer separatrix:
    alpha=atan2(-w[0],-w[1]);
-
-   // For inner separatrix:
-   //alpha=atan2(w_u[0],w_u[1]);
    //*angle = 2.0*acos(dot);
-   *angle = 2.0*alpha;
+   *angle = WrapPosNegPI(2.0*alpha);
    return(0);
 }
 
@@ -212,7 +208,7 @@ int tanvec_s(double mu, double H, double v_s[2], int n, double p_s[2],
       double w[2])
 {
    double v[2]; 	// tangent vector to the manifold
-   double x[2];		// point in the manifold
+   double x[DIM];		// point in the manifold
    double dp[4];	// Jacobian of 2d Poincare map
    double norm;		// norm of the tangent vector
 
@@ -222,13 +218,16 @@ int tanvec_s(double mu, double H, double v_s[2], int n, double p_s[2],
 
    v[0]=v_s[0]; 
    v[1]=v_s[1];
-   x[0]=p_s[0]; x[1]=p_s[1];
+   x[0]=p_s[0]; x[1]=0; x[2]=p_s[1];
+   // Compute x[3]=p_y by inverting the Hamiltonian.
+   hinv(mu,SEC2,H,x);
+
    //printf("%le %le %le %le\n", x[0], x[1], v[0], v[1]);
    for(i=0; i<n; i++)
    {
       // x = P^{-i}(p_s)
       // Jacobian of P at x
-      dprtbp_2d_inv(mu,SEC2,H,2,x,dp);
+      dprtbp_nl_2d_inv(mu,SEC2,4,x,dp);
 
       // w = DP*v
       w[0]=dp[0]*v[0]+dp[1]*v[1];
@@ -241,7 +240,7 @@ int tanvec_s(double mu, double H, double v_s[2], int n, double p_s[2],
 
       v[0]=w[0]; v[1]=w[1];
 
-      prtbp_2d_inv(mu,SEC2,H,2,x,&ti);
+      prtbp_nl_inv(mu,SEC2,4,x,&ti);
       //printf("%le %le %le %le\n", x[0], x[1], w[0], w[1]);
    }
    // On exit, we have:

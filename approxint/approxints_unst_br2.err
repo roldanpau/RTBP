@@ -187,7 +187,7 @@ Approximate interval: 65
 H: -1.645400e+00
 Optimal displacement: -1.000000e-04
 Estimated error of manifold: 1.099265e-08
-Approximate interval: 29
+Approximate interval: 28
 
 H: -1.643400e+00
 Optimal displacement: -1.000000e-04
@@ -607,7 +607,7 @@ Approximate interval: 86
 H: -1.477400e+00
 Optimal displacement: -1.000000e-04
 Estimated error of manifold: 1.627869e-08
-Approximate interval: 84
+Approximate interval: 83
 
 H: -1.475400e+00
 Optimal displacement: -1.000000e-04
