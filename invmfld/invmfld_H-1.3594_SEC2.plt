@@ -5,8 +5,8 @@ unset label
 #set label "p1" at first -6.389031137499175e-02, -2.621258562749938e+00
 #set label "z" at first -0.087032, first 0.0
 
-set out "invmfld_H\-1.3594_SEC2.eps"
-set term post eps color
+#set out "invmfld_H\-1.3594_SEC2.eps"
+#set term post eps color
 
 #set title "Invariant manifolds of fixed point"
 set xlabel "x"

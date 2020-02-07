@@ -109,7 +109,7 @@ int splitting_st(double mu, double H, double v[2], int n, double p[2],
    // Output splitting angle
    //dot = - w_u[1];
 
-   alpha=atan2(-w[0],-w[1]);
+   alpha=atan2(w[0],w[1]);
    //*angle = 2.0*acos(dot);
    *angle = WrapPosNegPI(2.0*alpha);
    return(0);

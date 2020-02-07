@@ -231,6 +231,8 @@ int prtbp(double mu, section_t sec, int cuts, double x[DIM], double *ti)
 
 int prtbp_inv(double mu, section_t sec, int cuts, double x[DIM], double *ti)
 {
+	return(prtbp_nl_inv(mu,sec,cuts,x,ti));
+
    double t = 0.0;
    double t_pre;	/* previous value of time t */
    double x_pre[DIM];	/* previous value of point x */

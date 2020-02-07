@@ -1,6 +1,8 @@
 set xlabel "H"
 set ylabel "s"
 
+set key top left
+
 f(x)=0.0
 
 #set out "split.eps"
