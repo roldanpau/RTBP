@@ -3,8 +3,8 @@ unset ylabel
 
 set key t l spacing 3.0
 
-set out "B_12_difference.eps"
-set term postscript enhanced monochrome eps
+#set out "B_12_difference.eps"
+#set term postscript enhanced monochrome eps
 
 # plot the difference Re(B^1) - Re(B^2), Im(B^1) - Im(B^2)
 

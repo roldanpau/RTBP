@@ -1,3 +1,6 @@
+#set out "intersecs.eps"
+#set term post eps color
+
 set key center right
 
 plot \
@@ -5,3 +8,6 @@ plot \
 	"intersecs_unst_br2.res" u 1:5 w l, \
     "intersecs_st_br1.res" u 1:5 w l, \
     "intersecs_st_br2.res" u 1:5 w l
+
+#set term pop
+#set out

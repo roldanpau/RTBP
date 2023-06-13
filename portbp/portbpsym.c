@@ -51,7 +51,7 @@ print_state_fdf (size_t iter, gsl_root_fdfsolver * s, double px)
   symmetric periodic orbit, until a true periodic orbit is obtained.
   We look for an orbit that is symmetric wrt the horizontal axis, with
   initial condition corresponding to cutting the horizontal axis
-  perpendicularly (x,px)=(x,0). After integrating for ONE FULL
+  perpendicularly (x,px)=(x,0). After integrating for HALF a
   period, we request that the orbit cuts again the horizontal axis
   perpendiculary, i.e. with final condition (X,PX)=(X,0).
 

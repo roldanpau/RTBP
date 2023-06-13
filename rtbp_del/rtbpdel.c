@@ -522,6 +522,39 @@ int f0_stoch(const double *x, double *res, void *params)
    return GSL_SUCCESS;
 }
 
+// NOTES:
+//    sepmap_circ is not used anymore, so neither is this function.
+//
+//    We follow the convention to place the large mass (Sun) to the left of
+//    the origin, and the small mass (Jupiter) to the right.
+//    This is opposite to the usual astrodynamics convention.
+//
+//    This function is used by program sepmap_circ, but we put it here because
+//    it is very similar to function rtbp_del.
+//
+// Careful!!! 
+// Marcel's formulas factorize \mu in front of the integral.  We include \mu
+// in the integrand.
+//
+//    We normalize $\ell$ between 0 and 2\pi to compute the vectorfield.
+//    This is done so that function "eccentric" is more precise.
+//
+// CALLED FROM: sepmap_circ::integrand_alpha_pm
+
+int f0_alpha(const double *x, double *res, void *params)
+{
+   // auxiliary variables
+   double mu_dDH_G;	// \mu \partial_G \Delta H_{\circ}
+
+   mu_dDHcirc_G(x,&mu_dDH_G,params);
+
+   // recall that f0 = \mu\partial_G \Delta H_{\circ}(x) / 
+   //   (-1+\mu\partial_G \Delta H_{\circ})(x).
+   *res = mu_dDH_G;		// f0
+
+   return GSL_SUCCESS;
+}
+
 // name OF FUNCTION: re_DHell
 // CREDIT: Marcel Guardia and Pau Roldan
 // PURPOSE:

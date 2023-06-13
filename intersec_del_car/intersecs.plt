@@ -1,5 +1,5 @@
-set out "intersecs.eps"
-set term postscript enhanced color eps
+#set out "intersecs.eps"
+#set term postscript enhanced color eps
 
 set key top left horizontal spacing 4
 
@@ -11,6 +11,8 @@ set ylabel "L"
 #"../approxint_del_car/approxints_unst_SECg_br2.res" u 1:6 w l t "z1m", \
 #"../approxint_del_car/approxints_unst_SECg2_br1.res" u 1:6 w l t "z2p", \
 #"../approxint_del_car/approxints_unst_SECg2_br2.res" u 1:6 w l t "z2m", \
+
+# plot \
 
 plot [:-1.4894] \
 "intersecs_unst_SECg_br1.res" u 1:6 w l t "z1p", \

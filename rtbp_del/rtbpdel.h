@@ -137,6 +137,30 @@ int f0(const double *x, double *res, void *params);
  */
 int f0_stoch(const double *x, double *res, void *params);
 
+/**
+  sepmap_circ is not used anymore, so neither is this function.
+
+  Compute the function f0 for the Stochastic paper (alpha functions associated
+  to the separatrix map).
+
+  The function computes the function f0, defined as
+	\f[ f0(x) = \mu\partial_G \Delta H_{circ}(x) \f]
+  at a point named "x".
+
+  \param[in] x		point in phase space, 4 coordinates: (l,L,g,G).
+  \param[out] res	value of $f0$ (output)
+
+  \param[in] params	
+  pointer to the parameter of the system: the mass ratio "mu".
+
+  \returns status code of the function (success/error)
+
+  \retval GSL_SUCCESS	success.
+
+  \sa \ref integrand_alpha_pm
+ */
+int f0_alpha(const double *x, double *res, void *params);
+
 double re_DHell(const double *x, void *params);
 double im_DHell(const double *x, void *params);
 

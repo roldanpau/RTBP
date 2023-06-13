@@ -51,6 +51,11 @@ print_state (size_t iter, gsl_root_fsolver * s)
 /**
   Intersection of unstable invariant manifold with symmetry line.
 
+  In invmfld, we decide to use the Cartesian Poincare section {y=0, x>0} 
+  (to avoid loops), but then we need 3 coordinates to fully characterize
+  points in the invariant manifolds (x,px,py). Homoclinic points are on 
+  the symmetry line \f$ p_x = 0 \f$.
+
   Consider the 2D map \f$\mathcal{P}: \Sigma_- \to \Sigma_-\f$, which is
   assumed to be reversible with respect to the symmetry line $p_x=0$.
   Let $p$ be a hyperbolic fixed point for \f$\mathcal{P}\f$.

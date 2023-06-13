@@ -2,6 +2,7 @@
 #include <stdio.h>	// fprintf
 #include <rtbp.h>	// DIM
 #include <hinv.h>
+//#include <utils_module.h>	// Testing...
 #include "cardel.h"
 
 int cardel_2d(double mu, double H, double z[2], double Y[DIM])
@@ -24,6 +25,9 @@ int cardel_2d(double mu, double H, double z[2], double Y[DIM])
 	    "cardel_2d: error inverting Hamiltonian equation\n");
       return(1);
    }
+
+   // Testing...
+   //dblprint(X, DIM);
 
    // Obtain Delaunay coordinates
    cardel(X,Y);

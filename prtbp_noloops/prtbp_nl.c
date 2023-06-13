@@ -42,6 +42,10 @@ struct inter_nl_f_params
   \param[in] a 		point, 4 coordinates: (x, y, p_x, p_y).
 
   \returns true the flow is tangent, false if it is not.
+
+  \remark
+  Parameter sec is not used anymore. It is only kept for backwards
+  compatibility.
   */
 bool tangent_nl(section_t sec, double a[DIM])
 {
@@ -70,6 +74,10 @@ bool tangent_nl(section_t sec, double a[DIM])
     or sign = -1 if x<0).
 
   \returns true if point $a$ is exactly on section, false if it is not.
+
+  \remark
+  Parameter sec is not used anymore. It is only kept for backwards
+  compatibility.
   */
 bool onsection_nl (section_t sec, double a[DIM], int *sign)
 {
@@ -106,6 +114,10 @@ bool onsection_nl (section_t sec, double a[DIM], int *sign)
     or sign = -1 if x<0).
 
   \return 		true if trajectory cuts section, false if it does not.
+
+  \remark
+  Parameter sec is not used anymore. It is only kept for backwards
+  compatibility.
   */
 // NOTES
 // =====
@@ -132,6 +144,12 @@ bool crossing_nl (section_t sec, double a[DIM], double b[DIM], int *sign)
 
    return(bcrossing);
 }
+
+/*
+  \remark
+  Parameter sec is not used anymore. It is only kept for backwards
+  compatibility.
+  */
 
 // NOTES
 // =====
@@ -259,6 +277,12 @@ int prtbp_nl(double mu, section_t sec, int cuts, double x[DIM], double *ti)
    (*ti)=t_pre+t1;
    return(0);
 }
+
+/*
+  \remark
+  Parameter sec is not used anymore. It is only kept for backwards
+  compatibility.
+  */
 
 // NOTES
 // =====
