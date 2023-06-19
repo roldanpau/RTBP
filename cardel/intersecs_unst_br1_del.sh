@@ -6,5 +6,5 @@ RESFILE=$FILEROOT.res
 echo "0.95387536e-3" >$DATFILE
 cut -d ' ' -f 1,5 ../intersec/intersecs_unst_br1.res >$TMPFILE
 awk '{print $1, $2, 0}' $TMPFILE >>$DATFILE
-cardels_2d <$DATFILE >$RESFILE
+./cardels_2d <$DATFILE >$RESFILE
 rm $TMPFILE $DATFILE

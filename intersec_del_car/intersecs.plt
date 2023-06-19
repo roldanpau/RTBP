@@ -12,9 +12,9 @@ set ylabel "L"
 #"../approxint_del_car/approxints_unst_SECg2_br1.res" u 1:6 w l t "z2p", \
 #"../approxint_del_car/approxints_unst_SECg2_br2.res" u 1:6 w l t "z2m", \
 
-# plot \
+#plot [:-1.4894] \
 
-plot [:-1.4894] \
+plot \
 "intersecs_unst_SECg_br1.res" u 1:6 w l t "z1p", \
 "intersecs_unst_SECg_br2.res" u 1:6 w l t "z1m", \
 "intersecs_unst_SECg2_br1.res" u 1:6 w l t "z2p", \
