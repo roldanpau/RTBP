@@ -1,8 +1,8 @@
-FILEROOT=intersecs_st_br2_del
+FILEROOT=intersecs_preimgs_unst_br1_del
 DATFILE=$FILEROOT.dat
 TMPFILE=$FILEROOT.tmp
 RESFILE=$FILEROOT.res
 
-cut -d ' ' -f 7-10 ../intersec/intersecs_st_br2.res >$DATFILE
+cut -d ' ' -f 2-5 ../intersec/intersecs_unst_br1.res >$DATFILE
 ./cardel <$DATFILE >$RESFILE
 rm $DATFILE
