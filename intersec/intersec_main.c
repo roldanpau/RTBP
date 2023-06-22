@@ -56,15 +56,6 @@
 
 #include "intersec.h"
 
-void print_pt(double z[2])
-{
-      if(printf("%.15le %.15le ", z[0], z[1])<0)
-      {
-         perror("main: error writting output");
-         exit(EXIT_FAILURE);
-      }
-}
-
 int main( )
 {
    double mu, H;
@@ -88,7 +79,7 @@ int main( )
 
    double h;		// root of distance function
 
-   double p_u[2];	// point in the unstable segment
+   double p_u[DIM];	// point in the unstable segment
    double z[DIM];	// homoclinic point
 
    double t;		// integration time to reach z from p_u/p_s
@@ -133,7 +124,7 @@ int main( )
       //    - integration time t to reach the intersection point z, 
       //    - intersection point z = P(p_u).
       printf("%.15le ", H);
-      dblprint(p_u,2);
+      dblprint(p_u,DIM);
       printf("%.15le ", t);
       dblprint(z,DIM);
       printf("\n");

@@ -14,6 +14,8 @@
 #include <prtbp_nl.h>	// prtbp_nl, prtbp_nl_inv
 #include <prtbp_nl_2d_module.h>	// prtbp_nl_2d, prtbp_nl_2d_inv
 
+#include <utils_module.h>   // dblcpy
+
 /// Tolerance (precision) for bisection method 
 const double BISECT_TOL=1.e-15;
 
@@ -108,7 +110,7 @@ print_state (size_t iter, gsl_root_fsolver * s)
   \param[out] h
   On exit, it contains the true root found by numerical method.
 
-  \param[out] p_u[2]
+  \param[out] p_u[DIM]
   On exit, it contains point in the unstable segment such that
   p_x(P(p_u)) = l.
 
@@ -132,7 +134,7 @@ print_state (size_t iter, gsl_root_fsolver * s)
 
 int intersec_unst(double mu, double H, double p[2], double v[2], 
       double lambda, int n, double h1, double h2, double l,
-      double *h, double p_u[2], double *t, double z[DIM])
+      double *h, double p_u[DIM], double *t, double z[DIM])
 {
    const gsl_root_fsolver_type *T;
    gsl_root_fsolver *s;
@@ -208,22 +210,20 @@ int intersec_unst(double mu, double H, double p[2], double v[2],
    // Compute the following:
    // - point p_u
 
-    p_u[0] = p[0] + (*h) * v[0];
-    p_u[1] = p[1] + (*h) * v[1];
-
-   // - intersection point z = P(p_u),
-   // - t: integration time to reach homoclinic point $z$.
-
-   z[0] = p_u[0];	// x
-   z[1] = 0;		// y
-   z[2] = p_u[1];	// px
-   status=hinv(mu,SEC2,H,z);
+   p_u[0] = p[0] + (*h) * v[0];	// x
+   p_u[1] = 0;					// y
+   p_u[2] = p[1] + (*h) * v[1];	// px
+   status=hinv(mu,SEC2,H,p_u);
    if(status)
    {
       fprintf(stderr, "intersec: error lifting point\n");
       return(1);
    }
 
+   // - intersection point z = P(p_u),
+   // - t: integration time to reach homoclinic point $z$.
+
+   dblcpy(z, p_u, DIM);
    status=prtbp_nl(mu,SEC2,4*n,z,t); 	// $z = P^n(z)$
    if(status)
       {
@@ -241,7 +241,7 @@ int intersec_unst(double mu, double H, double p[2], double v[2],
 
 int intersec_st(double mu, double H, double p[2], double v[2], 
       double lambda, int n, double h1, double h2, double l,
-      double *h, double p_s[2], double *t, double z[DIM])
+      double *h, double p_s[DIM], double *t, double z[DIM])
 {
    const gsl_root_fsolver_type *T;
    gsl_root_fsolver *s;
@@ -317,22 +317,20 @@ int intersec_st(double mu, double H, double p[2], double v[2],
    // Compute the following:
    // - point p_s
 
-    p_s[0] = p[0] + (*h) * v[0];
-    p_s[1] = p[1] + (*h) * v[1];
-
-   // - intersection point z = P^{-1}(p_s),
-   // - t: integration time to reach homoclinic point $z$.
-
-   z[0] = p_s[0];	// x
-   z[1] = 0;		// y
-   z[2] = p_s[1];	// px
-   status=hinv(mu,SEC2,H,z);
+   p_s[0] = p[0] + (*h) * v[0];	// x
+   p_s[1] = 0;					// y
+   p_s[2] = p[1] + (*h) * v[1];	// px
+   status=hinv(mu,SEC2,H,p_s);
    if(status)
    {
       fprintf(stderr, "intersec: error lifting point\n");
       return(1);
    }
 
+   // - intersection point z = P^{-1}(p_s),
+   // - t: integration time to reach homoclinic point $z$.
+
+   dblcpy(z, p_s, DIM);
    status=prtbp_nl_inv(mu,SEC2,4*n,z,t); 	// $z = P^{-n}(z)$
    if(status)
       {
