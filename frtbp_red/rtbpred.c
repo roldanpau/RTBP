@@ -55,7 +55,7 @@ int rtbp_red_l(double s, const double *x, double *y, void *params)
    // autonomous, but probably it matters for the elliptic case.
    if(rtbp_del(s,x,y,params))
    {
-      fprintf(stderr, "rtbp_red: error computing non-reduced vector field\n");
+      fprintf(stderr, "rtbp_red_l: error computing non-reduced vector field\n");
       return 1;
    }
    // Reduced vector field is simply the non-reduced one scaled by the $\dot
@@ -63,7 +63,7 @@ int rtbp_red_l(double s, const double *x, double *y, void *params)
    dl = y[0];
    if(fabs(dl)<1.e-15)
    {
-       fprintf(stderr, "rtbp_red: Singularity of the vectorfield!\n");
+       fprintf(stderr, "rtbp_red_l: Singularity of the vectorfield!\n");
        return 2;
    }
 
@@ -88,15 +88,15 @@ int rtbp_red_g(double s, const double *x, double *y, void *params)
    // autonomous, but probably it matters for the elliptic case.
    if(rtbp_del(s,x,y,params))
    {
-      fprintf(stderr, "rtbp_red: error computing non-reduced vector field\n");
+      fprintf(stderr, "rtbp_red_g: error computing non-reduced vector field\n");
       return 1;
    }
    // Reduced vector field is simply the non-reduced one scaled by the $\dot
    // g$ component.
    dg = y[2];
-   if(fabs(dg)<1.e-15)
+   if(fabs(dg)<1.e-10)
    {
-       fprintf(stderr, "rtbp_red: Singularity of the vectorfield!\n");
+       fprintf(stderr, "rtbp_red_g: Singularity of the vectorfield!\n");
        return 2;
    }
 

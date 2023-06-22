@@ -12,10 +12,9 @@
 
 #include <gsl/gsl_integration.h>	// gsl_integration_qags
 #include <utils_module.h>           // dblcpy
-#include <section.h>
 #include <rtbpdel.h>            	// f0_stoch
 #include <frtbpred.h>
-#include <prtbp_del_car.h>
+#include <frtbp.h>
 
 // We request a absolute error of 0 and a relative error $10^{-13}$.
 
@@ -71,19 +70,20 @@ double integrand_omega_pm(double s, void *params)
 }
 
 
-// NOTE: Instead of P^{-(N-i)}(z^s), we could have used
-// frtbp_red(-2(N-i)\pi, z^s). They should give the same point.
+// NOTE: Instead of P^{-(N-i)}(z^s), we use frtbp_red(-2(N-i)\pi, z^s). They
+// should give the same point.
 
-int omega_pos_stoch(double mu, section_t sec, double x[DIM], double x_car[DIM],
-		int N, double T0, double *omega) 
+int omega_pos_stoch(double mu, double x[DIM], int N, double T0, double *omega) 
 {
    double result, error;
 
    // auxiliary variables
-   int i,j;
+   int i, status;
    double xi[DIM];		    /* point \xi=P^{-(N-i)}(z^s) in Delaunay */
-   double xi_car[DIM];		/* point \xi=P^{-(N-i)}(z^s) in Cartesian */
+   double xi_car[DIM];	    /* point \xi=P^{-(N-i)}(z^s) in Cartesian */
    double t;
+
+   double T = 2*M_PI+T0;
 
    assert(N>0);
 
@@ -103,16 +103,16 @@ int omega_pos_stoch(double mu, section_t sec, double x[DIM], double x_car[DIM],
    {
       // $\gamma_i(s)$ is the homoclinic trajectory that starts at the
       // point \xi = P^{-(N-i)}(z^s) = P^{i}(z). 
-       dblcpy(xi,x,DIM);
-       dblcpy(xi_car,x_car,DIM);
+       dblcpy(xi_car,x,DIM);
 
-      if(prtbp_del_car_inv(mu,sec,(N-i),xi,xi_car,&t))
-      {
-         fprintf(stderr, 
-                 "omega_pos_stoch: error computing point P^{-%d}(z^s)\n", 
-                 N-i);
+	   status = frtbp(mu,-(N-i)*T,xi_car);
+	   if(status)
+	   {
+         fprintf(stderr, "omega_pos_stoch: error computing point P^{-%d}(z^s)\n",
+               N-i);
          return(1);
-      }
+	   }
+	   cardel(xi_car,xi);
 
       dblcpy(params.x, xi, DIM);
 
@@ -129,19 +129,20 @@ int omega_pos_stoch(double mu, section_t sec, double x[DIM], double x_car[DIM],
    return 0;
 }
 
-// NOTE: Instead of P^{N-i}(z^u), we could have used
-// frtbp_red(2(N-i)\pi, z^u). They should give the same point.
+// NOTE: Instead of P^{N-i}(z^u), we use frtbp_red(2(N-i)\pi, z^u). They should
+// give the same point.
 
-int omega_neg_stoch(double mu, section_t sec, double x[DIM], double x_car[DIM], 
-		int N, double T0, double *omega)
+int omega_neg_stoch(double mu, double x[DIM], int N, double T0, double *omega)
 {
    double result, error;
 
    // auxiliary variables
-   int i,j;
-   double xi[DIM];		    /* point \xi=P^{N-i}(z^u) */
-   double xi_car[DIM];		/* point \xi=P^{N-i}(z^u) */
+   int i, status;
+   double xi[DIM];		    /* point \xi=P^{N-i}(z^u) in Delaunay */
+   double xi_car[DIM];	    /* point \xi=P^{N-i}(z^u) in Cartesian */
    double t;
+
+   double T = 2*M_PI+T0;
 
    assert(N>0);
 
@@ -161,15 +162,17 @@ int omega_neg_stoch(double mu, section_t sec, double x[DIM], double x_car[DIM],
    {
       // $\gamma_i(s)$ is the homoclinic trajectory that starts at the
       // point \xi = P^{N-i}(z^u) = P^{-i}(z). 
-       dblcpy(xi,x,DIM);
-       dblcpy(xi_car,x_car,DIM);
+       dblcpy(xi_car,x,DIM);
 
-      if(prtbp_del_car(mu,sec,(N-i),xi,xi_car,&t))
-      {
+	   // Compute x = \lambda(s)
+	   status = frtbp(mu,(N-i)*T,xi_car);
+	   if(status)
+	   {
          fprintf(stderr, "omega_neg_stoch: error computing point P^{%d}(z^u)\n",
-               (N-i));
+               N-i);
          return(1);
-      }
+	   }
+	   cardel(xi_car,xi);
 
       dblcpy(params.x, xi, DIM);
 

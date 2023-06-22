@@ -15,7 +15,8 @@
 #include <assert.h>
 #include <math.h>   // M_PI
 
-#include <section.h>
+#include <frtbp.h>
+#include <approxint.h>	// stability_t
 #include "outer_circ_stoch_module.h"
 
 /**
@@ -28,8 +29,8 @@
   It reads the following input from stdin:
   - mu
      mass parameter for the RTBP
-  - sec
-     Poincare section
+  - stability
+     unst/st flag
 
   And a sequence of lines:
   - T
@@ -56,15 +57,17 @@
 int main( )
 {
    double mu;
-   section_t sec;		/* Poincare section */
+
+   // "stability" flag specifies wheather we want to use the unstable branch
+   // (=0) or stable branch (=1) of the manifold
+   int stability;
 
    double zu[DIM];	    /* preimage of primary homoclinic point */
-   double zu_car[DIM];	/* preimage of primary homoclinic point (Cartesian) */
 
    //double zs[DIM];	    /* preimage of primary homoclinic point */
    //double zs_car[DIM];	/* preimage of primary homoclinic point (Cartesian) */
 
-   //double w_pos;	/* value of integral \omega_+^* */
+   double w_pos;	/* value of integral \omega_+^* */
    double w_neg;	/* value of integral \omega_-^* */
    double w_out;	/* value of integral \omega_{out}^* */
 
@@ -75,71 +78,119 @@ int main( )
       along homoclinic orbit (length of integration) */
    int M;	
 
+   double t;	/* integration time from z_u to z */
+
    // auxiliary vars
-   char section_str[10];    // holds input string "SEC1", "SEC2" etc
+   int status;
+   stability_t st;
+   double t_aux;
 
    // Input parameters from stdin.
-   if(scanf("%le %s", &mu, section_str)<2)
+   if(scanf("%le %d", &mu, &stability)<1)
    {
       perror("main: error reading input");
       exit(EXIT_FAILURE);
    }
 
-   if (strcmp(section_str,"SEC1") == 0)
-      sec = SEC1;
-   else if (strcmp(section_str,"SEC2") == 0)
-      sec = SEC2;
-   else if (strcmp(section_str,"SECg") == 0)
-      sec = SECg;
-   else if (strcmp(section_str,"SECg2") == 0)
-      sec = SECg2;
-   else
+   st = (stability==0 ? UNSTABLE : STABLE);
+
+   // Input period T, zu, time to reach hom. pt. z, from stdin.
+   while(scanf("%le %le %le %le %le %le", &T, zu, zu+1, zu+2, zu+3, &t) == 6)
    {
-      perror("main: error reading section string");
-      exit(EXIT_FAILURE);
-   }
+	  // TESTING...
+	  //T0 = (T-2*M_PI)/mu;
+	  T0 = T-2*M_PI;
 
-   // Input period T, zu, number of poincare iterates M, from stdin.
-   while(scanf("%le %le %le %le %le %le %le %le %le %d", &T, 
-               zu, zu+1, zu+2, zu+3, 
-               zu_car, zu_car+1, zu_car+2, zu_car+3, 
-               &M) == 10)
-   {
-       // Instead of fetching zs from intersecs_st_SECg_br1.res, 
-       // we set it to the symmetric point of zu. 
-       // This is done so that omega_neg and omega_pos are actually symmetric.
-       /*
-       dblcpy(zs,zu,DIM);
-       zs[0] = -zu[0];
-       zs[2] = -zu[2];
+	   if(st==UNSTABLE)
+	   {
+		   // Instead of fetching zs from intersecs_st_SECg_br1.res, 
+		   // we set it to the symmetric point of zu. 
+		   // This is done so that omega_neg and omega_pos are actually symmetric.
+		   /*
+		   dblcpy(zs,zu,DIM);
+		   zs[0] = -zu[0];
+		   zs[2] = -zu[2];
 
-       dblcpy(zs_car,zu_car,DIM);
-       zs_car[1] = -zu_car[1];
-       zs_car[2] = -zu_car[2];
-       */
+		   dblcpy(zs_car,zu_car,DIM);
+		   zs_car[1] = -zu_car[1];
+		   zs_car[2] = -zu_car[2];
+		   */
 
-      // TESTING...
-      //T0 = (T-2*M_PI)/mu;
-      T0 = T-2*M_PI;
+		  // Translate zu to an exact preimage of z by the Poincare map satisfying
+		  //    flow_red_g(2\pi*M, zu) = z.
+		  t_aux = fmod(t,T);
+		  M = t/T;
 
-      // Compute $\omega_-^*$, integrating along $z(s) = \gamma^*(s)$.
-      // Note: since the homoclinic point is at the symmetry axis, we have
-      // \omega_-^* = -\omega_+^*.
+		   status=frtbp(mu,t_aux,zu);
+		   if(status)
+		   {
+			  fprintf(stderr, "main: error integrating trajectory");
+			  exit(EXIT_FAILURE);
+		   }
 
-      omega_neg_stoch(mu, sec, zu, zu_car, M, T0, &w_neg);
+		  // Compute $\omega_-^*$, integrating along $z(s) = \gamma^*(s)$.
+		  // Note: since the homoclinic point is at the symmetry axis, we have
+		  // \omega_-^* = -\omega_+^*.
+		  omega_neg_stoch(mu, zu, M, T0, &w_neg);
 
-      // Compute $\omega_+^*$, integrating along $z(s) = \gamma^*(s)$.
-      // Note: since the homoclinic point is at the symmetry axis, we should
-      // have \omega_-^* = -\omega_+^*.
+		  // Compute $\omega_+^*$, integrating along $z(s) = \gamma^*(s)$.
+		  // Note: since the homoclinic point is at the symmetry axis, we should
+		  // have \omega_-^* = -\omega_+^*.
 
-      //omega_pos_stoch(mu, sec, zs, zs_car, M, T0, &w_pos);
+		  //omega_pos_stoch(mu, zs, M, T0, &w_pos);
 
-      //w_out = w_pos-w_neg;
+		  //w_out = w_pos-w_neg;
 
-      // Output result to stdout.
-      printf("%.15e\n", w_neg);
-      //printf(" %.15e\n", w_pos);
-      fflush(NULL);
+		  // Output result to stdout.
+		  printf("%.15e\n", w_neg);
+		  //printf(" %.15e\n", w_pos);
+		  fflush(NULL);
+	   }
+	   else // st==STABLE
+	   {
+		   // Instead of fetching zs from intersecs_st_SECg_br1.res, 
+		   // we set it to the symmetric point of zu. 
+		   // This is done so that omega_neg and omega_pos are actually symmetric.
+		   /*
+		   dblcpy(zs,zu,DIM);
+		   zs[0] = -zu[0];
+		   zs[2] = -zu[2];
+
+		   dblcpy(zs_car,zu_car,DIM);
+		   zs_car[1] = -zu_car[1];
+		   zs_car[2] = -zu_car[2];
+		   */
+
+		  // Translate zs to an exact preimage of z by the Poincare map
+		  // satisfying flow_red_g(-2\pi*M, zs) = z.
+		  t_aux = fmod(t,T);	// t_aux should be negative
+		  M = t/T;				// M should be negative
+
+		   status=frtbp(mu,t_aux,zu);
+		   if(status)
+		   {
+			  fprintf(stderr, "main: error integrating trajectory");
+			  exit(EXIT_FAILURE);
+		   }
+
+		  // Compute $\omega_+^*$, integrating along $z(s) = \gamma^*(s)$.
+		  // Note: since the homoclinic point is at the symmetry axis, we have
+		  // \omega_-^* = -\omega_+^*.
+		  omega_pos_stoch(mu, zu, -M, T0, &w_pos);
+
+		  // Compute $\omega_+^*$, integrating along $z(s) = \gamma^*(s)$.
+		  // Note: since the homoclinic point is at the symmetry axis, we should
+		  // have \omega_-^* = -\omega_+^*.
+
+		  //omega_pos_stoch(mu, zs, M, T0, &w_pos);
+
+		  //w_out = w_pos-w_neg;
+
+		  // Output result to stdout.
+		  printf("%.15e\n", w_pos);
+		  //printf(" %.15e\n", w_pos);
+		  fflush(NULL);
+	   }
    }
    exit(EXIT_SUCCESS);
 }

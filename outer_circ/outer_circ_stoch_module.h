@@ -6,7 +6,6 @@
 #define OUTER_CIRC_STOCH_MODULE_H_INCLUDED
 
 #include <rtbp.h>   // DIM
-#include <section.h>
 
 /**
   Given an energy level \f$H\f$, compute \f$\omega_-^j(H)\f$.
@@ -47,8 +46,6 @@
   This is computed using numerical integration.
  
   \param[in] mu 	mass parameter for the RTBP
-  \param[in] sec    Poincare section: sec={SECg,SECg2}
-
   \param[in] x    [DIM]	x=(l,L,g,G),     point z^u, on the section g=0.
   \param[in] x_car[DIM]	x=(x,y,p_x,p_y), point z^u, on the section g=0.
 
@@ -66,8 +63,7 @@
   a non-zero error code to indicate an error and 0 to indicate success.
  */
 
-int omega_neg_stoch(double mu, section_t sec, double x[DIM], double x_car[DIM], 
-        int N, double T0, double *omega);
+int omega_neg_stoch(double mu, double x[DIM], int N, double T0, double *omega);
 
 /**
   Given an energy level \f$H\f$, compute \f$\omega_+^j(H)\f$.
@@ -108,8 +104,6 @@ int omega_neg_stoch(double mu, section_t sec, double x[DIM], double x_car[DIM],
   This is computed using numerical integration.
  
   \param[in] mu 	mass parameter for the RTBP
-  \param[in] sec    Poincare section: sec={SECg,SECg2}
-
   \param[in] x    [DIM]	x=(l,L,g,G),     point z^s, on the section g=0.
   \param[in] x_car[DIM]	x=(x,y,p_x,p_y), point z^s, on the section g=0.
 
@@ -127,8 +121,7 @@ int omega_neg_stoch(double mu, section_t sec, double x[DIM], double x_car[DIM],
   a non-zero error code to indicate an error and 0 to indicate success.
  */
 
-int omega_pos_stoch(double mu, section_t sec, double x[DIM], double x_car[DIM],
-		int N, double T0, double *omega);
+int omega_pos_stoch(double mu, double x[DIM], int N, double T0, double *omega);
 
 #endif // OUTER_CIRC_STOCH_MODULE_H_INCLUDED
 

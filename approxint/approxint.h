@@ -1,9 +1,14 @@
 /*! \file
     \brief Approximate Intersection of Invariant Manifolds
-
-    $Author: roldan $
-    $Date: 2013-03-26 22:10:03 $
 */
+
+#ifndef APPROXINT_H_INCLUDED
+#define APPROXINT_H_INCLUDED
+
+/// Unstable/stable flag, for when we want to distinguish between the two
+/// cases (unstable=0, stable=1). For example, integrating along the
+/// unstable/stable manifolds.
+typedef enum {UNSTABLE, STABLE} stability_t;
 
 /** 
   Approximate intersection of unstable invariant manifold with symmetry line.
@@ -99,3 +104,5 @@ int
 approxint_st (double mu, double H, int k, double p[2], double v[2],
       double lambda, double h, double a, 
       int *piter, double *h_1, double *h_2, double z[2]);
+
+#endif // APPROXINT_H_INCLUDED

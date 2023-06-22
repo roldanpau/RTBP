@@ -1,0 +1,7 @@
+0.95387536e-3 427.25660088821188042784
+2.5484632122062258 0.69223752115522541 
+-2.9517255322565279 0.67856616876363041
+0 0
+
+# Integrate homoclinic orbit H=-1.7194 for time 68*2\pi, with initial condition
+# z_u = (l,L,g,G,t=0,I=0). It should return exatly the homoclinic point z.

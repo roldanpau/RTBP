@@ -272,7 +272,7 @@ int rtbp_del(double t, const double *x, double *y, void *params)
    y[3] = -dR_g;		// \dot G
 
    // DEBUG:
-   // fprintf(stderr, "%e %e %e %e %e %e\n", t, y[0], y[2], l, g, r);
+   //fprintf(stderr, "%e %e %e %e %e %e\n", t, y[0], y[2], l, g, r);
    
    return GSL_SUCCESS;
 }

@@ -18,7 +18,7 @@
 #include <assert.h>
 #include <math.h>   // M_PI
 
-#include <section.h>
+#include <frtbp.h>
 #include "outer_circ_stoch_module.h"
 
 /**
@@ -31,8 +31,6 @@
   It reads the following input from stdin:
   - mu
      mass parameter for the RTBP
-  - sec
-     Poincare section
 
   And a sequence of lines:
   - T
@@ -58,10 +56,10 @@
 int main( )
 {
    double mu;
-   section_t sec;		/* Poincare section */
 
    double zu[DIM];	    /* preimage of primary homoclinic point */
-   double zu_car[DIM];	/* preimage of primary homoclinic point (Cartesian) */
+
+   double t;		/* time to reach z from z_u */
 
    double w_pos;	/* value of integral \omega_+^* */
    double w_neg;	/* value of integral \omega_-^* */
@@ -75,57 +73,49 @@ int main( )
    int M;	
 
    // auxiliary vars
-   char section_str[10];    // holds input string "SEC1", "SEC2" etc
-
-   int i;
-   double t;
+   int i, status;
    double w_neg_test;	/* value of integral \omega_-^* */
 
    // Input parameters from stdin.
-   if(scanf("%le %s", &mu, section_str)<2)
+   if(scanf("%le", &mu)<1)
    {
       perror("main: error reading input");
       exit(EXIT_FAILURE);
    }
 
-   if (strcmp(section_str,"SEC1") == 0)
-      sec = SEC1;
-   else if (strcmp(section_str,"SEC2") == 0)
-      sec = SEC2;
-   else if (strcmp(section_str,"SECg") == 0)
-      sec = SECg;
-   else if (strcmp(section_str,"SECg2") == 0)
-      sec = SECg2;
-   else
-   {
-      perror("main: error reading section string");
-      exit(EXIT_FAILURE);
-   }
-
-   // Input period T, zu, number of poincare iterates M, from stdin.
-   while(scanf("%le %le %le %le %le %le %le %le %le %d", &T, 
-               zu, zu+1, zu+2, zu+3, 
-               zu_car, zu_car+1, zu_car+2, zu_car+3, 
-               &M) == 10)
+   // Input period T, zu (Cartesian), integration time, from stdin.
+   while(scanf("%le %le %le %le %le %le", &T, zu, zu+1, zu+2, zu+3, &t) == 6)
    {
       // TESTING...
       //T0 = (T-2*M_PI)/mu;
       T0 = T-2*M_PI;
 
-      //omega_pos(mu, sec, zu, M, T0, &w_pos);
+	  // Translate zu to an exact preimage of z by the Poincare map satisfying
+	  //    frtbp(M*T, zu) = z.
+	  double t_aux = fmod(t,T);
+	   status=frtbp(mu,t_aux,zu);
+	   if(status)
+	   {
+		  fprintf(stderr, "main: error integrating trajectory");
+		  exit(EXIT_FAILURE);
+	   }
+
+      //omega_pos(mu, zu, M, T0, &w_pos);
 
       // Compute $\omega_-^*$, integrating along $z(s) = \gamma^*(s)$.
       // Note: since the homoclinic point is at the symmetry axis, we have
       // \omega_-^* = -\omega_+^*.
       //w_neg = -w_pos;
 
+      M = t/T;
+
       // TESTING
 	  for(i=1; i<=M; i++) 
 	  {
-		  omega_neg_stoch(mu, sec, zu, zu_car, i, T0, &w_neg_test);
+		  omega_neg_stoch(mu, zu, i, T0, &w_neg_test);
 		  printf("%d %.15e \n", i, w_neg_test);
 
-		  //omega_neg_stoch(mu, sec, zu, zu_car, M, T0, &w_neg);
+		  //omega_neg_stoch(mu, zu, zu_car, M, T0, &w_neg);
 
 		  //w_out = w_pos-w_neg;
 
