@@ -1,0 +1,7 @@
+0.95387536e-3
+4.293499842299813e+02
+-9.963064882518237e-01 6.952605230801593e-01 -1.774119138746003e+00 6.817277408468937e-01
+
+# Compute phi^t(z_u) and make sure that phi^t(z_u) = z 
+# for a homoclinic orbit of energy H=-1.7194 that is 
+# on the unst_br1 branch.
