@@ -7,7 +7,7 @@ datfile=$NAMEROOT.dat
 resfile=$NAMEROOT.res
 errfile=$NAMEROOT.err
 
-echo "0.95387536e-3" >$datfile   # mu
+echo "0.95387536e-3 0" >$datfile   # mu, UNSTABLE
 
 cut -d ' ' -f 2 ../portbp/porbits.res > temp1    # period T
 

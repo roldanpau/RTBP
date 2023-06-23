@@ -1,16 +1,13 @@
 # Compute integral $\omega_neg^f$ related to outer map for one of the
 # homoclinic channels
 
-# REMEMBER TO CHANGE omega_pos_stoch -> omega_neg_stoch IN FILE
-# outer_circ_stoch.c BEFORE CALLING THIS FILE!!!
-
 NAMEROOT=omega_neg_unst_br1
 
 datfile=$NAMEROOT.dat
 resfile=$NAMEROOT.res
 errfile=$NAMEROOT.err
 
-echo "0.95387536e-3" >$datfile   # mu
+echo "0.95387536e-3 0" >$datfile   # mu, UNSTABLE
 
 cut -d ' ' -f 2 ../portbp/porbits.res > temp1    # period T
 
