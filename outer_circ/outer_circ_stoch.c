@@ -86,7 +86,7 @@ int main( )
    double t_aux;
 
    // Input parameters from stdin.
-   if(scanf("%le %d", &mu, &stability)<1)
+   if(scanf("%le %d", &mu, &stability)<2)
    {
       perror("main: error reading input");
       exit(EXIT_FAILURE);
