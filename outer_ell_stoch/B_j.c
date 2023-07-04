@@ -50,14 +50,19 @@
 #include <stdio.h>
 #include <stdlib.h>     // EXIT_SUCCESS, EXIT_FAILURE
 #include <math.h>	// sin, cos
-
-const double mu=0.95387536e-3;
+#include <approxint.h>  // stability_t
 
 int main( )
 {
+   // "stability" flag specifies wheather we want to use the unstable branch
+   // (=0) or stable branch (=1) of the manifold
+   int stability;
+
+   double mu;
+
 //    H, T, \Im(B^+), \Re(B_{in}), \Im(B_{in}), \omega_neg
    double H, T;
-   double imBpos, reBin, imBin, omega_neg;
+   double imBpos, reBin, imBin, omega;
 
    double nu;   // \mu\nu = T (where T = period mod 2\pi)
 
@@ -69,12 +74,30 @@ int main( )
 
    // auxiliary variables
    double a, b, c, d;
+   stability_t st;
+
+   // Input parameters from stdin: mass mu, stability flag
+   if(scanf("%le %d", &mu, &stability) < 2)
+   {
+      perror("main: error reading input");
+      exit(EXIT_FAILURE);
+   }
+
+   st = (stability==0 ? UNSTABLE : STABLE);
 
    // Process input table, where each line corresponds to an energy level.
    while(scanf("%le %le %le %le %le %le",
-            &H, &T, &imBpos, &reBin, &imBin, &omega_neg) == 6)
+            &H, &T, &imBpos, &reBin, &imBin, &omega) == 6)
    {
-      omega_j = -2*omega_neg;
+	   if (st == UNSTABLE)	// omega = omega_neg
+	   {
+		  omega_j = -2*omega;
+	   }
+	   else if (st == STABLE)	// omega = omega_pos
+	   {
+		  omega_j = 2*omega;
+	   }
+
       nu = fmod(T, 2*M_PI) / mu;
 
       a = 1-cos(omega_j);

@@ -7,11 +7,10 @@ set key t l spacing 3.0
 #set term postscript enhanced monochrome eps
 
 plot  \
-"B_out_1.res" u 1:2 w l t "reB1p", \
-"B_out_1.res" u 1:3 w l t "imB1p", \
-"B_out_2.res" u 1:2 w l t "reB2p", \
-"B_out_2.res" u 1:3 w l t "imB2p"
-
+"B_1.res" u 1:4 w l t "imBout1", \
+"B_2.res" u 1:4 w l t "imBout2", \
+"B_3.res" u 1:4 w l t "imBout3", \
+"B_4.res" u 1:4 w l t "imBout4"
 
 set term pop
 set out

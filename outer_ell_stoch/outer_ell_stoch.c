@@ -57,7 +57,7 @@
 #include <inner_ell_stoch.h>	// re_f_integrand_stoch, im_f_integrand_stoch
 
 // 1.e-6 is too much
-const double RELERROR = 1.e-8;
+const double RELERROR = 1.e-5;
 const size_t NINTERVALS = 1000;
 
 struct iparams_outer_ell_stoch
