@@ -13,7 +13,8 @@ UNSTRESULTS =
 
 STRESULTS = 
 
-PROGS = prtbpdel prtbpdel_inv \
+# prtbpdel_inv has been integrated in prtbpdel
+PROGS = prtbpdel \
 	prtbpdel_2d prtbpdel_2d_inv \
 	sec1sec2del sec1sec2del_inv
 
@@ -31,10 +32,6 @@ results : $(PROGS) $(RESULTS)
 prtbpdel : prtbpdel_main.o prtbpdel.o
 
 prtbpdel_main.o : $(includedir)/rtbp.h prtbpdel.h
-
-prtbpdel_inv : prtbpdel_inv.o prtbpdel.o
-
-prtbpdel_inv.o : $(includedir)/rtbp.h prtbpdel.h
 
 prtbpdel.o : $(includedir)/frtbpdel.h $(includedir)/rtbp.h
 
@@ -66,7 +63,6 @@ stmfld_it0_neg.res: stmfld_it0_neg.dat prtbpdel_inv
 clean : 
 	rm $(PROGS) \
 	   prtbpdel_main.o prtbpdel.o \
-	   prtbpdel_inv.o \
 	   prtbpdel_2d_main.o prtbpdel_2d.o \
 	   prtbpdel_2d_inv.o \
            sec1sec2del.o \

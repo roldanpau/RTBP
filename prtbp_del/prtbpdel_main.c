@@ -20,13 +20,15 @@
   	- sec = SEC1 means section {l=0}
   	- sec = SEC2 means section {l=pi}.
   	- sec = SECg means section {g=0}.
+  	- sec = SECg2 means section {g=pi}.
   This program computes the n-th iterate of the Poincare map, $P^n(x)$.
+  NOTE: n<0 means use inverse Poincare map!
  
   1. Input params (stdin):
 
   - mass parameter
   - type of section "sec"
-  - number of iterates "n"
+  - number of iterates "n". 
 
   2. for each initial point "x" from stdin, do
      2.1. Compute n-th iterate of the Poincare map, $P^n(x)$.
@@ -62,6 +64,8 @@ int main( )
       sec = SEC2;
    else if (strcmp(section_str,"SECg") == 0)
       sec = SECg;
+   else if (strcmp(section_str,"SECg2") == 0)
+      sec = SECg2;
    else 
    {
       perror("main: error reading section string");
@@ -74,14 +78,29 @@ int main( )
    // Input initial conditions from stdin.
    while(scanf("%le %le %le %le", x, x+1, x+2, x+3) == 4)
    {
-      // Compute n-th iterate of Poincare map, $P^n(x)$.
-      status=prtbp_del(mu,sec,n,x,&ti);
-      if(status)
-      {
-	 fprintf(stderr, \
-	       "main: error computing %d-th iterate of Poincare map\n",n);
-	 exit(EXIT_FAILURE);
-      }
+	   if(n>0)
+	   {
+		  // Compute n-th iterate of Poincare map, $P^n(x)$.
+		  status=prtbp_del(mu,sec,n,x,&ti);
+		  if(status)
+		  {
+		 fprintf(stderr, \
+			   "main: error computing %d-th iterate of Poincare map\n",n);
+		 exit(EXIT_FAILURE);
+		  }
+	   }
+	   else if(n<0)
+	   {
+		  // Compute n-th iterate of inverse Poincare map, $P^{-n}(x)$.
+		  status=prtbp_del_inv(mu,sec,-n,x,&ti);
+		  if(status)
+		  {
+		 fprintf(stderr, \
+			   "main: error computing %d-th inverse iterate of Poincare map\n",
+			   -n); 
+		 exit(EXIT_FAILURE);
+		  }
+	   }
 
       // Output final point and integration time to stdout.
       status = printf("%.15le %.15le %.15le %.15le %.15le\n", \
