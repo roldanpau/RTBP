@@ -68,7 +68,8 @@ build-frtbp_red: install-rtbp_del
 build-frtbp_del: install-rtbp_del
 build-prtbp_del: install-frtbp_del install-hinv_del
 build-inner_circ: install-frtbp_red
-build-outer_circ: install-frtbp_del install-prtbp_del install-inner_circ
+build-outer_circ: install-frtbp_del install-prtbp_del install-inner_circ \
+	install-approxint
 build-portbp: install-initcond install-dprtbp
 build-portbp_apo: install-initcond_apo install-dprtbp
 build-sec1sec2: install-prtbp
