@@ -1,0 +1,10 @@
+0.95387536e-3 427.25660088821188042784
+3.139678001817794e+00 6.923565273465335e-01 3.141592653589793e+00 6.786367860514071e-01
+0 0
+
+# 68*(2\pi) = 427.25660088821188042784
+
+# Integrate z_u in {g=\pi} section for time g=68*(2\pi) and check that we
+# obtain homoclinic point z (also in g=\pi section).
+
+# Result: We don't get exactly z, but only approximately (only 10^{-2} close).
