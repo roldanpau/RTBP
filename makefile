@@ -24,7 +24,8 @@ DIRS = rtbp taylor frtbp section hinv cardel prtbp_del_car prtbp utils \
        approxint_del_car \
        inner_ell_stoch outer_ell_stoch \
 	   approxint intersec splitting\
-       trtbp
+       trtbp \
+	   variance
 
 # the sets of directories to do various things in
 BUILDDIRS = $(DIRS:%=build-%)
@@ -115,6 +116,7 @@ install-approxint: build-approxint
 install-intersec: build-intersec
 install-splitting: build-splitting
 install-trtbp: build-trtbp
+install-variance: build-variance
 
 test: $(TESTDIRS) all
 $(TESTDIRS): 
