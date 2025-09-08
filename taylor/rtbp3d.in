@@ -1,7 +1,7 @@
-/* ODE specification: rtbp (2d) */
+/* ODE specification: rtbp (3d) */
 extern mu;
 umu=1-mu;
-r2=x1*x1+x2*x2;
+r2=x1*x1+x2*x2+x3*x3;
 
 rpe2=r2-2*mu*x1+mu*mu;
 a=umu*rpe2^(-3./2);
@@ -11,5 +11,7 @@ b=mu*rpm2^(-3./2);
 
 diff( x1,t)= x4+x2;
 diff( x2,t)= x5-x1;
+diff( x3,t)= x6;
 diff( x4,t)= x5-(x1-mu)*a-(x1+umu)*b;
 diff( x5,t)=-x4-x2*(a+b);
+diff( x6,t)=-x3*(a+b);
