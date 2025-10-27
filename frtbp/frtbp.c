@@ -53,14 +53,16 @@ int dfrtbp(double mu_loc, double t1, double x[DIM], double dphi[DIMV])
       // Forward integration
       while (t<t1)
       {
-	    status = taylor_step_rtbp2dv(&t,xvar,1,1,log10_eps_abs,log10_eps_rel,&t1,&h,&nt);
+	    status =
+        taylor_step_rtbp2dv(&t,xvar,1,1,log10_eps_abs,log10_eps_rel,&t1,&h,&nt,NULL);
       }
    }
    else // t1<0
    {
       // Backwards integration
       while (t>t1)
-	    status = taylor_step_rtbp2dv(&t,xvar,-1,1,log10_eps_abs,log10_eps_rel,&t1,&h,&nt);
+	    status =
+        taylor_step_rtbp2dv(&t,xvar,-1,1,log10_eps_abs,log10_eps_rel,&t1,&h,&nt,NULL);
    }
 
    // Save derivative to matrix "dphi"
@@ -96,7 +98,8 @@ int frtbp(double mu_loc, double t1, double x[DIM])
       // Forward integration
       while (t<t1)
       {
-	    status = taylor_step_rtbp2d(&t,x,1,1,log10_eps_abs,log10_eps_rel,&t1,&h,&nt);
+	    status =
+        taylor_step_rtbp2d(&t,x,1,1,log10_eps_abs,log10_eps_rel,&t1,&h,&nt,NULL);
 	 // What if there is a singularity in the vectorfield?? This is not
 	 // contemplated in the errorcode status??
       }
@@ -105,7 +108,8 @@ int frtbp(double mu_loc, double t1, double x[DIM])
    {
       // Backwards integration
       while (t>t1)
-	    status = taylor_step_rtbp2d(&t,x,-1,1,log10_eps_abs,log10_eps_rel,&t1,&h,&nt);
+	    status =
+        taylor_step_rtbp2d(&t,x,-1,1,log10_eps_abs,log10_eps_rel,&t1,&h,&nt,NULL);
    }
    return(0);
 }

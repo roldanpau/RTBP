@@ -25,7 +25,8 @@ DIRS = rtbp taylor frtbp section hinv cardel prtbp_del_car prtbp utils \
        inner_ell_stoch outer_ell_stoch \
 	   approxint intersec splitting\
        trtbp \
-	   variance
+	   variance \
+       Lbound
 
 # the sets of directories to do various things in
 BUILDDIRS = $(DIRS:%=build-%)
@@ -74,6 +75,7 @@ build-outer_circ: install-frtbp_del install-prtbp_del install-inner_circ \
 build-portbp: install-initcond install-dprtbp
 build-portbp_apo: install-initcond_apo install-dprtbp
 build-sec1sec2: install-prtbp
+build-Lbound: install-utils install-frtbp install-cardel
 
 install: $(INSTALLDIRS)
 
@@ -117,6 +119,7 @@ install-intersec: build-intersec
 install-splitting: build-splitting
 install-trtbp: build-trtbp
 install-variance: build-variance
+install-Lbound: build-Lbound
 
 test: $(TESTDIRS) all
 $(TESTDIRS): 

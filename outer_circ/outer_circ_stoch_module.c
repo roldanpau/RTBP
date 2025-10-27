@@ -15,6 +15,7 @@
 #include <rtbpdel.h>            	// f0_stoch
 #include <frtbpred.h>
 #include <frtbp.h>
+#include <cardel.h>
 
 // We request a absolute error of 0 and a relative error $10^{-13}$.
 

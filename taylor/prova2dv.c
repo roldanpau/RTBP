@@ -22,7 +22,7 @@ int main(void)
 
   tf=1.e0;
 
-  while (taylor_step_rtbp2dv(&t,x,1,1,-16,-16,&tf,&h,&nt) != 1);
+  while (taylor_step_rtbp2dv(&t,x,1,1,-16,-16,&tf,&h,&nt,NULL) != 1);
 
   f=fopen("prova2dv.res","w");
   for (j=0; j<20; j++) fprintf(f,"%3d %20.15f\n",j,x[j]);
