@@ -35,6 +35,8 @@
 // 2. Find splitting angle
 //
 // 3. Output the following data to stdout:
+//    - energy H
+//    - splitting angle (in radians)
 
 #include <stdio.h>
 #include <stdlib.h>	// EXIT_SUCCESS, EXIT_FAILURE
@@ -105,6 +107,7 @@ int main( )
 	  }
 
       // 3. Output the following data to stdout:
+      //    - energy H
       //    - splitting angle (in radians)
       printf("%.15le %.15le\n", H, angle);
    }
