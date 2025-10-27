@@ -29,6 +29,4 @@ cut -d ' ' -f 1 ../portbp/porbits.res > temp1    # energy H
 paste -d ' ' temp1 $resfile.tmp | sed -n '1,117p' > $resfile
 rm $resfile.tmp
 
-# Warning: we don't want to remove datafile since outer_circ is executing in
-# the background!
-#rm $datfile
+rm $datfile
