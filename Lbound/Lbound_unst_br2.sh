@@ -19,14 +19,16 @@ cut -d ' ' -f 6 ../intersec/intersecs_unst_br2.res > temp3
 # Select only the first 117 lines, corresponding to energies H<-1.4854.
 # The reason for this is because, for larger energies, g=0/PI is not a surface
 # of section for the flow (either for po or hom.).
-paste -d ' ' temp1 temp2 temp3 | sed -n '1,117p' >>$datfile
+#paste -d ' ' temp1 temp2 temp3 | sed -n '1,117p' >>$datfile
+paste -d ' ' temp1 temp2 temp3 >>$datfile
 rm temp1 temp2 temp3
 
 ./Lbound < $datfile > $resfile.tmp 2> $errfile
 
 # Add column with energy H to results file
 cut -d ' ' -f 1 ../portbp/porbits.res > temp1    # energy H
-paste -d ' ' temp1 $resfile.tmp | sed -n '1,117p' > $resfile
+#paste -d ' ' temp1 $resfile.tmp | sed -n '1,117p' > $resfile
+paste -d ' ' temp1 $resfile.tmp > $resfile
 rm $resfile.tmp
 
 rm $datfile

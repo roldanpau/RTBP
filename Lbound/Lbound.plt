@@ -7,7 +7,7 @@ set ylabel "Lbound"
 #set key left top
 #set key spacing 3
 
-plot \
+plot [:-1.485] \
 "Lbound_unst_br1.res" u 1:2 t "u1" w l, \
 "Lbound_unst_br2.res" u 1:2 t "u2" w l, \
 "Lbound_st_br1.res" u 1:2 t "s1" w l, \
