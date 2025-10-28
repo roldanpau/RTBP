@@ -1,5 +1,5 @@
-#set out "Lbound_j.eps"
-#set term postscript enhanced color eps
+set out "Lbound.eps"
+set term postscript enhanced color eps
 
 set xlabel "H"
 set ylabel "Lbound"
