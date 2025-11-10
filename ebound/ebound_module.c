@@ -1,12 +1,14 @@
 /*! \file ebound_module.c
-    \brief Bound for \f$e_{hom}(t,J)\f$
+    \brief Bound for \f$ \mathcal{E}_1^1(X,t) \f$
     
-    Compute bound \f$|e_{hom}(t,J) - e_0| \leq C\mu\f$ for all $\fJ\in[J_-,
-    J_+]\f$.
+    Compute bound of \f$ \mathcal{E}_1^1(X,t) = E(J,L_j(t,J)) - E(J,L_0) \f$ for
+    all $\fJ\in[J_-, J_+]\f$, where the function E is defined as
+    \f[ E(J,L) = \sqrt{1-\frac{(J+\frac{1}{2L^2})^2}{L^2}}. \f]
 
-    \note In principle, e(t) varies along the infinite-time homoclinic. However
-    the homoclinic tends to the periodic orbit, so once we are close to the
-    periodic orbit, it is okay to disregard both ``tails'' of the homoclinic.
+    \note In principle, \f$ E(J,L_j(t,J)) \f$ varies along the infinite-time
+    homoclinic. However the homoclinic tends to the periodic orbit, so once we
+    are close to the periodic orbit, it is okay to disregard both ``tails'' of
+    the homoclinic.
 */
 
 #include <stdio.h>	// perror
@@ -19,7 +21,13 @@
 
 const double SHORT_TIME=0.01;       ///< integration "step" for frtbp
 
-int ebound(double mu, double H, double x[DIM], double t, double *bound) 
+double E(double J, double L)
+{
+   double aux = J+1.0/(2*L*L);
+   return sqrt(1.0 - aux*aux / (L*L));
+}
+
+int ebound(double mu, double J, double x[DIM], double t, double *bound) 
 {
     double L0 = 1.0/cbrt(3);    ///< resonant value \f$ L_0 \f$
 
@@ -27,12 +35,9 @@ int ebound(double mu, double H, double x[DIM], double t, double *bound)
    int i, status;
    double xt[DIM];		    /* point x(t) in Cartesian */
    double xt_del[DIM];		/* point x(t) in Delaunay*/
-   double dt, L, G, G0, e, e0;
+   double dt, L, E11;
 
    dt = (t>0 ? SHORT_TIME : -SHORT_TIME);
-
-   G0 = H+1.0/(2*L0*L0);
-   e0 = sqrt(1.0 - G0*G0 / (L0*L0));
 
    /* Work with local copy to avoid modifying original x */
    dblcpy(xt, x, DIM);
@@ -49,11 +54,10 @@ int ebound(double mu, double H, double x[DIM], double t, double *bound)
 	   }
 	   cardel(xt,xt_del);
        L = xt_del[1];
-       G = xt_del[3];
-       e = sqrt(1.0 - G*G / (L*L));
 
        /* Update L bound */
-       if(fabs(e-e0) > *bound) *bound=fabs(e-e0);
+       E11 = E(J,L)-E(J,L0);
+       if(fabs(E11) > *bound) *bound=fabs(E11);
    }
    return 0;
 }
