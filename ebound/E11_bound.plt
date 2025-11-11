@@ -1,8 +1,8 @@
-set out "ebound.eps"
+set out "E11_bound.eps"
 set term postscript enhanced color eps
 
-set xlabel "H"
-set ylabel "ebound"
+set xlabel "J"
+set ylabel "E11"
 
 #set key left top
 #set key spacing 3

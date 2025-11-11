@@ -1,12 +1,10 @@
 /*! \file ebound.c
-    \brief Bound for \f$L_{hom}(t,J)\f$: main program
-    
-    Compute bound \f$|L_{hom}(t,J) - L_0| \leq C\mu\f$ for all $\fJ\in[J_-,
-    J_+]\f$.
+    \brief Bounds for \f$ \mathcal{E}_1^1(X,t) \f$ and \f$ E_2(X) \f$.
 
-    \note In principle, L(t) varies along the infinite-time homoclinic. However
-    the homoclinic tends to the periodic orbit, so once we are close to the
-    periodic orbit, it is okay to disregard both ``tails'' of the homoclinic.
+    \note In principle, \f$ E(J,L_j(t,J)) \f$ varies along the infinite-time
+    homoclinic. However the homoclinic tends to the periodic orbit, so once we
+    are close to the periodic orbit, it is okay to disregard both ``tails'' of
+    the homoclinic.
 */
 
 #include <stdio.h>	// perror
@@ -20,9 +18,10 @@
 #include "ebound_module.h"
 
 /** 
-Bound for \f$L_{hom}(t,J)\f$: main program
+Bounds for \f$ \mathcal{E}_1^1(X,t) \f$ and \f$ E_2(X) \f$: main program.
 
-Compute an upper bound for \f$L_{hom}(t)\f$ for all $\fJ\in[J_-, J_+]\f$.
+Compute upper bounds for \f$ \mathcal{E}_1^1(X,t) \f$ and \f$ E_2(X) \f$ for all
+$\fJ\in[J_-, J_+]\f$.
 
   It reads the following input from stdin:
   - mu
@@ -43,8 +42,8 @@ Compute an upper bound for \f$L_{hom}(t)\f$ for all $\fJ\in[J_-, J_+]\f$.
 
   For each input line, it outputs result to stdout:
   - H
-  - bound
- 
+  - E11 bound
+  - E2 bound
  */
  
 int main( )
@@ -56,7 +55,10 @@ int main( )
    int stability;
 
    double zu[DIM];	/* preimage of primary homoclinic point */
-   double bound;	/* bound \f$ |L_{hom}(t)| \f$ */
+
+   double E11_bound;	/* bound for \f$ \mathcal{E}_1^1(X,t) \f$ */
+   double E2_bound;	    /* bound for \f$ E_2(X) \f$ */
+
    double H;	    /* energy */
    double T;	    /* period */
    double t;	    /* integration time from z_u to z */
@@ -92,11 +94,11 @@ int main( )
        zs_car[2] = -zu_car[2];
        */
 
-       // Compute ebound, integrating along $z(s) = \gamma^*(s)$.
-       ebound(mu, H, zu, t, &bound);
+       // Compute bounds, integrating along $z(s) = \gamma^*(s)$.
+       ebound(mu, H, zu, t, &E11_bound, &E2_bound);
 
        // Output result to stdout.
-       printf("%.15e %.15e\n", H, bound);
+       printf("%.15e %.15e %24.16e\n", H, E11_bound, E2_bound);
        fflush(NULL);
    }
    exit(EXIT_SUCCESS);
