@@ -3,7 +3,7 @@
 # We impose that the inicial condition is at the perihelion.
 
 # Execute with:
-#	bc -l initcond.bc
+#	bc -l eccentr_to_energy.bc
 
 #h=-1.6	# Hamiltonian energy value
 #print "Using energy level H="; h

@@ -3,20 +3,22 @@ set ylabel "y"
 #set title "Extremal periodic orbits in sideral coordinates"
 set size square
 
-#set out "trtbp_porbits_3to1.eps"
-#set term post eps color
+set term post eps color
 
-#plot \
-#"trtbp_po_min.res" using ($2*cos($1)-$3*sin($1)):($2*sin($1)+$3*cos($1)) \
-#w l t "H=-2.04", \
-#"trtbp_po_max.res" using ($2*cos($1)-$3*sin($1)):($2*sin($1)+$3*cos($1)) \
-#w l t "H=-1.57"
+set style line 1 lc rgb 'yellow' pt 7 ps 2  # circle
+set style line 2 lc rgb 'brown' pt 7 ps 2  # circle
 
-plot \
-"trtbp_3to1.res" using 2:3 w l t "e=0", \
-"trtbp_3to1_ell07.res" using 2:3 w l t "e=0.7", \
-"L1.dat" not
+do for [e=0:8] {
+    pltfile=sprintf("trtbp_3to1_ell0%d.res",e)
+    outfile=sprintf("trtbp_3to1_ell0%d.eps",e)
+    set output outfile
+    plot [-1.1:1.1] [-1:1] \
+    pltfile using 2:3 w l not, \
+    "<echo '-0.001 0'" with points ls 1 not, \
+    "<echo '0.999 0'" with points ls 2 not
 
+#    "L1.dat" not
+    set out
+}
 
-#set term pop
-#set out
+set term pop
