@@ -1,0 +1,13 @@
+0.95387536e-3 SEC1 -1.7194
+4
+3.855411980182917e-01 0.000000000000000e+00
+9.262120107803046e-02  9.957014176503231e-01
+1.120977445930984e+00
+56
+0
+-1.e-3
+1
+
+# NOTE: Even though section sec is not used in prtbp_nl anymore, 
+# it IS used in hinv, so we still need to set it properly.
+# NOTE: ifp (last argument) is not used anymore, so it has no effect

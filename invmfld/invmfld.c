@@ -42,7 +42,7 @@ const int NPOINTS = 100;
 //    - unstable (or stable) eigenvalue "lambda"
 //    - number of desired iterations by the Poincare map "n"
 //    - "stable": flag specifying whether to compute the unstable manifold
-//    (unstable==0) or the stable manifold (stable==1).
+//    (stable==0) or the stable manifold (stable==1).
 //    - h: small increment in the direction of v
 //    - ifp: Index specifying which iterate of fixed point we are interested
 //    in, e.g. p_2 -> ifp==2
