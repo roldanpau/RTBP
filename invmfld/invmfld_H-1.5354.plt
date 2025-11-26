@@ -2,18 +2,27 @@ unset label
 
 # fixed points
 #set label "p0" at first 1.423330969133599e-01,0.000000000000000e+00 \
-#point pt 3 ps 2 offset 1,1
+#point pt 5 ps 1 offset 1,1
 set label "p1" at first -1.869996395538581e-01,1.266386459013741e+00 \
-point pt 3 ps 2 offset 1,1
+point pt 5 ps 1 offset 1,1
 #set label "p2" at first 8.186568343573867e-01,1.354558826216490e-14 \
-#point pt 3 ps 2 offset -4,1
+#point pt 5 ps 1 offset -4,1
 set label "p3" at first -1.869996395538581e-01,-1.266386459013746e+00 \
-point pt 3 ps 2 offset 1,-1
+point pt 5 ps 1 offset 1,-1
 #set label "p1" at first -6.389031137499175e-02, -2.621258562749938e+00
 #set label "z" at first -0.087032, first 0.0
 
-set out "invmfld_H\-1.5354.eps"
-set term post eps color
+set label "u1" at first -1.643510251926738e-01,0.000000000000000e+00 \
+point pt 2 ps 1 offset -3,0.5
+set label "u2" at first -8.111558543205022e-01,0.000000000000000e+00 \
+point pt 2 ps 1 offset 0.5,0.5
+set label "s1" at first -1.272178048025611e-01,0.000000000000000e+00 \
+point pt 2 ps 1 offset 0.5,0.5
+set label "s2" at first -8.247337896121805e-01,0.000000000000000e+00 \
+point pt 2 ps 1 offset -3,0.5
+
+#set out "invmfld_H\-1.5354.eps"
+#set term post eps color
 
 #set title "Invariant manifolds of fixed point"
 set xlabel "x"
