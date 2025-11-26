@@ -3,7 +3,7 @@
 
 set xlabel "t"
 set ylabel "dg/dt"
-set title "Monitoring dg/dt for homoclinic orbit with H = -1.4854"
+#set title "Monitoring dg/dt for homoclinic orbit with H = -1.4854"
 
 plot "frtbpdel_dbg_zu_H-1.4854.err" u 1:3 w l not
 
