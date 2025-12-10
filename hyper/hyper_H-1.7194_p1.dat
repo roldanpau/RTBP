@@ -1,0 +1,8 @@
+0.95387536e-3 SEC2
+-1.7194
+4
+-4.470843776035962e-01 2.821703012713516e-01
+
+# Hyper splitting associated to fixed point p_1 in SEC2 corresponding to
+# periodic orbit with H=-1.7194 (e=0.2, before loops develop).
+# NOTE: WHEN USING PRTBP_NL, CHANGE CUTS=2 TO CUTS=4 !!
