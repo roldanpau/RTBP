@@ -1,16 +1,16 @@
-set xlabel "H" 
+set term tikz
+set out "B_out_j.tex"
+
+set xlabel "$\\tJ$" 
 unset ylabel
 
-set key t l spacing 3.0
-
-#set out "B_out_j.eps"
-#set term postscript enhanced monochrome eps
+set key c r spacing 2.0
 
 plot  \
-"B_1.res" u 1:4 w l t "imBout1", \
-"B_2.res" u 1:4 w l t "imBout2", \
-"B_3.res" u 1:4 w l t "imBout3", \
-"B_4.res" u 1:4 w l t "imBout4"
+"B_1.res" u 1:4 w l t "$\\Im{B_1^{\\out}}$", \
+"B_2.res" u 1:4 w l t "$\\Im{B_2^{\\out}}$", \
+"B_3.res" u 1:4 w l t "$\\Im{B_3^{\\out}}$", \
+"B_4.res" u 1:4 w l t "$\\Im{B_4^{\\out}}$"
 
 set term pop
 set out

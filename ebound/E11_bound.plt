@@ -1,17 +1,16 @@
-set out "E11_bound.eps"
-set term postscript enhanced color eps
+set term tikz
+set out "E11_bound.tex"
 
-set xlabel "J"
-set ylabel "E11"
+set xlabel "$\\tJ$"
+set ylabel "$\\overline{\\EE_1^1}$"
 
-#set key left top
-#set key spacing 3
+set key left top offset 5,0
 
 plot \
-"ebound_unst_br1.res" u 1:2 t "u1" w l, \
-"ebound_unst_br2.res" u 1:2 t "u2" w l, \
-"ebound_st_br1.res" u 1:2 t "s1" w l, \
-"ebound_st_br2.res" u 1:2 t "s2" w l
+"ebound_unst_br1.res" u 1:2 t "$i=1$" w l, \
+"ebound_st_br1.res" u 1:2 t "$i=2$" w l, \
+"ebound_unst_br2.res" u 1:2 t "$i=3$" w l, \
+"ebound_st_br2.res" u 1:2 t "$i=4$" w l
 
 set term pop
 set out 

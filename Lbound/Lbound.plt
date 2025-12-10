@@ -1,17 +1,16 @@
-set out "Lbound.eps"
-set term postscript enhanced color eps
+set term tikz
+set out "Lbound.tex"
 
-set xlabel "H"
-set ylabel "Lbound"
+set xlabel "$\\tJ$"
+set ylabel "$\\overline{L_i}$"
 
-#set key left top
-#set key spacing 3
+set key left top spacing 2
 
 plot [:-1.485] \
-"Lbound_unst_br1.res" u 1:2 t "u1" w l, \
-"Lbound_unst_br2.res" u 1:2 t "u2" w l, \
-"Lbound_st_br1.res" u 1:2 t "s1" w l, \
-"Lbound_st_br2.res" u 1:2 t "s2" w l
+"Lbound_unst_br1.res" u 1:2 t "$\\overline{L_1}$" w l, \
+"Lbound_st_br1.res" u 1:2 t "$\\overline{L_2}$" w l, \
+"Lbound_unst_br2.res" u 1:2 t "$\\overline{L_3}$" w l, \
+"Lbound_st_br2.res" u 1:2 t "$\\overline{L_4}$" w l
 
 set term pop
 set out 

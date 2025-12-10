@@ -1,32 +1,32 @@
 unset label 
 
 # fixed points
-set label "p0" at first 3.855411980183004e-01,0.000000000000000e+00 \
-point pt 5 ps 1 offset 1,1
-set label "p1" at first -4.470843776035962e-01,2.821703012713516e-01 \
-point pt 5 ps 1 offset 1,1
-set label "p2" at first 5.743269807781181e-01,0 \
-point pt 5 ps 1 offset -4,1
-set label "p3" at first -4.470843776036002e-01,-2.821703012713511e-01 \
-point pt 5 ps 1 offset 1,-1
+set label "$p_0$" at first 3.855411980183004e-01,0.000000000000000e+00 \
+point pt 5 ps 1 offset 0,1
+set label "$p_1$" at first -4.470843776035962e-01,2.821703012713516e-01 \
+point pt 5 ps 1 offset 0,1
+set label "$p_2$" at first 5.743269807781181e-01,0 \
+point pt 5 ps 1 offset 0,1
+set label "$p_3$" at first -4.470843776036002e-01,-2.821703012713511e-01 \
+point pt 5 ps 1 offset 0,-1
 #set label "p1" at first -6.389031137499175e-02, -2.621258562749938e+00
 #set label "z" at first -0.087032, first 0.0
 
-set label "u1" at first -4.066111260440617e-01,0.000000000000000e+00 \
-point pt 2 ps 1 offset -3,0.5
-set label "u2" at first -5.902449637425956e-01,0.000000000000000e+00 \
-point pt 2 ps 1 offset -3,0.5
-set label "s1" at first -3.647062490167189e-01,0.000000000000000e+00 \
-point pt 2 ps 1 offset 0.5,0.5
-set label "s2" at first -5.626712798440971e-01,0.000000000000000e+00 \
-point pt 2 ps 1 offset 0.5,0.5
+set label "$z_1$" at first -4.066111260440617e-01,0.000000000000000e+00 \
+point pt 2 ps 1 offset -3.5,0.5
+set label "$z_3$" at first -5.902449637425956e-01,0.000000000000000e+00 \
+point pt 2 ps 1 offset -3.5,0.5
+set label "$z_2$" at first -3.647062490167189e-01,0.000000000000000e+00 \
+point pt 2 ps 1 offset -0.5,0.5
+set label "$z_4$" at first -5.626712798440971e-01,0.000000000000000e+00 \
+point pt 2 ps 1 offset -0.5,0.5
 
-#set out "invmfld_H\-1.7194.eps"
-#set term post eps color
+set term tikz
+set out "invmfld_H\-1.7194.tex"
 
 #set title "Invariant manifolds of fixed point"
-set xlabel "x"
-set ylabel "px"
+set xlabel "$x$"
+set ylabel "$p_x$"
 
 f(x)=0.0
 
@@ -68,5 +68,5 @@ f(x) w l lt 1 lc 2 not
 #"stmfld_neg.res" w l lt 1 lc 3 not, \
 #"po.res" w p pt 3 pointsize 1 lc 2 not
 
-set term pop
 set out
+set term pop
