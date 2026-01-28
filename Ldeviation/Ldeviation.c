@@ -29,15 +29,18 @@ for all \f$t \in [0,T_J]\f$, where $L^* = 3^{-1/3}$ for the 3:1 resonance.
    On return of the this function, this point is modified!
 \param[out] Ldev
    On return, it holds the maximum deviation of $L$ from $L^*$.
+\param[out] adev
+   On return, it holds the maximum deviation of $a$ from $a^*$.
 
 \return Returns a non-zero error code to indicate an error and 0 to indicate
 success.
 If an integration error is encountered, the function returns a non-zero
 value.
 */
-int Ldeviation(double mu, double x[DIM], double *Ldev)
+int Ldeviation(double mu, double x[DIM], double *Ldev, double *adev)
 {
    const double Lstar = pow(3,-1.0/3.0);
+   const double astar = pow(3,-2.0/3.0);
 
    double x_pre[DIM];   /* previous value of point x */
    int status;
@@ -47,10 +50,13 @@ int Ldeviation(double mu, double x[DIM], double *Ldev)
    // auxiliary variables
    double n1,n2;
    double L;		// angular momentum
+   double a;		// semi-major axis
    double Ldev_new;
+   double adev_new;
 
    double t=0;
    (*Ldev) = 0.0;
+   (*adev) = 0.0;
    while(t<2*M_PI)
    {
 	 //printf("x = %le %le %le %le\n",x[0], x[1], x[2], x[3]);
@@ -74,11 +80,14 @@ int Ldeviation(double mu, double x[DIM], double *Ldev)
 
 	 // Update Ldev
 	 L=x[1];
+	 a=L*L;
 	 //Ldev_new = fabs(L-Lstar);
 	 Ldev_new = L-Lstar;
+	 adev_new = a-astar;
 	 if(Ldev_new > (*Ldev))
 	    (*Ldev) = Ldev_new;
-	 
+	 if(adev_new > (*adev))
+	    (*adev) = adev_new;
    }
    return(0);
 }

@@ -1,2 +1,2 @@
 #include "rtbp.h"	// DIM
-int Ldeviation(double mu, double x[DIM], double *Ldev);
+int Ldeviation(double mu, double x[DIM], double *Ldev, double *adev);

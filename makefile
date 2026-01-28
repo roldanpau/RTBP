@@ -17,6 +17,7 @@ export CFLAGS = -O3 -DNDEBUG -I$(HOME)/include/rtbp
 DIRS = rtbp taylor frtbp section hinv cardel prtbp_del_car prtbp utils \
        intersec_del_car prtbp_noloops errmfld invmfld invmfld_del_car \
        rtbp_del frtbp_red hinv_del frtbp_del prtbp_del \
+       Ldeviation \
        inner_circ outer_circ \
        initcond initcond_apo dprtbp portbp portbp_apo\
        sec1sec2 \
@@ -69,6 +70,7 @@ build-invmfld_del_car: install-errmfld install-invmfld \
 build-frtbp_red: install-rtbp_del
 build-frtbp_del: install-rtbp_del
 build-prtbp_del: install-frtbp_del install-hinv_del
+build-Ldeviation: install-frtbp_del
 build-inner_circ: install-frtbp_red
 build-outer_circ: install-frtbp_del install-prtbp_del install-inner_circ \
 	install-approxint
@@ -103,6 +105,7 @@ install-frtbp_red : build-frtbp_red
 install-hinv_del : build-hinv_del
 install-frtbp_del : build-frtbp_del
 install-prtbp_del : build-prtbp_del
+install-Ldeviation : build-Ldeviation
 install-inner_circ: build-inner_circ
 install-outer_circ: build-outer_circ
 install-initcond: build-initcond

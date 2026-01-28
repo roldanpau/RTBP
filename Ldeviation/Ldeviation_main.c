@@ -16,6 +16,7 @@ int main( )
    double H;		// energy level
    double x[DIM];
    double Ldev;		// maximum deviation
+   double adev;		// maximum deviation
    int status;
 
    // Input mass parameter
@@ -32,7 +33,7 @@ int main( )
    while(scanf("%le %le %le %le %le", &H, x, x+1, x+2, x+3) == 5)
    {
       // Compute maximum deviation Ldev
-      status=Ldeviation(mu,x,&Ldev);
+      status=Ldeviation(mu,x,&Ldev,&adev);
       if(status)
       {
 	 fprintf(stderr, \
@@ -41,7 +42,7 @@ int main( )
       }
 
       // Output H, Ldev to stdout.
-      status = printf("%.15e %.15le\n", H, Ldev);
+      status = printf("%.15e %.15le %.15le\n", H, Ldev, adev);
       if(status<0)
       {
 	 perror("main: error writting output");

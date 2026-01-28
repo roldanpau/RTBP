@@ -19,15 +19,16 @@
 
 const double SHORT_TIME=0.01;       ///< integration "step" for frtbp
 
-int Lbound(double mu, double x[DIM], double t, double *bound) 
+int Lbound(double mu, double x[DIM], double t, double *bound, double *abound) 
 {
     double L0 = 1.0/cbrt(3);    ///< resonant value \f$ L_0 \f$
+    double a0 = L0*L0;          ///< resonant value \f$ a_0 \f$
 
    // auxiliary variables
    int i, status;
    double xt[DIM];		    /* point x(t) in Cartesian */
    double xt_del[DIM];		/* point x(t) in Delaunay*/
-   double dt, L;
+   double dt, L, a;
 
    dt = (t>0 ? SHORT_TIME : -SHORT_TIME);
 
@@ -35,6 +36,7 @@ int Lbound(double mu, double x[DIM], double t, double *bound)
    dblcpy(xt, x, DIM);
    
    *bound = 0.0;
+   *abound = 0.0;
    for(i=0; i<(t/dt); i++)
    {
 	   status = frtbp(mu,dt,xt);
@@ -48,7 +50,9 @@ int Lbound(double mu, double x[DIM], double t, double *bound)
 
        /* Update L bound */
        L = xt_del[1];
+       a = L*L;
        if(fabs(L-L0) > *bound) *bound=fabs(L-L0);
+       if(fabs(a-a0) > *abound) *abound=fabs(a-a0);
    }
    return 0;
 }

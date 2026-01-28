@@ -54,6 +54,7 @@ int main( )
 
    double zu[DIM];	/* preimage of primary homoclinic point */
    double bound;	/* bound \f$ |L_{hom}(t)| \f$ */
+   double abound;	/* bound \f$ |a_{hom}(t)| \f$ */
    double T;	    /* period */
    double t;	    /* integration time from z_u to z */
 
@@ -86,10 +87,10 @@ int main( )
 		   */
 
 		  // Compute Lbound, integrating along $z(s) = \gamma^*(s)$.
-		  Lbound(mu, zu, t, &bound);
+		  Lbound(mu, zu, t, &bound, &abound);
 
 		  // Output result to stdout.
-		  printf("%.15e\n", bound);
+		  printf("%.15e %.15e\n", bound, abound);
 		  fflush(NULL);
 	   }
 	   else // st==STABLE
@@ -107,10 +108,10 @@ int main( )
 		   */
 
 		  // Compute Lbound, integrating along $z(s) = \gamma^*(s)$.
-		  Lbound(mu, zu, t, &bound);   
+		  Lbound(mu, zu, t, &bound, &abound);   
 
 		  // Output result to stdout.
-		  printf("%.15e\n", bound);
+		  printf("%.15e %.15e\n", bound, abound);
 		  fflush(NULL);
 	   }
    }
